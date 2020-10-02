@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0a1927723dc24f8a89e96ec0a0573bd2" Name="Diagram1">
+        <EntityTypeShape EntityType="OdontoWeb_Model.AGENDA" Width="1.5" PointX="5.25" PointY="36.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.AGENDA_ANEXO" Width="1.5" PointX="7.5" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.ASSINANTE" Width="1.5" PointX="0.75" PointY="38.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.CARGO" Width="1.5" PointX="3" PointY="29.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.CATEGORIA_AGENDA" Width="1.5" PointX="3" PointY="32.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.CATEGORIA_NOTIFICACAO" Width="1.5" PointX="11.25" PointY="33" IsExpanded="true" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.CODIGO_REGIME_TRIBUTARIO" Width="1.5" PointX="3" PointY="35.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.CONFIGURACAO" Width="1.5" PointX="3" PointY="38.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.FILIAL" Width="1.5" PointX="5.25" PointY="43.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.LOG" Width="1.5" PointX="10.5" PointY="36.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.MATRIZ" Width="1.5" PointX="8.25" PointY="43.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.NOTICIA" Width="1.5" PointX="3" PointY="43.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.NOTICIA_COMENTARIO" Width="1.5" PointX="10.5" PointY="40.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.NOTICIA_TAG" Width="1.5" PointX="5.25" PointY="51" IsExpanded="true" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.NOTIFICACAO" Width="1.5" PointX="13.5" PointY="35.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.NOTIFICACAO_ANEXO" Width="1.5" PointX="15.75" PointY="36.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.PAIS" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.PERFIL" Width="1.5" PointX="6" PointY="33.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.REGIME_TRIBUTARIO" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.SEXO" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.SITUACAO" Width="1.5" PointX="3" PointY="48.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.TAREFA" Width="1.5" PointX="10.5" PointY="44.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.TAREFA_ACOMPANHAMENTO" Width="1.5" PointX="12.75" PointY="42" IsExpanded="true" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.TAREFA_ANEXO" Width="1.5" PointX="12.75" PointY="49.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.TAREFA_NOTIFICACAO" Width="1.5" PointX="15.75" PointY="40.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.TEMPLATE" Width="1.5" PointX="3" PointY="51.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.TIPO_CONTRIBUINTE" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.TIPO_PESSOA" Width="1.5" PointX="3" PointY="55.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.TIPO_TAG" Width="1.5" PointX="3" PointY="58.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.TIPO_TAREFA" Width="1.5" PointX="3" PointY="61.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.UF" Width="1.5" PointX="6" PointY="54.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.UNIDADE" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.USUARIO" Width="1.5" PointX="8.25" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.USUARIO_ANEXO" Width="1.5" PointX="10.5" PointY="55" IsExpanded="true" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_AGENDA_ANEXO_AGENDA" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_AGENDA_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_AGENDA_CATEGORIA_AGENDA" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_AGENDA_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_AGENDA_USUARIO1" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_CARGO_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_CATEGORIA_AGENDA_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_CODIGO_REGIME_TRIBUTARIO_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_CONFIGURACAO_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_LOG_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_LOG_ASSINANTE1" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_MATRIZ_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_NOTICIA_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_NOTIFICACAO_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_SITUACAO_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_TEMPLATE_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_TIPO_PESSOA_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_TIPO_TAG_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_TIPO_TAREFA_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_USUARIO_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_USUARIO_CARGO" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_NOTIFICACAO_CATEGORIA_NOTIFICACAO" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_FILIAL_CODIGO_REGIME_TRIBUTARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_MATRIZ_CODIGO_REGIME_TRIBUTARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_FILIAL_MATRIZ" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_FILIAL_TIPO_PESSOA" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_FILIAL_UF" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_USUARIO_FILIAL" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_LOG_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_MATRIZ_TIPO_PESSOA" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_MATRIZ_UF" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_NOTICIA_COMENTARIO_NOTICIA" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_NOTICIA_TAG_NOTICIA" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_NOTICIA_COMENTARIO_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_NOTICIA_TAG_TIPO_TAG" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_NOTIFICACAO_ANEXO_NOTIFICACAO" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_NOTIFICACAO_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_USUARIO_PERFIL" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_TAREFA_ACOMPANHAMENTO_TAREFA" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_TAREFA_ANEXO_TAREFA" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_TAREFA_NOTIFICACAO_TAREFA" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_TAREFA_TIPO_TAREFA" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_TAREFA_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_TAREFA_USUARIO1" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_TAREFA_USUARIO2" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_TAREFA_USUARIO3" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_TAREFA_ACOMPANHAMENTO_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_TAREFA_NOTIFICACAO_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_USUARIO_ANEXO_USUARIO" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
