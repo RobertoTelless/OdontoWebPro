@@ -26,9 +26,10 @@ namespace ModelServices.EntitiesServices
         private readonly IUsuarioAnexoRepository _anexoRepository;
         private readonly INotificacaoRepository _notRepository;
         private readonly INoticiaRepository _ntcRepository;
+        private readonly IUFRepository _ufRepository;
         protected Odonto_DBEntities Db = new Odonto_DBEntities();
 
-        public UsuarioService(IUsuarioRepository usuarioRepository, ILogRepository logRepository, IConfiguracaoRepository configuracaoRepository, IPerfilRepository perfRepository, ITemplateRepository tempRepository, IUsuarioAnexoRepository anexoRepository, INotificacaoRepository notRepository, INoticiaRepository ntcRepository) : base(usuarioRepository)
+        public UsuarioService(IUsuarioRepository usuarioRepository, ILogRepository logRepository, IConfiguracaoRepository configuracaoRepository, IPerfilRepository perfRepository, ITemplateRepository tempRepository, IUsuarioAnexoRepository anexoRepository, INotificacaoRepository notRepository, INoticiaRepository ntcRepository, IUFRepository ufRepository) : base(usuarioRepository)
         {
             _usuarioRepository = usuarioRepository;
             _logRepository = logRepository;
@@ -38,6 +39,7 @@ namespace ModelServices.EntitiesServices
             _anexoRepository = anexoRepository;
             _notRepository = notRepository;
             _ntcRepository = ntcRepository;
+            _ufRepository = ufRepository;
         }
 
         public USUARIO RetriveUserByEmail(String email)
@@ -229,6 +231,12 @@ namespace ModelServices.EntitiesServices
         public List<PERFIL> GetAllPerfis()
         {
             List<PERFIL> lista = _perfRepository.GetAll().ToList();
+            return lista;
+        }
+
+        public List<UF> GetAllUF()
+        {
+            List<UF> lista = _ufRepository.GetAllItens();
             return lista;
         }
 

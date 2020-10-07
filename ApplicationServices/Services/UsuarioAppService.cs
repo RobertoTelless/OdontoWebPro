@@ -81,6 +81,11 @@ namespace ApplicationServices.Services
             return _usuarioService.GetAllNoticias(idAss);
         }
 
+        public List<UF> GetAllUF()
+        {
+            return _usuarioService.GetAllUF();
+        }
+
         public List<NOTIFICACAO> GetNotificacaoNovas(Int32 id, Int32 idAss)
         {
             return _usuarioService.GetNotificacaoNovas(id, idAss);

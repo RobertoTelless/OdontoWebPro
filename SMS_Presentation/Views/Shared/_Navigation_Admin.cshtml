@@ -1,0 +1,117 @@
+@using Inspinia_MVC5;
+@using EntitiesServices.Work_Classes;
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element">
+                    <span>
+                        <img alt="image" src="~/Images/logoSMS.jpg" style = "width: auto; height: auto; max-height: 70px; max-width: 170px;" />
+                    </span>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <span class="clear">
+                            <span class="block m-t-xs">
+                                @*<strong class="font-bold">@SessionMocks.Nome</strong>*@
+                                @*<strong class="font-bold">Clayton Sant'Anna</strong>*@
+                            </span> 
+                            <br />
+                            <span class="text-muted text-xs block">Controle de Acesso<b class="caret"></b></span>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                        @if (ViewBag.IdAssinante == 0)
+	                    {
+                            <li><a href="@Url.Action("Login", "ControleAcesso")">Login</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="@Url.Action("Logout", "ControleAcesso")">Logout</a></li>
+                            <li><a href="@Url.Action("TrocarSenha", "ControleAcesso")">Alterar Senha</a></li>
+                        }
+                    </ul>
+                </div>
+                <div class="logo-element">
+                    SMS
+                </div>
+            </li>
+
+
+            <li class="@Html.IsSelected(controller: "BaseAdmin")">
+                <a href="@Url.Action("CarregarBase", "BaseAdmin")"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Dashboard</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "BaseAdmin", cssClass: "in")">
+                    <li class="@Html.IsSelected(action: "CarregarBase")"><a href="@Url.Action("CarregarBase", "BaseAdmin")">Dashboard Inicial</a></li>
+                </ul>
+            </li>
+
+            <li class="@Html.IsSelected(controller: "BaseAdmin")">
+                <a href="@Url.Action("CarregarBase", "BaseAdmin")"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Cadastros</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "BaseAdmin", cssClass: "in")">
+                    <li class="@Html.IsSelected(action: "MontarTelaContato")"><a href="@Url.Action("MontarTelaContato", "Contato")">Contatos</a></li>
+                    <li class="@Html.IsSelected(action: "MontarTelaGrupo")"><a href="@Url.Action("MontarTelaGrupo", "Grupo")">Grupos</a></li>
+                    <li class="@Html.IsSelected(action: "MontarTelaCampanha")"><a href="@Url.Action("MontarTelaCampanha", "Campanha")">Campanhas</a></li>
+                    <li class="@Html.IsSelected(action: "MontarTelaTemplate")"><a href="@Url.Action("MontarTelaTemplate", "Template")">Modelos</a></li>
+                    @if (ViewBag.Perfil == "ADM")
+                    {
+                        <li class="@Html.IsSelected(action: "CarregarBase")"><a href="@Url.Action("CarregarBase", "GestaoOperacional")"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Tabelas Auxiliares</span> <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level collapse @Html.IsSelected(controller: "BaseAdmin", cssClass: "in")">
+                                <li class="@Html.IsSelected(action: "MontarTelaCategoriaContato")"><a href="@Url.Action("MontarTelaCategoriaContato", "TabelaAuxiliar")">Categoria Contato</a></li>
+                                <li class="@Html.IsSelected(action: "MontarTelaClubes")"><a href="@Url.Action("MontarTelaClubes", "TabelaAuxiliar")">Clubes</a></li>
+                                <li class="@Html.IsSelected(action: "MontarTelaOrigem")"><a href="@Url.Action("MontarTelaOrigem", "TabelaAuxiliar")">Origens</a></li>
+                                <li class="@Html.IsSelected(action: "MontarTelaProfissao")"><a href="@Url.Action("MontarTelaProfissao", "TabelaAuxiliar")">Profissões</a></li>
+                            </ul>                    
+                        </li>
+                    }
+                </ul>
+            </li>
+
+            <li class="@Html.IsSelected(controller: "BaseAdmin")">
+                <a href="@Url.Action("CarregarBase", "BaseAdmin")"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Mensagens</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "BaseAdmin", cssClass: "in")">
+                    <li class="@Html.IsSelected(action: "IncluirMensagem")"><a href="@Url.Action("IncluirMensagem", "Mensagem")">Envio de SMS</a></li>
+                    <li class="@Html.IsSelected(action: "MontarTelaMensagens")"><a href="@Url.Action("MontarTelaMensagens", "Mensagem")">Central de Mensagens</a></li>
+                    <li class="@Html.IsSelected(action: "CarregarBase")"><a href="@Url.Action("CarregarBase", "BaseAdmin")"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Consultas Rápidas</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-third-level collapse @Html.IsSelected(controller: "BaseAdmin", cssClass: "in")">
+                            <li class="@Html.IsSelected(action: "MontarTelaAgendadas")"><a href="@Url.Action("MontarTelaAgendadas", "Mensagem")">Agendados</a></li>
+                            <li class="@Html.IsSelected(action: "MontarTelaEnviadas")"><a href="@Url.Action("MontarTelaEnviadas", "Mensagem")">Enviados</a></li>
+                            <li class="@Html.IsSelected(action: "MontarTelaAniversariantes")"><a href="@Url.Action("MontarTelaAniversariantes", "Contato")">Aniversariantes</a></li>
+                        </ul>                    
+                    </li>
+
+                </ul>
+            </li>
+
+            <li class="@Html.IsSelected(controller: "BaseAdmin")">
+                <a href="@Url.Action("CarregarBase", "BaseAdmin")"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Administração</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "AdministracaoGeral", cssClass: "in")">
+                    <li class="@Html.IsSelected(action: "MontarTelaUsuario")"><a href="@Url.Action("MontarTelaUsuario", "Administracao")">Usuários</a></li>
+                    <li class="@Html.IsSelected(action: "MontarTelaLog")"><a href="@Url.Action("MontarTelaLog", "Administracao")">Auditoria</a></li>
+                </ul>
+            </li>
+
+            @if (ViewBag.Perfil == "ADM")
+            {
+                <li class="@Html.IsSelected(controller: "BaseAdmin")">
+                    <a href="@Url.Action("CarregarBase", "BaseAdmin")"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Administração Geral</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "BaseAdmin", cssClass: "in")">
+                        <li class="@Html.IsSelected(action: "MontarTelaAssinante")"><a href="@Url.Action("MontarTelaAssinante", "Assinante")">Assinantes</a></li>
+                        <li class="@Html.IsSelected(action: "MontarTelaUsuarioAdm")"><a href="@Url.Action("MontarTelaUsuarioAdm", "Administracao")">Usuários</a></li>
+                        <li class="@Html.IsSelected(action: "CarregarDesenvolvimento")"><a href="@Url.Action("CarregarDesenvolvimento", "BaseAdmin")">Pagamentos</a></li>
+                        <li class="@Html.IsSelected(action: "CarregarDesenvolvimento")"><a href="@Url.Action("CarregarDesenvolvimento", "BaseAdmin")">Planos de Assinatura</a></li>
+                        <li class="@Html.IsSelected(action: "MontarTelaNotificacaoGeral")"><a href="@Url.Action("MontarTelaNotificacaoGeral", "Notificacao")">Notificações</a></li>
+                        <li class="@Html.IsSelected(action: "MontarTelaNoticia")"><a href="@Url.Action("MontarTelaNoticia", "Noticia")">Central de Notícias</a></li>
+                        <li class="@Html.IsSelected(action: "MontarTelaConfiguracao")"><a href="@Url.Action("MontarTelaConfiguracao", "Configuracao")">Configurações</a></li>
+                    </ul>
+                </li>
+            }
+
+            <li class="@Html.IsSelected(controller: "BaseAdmin")">
+                <a href="@Url.Action("CarregarBase", "BaseAdmin")"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Institucional</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "Institucional", cssClass: "in")">
+                    <li class="@Html.IsSelected(action: "CarregarDesenvolvimento")"><a href="@Url.Action("CarregarDesenvolvimento", "BaseAdmin")">Fale Conosco</a></li>
+                    <li class="@Html.IsSelected(action: "CarregarDesenvolvimento")"><a href="@Url.Action("CarregarDesenvolvimento", "BaseAdmin")">Termos de Serviço</a></li>
+                    <li class="@Html.IsSelected(action: "CarregarDesenvolvimento")"><a href="@Url.Action("CarregarDesenvolvimento", "BaseAdmin")">Política de Privacidade</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
