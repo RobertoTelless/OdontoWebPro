@@ -247,7 +247,7 @@ namespace OdontoWeb.Controllers
                 // Verfifica permissão
                 if (usuario.PERFIL.PERF_SG_SIGLA != "ADM")
                 {
-                    Session["MensAcesso"] = 2;
+                    Session["MensNoticia"] = 2;
                     return RedirectToAction("CarregarBase", "BaseAdmin");
                 }
             }

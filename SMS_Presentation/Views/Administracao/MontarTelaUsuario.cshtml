@@ -1,6 +1,5 @@
 ﻿@using Presentation.Extensions
 @using CrossCutting;
-@*@using EntitiesServices.Work_Classes;*@
 @model EntitiesServices.Model.USUARIO
 @{
     Layout = "~/Views/Shared/_Layout_Admin.cshtml";
@@ -101,11 +100,11 @@
                                     @Html.ButtonActionSubmit(text: "Filtrar")
                                     @Html.ButtonLinkIndex(text: "Retirar Filtro", controller: "Administracao", action: "RetirarFiltro")
                                     @Html.ButtonLinkIndex(text: "Exibir Todos", controller: "Administracao", action: "MostrarTudo")
-                                    @if (ViewBag.Perfil == "ADM" || ViewBag.Perfil == "CLI")
+                                    @if (ViewBag.Perfil == "ADM")
                                     {
                                         @Html.ButtonLinkIndex(text: "Novo Usuário", controller: "Administracao", action: "IncluirUsuario")
                                     }
-                                    @Html.ButtonLinkIndex(text: "Gerar Relatório", controller: "BaseAdmin", action: "CarregarDesenvolvimento")
+                                    @Html.ButtonLinkIndex(text: "Gerar Relatório", controller: "Administracao", action: "GerarRelatorioLista")
                                     @Html.ButtonLinkIndex(text: "Voltar", controller: "Administracao", action: "Voltar")
                                 </div>
                             </div>

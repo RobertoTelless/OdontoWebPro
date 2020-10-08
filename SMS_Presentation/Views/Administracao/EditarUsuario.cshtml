@@ -1,5 +1,5 @@
 ﻿@using Presentation.Extensions
-@model SMS_Presentation.ViewModels.UsuarioViewModel
+@model OdontoWeb.ViewModels.UsuarioViewModel
 @{
     Layout = "~/Views/Shared/_Layout_Admin.cshtml";
 }
@@ -84,6 +84,7 @@
                         @Html.ButtonLinkIndex(text: "Bloquear/desbloquear", action: "BloquearUsuario", controller: "Administracao", buttonClass: "warning demo2", routeValues:  new { id = Model.USUA_CD_ID})
                         @Html.ButtonLinkIndex(text: "Desativar/Reativar", action: "DesativarUsuario", controller: "Administracao", buttonClass: "warning demo2", routeValues:  new { id = Model.USUA_CD_ID})
                         @Html.ButtonLinkIndex(text: "Trocar Senha", action: "TrocarSenha", controller: "Administracao", buttonClass: "warning demo2", routeValues:  new { id = Model.USUA_CD_ID})
+                        @Html.ButtonLinkIndex(text: "Gerar Relatório", action: "GerarRelatorioDetalhe", controller: "Administracao", buttonClass: "warning demo2", routeValues:  new { id = Model.USUA_CD_ID})
                         @Html.ButtonLinkIndex(text: "Cancelar", action: "VoltarBase", controller: "Administracao")
                     }
                     else

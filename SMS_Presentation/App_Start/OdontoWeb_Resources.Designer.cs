@@ -160,6 +160,24 @@ namespace SMS_Presentation.App_Start {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Confirmação de senha inválida.
+        /// </summary>
+        internal static string M0012 {
+            get {
+                return ResourceManager.GetString("M0012", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a E-Mail inválido.
+        /// </summary>
+        internal static string M0013 {
+            get {
+                return ResourceManager.GetString("M0013", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Nenhum registro atendeu às condições do filtro especificado.
         /// </summary>
         internal static string M0016 {
@@ -174,6 +192,33 @@ namespace SMS_Presentation.App_Start {
         internal static string M0019 {
             get {
                 return ResourceManager.GetString("M0019", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Formato de arquivo imagem não permitido.
+        /// </summary>
+        internal static string M0021 {
+            get {
+                return ResourceManager.GetString("M0021", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a E-Mail já cadastrado.
+        /// </summary>
+        internal static string M0022 {
+            get {
+                return ResourceManager.GetString("M0022", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Login já cadastrado.
+        /// </summary>
+        internal static string M0023 {
+            get {
+                return ResourceManager.GetString("M0023", resourceCulture);
             }
         }
         
