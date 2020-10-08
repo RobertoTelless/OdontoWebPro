@@ -23,15 +23,15 @@ namespace ApplicationServices.Services
             _notiService = notiService;
         }
 
-        public List<TAREFA> GetAllItens(Int32 idAss)
+        public List<TAREFA> GetAllItens()
         {
-            List<TAREFA> lista = _baseService.GetAllItens(idAss);
+            List<TAREFA> lista = _baseService.GetAllItens();
             return lista;
         }
 
-        public List<TAREFA> GetAllItensAdm(Int32 idAss)
+        public List<TAREFA> GetAllItensAdm()
         {
-            List<TAREFA> lista = _baseService.GetAllItensAdm(idAss);
+            List<TAREFA> lista = _baseService.GetAllItensAdm();
             return lista;
         }
 
@@ -41,9 +41,9 @@ namespace ApplicationServices.Services
             return lista;
         }
 
-        public List<TAREFA> GetByDate(DateTime data, Int32 idAss)
+        public List<TAREFA> GetByDate(DateTime data)
         {
-            List<TAREFA> lista = _baseService.GetByDate(data, idAss);
+            List<TAREFA> lista = _baseService.GetByDate(data);
             return lista;
         }
 
@@ -65,9 +65,9 @@ namespace ApplicationServices.Services
             return item;
         }
 
-        public TAREFA CheckExist(TAREFA tarefa, Int32 idUsu)
+        public TAREFA CheckExist(TAREFA tarefa)
         {
-            TAREFA item = _baseService.CheckExist(tarefa, idUsu);
+            TAREFA item = _baseService.CheckExist(tarefa);
             return item;
         }
 
@@ -83,7 +83,7 @@ namespace ApplicationServices.Services
             return lista;
         }
 
-        public Int32 ExecuteFilter(Int32? tipoId, String titulo, DateTime? data, Int32 encerradas, Int32 prioridade, Int32 idAss, out List<TAREFA> objeto)
+        public Int32 ExecuteFilter(Int32? tipoId, String titulo, DateTime? data, Int32 encerradas, Int32 prioridade, out List<TAREFA> objeto)
         {
             try
             {
@@ -91,7 +91,7 @@ namespace ApplicationServices.Services
                 Int32 volta = 0;
 
                 // Processa filtro
-                objeto = _baseService.ExecuteFilter(tipoId, titulo, data, encerradas, prioridade, idAss);
+                objeto = _baseService.ExecuteFilter(tipoId, titulo, data, encerradas, prioridade);
                 if (objeto.Count == 0)
                 {
                     volta = 1;
@@ -109,7 +109,7 @@ namespace ApplicationServices.Services
             try
             {
                 // Verifica existencia prévia
-                if (_baseService.CheckExist(item, usuario.ASSI_CD_ID) != null)
+                if (_baseService.CheckExist(item) != null)
                 {
                     return 1;
                 }
@@ -122,7 +122,7 @@ namespace ApplicationServices.Services
 
                 // Completa objeto
                 item.TARE_IN_ATIVO = 1;
-                item.USUA_CD_ID = usuario.USUA_CD_ID;
+                item.USUA_CD_ID = SessionMocks.UserCredentials.USUA_CD_ID;
                 item.TARE_IN_STATUS = 1;
                 item.TARE_IN_AVISA = 1;
 
@@ -131,7 +131,7 @@ namespace ApplicationServices.Services
                 {
                     LOG_DT_DATA = DateTime.Now,
                     USUA_CD_ID = usuario.USUA_CD_ID,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
+                    ASSI_CD_ID = SessionMocks.IdAssinante,
                     LOG_NM_OPERACAO = "AddTARE",
                     LOG_IN_ATIVO = 1,
                     LOG_TX_REGISTRO = Serialization.SerializeJSON<TAREFA>(item)
@@ -146,7 +146,7 @@ namespace ApplicationServices.Services
 
                     NOTIFICACAO noti = new NOTIFICACAO();
                     noti.CANO_CD_ID = 1;
-                    noti.ASSI_CD_ID = usuario.ASSI_CD_ID;
+                    noti.ASSI_CD_ID = SessionMocks.IdAssinante;
                     noti.NOTI_DT_DATA = DateTime.Today;
                     noti.NOTI_DT_EMISSAO = DateTime.Today;
                     noti.NOTI_IN_ATIVO = 1;
@@ -167,7 +167,7 @@ namespace ApplicationServices.Services
 
                     NOTIFICACAO noti = new NOTIFICACAO();
                     noti.CANO_CD_ID = 1;
-                    noti.ASSI_CD_ID = usuario.ASSI_CD_ID;
+                    noti.ASSI_CD_ID = SessionMocks.IdAssinante;
                     noti.NOTI_DT_DATA = DateTime.Today;
                     noti.NOTI_DT_EMISSAO = DateTime.Today;
                     noti.NOTI_IN_ATIVO = 1;
@@ -188,7 +188,7 @@ namespace ApplicationServices.Services
 
                     NOTIFICACAO noti = new NOTIFICACAO();
                     noti.CANO_CD_ID = 1;
-                    noti.ASSI_CD_ID = usuario.ASSI_CD_ID;
+                    noti.ASSI_CD_ID = SessionMocks.IdAssinante;
                     noti.NOTI_DT_DATA = DateTime.Today;
                     noti.NOTI_DT_EMISSAO = DateTime.Today;
                     noti.NOTI_IN_ATIVO = 1;
@@ -232,7 +232,7 @@ namespace ApplicationServices.Services
                 {
                     LOG_DT_DATA = DateTime.Now,
                     USUA_CD_ID = usuario.USUA_CD_ID,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
+                    ASSI_CD_ID = SessionMocks.IdAssinante,
                     LOG_NM_OPERACAO = "EditTARE",
                     LOG_IN_ATIVO = 1,
                     LOG_TX_REGISTRO = Serialization.SerializeJSON<TAREFA>(item),
@@ -248,7 +248,7 @@ namespace ApplicationServices.Services
 
                     NOTIFICACAO noti = new NOTIFICACAO();
                     noti.CANO_CD_ID = 1;
-                    noti.ASSI_CD_ID = usuario.ASSI_CD_ID;
+                    noti.ASSI_CD_ID = SessionMocks.IdAssinante;
                     noti.NOTI_DT_DATA = DateTime.Today;
                     noti.NOTI_DT_EMISSAO = DateTime.Today;
                     noti.NOTI_IN_ATIVO = 1;
@@ -269,7 +269,7 @@ namespace ApplicationServices.Services
 
                     NOTIFICACAO noti = new NOTIFICACAO();
                     noti.CANO_CD_ID = 1;
-                    noti.ASSI_CD_ID = usuario.ASSI_CD_ID;
+                    noti.ASSI_CD_ID = SessionMocks.IdAssinante;
                     noti.NOTI_DT_DATA = DateTime.Today;
                     noti.NOTI_DT_EMISSAO = DateTime.Today;
                     noti.NOTI_IN_ATIVO = 1;
@@ -290,7 +290,7 @@ namespace ApplicationServices.Services
 
                     NOTIFICACAO noti = new NOTIFICACAO();
                     noti.CANO_CD_ID = 1;
-                    noti.ASSI_CD_ID = usuario.ASSI_CD_ID;
+                    noti.ASSI_CD_ID = SessionMocks.IdAssinante;
                     noti.NOTI_DT_DATA = DateTime.Today;
                     noti.NOTI_DT_EMISSAO = DateTime.Today;
                     noti.NOTI_IN_ATIVO = 1;
@@ -315,7 +315,7 @@ namespace ApplicationServices.Services
             }
         }
 
-        public Int32 ValidateEdit(TAREFA item, TAREFA itemAntes, Int32 idAss)
+        public Int32 ValidateEdit(TAREFA item, TAREFA itemAntes)
         {
             try
             {
@@ -338,7 +338,7 @@ namespace ApplicationServices.Services
 
                     NOTIFICACAO noti = new NOTIFICACAO();
                     noti.CANO_CD_ID = 1;
-                    noti.ASSI_CD_ID = idAss;
+                    noti.ASSI_CD_ID = SessionMocks.IdAssinante;
                     noti.NOTI_DT_DATA = DateTime.Today;
                     noti.NOTI_DT_EMISSAO = DateTime.Today;
                     noti.NOTI_IN_ATIVO = 1;
@@ -359,7 +359,7 @@ namespace ApplicationServices.Services
 
                     NOTIFICACAO noti = new NOTIFICACAO();
                     noti.CANO_CD_ID = 1;
-                    noti.ASSI_CD_ID = idAss;
+                    noti.ASSI_CD_ID = SessionMocks.IdAssinante;
                     noti.NOTI_DT_DATA = DateTime.Today;
                     noti.NOTI_DT_EMISSAO = DateTime.Today;
                     noti.NOTI_IN_ATIVO = 1;
@@ -380,7 +380,7 @@ namespace ApplicationServices.Services
 
                     NOTIFICACAO noti = new NOTIFICACAO();
                     noti.CANO_CD_ID = 1;
-                    noti.ASSI_CD_ID = idAss;
+                    noti.ASSI_CD_ID = SessionMocks.IdAssinante;
                     noti.NOTI_DT_DATA = DateTime.Today;
                     noti.NOTI_DT_EMISSAO = DateTime.Today;
                     noti.NOTI_IN_ATIVO = 1;
@@ -417,7 +417,7 @@ namespace ApplicationServices.Services
                 {
                     LOG_DT_DATA = DateTime.Now,
                     USUA_CD_ID = usuario.USUA_CD_ID,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
+                    ASSI_CD_ID = SessionMocks.IdAssinante,
                     LOG_IN_ATIVO = 1,
                     LOG_NM_OPERACAO = "DelTARE",
                     LOG_TX_REGISTRO = Serialization.SerializeJSON<TAREFA>(item)
@@ -432,7 +432,7 @@ namespace ApplicationServices.Services
 
                     NOTIFICACAO noti = new NOTIFICACAO();
                     noti.CANO_CD_ID = 1;
-                    noti.ASSI_CD_ID = usuario.ASSI_CD_ID;
+                    noti.ASSI_CD_ID = SessionMocks.IdAssinante;
                     noti.NOTI_DT_DATA = DateTime.Today;
                     noti.NOTI_DT_EMISSAO = DateTime.Today;
                     noti.NOTI_IN_ATIVO = 1;
@@ -453,7 +453,7 @@ namespace ApplicationServices.Services
 
                     NOTIFICACAO noti = new NOTIFICACAO();
                     noti.CANO_CD_ID = 1;
-                    noti.ASSI_CD_ID = usuario.ASSI_CD_ID;
+                    noti.ASSI_CD_ID = SessionMocks.IdAssinante;
                     noti.NOTI_DT_DATA = DateTime.Today;
                     noti.NOTI_DT_EMISSAO = DateTime.Today;
                     noti.NOTI_IN_ATIVO = 1;
@@ -474,7 +474,7 @@ namespace ApplicationServices.Services
 
                     NOTIFICACAO noti = new NOTIFICACAO();
                     noti.CANO_CD_ID = 1;
-                    noti.ASSI_CD_ID = usuario.ASSI_CD_ID;
+                    noti.ASSI_CD_ID = SessionMocks.IdAssinante;
                     noti.NOTI_DT_DATA = DateTime.Today;
                     noti.NOTI_DT_EMISSAO = DateTime.Today;
                     noti.NOTI_IN_ATIVO = 1;
@@ -512,7 +512,7 @@ namespace ApplicationServices.Services
                 {
                     LOG_DT_DATA = DateTime.Now,
                     USUA_CD_ID = usuario.USUA_CD_ID,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
+                    ASSI_CD_ID = SessionMocks.IdAssinante,
                     LOG_IN_ATIVO = 1,
                     LOG_NM_OPERACAO = "ReatTARE",
                     LOG_TX_REGISTRO = Serialization.SerializeJSON<TAREFA>(item)
@@ -527,7 +527,7 @@ namespace ApplicationServices.Services
 
                     NOTIFICACAO noti = new NOTIFICACAO();
                     noti.CANO_CD_ID = 1;
-                    noti.ASSI_CD_ID = usuario.ASSI_CD_ID;
+                    noti.ASSI_CD_ID = SessionMocks.IdAssinante;
                     noti.NOTI_DT_DATA = DateTime.Today;
                     noti.NOTI_DT_EMISSAO = DateTime.Today;
                     noti.NOTI_IN_ATIVO = 1;
@@ -548,7 +548,7 @@ namespace ApplicationServices.Services
 
                     NOTIFICACAO noti = new NOTIFICACAO();
                     noti.CANO_CD_ID = 1;
-                    noti.ASSI_CD_ID = usuario.ASSI_CD_ID;
+                    noti.ASSI_CD_ID = SessionMocks.IdAssinante;
                     noti.NOTI_DT_DATA = DateTime.Today;
                     noti.NOTI_DT_EMISSAO = DateTime.Today;
                     noti.NOTI_IN_ATIVO = 1;
@@ -569,7 +569,7 @@ namespace ApplicationServices.Services
 
                     NOTIFICACAO noti = new NOTIFICACAO();
                     noti.CANO_CD_ID = 1;
-                    noti.ASSI_CD_ID = usuario.ASSI_CD_ID;
+                    noti.ASSI_CD_ID = SessionMocks.IdAssinante;
                     noti.NOTI_DT_DATA = DateTime.Today;
                     noti.NOTI_DT_EMISSAO = DateTime.Today;
                     noti.NOTI_IN_ATIVO = 1;

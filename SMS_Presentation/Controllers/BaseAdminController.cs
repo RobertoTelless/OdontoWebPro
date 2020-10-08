@@ -134,6 +134,7 @@ namespace OdontoWeb.Controllers
             Session["MensUsuario"] = 0;
             Session["MensLog"] = 0;
             Session["MensUsuarioAdm"] = 0;
+            Session["MensAgenda"] = 0;
 
             USUARIO usu = (USUARIO)Session["Usuario"];
             UsuarioViewModel vm = Mapper.Map<USUARIO, UsuarioViewModel>(usu);

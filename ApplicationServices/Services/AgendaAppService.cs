@@ -125,8 +125,8 @@ namespace ApplicationServices.Services
                     USUA_CD_ID = usuario.USUA_CD_ID,
                     LOG_NM_OPERACAO = "EditAGEN",
                     LOG_IN_ATIVO = 1,
-                    LOG_TX_REGISTRO = item.AGEN_DT_DATA.ToShortDateString() + "|" + item.AGEN_NM_TITULO + "|" + item.USUARIO.USUA_NM_NOME,
-                    LOG_TX_REGISTRO_ANTES = item.AGEN_DT_DATA.ToShortDateString() + "|" + item.AGEN_NM_TITULO + "|" + item.USUARIO.USUA_NM_NOME
+                    LOG_TX_REGISTRO = item.AGEN_CD_ID.ToString() + "|" + item.CATEGORIA_AGENDA.CAAG_NM_NOME + "|" + item.AGEN_DS_DESCRICAO + "|" + item.AGEN_DT_DATA.ToShortDateString() + "|" + item.AGEN_HR_HORA.ToString() + "|" + item.AGEN_NM_TITULO + "|" + item.USUARIO.USUA_NM_NOME + "|" + item.AGEN_TX_OBSERVACOES,
+                    LOG_TX_REGISTRO_ANTES = itemAntes.AGEN_CD_ID.ToString() + "|" + itemAntes.CATEGORIA_AGENDA.CAAG_NM_NOME + "|" + itemAntes.AGEN_DS_DESCRICAO + "|" + itemAntes.AGEN_DT_DATA.ToShortDateString() + "|" + itemAntes.AGEN_HR_HORA.ToString() + "|" + itemAntes.AGEN_NM_TITULO + "|" + itemAntes.USUARIO.USUA_NM_NOME + "|" + itemAntes.AGEN_TX_OBSERVACOES
                 };
 
                 // Persiste
