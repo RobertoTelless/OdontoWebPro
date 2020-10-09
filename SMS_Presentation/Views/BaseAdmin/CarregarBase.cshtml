@@ -29,7 +29,7 @@
                         <p class="font-bold">@Model.CARGO.CARG_NM_NOME</p>
 
                         <div class="text-center">
-                            @Html.ButtonLinkIndex(text: "Perfil", action: "MontarTelaPerfilUsuario", controller: "Usuario", buttonClass: "btn btn-xs btn-white")
+                            @Html.ButtonLinkIndex(text: "Alterar Dados", action: "MontarTelaPerfilUsuario", controller: "Usuario", buttonClass: "btn btn-xs btn-white")
                             @if (Model.PERFIL.PERF_SG_SIGLA == "ADM")
                             {
                                 @Html.ButtonLinkIndex(text: "Dashboard Gerencial", action: "CarregarDashboardInicial", controller: "BaseAdmin", buttonClass: "btn btn-xs btn-primary")
