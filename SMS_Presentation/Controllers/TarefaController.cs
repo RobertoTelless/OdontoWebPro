@@ -6,16 +6,15 @@ using System.Web.Mvc;
 using ApplicationServices.Interfaces;
 using EntitiesServices.Model;
 using System.Globalization;
-using SystemBRPresentation.App_Start;
-using EntitiesServices.Work_Classes;
+using SMS_Presentation.App_Start;
 using AutoMapper;
-using SystemBRPresentation.ViewModels;
+using OdontoWeb.ViewModels;
 using System.IO;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.Collections;
 
-namespace SystemBRPresentation.Controllers
+namespace OdontoWeb.Controllers
 {
     public class TarefaController : Controller
     {
@@ -47,6 +46,10 @@ namespace SystemBRPresentation.Controllers
 
         public ActionResult Voltar()
         {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
             return RedirectToAction("CarregarBase", "BaseAdmin");
 
         }
@@ -54,15 +57,13 @@ namespace SystemBRPresentation.Controllers
         [HttpPost]
         public JsonResult GetTarefaNaoExecutada()
         {
-            var usu = SessionMocks.UserCredentials;
-
+            var usu = (USUARIO)Session["UserCredentials"];
             listaMaster = baseApp.GetByUser(usu.USUA_CD_ID).Where(x => x.TARE_DT_REALIZADA == null).ToList();
 
             if (listaMaster.Count == 1)
             {
                 var hash = new Hashtable();
                 hash.Add("msg", "Você possui 1 tarefa não executada");
-
                 return Json(hash);
             } 
             else if (listaMaster.Count > 1) 
@@ -81,7 +82,7 @@ namespace SystemBRPresentation.Controllers
         [HttpPost]
         public ActionResult TarefaNaoRealizadaClick()
         {
-            var usu = SessionMocks.UserCredentials;
+            var usu = (USUARIO)Session["UserCredentials"];
 
             listaMaster = baseApp.GetByUser(usu.USUA_CD_ID).Where(x => x.TARE_DT_REALIZADA == null).ToList();
 
@@ -98,12 +99,16 @@ namespace SystemBRPresentation.Controllers
         [HttpGet]
         public ActionResult MontarTelaTarefaKanban(Int32? id)
         {
-            // Verifica se tem usuario logado
-            USUARIO usuario = new USUARIO();
-            usuario = SessionMocks.UserCredentials;
-            if (SessionMocks.UserCredentials != null)
+            // Controle Acesso
+            if ((String)Session["Ativa"] == null)
             {
-                usuario = SessionMocks.UserCredentials;
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            USUARIO usuario = new USUARIO();
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
             }
             else
             {
@@ -111,15 +116,15 @@ namespace SystemBRPresentation.Controllers
             }
 
             // Carrega listas
-            if (SessionMocks.listaTarefa == null)
+            if (Session["ListaTarefa"] == null)
             {
-                listaMaster = baseApp.GetByUser(SessionMocks.UserCredentials.USUA_CD_ID);
-                SessionMocks.listaTarefa = listaMaster;
+                listaMaster = baseApp.GetByUser(usuario.USUA_CD_ID);
+                Session["ListaTarefa"] = listaMaster;
             }
 
             if (id == null)
             {
-                ViewBag.Listas = SessionMocks.listaTarefa;
+                ViewBag.Listas = listaMaster;
             }
             else
             {
@@ -129,10 +134,10 @@ namespace SystemBRPresentation.Controllers
             ViewBag.Title = "Tarefas";
 
             // Indicadores
-            ViewBag.Tarefas = SessionMocks.listaTarefa.Count;
+            ViewBag.Tarefas = listaMaster.Count;
             ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(), "TITR_CD_ID", "TITR_NM_NOME");
-            ViewBag.TarefasPendentes = baseApp.GetTarefaStatus(SessionMocks.UserCredentials.USUA_CD_ID, 1).Count;
-            ViewBag.TarefasEncerradas = baseApp.GetTarefaStatus(SessionMocks.UserCredentials.USUA_CD_ID, 2).Count;
+            ViewBag.TarefasPendentes = baseApp.GetTarefaStatus(usuario.USUA_CD_ID, 1).Count;
+            ViewBag.TarefasEncerradas = baseApp.GetTarefaStatus(usuario.USUA_CD_ID, 2).Count;
 
             List<SelectListItem> status = new List<SelectListItem>();
             status.Add(new SelectListItem() { Text = "Pendente", Value = "1" });
@@ -144,7 +149,7 @@ namespace SystemBRPresentation.Controllers
             // Mensagem
             if ((Int32)Session["MensTarefa"] == 1)
             {
-                ViewBag.Message = SystemBR_Resource.ResourceManager.GetString("M0011", CultureInfo.CurrentCulture);
+                ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0016", CultureInfo.CurrentCulture));
             }
 
             // Abre view
@@ -157,8 +162,8 @@ namespace SystemBRPresentation.Controllers
         [HttpPost]
         public JsonResult GetTarefas()
         {
-            var usuario = SessionMocks.UserCredentials;
-            listaMaster = baseApp.GetByUser(SessionMocks.UserCredentials.USUA_CD_ID);
+            var usuario = (USUARIO)Session["UserCredentials"];
+            listaMaster = baseApp.GetByUser(usuario.USUA_CD_ID);
 
             var listaHash = new List<Hashtable>();
 
@@ -179,12 +184,16 @@ namespace SystemBRPresentation.Controllers
         [HttpGet]
         public ActionResult MontarTelaTarefa(Int32? id)
         {
-            // Verifica se tem usuario logado
-            USUARIO usuario = new USUARIO();
-            usuario = SessionMocks.UserCredentials;
-            if (SessionMocks.UserCredentials != null)
+            // Controle Acesso
+            if ((String)Session["Ativa"] == null)
             {
-                usuario = SessionMocks.UserCredentials;
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            USUARIO usuario = new USUARIO();
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
             }
             else
             {
@@ -192,15 +201,15 @@ namespace SystemBRPresentation.Controllers
             }
 
             // Carrega listas
-            if (SessionMocks.listaTarefa == null)
+            if (Session["ListaTarefa"] == null)
             {
-                listaMaster = baseApp.GetByUser(SessionMocks.UserCredentials.USUA_CD_ID);
-                SessionMocks.listaTarefa = listaMaster;
+                listaMaster = baseApp.GetByUser(usuario.USUA_CD_ID);
+                Session["ListaTarefa"] = listaMaster;
             }
 
             if (id == null)
             {
-                ViewBag.Listas = SessionMocks.listaTarefa;
+                ViewBag.Listas = listaMaster;
             }
             else
             {
@@ -210,10 +219,10 @@ namespace SystemBRPresentation.Controllers
             ViewBag.Title = "Tarefas";
 
             // Indicadores
-            ViewBag.Tarefas = SessionMocks.listaTarefa.Count;
+            ViewBag.Tarefas = listaMaster.Count;
             ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(), "TITR_CD_ID", "TITR_NM_NOME");
-            ViewBag.TarefasPendentes = baseApp.GetTarefaStatus(SessionMocks.UserCredentials.USUA_CD_ID, 1).Count;
-            ViewBag.TarefasEncerradas = baseApp.GetTarefaStatus(SessionMocks.UserCredentials.USUA_CD_ID, 2).Count; 
+            ViewBag.TarefasPendentes = baseApp.GetTarefaStatus(usuario.USUA_CD_ID, 1).Count;
+            ViewBag.TarefasEncerradas = baseApp.GetTarefaStatus(usuario.USUA_CD_ID, 2).Count; 
 
             List<SelectListItem> status = new List<SelectListItem>();
             status.Add(new SelectListItem() { Text = "Pendente", Value = "1" });
@@ -225,7 +234,7 @@ namespace SystemBRPresentation.Controllers
             // Mensagem
             if ((Int32)Session["MensTarefa"] == 1)
             {
-                ViewBag.Message = SystemBR_Resource.ResourceManager.GetString("M0011", CultureInfo.CurrentCulture);
+                ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0016", CultureInfo.CurrentCulture));
             }
 
             // Abre view
@@ -237,14 +246,23 @@ namespace SystemBRPresentation.Controllers
 
         public ActionResult RetirarFiltroTarefa()
         {
-            SessionMocks.listaTarefa = null;
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Session["ListaTarefa"] = null;
             return RedirectToAction("MontarTelaTarefa");
         }
 
         public ActionResult MostrarTudoTarefa()
         {
-            listaMaster = baseApp.GetAllItensAdm();
-            SessionMocks.listaTarefa = listaMaster;
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            listaMaster = baseApp.GetAllItensAdm(idAss);
+            Session["ListaTarefa"] = listaMaster;
             return RedirectToAction("MontarTelaTarefa");
         }
 
@@ -253,22 +271,28 @@ namespace SystemBRPresentation.Controllers
         {
             try
             {
+                if ((String)Session["Ativa"] == null)
+                {
+                    return RedirectToAction("Login", "ControleAcesso");
+                }
                 // Executa a operação
+                Int32 idAss = (Int32)Session["IdAssinante"];
                 List<TAREFA> listaObj = new List<TAREFA>();
-                Int32 volta = baseApp.ExecuteFilter(item.TITR_CD_ID, item.TARE_NM_TITULO, item.TARE_DT_CADASTRO, item.TARE_IN_STATUS, item.TARE_IN_PRIORIDADE, out listaObj);
+                Session["FiltroTarefa"] = item;
+                Int32 volta = baseApp.ExecuteFilter(item.TITR_CD_ID, item.TARE_NM_TITULO, item.TARE_DT_CADASTRO, item.TARE_IN_STATUS, item.TARE_IN_PRIORIDADE, idAss, out listaObj);
 
                 // Verifica retorno
                 if (volta == 1)
                 {
                     Session["MensTarefa"] = 1;
-                    ViewBag.Message = SystemBR_Resource.ResourceManager.GetString("M0011", CultureInfo.CurrentCulture);
+                    ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0016", CultureInfo.CurrentCulture));
                     return RedirectToAction("MontarTelaTarefa");
                 }
 
                 // Sucesso
                 Session["MensTarefa"] = 0;
                 listaMaster = listaObj;
-                SessionMocks.listaTarefa = listaObj;
+                Session["ListaTarefa"] = listaObj;
                 return RedirectToAction("MontarTelaTarefa");
             }
             catch (Exception ex)
@@ -281,15 +305,24 @@ namespace SystemBRPresentation.Controllers
 
         public ActionResult VoltarBaseTarefa()
         {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
             return RedirectToAction("MontarTelaTarefa");
         }
 
         [HttpGet]
         public ActionResult IncluirTarefa()
         {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
             // Prepara listas
+            Int32 idAss = (Int32)Session["IdAssinante"];
             ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(), "TITR_CD_ID", "TITR_NM_NOME");
-            ViewBag.Usuarios = new SelectList(usuApp.GetAllItens(), "USUA_CD_ID", "USUA_NM_NOME");
+            ViewBag.Usuarios = new SelectList(usuApp.GetAllItens(idAss), "USUA_CD_ID", "USUA_NM_NOME");
             List<SelectListItem> status = new List<SelectListItem>();
             status.Add(new SelectListItem() { Text = "Pendente", Value = "1" });
             status.Add(new SelectListItem() { Text = "Suspensa", Value = "2" });
@@ -304,10 +337,10 @@ namespace SystemBRPresentation.Controllers
             ViewBag.Prioridade = new SelectList(prior, "Value", "Text");
 
             // Prepara view
-            USUARIO usuario = SessionMocks.UserCredentials;
+            USUARIO usuario = (USUARIO)Session["UserCredentials"];
             TAREFA item = new TAREFA();
             TarefaViewModel vm = Mapper.Map<TAREFA, TarefaViewModel>(item);
-            vm.USUA_CD_ID = SessionMocks.UserCredentials.USUA_CD_ID;
+            vm.USUA_CD_ID = usuario.USUA_CD_ID;
             vm.TARE_IN_ATIVO = 1;
             vm.TARE_DT_CADASTRO = DateTime.Today.Date;
             vm.TARE_DT_ESTIMADA = DateTime.Today.Date.AddDays(5);
@@ -317,11 +350,12 @@ namespace SystemBRPresentation.Controllers
         }
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public ActionResult IncluirTarefa(TarefaViewModel vm)
         {
+            Int32 idAss = (Int32)Session["IdAssinante"];
             ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(), "TITR_CD_ID", "TITR_NM_NOME");
-            ViewBag.Usuarios = new SelectList(usuApp.GetAllItens(), "USUA_CD_ID", "USUA_NM_NOME");
+            ViewBag.Usuarios = new SelectList(usuApp.GetAllItens(idAss), "USUA_CD_ID", "USUA_NM_NOME");
             List<SelectListItem> status = new List<SelectListItem>();
             status.Add(new SelectListItem() { Text = "Pendente", Value = "1" });
             status.Add(new SelectListItem() { Text = "Suspensa", Value = "2" });
@@ -340,30 +374,29 @@ namespace SystemBRPresentation.Controllers
                 {
                     // Executa a operação
                     TAREFA item = Mapper.Map<TarefaViewModel, TAREFA>(vm);
-                    USUARIO usuarioLogado = SessionMocks.UserCredentials;
+                    USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
                     Int32 volta = baseApp.ValidateCreate(item, usuarioLogado);
 
                     // Verifica retorno
                     if (volta == 1)
                     {
-                        ModelState.AddModelError("", SystemBR_Resource.ResourceManager.GetString("M0093", CultureInfo.CurrentCulture));
+                        ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0017", CultureInfo.CurrentCulture));
                         return View(vm);
                     }
                     if (volta == 2)
                     {
-                        ModelState.AddModelError("", SystemBR_Resource.ResourceManager.GetString("M0094", CultureInfo.CurrentCulture));
+                        ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0018", CultureInfo.CurrentCulture));
                         return View(vm);
                     }
 
                     // Cria pastas
-                    String caminho = "/Imagens/" + SessionMocks.IdAssinante.ToString() + "/Tarefas/" + item.TARE_CD_ID.ToString() + "/Anexos/";
+                    String caminho = "/Imagens/" + idAss.ToString() + "/Tarefas/" + item.TARE_CD_ID.ToString() + "/Anexos/";
                     Directory.CreateDirectory(Server.MapPath(caminho));
 
                     // Sucesso
                     listaMaster = new List<TAREFA>();
-                    SessionMocks.listaTarefa = null;
-
-                    SessionMocks.idVolta = item.TARE_CD_ID;
+                    Session["ListaTarefa"] = null;
+                    Session["IdVolta"] = item.TARE_CD_ID;
                     return View(vm);
                 }
                 catch (Exception ex)
@@ -382,8 +415,9 @@ namespace SystemBRPresentation.Controllers
         public ActionResult EditarTarefa(Int32 id)
         {
             // Prepara view
+            Int32 idAss = (Int32)Session["IdAssinante"];
             ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(), "TITR_CD_ID", "TITR_NM_NOME");
-            ViewBag.Usuarios = new SelectList(usuApp.GetAllItens(), "USUA_CD_ID", "USUA_NM_NOME");
+            ViewBag.Usuarios = new SelectList(usuApp.GetAllItens(idAss), "USUA_CD_ID", "USUA_NM_NOME");
             List<SelectListItem> status = new List<SelectListItem>();
             status.Add(new SelectListItem() { Text = "Pendente", Value = "1" });
             status.Add(new SelectListItem() { Text = "Suspensa", Value = "2" });
@@ -399,8 +433,8 @@ namespace SystemBRPresentation.Controllers
 
             TAREFA item = baseApp.GetItemById(id);
             objetoAntes = item;
-            SessionMocks.tarefa = item;
-            SessionMocks.idVolta = id;
+            Session["Tarefa"] = item;
+            Session["IdVolta"] = id;
             ViewBag.Status = (item.TARE_IN_STATUS == 1 ? "Pendente" : (item.TARE_IN_STATUS == 2 ? "Suspensa" : (item.TARE_IN_STATUS == 3 ? "Cancelada" : "Encerrada")));
             ViewBag.Prior = (item.TARE_IN_PRIORIDADE == 1 ? "Normal" : (item.TARE_IN_PRIORIDADE == 2 ? "Baixa" : (item.TARE_IN_PRIORIDADE == 3 ? "Alta" : "Urgente")));
             TarefaViewModel vm = Mapper.Map<TAREFA, TarefaViewModel>(item);
@@ -410,8 +444,9 @@ namespace SystemBRPresentation.Controllers
         [HttpPost]
         public ActionResult EditarTarefa(TarefaViewModel vm)
         {
+            Int32 idAss = (Int32)Session["IdAssinante"];
             ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(), "TITR_CD_ID", "TITR_NM_NOME");
-            ViewBag.Usuarios = new SelectList(usuApp.GetAllItens(), "USUA_CD_ID", "USUA_NM_NOME");
+            ViewBag.Usuarios = new SelectList(usuApp.GetAllItens(idAss), "USUA_CD_ID", "USUA_NM_NOME");
             List<SelectListItem> status = new List<SelectListItem>();
             status.Add(new SelectListItem() { Text = "Pendente", Value = "1" });
             status.Add(new SelectListItem() { Text = "Suspensa", Value = "2" });
@@ -429,25 +464,25 @@ namespace SystemBRPresentation.Controllers
                 try
                 {
                     // Executa a operação
-                    USUARIO usuarioLogado = SessionMocks.UserCredentials;
+                    USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
                     TAREFA item = Mapper.Map<TarefaViewModel, TAREFA>(vm);
                     Int32 volta = baseApp.ValidateEdit(item, objetoAntes, usuarioLogado);
 
                     // Verifica retorno
                     if (volta == 1)
                     {
-                        ModelState.AddModelError("", SystemBR_Resource.ResourceManager.GetString("M0095", CultureInfo.CurrentCulture));
+                        ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0020", CultureInfo.CurrentCulture));
                         return View(vm);
                     }
                     if (volta == 2)
                     {
-                        ModelState.AddModelError("", SystemBR_Resource.ResourceManager.GetString("M0096", CultureInfo.CurrentCulture));
+                        ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0025", CultureInfo.CurrentCulture));
                         return View(vm);
                     }
 
                     // Sucesso
                     listaMaster = new List<TAREFA>();
-                    SessionMocks.listaTarefa = null;
+                    Session["ListaTarefa"] = null;
                     return RedirectToAction("MontarTelaTarefa");
                 }
                 catch (Exception ex)
@@ -487,20 +522,20 @@ namespace SystemBRPresentation.Controllers
             try
             {
                 // Executa a operação
-                USUARIO usuarioLogado = SessionMocks.UserCredentials;
+                USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
                 Int32 volta = baseApp.ValidateEdit(item, objetoAntes, usuarioLogado);
 
                 // Verifica retorno
                 if (volta == 1)
                 {
-                    return Json(SystemBR_Resource.ResourceManager.GetString("M0095", CultureInfo.CurrentCulture));
+                    return Json(OdontoWeb_Resources.ResourceManager.GetString("M0020", CultureInfo.CurrentCulture));
                 }
                 if (volta == 2)
                 {
-                    return Json(SystemBR_Resource.ResourceManager.GetString("M0096", CultureInfo.CurrentCulture));
+                    return Json(OdontoWeb_Resources.ResourceManager.GetString("M0025", CultureInfo.CurrentCulture));
                 }
 
-                return Json("SUCCESS!!");
+                return Json("SUCESSO!!");
             }
             catch (Exception ex)
             {
@@ -515,14 +550,14 @@ namespace SystemBRPresentation.Controllers
             // Prepara view
             TAREFA item = baseApp.GetItemById(id);
             objetoAntes = item;
-            SessionMocks.tarefa = item;
-            SessionMocks.idVolta = id;
+            Session["Tarefa"] = item;
+            Session["IdVolta"] = id;
             TarefaViewModel vm = Mapper.Map<TAREFA, TarefaViewModel>(item);
             return View(vm);
         }
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public ActionResult EditarTarefaCompartilhada(TarefaViewModel vm)
         {
             if (ModelState.IsValid)
@@ -530,7 +565,7 @@ namespace SystemBRPresentation.Controllers
                 try
                 {
                     // Executa a operação
-                    USUARIO usuarioLogado = SessionMocks.UserCredentials;
+                    USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
                     TAREFA item = Mapper.Map<TarefaViewModel, TAREFA>(vm);
                     Int32 volta = baseApp.ValidateEdit(item, objetoAntes, usuarioLogado);
 
@@ -538,7 +573,7 @@ namespace SystemBRPresentation.Controllers
 
                     // Sucesso
                     listaMaster = new List<TAREFA>();
-                    SessionMocks.listaTarefa = null;
+                    Session["ListaTarefa"] = null;
                     return RedirectToAction("MontarTelaTarefa");
                 }
                 catch (Exception ex)
@@ -556,26 +591,26 @@ namespace SystemBRPresentation.Controllers
         [HttpGet]
         public ActionResult ExcluirTarefa(Int32 id)
         {
-            USUARIO usu = SessionMocks.UserCredentials;
+            USUARIO usu = (USUARIO)Session["UserCredentials"];
             TAREFA item = baseApp.GetItemById(id);
-            objetoAntes = SessionMocks.tarefa;
+            objetoAntes = (TAREFA)Session["Tarefa"];
             item.TARE_IN_ATIVO = 0;
             Int32 volta = baseApp.ValidateDelete(item, usu);
             listaMaster = new List<TAREFA>();
-            SessionMocks.listaTarefa = null;
+            Session["ListaTarefa"] = null;
             return RedirectToAction("MontarTelaTarefa");
         }
 
         [HttpGet]
         public ActionResult ReativarTarefa(Int32 id)
         {
-            USUARIO usu = SessionMocks.UserCredentials;
+            USUARIO usu = (USUARIO)Session["UserCredentials"];
             TAREFA item = baseApp.GetItemById(id);
-            objetoAntes = SessionMocks.tarefa;
+            objetoAntes = (TAREFA)Session["Tarefa"];
             item.TARE_IN_ATIVO = 1;
             Int32 volta = baseApp.ValidateReativar(item, usu);
             listaMaster = new List<TAREFA>();
-            SessionMocks.listaTarefa = null;
+            Session["ListaTarefa"] = null;
             return RedirectToAction("MontarTelaTarefa");
         }
 
@@ -584,21 +619,22 @@ namespace SystemBRPresentation.Controllers
         {
             if (file == null)
             {
-                ModelState.AddModelError("", SystemBR_Resource.ResourceManager.GetString("M0076", CultureInfo.CurrentCulture));
+                ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0019", CultureInfo.CurrentCulture));
                 return RedirectToAction("VoltarAnexoTarefa");
             }
 
-            TAREFA item = baseApp.GetById(SessionMocks.idVolta);
-            USUARIO usu = SessionMocks.UserCredentials;
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            USUARIO usu = (USUARIO)Session["UserCredentials"];
+            TAREFA item = baseApp.GetById((Int32)Session["IdVolta"]);
             var fileName = Path.GetFileName(file.FileName);
 
             if (fileName.Length > 100)
             {
-                ModelState.AddModelError("", SystemBR_Resource.ResourceManager.GetString("M0015", CultureInfo.CurrentCulture));
+                ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0024", CultureInfo.CurrentCulture));
                 return RedirectToAction("VoltarAnexoTarefa");
             }
 
-            String caminho = "/Imagens/" + SessionMocks.IdAssinante.ToString() + "/Tarefas/" + item.TARE_CD_ID.ToString() + "/Anexos/";
+            String caminho = "/Imagens/" + idAss.ToString() + "/Tarefas/" + item.TARE_CD_ID.ToString() + "/Anexos/";
             String path = Path.Combine(Server.MapPath(caminho), fileName);
             file.SaveAs(path);
 
@@ -659,22 +695,31 @@ namespace SystemBRPresentation.Controllers
 
         public ActionResult VoltarAnexoTarefa()
         {
-            return RedirectToAction("EditarTarefa", new { id = SessionMocks.idVolta });
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            return RedirectToAction("EditarTarefa", new { id = (Int32)Session["IdVolta"] });
         }
 
         public ActionResult VerKanbanTarefa()
         {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
             return RedirectToAction("CarregarDesenvolvimento", "BaseAdmin");
         }
 
         public ActionResult GerarRelatorioLista()
         {
             // Prepara geração
+            USUARIO usu = (USUARIO)Session["UserCredentials"];
             String data = DateTime.Today.Date.ToShortDateString();
             data = data.Substring(0, 2) + data.Substring(3, 2) + data.Substring(6, 4);
             String nomeRel = "TarefaLista" + "_" + data + ".pdf";
-            List<TAREFA> lista = SessionMocks.listaTarefa;
-            TAREFA filtro = SessionMocks.filtroTarefa;
+            List<TAREFA> lista = (List<TAREFA>)Session["ListaTarefa"];
+            TAREFA filtro = (TAREFA)Session["FiltroTarefa"];
             Font meuFont = FontFactory.GetFont("Arial", 8, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
             Font meuFont1 = FontFactory.GetFont("Arial", 9, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
             Font meuFont2 = FontFactory.GetFont("Arial", 12, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
@@ -873,7 +918,7 @@ namespace SystemBRPresentation.Controllers
                     };
                     table.AddCell(cell);
                 }
-                if(SessionMocks.UserCredentials.USUA_CD_ID == item.TARE_CD_USUA_1 || SessionMocks.UserCredentials.USUA_CD_ID == item.TARE_CD_USUA_2 || SessionMocks.UserCredentials.USUA_CD_ID == item.TARE_CD_USUA_3)
+                if(usu.USUA_CD_ID == item.TARE_CD_USUA_1 || usu.USUA_CD_ID == item.TARE_CD_USUA_2 || usu.USUA_CD_ID == item.TARE_CD_USUA_3)
                 {
                     cell = new PdfPCell(new Paragraph("Sim", meuFont))
                     {
@@ -1001,6 +1046,10 @@ namespace SystemBRPresentation.Controllers
         [HttpGet]
         public ActionResult VerAnexoTarefa(Int32 id)
         {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
             // Prepara view
             TAREFA_ANEXO item = baseApp.GetAnexoById(id);
             return View(item);
@@ -1008,8 +1057,12 @@ namespace SystemBRPresentation.Controllers
 
         public ActionResult IncluirAcompanhamento()
         {
-            TAREFA item = baseApp.GetItemById(SessionMocks.idVolta);
-            USUARIO usuarioLogado = SessionMocks.UserCredentials;
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            TAREFA item = baseApp.GetItemById((Int32)Session["IdVolta"]);
+            USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
             TAREFA_ACOMPANHAMENTO coment = new TAREFA_ACOMPANHAMENTO();
             TarefaAcompanhamentoViewModel vm = Mapper.Map<TAREFA_ACOMPANHAMENTO, TarefaAcompanhamentoViewModel>(coment);
             vm.TAAC_DT_ACOMPANHAMENTO = DateTime.Today;
@@ -1030,8 +1083,8 @@ namespace SystemBRPresentation.Controllers
                 {
                     // Executa a operação
                     TAREFA_ACOMPANHAMENTO item = Mapper.Map<TarefaAcompanhamentoViewModel, TAREFA_ACOMPANHAMENTO>(vm);
-                    USUARIO usuarioLogado = SessionMocks.UserCredentials;
-                    TAREFA not = baseApp.GetItemById(SessionMocks.idVolta);
+                    USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
+                    TAREFA not = baseApp.GetItemById((Int32)Session["IdVolta"]);
 
                     item.USUARIO = null;
                     not.TAREFA_ACOMPANHAMENTO.Add(item);
@@ -1041,7 +1094,7 @@ namespace SystemBRPresentation.Controllers
                     // Verifica retorno
 
                     // Sucesso
-                    return RedirectToAction("EditarTarefa", new { id = SessionMocks.idVolta });
+                    return RedirectToAction("EditarTarefa", new { id = (Int32)Session["IdVolta"] });
                 }
                 catch (Exception ex)
                 {

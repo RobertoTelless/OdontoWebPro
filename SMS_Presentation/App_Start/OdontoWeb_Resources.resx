@@ -159,8 +159,17 @@
   <data name="M0016" xml:space="preserve">
     <value>Nenhum registro atendeu às condições do filtro especificado</value>
   </data>
+  <data name="M0017" xml:space="preserve">
+    <value>Tarefa já cadastrada para esse usuário</value>
+  </data>
+  <data name="M0018" xml:space="preserve">
+    <value>Erro no compartilhamento da tarefa</value>
+  </data>
   <data name="M0019" xml:space="preserve">
     <value>Nenhum arquivo selecionado</value>
+  </data>
+  <data name="M0020" xml:space="preserve">
+    <value>Data de encerramento menor que a data de início</value>
   </data>
   <data name="M0021" xml:space="preserve">
     <value>Formato de arquivo imagem não permitido</value>
@@ -173,6 +182,9 @@
   </data>
   <data name="M0024" xml:space="preserve">
     <value>O nome do arquivo não pode ter mais do que 100 caracteres</value>
+  </data>
+  <data name="M0025" xml:space="preserve">
+    <value>Data de encerramento maior que a data corrente</value>
   </data>
   <data name="M0073" xml:space="preserve">
     <value>A Senha não pode ficar em branco</value>

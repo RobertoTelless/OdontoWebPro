@@ -1,6 +1,6 @@
 @using Presentation.Extensions
 @using CrossCutting;
-@using EntitiesServices.Work_Classes;
+@using EntitiesServices.Model
 @model EntitiesServices.Model.TAREFA
 @{
     Layout = "~/Views/Shared/_Layout_Admin.cshtml";
@@ -198,7 +198,7 @@
                                                 {
                                                     <td>-</td>
                                                 }
-                                                @if (SessionMocks.UserCredentials.USUA_CD_ID == cond.TARE_CD_USUA_1 || SessionMocks.UserCredentials.USUA_CD_ID == cond.TARE_CD_USUA_2 || SessionMocks.UserCredentials.USUA_CD_ID == cond.TARE_CD_USUA_3)
+                                                @if (((USUARIO)Session["UserCredentials"]).USUA_CD_ID == cond.TARE_CD_USUA_1 || ((USUARIO)Session["UserCredentials"]).USUA_CD_ID == cond.TARE_CD_USUA_2 || ((USUARIO)Session["UserCredentials"]).USUA_CD_ID == cond.TARE_CD_USUA_3)
 	                                            {
                                                     <td>Sim</td>
                                                 }
@@ -206,7 +206,7 @@
                                                 {
                                                     <td>Não</td>
                                                 }
-                                                @if (SessionMocks.UserCredentials.USUA_CD_ID == cond.TARE_CD_USUA_1 || SessionMocks.UserCredentials.USUA_CD_ID == cond.TARE_CD_USUA_2 || SessionMocks.UserCredentials.USUA_CD_ID == cond.TARE_CD_USUA_3)
+                                                @if (((USUARIO)Session["UserCredentials"]).USUA_CD_ID == cond.TARE_CD_USUA_1 || ((USUARIO)Session["UserCredentials"]).USUA_CD_ID == cond.TARE_CD_USUA_2 || ((USUARIO)Session["UserCredentials"]).USUA_CD_ID == cond.TARE_CD_USUA_3)
 	                                            {
                                                     <td class="td-one-action">
                                                         @Html.TableLinkDetails(cond.TARE_CD_ID, "EditarTarefaCompartilhada","fa-edit", "Editar/Consultar")

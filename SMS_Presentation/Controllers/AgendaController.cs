@@ -229,6 +229,10 @@ namespace OdontoWeb.Controllers
 
         public ActionResult RetirarFiltroAgenda()
         {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
             Session["ListaAgenda"] = null;
             if ((Int32)Session["VoltaAgenda"] == 2)
             {
@@ -239,6 +243,10 @@ namespace OdontoWeb.Controllers
 
         public ActionResult MostrarTudoAgenda()
         {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
             Int32 idAss = (Int32)Session["IdAssinante"];
             USUARIO usuario = (USUARIO)Session["UserCredentials"];
             listaMaster = baseApp.GetAllItensAdm(idAss).Where(p => p.USUA_CD_ID == usuario.USUA_CD_ID).ToList();
@@ -255,6 +263,10 @@ namespace OdontoWeb.Controllers
         {
             try
             {
+                if ((String)Session["Ativa"] == null)
+                {
+                    return RedirectToAction("Login", "ControleAcesso");
+                }
                 // Executa a operação
                 Int32 idAss = (Int32)Session["IdAssinante"];
                 List<AGENDA> listaObj = new List<AGENDA>();
@@ -287,6 +299,10 @@ namespace OdontoWeb.Controllers
 
         public ActionResult VoltarBaseAgenda()
         {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
             if ((Int32)Session["VoltaAgenda"] == 2)
             {
                 return RedirectToAction("VerTimelineAgenda");
@@ -308,6 +324,10 @@ namespace OdontoWeb.Controllers
         [HttpGet]
         public ActionResult IncluirAgenda()
         {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
             // Prepara listas
             Int32 idAss = (Int32)Session["IdAssinante"];
             ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(), "CAAG_CD_ID", "CAAG_NM_NOME");
@@ -368,6 +388,10 @@ namespace OdontoWeb.Controllers
         [HttpGet]
         public ActionResult EditarAgenda(Int32 id)
         {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
             // Prepara view
             Int32 idAss = (Int32)Session["IdAssinante"];
             ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(), "CAAG_CD_ID", "CAAG_NM_NOME");
@@ -429,6 +453,10 @@ namespace OdontoWeb.Controllers
         [HttpGet]
         public ActionResult ExcluirAgenda(Int32 id)
         {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
             // Verifica se tem usuario logado
             USUARIO usu = (USUARIO)Session["UserCredentials"];
 
@@ -445,6 +473,10 @@ namespace OdontoWeb.Controllers
         [HttpGet]
         public ActionResult ReativarAgenda(Int32 id)
         {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
             // Verifica se tem usuario logado
             USUARIO usu = (USUARIO)Session["UserCredentials"];
             // Executar
@@ -460,6 +492,10 @@ namespace OdontoWeb.Controllers
         [HttpGet]
         public ActionResult VerAnexoAgenda(Int32 id)
         {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
             // Prepara view
             AGENDA_ANEXO item = baseApp.GetAnexoById(id);
             return View(item);
@@ -467,6 +503,10 @@ namespace OdontoWeb.Controllers
 
         public ActionResult VoltarAnexoAgenda()
         {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
             return RedirectToAction("EditarAgenda", new { id = (Int32)Session["IdVolta"] });
         }
 
@@ -522,6 +562,10 @@ namespace OdontoWeb.Controllers
         [HttpPost]
         public ActionResult UploadFileAgenda(HttpPostedFileBase file)
         {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
             if (file == null)
             {
                 ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0019", CultureInfo.CurrentCulture));
@@ -575,6 +619,10 @@ namespace OdontoWeb.Controllers
         [HttpGet]
         public ActionResult VerTimelineAgenda()
         {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
             ViewBag.Title = "Agenda";
             ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(), "CAAG_CD_ID", "CAAG_NM_NOME");
             List<AGENDA> lista = (List<AGENDA>)Session["ListaAgenda"];
@@ -596,6 +644,10 @@ namespace OdontoWeb.Controllers
 
         public ActionResult GerarRelatorioLista()
         {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
             // Prepara geração
             String data = DateTime.Today.Date.ToShortDateString();
             data = data.Substring(0, 2) + data.Substring(3, 2) + data.Substring(6, 4);

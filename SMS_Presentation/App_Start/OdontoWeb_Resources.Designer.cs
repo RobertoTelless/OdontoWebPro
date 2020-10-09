@@ -187,11 +187,38 @@ namespace SMS_Presentation.App_Start {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Tarefa já cadastrada para esse usuário.
+        /// </summary>
+        internal static string M0017 {
+            get {
+                return ResourceManager.GetString("M0017", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Erro no compartilhamento da tarefa.
+        /// </summary>
+        internal static string M0018 {
+            get {
+                return ResourceManager.GetString("M0018", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Nenhum arquivo selecionado.
         /// </summary>
         internal static string M0019 {
             get {
                 return ResourceManager.GetString("M0019", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Data de encerramento menor que a data de início.
+        /// </summary>
+        internal static string M0020 {
+            get {
+                return ResourceManager.GetString("M0020", resourceCulture);
             }
         }
         
@@ -228,6 +255,15 @@ namespace SMS_Presentation.App_Start {
         internal static string M0024 {
             get {
                 return ResourceManager.GetString("M0024", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Data de encerramento maior que a data corrente.
+        /// </summary>
+        internal static string M0025 {
+            get {
+                return ResourceManager.GetString("M0025", resourceCulture);
             }
         }
         
