@@ -145,6 +145,7 @@ namespace OdontoWeb.Controllers
             Session["NovasNotificacoes"] = lista.Where(p => p.NOTI_IN_VISTA == 0).Count();
             Session["Nome"] = usu.USUA_NM_NOME;
             ViewBag.NovasNotificacoes = lista.Where(p => p.NOTI_IN_VISTA == 0).Count();
+            ViewBag.ListaNovas = (List<NOTIFICACAO>)Session["ListaNovas"];
 
             List<NOTICIA> lista1 = notiApp.GetAllItensValidos(idAss.Value);
             Session["Noticias"] = lista1;
@@ -191,6 +192,8 @@ namespace OdontoWeb.Controllers
             Session["Greeting"] = frase;
             Session["Foto"] = usu.USUA_AQ_FOTO;
             Session["ErroSoma"] = 0;
+            ViewBag.Greeting = frase;
+            ViewBag.Foto = usu.USUA_AQ_FOTO;
 
             // Mensagens
             if ((Int32)Session["MensNotificacao"] == 2)

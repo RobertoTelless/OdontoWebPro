@@ -1,5 +1,5 @@
 @using Presentation.Extensions
-@model SystemBRPresentation.ViewModels.AgendaViewModel
+@model OdontoWeb.ViewModels.AgendaViewModel
 @{
     Layout = "~/Views/Shared/_Layout_Admin.cshtml";
 }
@@ -58,7 +58,6 @@
                         }
                         <div class="form-group">
                             @Html.ButtonActionSubmit(text: "Confirma Edição da Agenda", htmlAttributes: new { id = "basictoast" })
-                            @*@Html.ButtonLinkIndex(text: "Gerar Relatório", action: "GerarRelatorioDetalhe", controller: "Agenda")*@
                             @Html.ButtonLinkIndex(text: "Cancelar", action: "VoltarBaseAgenda", controller: "Agenda")
                         </div>
                         <div class="row">
@@ -117,10 +116,6 @@
                                 </div>
                             </div>
                         </div>
-                        @*<div class="form-group">
-                            @Html.ButtonActionSubmit(text: "Confirma Edição da Agenda", htmlAttributes: new { id = "basictoast" })
-                            @Html.ButtonLinkIndex(text: "Cancelar", action: "VoltarBaseAgenda", controller: "Agenda")
-                        </div>*@
                     </div>
                 }
                 <div class="row">

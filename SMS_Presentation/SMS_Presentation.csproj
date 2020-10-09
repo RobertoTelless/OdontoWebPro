@@ -2588,6 +2588,12 @@
     <Content Include="Views\Administracao\VerAnexoUsuario.cshtml" />
     <Content Include="Views\Administracao\VerLog.cshtml" />
     <Content Include="Views\Administracao\VerUsuario.cshtml" />
+    <Content Include="Views\Agenda\EditarAgenda.cshtml" />
+    <Content Include="Views\Agenda\IncluirAgenda.cshtml" />
+    <Content Include="Views\Agenda\MontarTelaAgenda.cshtml" />
+    <Content Include="Views\Agenda\MontarTelaAgendaCalendario.cshtml" />
+    <Content Include="Views\Agenda\VerAnexoAgenda.cshtml" />
+    <Content Include="Views\Agenda\VerTimelineAgenda.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
