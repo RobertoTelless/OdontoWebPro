@@ -7,18 +7,16 @@ using ApplicationServices.Interfaces;
 using EntitiesServices.Model;
 using System.Globalization;
 using SMS_Presentation.App_Start;
-//using EntitiesServices.Work_Classes;
 using AutoMapper;
-using SMS_Presentation.ViewModels;
+using OdontoWeb.ViewModels;
 using System.IO;
 
-namespace SMS_Presentation.Controllers
+namespace OdontoWeb.Controllers
 {
     public class TemplateController : Controller
     {
         private readonly ITemplateAppService baseApp;
         private readonly IUsuarioAppService usuApp;
-        private readonly ICampanhaAppService camApp;
 
         private String msg;
         private Exception exception;
@@ -27,11 +25,10 @@ namespace SMS_Presentation.Controllers
         List<TEMPLATE> listaMaster = new List<TEMPLATE>();
         String extensao;
 
-        public TemplateController(ITemplateAppService baseApps, IUsuarioAppService usuApps, ICampanhaAppService camApps)
+        public TemplateController(ITemplateAppService baseApps, IUsuarioAppService usuApps)
         {
             baseApp = baseApps;
             usuApp = usuApps;
-            camApp = camApps;
         }
 
         [HttpGet]
@@ -76,10 +73,24 @@ namespace SMS_Presentation.Controllers
             {
                 return RedirectToAction("Login", "ControleAcesso");
             }
-            usuario = (USUARIO)Session["UserCredentials"];
-            Int32 idAss = (Int32)Session["IdAssinante"];
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
+
+                // Verfifica permissão
+                if (usuario.PERFIL.PERF_SG_SIGLA != "ADM")
+                {
+                    Session["MensTemplate"] = 2;
+                    return RedirectToAction("CarregarBase", "BaseAdmin");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
 
             // Carrega listas
+            Int32 idAss = (Int32)Session["IdAssinante"];
             if ((List<TEMPLATE>)Session["ListaTemplate"] == null)
             {
                 listaMaster = baseApp.GetAllItens(idAss);
@@ -88,19 +99,13 @@ namespace SMS_Presentation.Controllers
             ViewBag.Listas = (List<TEMPLATE>)Session["ListaTemplate"];
             ViewBag.Title = "Templates";
 
-            ViewBag.Campanhas = new SelectList(camApp.GetAllItens(idAss), "CAMP_CD_ID", "CAMP_NM_NOME");
-
             // Indicadores
             ViewBag.Templates = ((List<TEMPLATE>)Session["ListaTemplate"]).Count;
 
             // Mensagem
             if ((Int32)Session["MensTemplate"] == 1)
             {
-                ModelState.AddModelError("", SMS_Resource.ResourceManager.GetString("M0016", CultureInfo.CurrentCulture));
-            }
-            if ((Int32)Session["MensTemplate"] == 2)
-            {
-                ModelState.AddModelError("", SMS_Resource.ResourceManager.GetString("M0036", CultureInfo.CurrentCulture));
+                ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0016", CultureInfo.CurrentCulture));
             }
 
             // Abre view
@@ -143,13 +148,13 @@ namespace SMS_Presentation.Controllers
                 }
                 List<TEMPLATE> listaObj = new List<TEMPLATE>();
                 Int32 idAss = (Int32)Session["IdAssinante"];
-                Int32 volta = baseApp.ExecuteFilter(item.TEMP_NM_NOME, item.TEMP_TX_TEXTO, item.TEMP_SG_SIGLA, idAss, out listaObj);
+                Int32 volta = baseApp.ExecuteFilter(item.TEMP_NM_NOME, item.TEMP_TX_CORPO, item.TEMP_SG_SIGLA, idAss, out listaObj);
 
                 // Verifica retorno
                 if (volta == 1)
                 {
                     Session["MensTemplate"] = 1;
-                    ModelState.AddModelError("", SMS_Resource.ResourceManager.GetString("M0016", CultureInfo.CurrentCulture));
+                    ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0016", CultureInfo.CurrentCulture));
                     return RedirectToAction("MontarTelaTemplate");
                 }
 
@@ -186,7 +191,6 @@ namespace SMS_Presentation.Controllers
             Int32 idAss = (Int32)Session["IdAssinante"];
 
             // Prepara view
-            ViewBag.Campanhas = new SelectList(camApp.GetAllItens(idAss), "CAMP_CD_ID", "CAMP_NM_NOME");
             USUARIO usuario = (USUARIO)Session["UserCredentials"];
             TEMPLATE item = new TEMPLATE();
             TemplateViewModel vm = Mapper.Map<TEMPLATE, TemplateViewModel>(item);
@@ -204,7 +208,6 @@ namespace SMS_Presentation.Controllers
                 return RedirectToAction("Login", "ControleAcesso");
             }
             Int32 idAss = (Int32)Session["IdAssinante"];
-            ViewBag.Campanhas = new SelectList(camApp.GetAllItens(idAss), "CAMP_CD_ID", "CAMP_NM_NOME");
             if (ModelState.IsValid)
             {
                 try
@@ -212,13 +215,13 @@ namespace SMS_Presentation.Controllers
                     // Executa a operação
                     TEMPLATE item = Mapper.Map<TemplateViewModel, TEMPLATE>(vm);
                     USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
-                    Int32 volta = baseApp.ValidateCreate(item, usuarioLogado, idAss);
+                    Int32 volta = baseApp.ValidateCreate(item, usuarioLogado);
 
                     // Verifica retorno
                     if (volta == 1)
                     {
                         Session["MensTemplate"] = 1;
-                        ModelState.AddModelError("", SMS_Resource.ResourceManager.GetString("M0035", CultureInfo.CurrentCulture));
+                        ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0026", CultureInfo.CurrentCulture));
                         return View(vm);
                     }
 
@@ -253,7 +256,6 @@ namespace SMS_Presentation.Controllers
                 return RedirectToAction("Login", "ControleAcesso");
             }
             Int32 idAss = (Int32)Session["IdAssinante"];
-            ViewBag.Campanhas = new SelectList(camApp.GetAllItens(idAss), "CAMP_CD_ID", "CAMP_NM_NOME");
 
             TEMPLATE item = baseApp.GetItemById(id);
             objetoAntes = item;
@@ -272,7 +274,6 @@ namespace SMS_Presentation.Controllers
                 return RedirectToAction("Login", "ControleAcesso");
             }
             Int32 idAss = (Int32)Session["IdAssinante"];
-            ViewBag.Campanhas = new SelectList(camApp.GetAllItens(idAss), "CAMP_CD_ID", "CAMP_NM_NOME");
             if (ModelState.IsValid)
             {
                 try
@@ -280,7 +281,7 @@ namespace SMS_Presentation.Controllers
                     // Executa a operação
                     USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
                     TEMPLATE item = Mapper.Map<TemplateViewModel, TEMPLATE>(vm);
-                    Int32 volta = baseApp.ValidateEdit(item, objetoAntes, usuarioLogado, idAss);
+                    Int32 volta = baseApp.ValidateEdit(item, objetoAntes, usuarioLogado);
 
                     // Sucesso
                     listaMaster = new List<TEMPLATE>();
@@ -327,15 +328,9 @@ namespace SMS_Presentation.Controllers
                 // Executa a operação
                 USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
                 TEMPLATE item = Mapper.Map<TemplateViewModel, TEMPLATE>(vm);
-                Int32 volta = baseApp.ValidateDelete(item, usuarioLogado, idAss);
+                Int32 volta = baseApp.ValidateDelete(item, usuarioLogado);
 
                 // Verifica retorno
-                if (volta == 1)
-                {
-                    Session["MensTemplate"] = 2;
-                    ModelState.AddModelError("", SMS_Resource.ResourceManager.GetString("M0036", CultureInfo.CurrentCulture));
-                    return View(vm);
-                }
                 
                 // Sucesso
                 listaMaster = new List<TEMPLATE>();
@@ -376,7 +371,7 @@ namespace SMS_Presentation.Controllers
                 // Executa a operação
                 USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
                 TEMPLATE item = Mapper.Map<TemplateViewModel, TEMPLATE>(vm);
-                Int32 volta = baseApp.ValidateReativar(item, usuarioLogado, idAss);
+                Int32 volta = baseApp.ValidateReativar(item, usuarioLogado);
 
                 // Sucesso
                 listaMaster = new List<TEMPLATE>();

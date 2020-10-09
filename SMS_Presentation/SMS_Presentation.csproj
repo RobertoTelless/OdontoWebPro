@@ -338,6 +338,7 @@
     <Compile Include="Controllers\NoticiaController.cs" />
     <Compile Include="Controllers\NotificacaoController.cs" />
     <Compile Include="Controllers\TarefaController.cs" />
+    <Compile Include="Controllers\TemplateController.cs" />
     <Compile Include="Extensions\HMTLHelperExtensions.cs" />
     <Compile Include="Extensions\MVCButtonExtensions.cs" />
     <Compile Include="Extensions\WebMvcExtensions.cs" />
@@ -2602,6 +2603,8 @@
     <Content Include="Views\Tarefa\MontarTelaTarefa.cshtml" />
     <Content Include="Views\Tarefa\MontarTelaTarefaKanban.cshtml" />
     <Content Include="Views\Tarefa\VerAnexoTarefa.cshtml" />
+    <Content Include="Views\Template\EditarTemplate.cshtml" />
+    <Content Include="Views\Template\MontarTelaTemplate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

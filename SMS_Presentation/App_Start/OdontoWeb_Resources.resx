@@ -186,6 +186,9 @@
   <data name="M0025" xml:space="preserve">
     <value>Data de encerramento maior que a data corrente</value>
   </data>
+  <data name="M0026" xml:space="preserve">
+    <value>Template já cadastrado</value>
+  </data>
   <data name="M0073" xml:space="preserve">
     <value>A Senha não pode ficar em branco</value>
   </data>

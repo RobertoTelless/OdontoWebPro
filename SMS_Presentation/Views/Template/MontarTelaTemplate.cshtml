@@ -74,7 +74,7 @@
                                 </div>
                                 <div class="col-lg-7 col-md-7 col-xs-12">
                                     Conteúdo
-                                    @Html.TextBoxFor(m => m.TEMP_TX_TEXTO, new { @class = "form-control", autofocus = true })
+                                    @Html.TextBoxFor(m => m.TEMP_TX_CORPO, new { @class = "form-control", autofocus = true })
                                 </div>
                             </div>
                             <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
@@ -82,7 +82,6 @@
                                     @Html.ButtonActionSubmit(text: "Filtrar")
                                     @Html.ButtonLinkIndex(text: "Retirar Filtro", controller: "Template", action: "RetirarFiltroTemplate")
                                     @Html.ButtonLinkIndex(text: "Mostrar Todos", controller: "Template", action: "MostrarTudoTemplate")
-                                    @Html.ButtonLinkIndex(text: "Novo Modelo", controller: "Template", action: "IncluirTemplate")
                                     @Html.ButtonLinkIndex(text: "Voltar", controller: "Template", action: "Voltar")
                                 </div>
                             </div>
@@ -125,7 +124,6 @@
                                         <tr>
                                             <th>Sigla</th>   
                                             <th>Nome</th>   
-                                            <th>Campanha</th>  
                                             <th class="td-one-action">Ações</th>
                                         </tr>
                                     </thead>
@@ -135,24 +133,8 @@
                                             <tr>
                                                 <td>@cond.TEMP_SG_SIGLA</td>
                                                 <td>@cond.TEMP_NM_NOME</td>
-                                                @if (cond.CAMPANHA != null)
-                                                {
-                                                    <td>@cond.CAMPANHA.CAMP_NM_NOME</td>
-                                                }
-                                                else
-                                                {
-                                                    <td>Todas as Campanhas</td>
-                                                }
                                                 <td class="td-one-action">
                                                     @Html.TableLinkDetails(cond.TEMP_CD_ID, "EditarTemplate","fa-edit", "Editar/Consultar Template")
-                                                    @if (cond.TEMP_IN_ATIVO == 1)
-	                                                {
-                                                        @Html.TableLinkDetails(cond.TEMP_CD_ID, "ExcluirTemplate","fa-trash-o", "Desativar")
-                                                    }
-                                                    else
-                                                    {   
-                                                        @Html.TableLinkDetails(cond.TEMP_CD_ID, "ReativarTemplate","fa-refresh", "Reativar")
-                                                    }
                                                 </td>
                                             </tr>
                                         }
