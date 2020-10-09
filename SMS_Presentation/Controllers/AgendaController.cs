@@ -309,14 +309,15 @@ namespace OdontoWeb.Controllers
         public ActionResult IncluirAgenda()
         {
             // Prepara listas
+            Int32 idAss = (Int32)Session["IdAssinante"];
             ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(), "CAAG_CD_ID", "CAAG_NM_NOME");
-            ViewBag.Usuarios = new SelectList(SessionMocks.Usuarios, "USUA_CD_ID", "USUA_NM_NOME");
+            ViewBag.Usuarios = new SelectList(usuApp.GetAllItens(idAss), "USUA_CD_ID", "USUA_NM_NOME");
 
             // Prepara view
-            USUARIO usuario = SessionMocks.UserCredentials;
+            USUARIO usuario = (USUARIO)Session["UserCredentials"];
             AGENDA item = new AGENDA();
             AgendaViewModel vm = Mapper.Map<AGENDA, AgendaViewModel>(item);
-            vm.ASSI_CD_ID = SessionMocks.IdAssinante;
+            vm.ASSI_CD_ID = usuario.ASSI_CD_ID;
             vm.AGEN_DT_DATA = DateTime.Today.Date;
             vm.AGEN_IN_ATIVO = 1;
             vm.USUA_CD_ID = usuario.USUA_CD_ID;
@@ -325,36 +326,31 @@ namespace OdontoWeb.Controllers
         }
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public ActionResult IncluirAgenda(AgendaViewModel vm)
         {
+            Int32 idAss = (Int32)Session["IdAssinante"];
             ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(), "CAAG_CD_ID", "CAAG_NM_NOME");
-            ViewBag.Usuarios = new SelectList(SessionMocks.Usuarios, "USUA_CD_ID", "USUA_NM_NOME");
+            ViewBag.Usuarios = new SelectList(usuApp.GetAllItens(idAss), "USUA_CD_ID", "USUA_NM_NOME");
             if (ModelState.IsValid)
             {
                 try
                 {
                     // Executa a operação
                     AGENDA item = Mapper.Map<AgendaViewModel, AGENDA>(vm);
-                    USUARIO usuarioLogado = SessionMocks.UserCredentials;
+                    USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
                     Int32 volta = baseApp.ValidateCreate(item, usuarioLogado);
 
                     // Verifica retorno
-                    if (volta == 1)
-                    {
-                        ModelState.AddModelError("", SystemBR_Resource.ResourceManager.GetString("M0064", CultureInfo.CurrentCulture));
-                        return View(vm);
-                    }
 
                     // Cria pastas
-                    String caminho = "/Imagens/Agenda/" + SessionMocks.IdAssinante.ToString() + "/" + item.AGEN_CD_ID.ToString() + "/Anexos/";
+                    String caminho = "/Imagens/" + idAss.ToString() + "/Agenda/" + item.AGEN_CD_ID.ToString() + "/Anexos/";
                     Directory.CreateDirectory(Server.MapPath(caminho));
                     
                     // Sucesso
                     listaMaster = new List<AGENDA>();
-                    SessionMocks.listaAgenda = null;
-
-                    SessionMocks.idVolta = item.AGEN_CD_ID;
+                    Session["ListaAgenda"] = null;
+                    Session["IdVolta"] = item.AGEN_CD_ID;
                     return View(vm);
                 }
                 catch (Exception ex)
@@ -373,8 +369,9 @@ namespace OdontoWeb.Controllers
         public ActionResult EditarAgenda(Int32 id)
         {
             // Prepara view
+            Int32 idAss = (Int32)Session["IdAssinante"];
             ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(), "CAAG_CD_ID", "CAAG_NM_NOME");
-            ViewBag.Usuarios = new SelectList(SessionMocks.Usuarios, "USUA_CD_ID", "USUA_NM_NOME");
+            ViewBag.Usuarios = new SelectList(usuApp.GetAllItens(idAss), "USUA_CD_ID", "USUA_NM_NOME");
             List<SelectListItem> status = new List<SelectListItem>();
             status.Add(new SelectListItem() { Text = "Ativo", Value = "1" });
             status.Add(new SelectListItem() { Text = "Suspenso", Value = "2" });
@@ -383,8 +380,8 @@ namespace OdontoWeb.Controllers
 
             AGENDA item = baseApp.GetItemById(id);
             objetoAntes = item;
-            SessionMocks.agenda = item;
-            SessionMocks.idVolta = id;
+            Session["Agenda"] = item;
+            Session["IdVolta"] = id;
             AgendaViewModel vm = Mapper.Map<AGENDA, AgendaViewModel>(item);
             return View(vm);
         }
@@ -393,8 +390,9 @@ namespace OdontoWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditarAgenda(AgendaViewModel vm)
         {
+            Int32 idAss = (Int32)Session["IdAssinante"];
             ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(), "CAAG_CD_ID", "CAAG_NM_NOME");
-            ViewBag.Usuarios = new SelectList(SessionMocks.Usuarios, "USUA_CD_ID", "USUA_NM_NOME");
+            ViewBag.Usuarios = new SelectList(usuApp.GetAllItens(idAss), "USUA_CD_ID", "USUA_NM_NOME");
             List<SelectListItem> status = new List<SelectListItem>();
             status.Add(new SelectListItem() { Text = "Ativo", Value = "1" });
             status.Add(new SelectListItem() { Text = "Suspenso", Value = "2" });
@@ -405,7 +403,7 @@ namespace OdontoWeb.Controllers
                 try
                 {
                     // Executa a operação
-                    USUARIO usuarioLogado = SessionMocks.UserCredentials;
+                    USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
                     AGENDA item = Mapper.Map<AgendaViewModel, AGENDA>(vm);
                     Int32 volta = baseApp.ValidateEdit(item, objetoAntes, usuarioLogado);
 
@@ -413,7 +411,7 @@ namespace OdontoWeb.Controllers
 
                     // Sucesso
                     listaMaster = new List<AGENDA>();
-                    SessionMocks.listaAgenda = null;
+                    Session["ListaAgenda"] = null;
                     return RedirectToAction("MontarTelaAgenda");
                 }
                 catch (Exception ex)
@@ -432,15 +430,15 @@ namespace OdontoWeb.Controllers
         public ActionResult ExcluirAgenda(Int32 id)
         {
             // Verifica se tem usuario logado
-            USUARIO usu = SessionMocks.UserCredentials;
+            USUARIO usu = (USUARIO)Session["UserCredentials"];
 
             // Executar
             AGENDA item = baseApp.GetItemById(id);
-            objetoAntes = SessionMocks.agenda;
+            objetoAntes = (AGENDA)Session["Agenda"];
             item.AGEN_IN_ATIVO = 0;
             Int32 volta = baseApp.ValidateDelete(item, usu);
             listaMaster = new List<AGENDA>();
-            SessionMocks.listaAgenda = null;
+            Session["ListaAgenda"] = null;
             return RedirectToAction("MontarTelaAgenda");
         }
 
@@ -448,14 +446,14 @@ namespace OdontoWeb.Controllers
         public ActionResult ReativarAgenda(Int32 id)
         {
             // Verifica se tem usuario logado
-            USUARIO usu = SessionMocks.UserCredentials;
+            USUARIO usu = (USUARIO)Session["UserCredentials"];
             // Executar
             AGENDA item = baseApp.GetItemById(id);
-            objetoAntes = SessionMocks.agenda;
+            objetoAntes = (AGENDA)Session["Agenda"];
             item.AGEN_IN_ATIVO = 1;
             Int32 volta = baseApp.ValidateReativar(item, usu);
             listaMaster = new List<AGENDA>();
-            SessionMocks.listaAgenda = null;
+            Session["ListaAgenda"] = null;
             return RedirectToAction("MontarTelaAgenda");
         }
 
@@ -469,7 +467,7 @@ namespace OdontoWeb.Controllers
 
         public ActionResult VoltarAnexoAgenda()
         {
-            return RedirectToAction("EditarAgenda", new { id = SessionMocks.idVolta });
+            return RedirectToAction("EditarAgenda", new { id = (Int32)Session["IdVolta"] });
         }
 
         public FileResult DownloadAgenda(Int32 id)
@@ -526,21 +524,22 @@ namespace OdontoWeb.Controllers
         {
             if (file == null)
             {
-                ModelState.AddModelError("", SystemBR_Resource.ResourceManager.GetString("M0076", CultureInfo.CurrentCulture));
+                ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0019", CultureInfo.CurrentCulture));
                 return RedirectToAction("VoltarAnexoAgenda");
             }
 
-            AGENDA item = baseApp.GetById(SessionMocks.idVolta);
-            USUARIO usu = SessionMocks.UserCredentials;
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            AGENDA item = baseApp.GetById((Int32)Session["IdVolta"]);
+            USUARIO usu = (USUARIO)Session["UserCredentials"];
             var fileName = Path.GetFileName(file.FileName);
 
             if (fileName.Length > 100)
             {
-                ModelState.AddModelError("", SystemBR_Resource.ResourceManager.GetString("M0015", CultureInfo.CurrentCulture));
+                ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0024", CultureInfo.CurrentCulture));
                 return RedirectToAction("VoltarAnexoAgenda");
             }
 
-            String caminho = "/Imagens/Agenda/" + SessionMocks.IdAssinante.ToString() + "/" + item.AGEN_CD_ID.ToString() + "/Anexos/";
+            String caminho = "/Imagens/" + idAss.ToString() + "/Agenda/" + item.AGEN_CD_ID.ToString() + "/Anexos/";
             String path = Path.Combine(Server.MapPath(caminho), fileName);
             file.SaveAs(path);
 
@@ -578,18 +577,20 @@ namespace OdontoWeb.Controllers
         {
             ViewBag.Title = "Agenda";
             ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(), "CAAG_CD_ID", "CAAG_NM_NOME");
-            var listaAgenda = SessionMocks.listaAgenda.Where(x => x.AGEN_DT_DATA.Date == DateTime.Now.Date || x.AGEN_DT_DATA.Date == DateTime.Now.AddDays(1).Date).ToList();
+            List<AGENDA> lista = (List<AGENDA>)Session["ListaAgenda"];
+            var listaAgenda = lista.Where(x => x.AGEN_DT_DATA.Date == DateTime.Now.Date || x.AGEN_DT_DATA.Date == DateTime.Now.AddDays(1).Date).ToList();
+            Int32 idAss = (Int32)Session["IdAssinante"];
 
             // Carrega listas
-            USUARIO usuario = SessionMocks.UserCredentials;
-            listaMaster = baseApp.GetByUser(usuario.USUA_CD_ID);
-            SessionMocks.listaAgenda = listaMaster;
+            USUARIO usuario = (USUARIO)Session["UserCredentials"];
+            listaMaster = baseApp.GetByUser(usuario.USUA_CD_ID, idAss);
+            Session["ListaAgenda"] = listaMaster;
             ViewBag.Listas = listaAgenda;
             ViewBag.Agenda = listaAgenda.Count;
 
             objeto = new AGENDA();
             objeto.AGEN_DT_DATA = DateTime.Today.Date;
-            SessionMocks.voltaAgenda = 2;
+            Session["VoltaAgenda"] = 2;
             return View(objeto);
         }
 
@@ -599,8 +600,8 @@ namespace OdontoWeb.Controllers
             String data = DateTime.Today.Date.ToShortDateString();
             data = data.Substring(0, 2) + data.Substring(3, 2) + data.Substring(6, 4);
             String nomeRel = "AgendaLista" + "_" + data + ".pdf";
-            List<AGENDA> lista = SessionMocks.listaAgenda;
-            AGENDA filtro = SessionMocks.filtroAgenda;
+            List<AGENDA> lista = (List<AGENDA>)Session["ListaAgenda"];
+            AGENDA filtro = (AGENDA)Session["FiltroAgenda"];
             Font meuFont = FontFactory.GetFont("Arial", 8, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
             Font meuFont1 = FontFactory.GetFont("Arial", 9, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
             Font meuFont2 = FontFactory.GetFont("Arial", 12, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
