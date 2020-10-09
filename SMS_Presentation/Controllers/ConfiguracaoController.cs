@@ -9,10 +9,10 @@ using System.Globalization;
 using SMS_Presentation.App_Start;
 using EntitiesServices.Work_Classes;
 using AutoMapper;
-using SMS_Presentation.ViewModels;
+using OdontoWeb.ViewModels;
 using System.IO;
 
-namespace SMS_Presentation.Controllers
+namespace OdontoWeb.Controllers
 {
     public class ConfiguracaoController : Controller
     {
@@ -74,8 +74,21 @@ namespace SMS_Presentation.Controllers
             {
                 return RedirectToAction("Login", "ControleAcesso");
             }
-            usuario = (USUARIO)Session["UserCredentials"];
-            Int32 idAss = (Int32)Session["IdAssinante"];
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
+
+                // Verfifica permissão
+                if (usuario.PERFIL.PERF_SG_SIGLA != "ADM")
+                {
+                    Session["MensConfiguracao"] = 2;
+                    return RedirectToAction("CarregarBase", "BaseAdmin");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
 
             // Carrega listas
             if ((CONFIGURACAO)Session["Configuracao"] == null)
