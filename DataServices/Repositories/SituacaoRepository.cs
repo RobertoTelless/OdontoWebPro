@@ -20,15 +20,17 @@ namespace DataServices.Repositories
             return query.FirstOrDefault();
         }
 
-        public List<SITUACAO> GetAllItensAdm()
+        public List<SITUACAO> GetAllItensAdm(Int32 idAss)
         {
             IQueryable<SITUACAO> query = Db.SITUACAO;
+            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.ToList();
         }
 
-        public List<SITUACAO> GetAllItens()
+        public List<SITUACAO> GetAllItens(Int32 idAss)
         {
             IQueryable<SITUACAO> query = Db.SITUACAO.Where(p => p.SITU_NM_ATIVO == 1);
+            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.ToList();
         }
     }

@@ -15,8 +15,8 @@ namespace ApplicationServices.Interfaces
         Int32 ValidateDelete(UNIDADE item, USUARIO usuario);
         Int32 ValidateReativar(UNIDADE item, USUARIO usuario);
 
-        List<UNIDADE> GetAllItens();
-        List<UNIDADE> GetAllItensAdm();
+        List<UNIDADE> GetAllItens(Int32 idAss);
+        List<UNIDADE> GetAllItensAdm(Int32 idAss);
         UNIDADE GetItemById(Int32 id);
     }
 }

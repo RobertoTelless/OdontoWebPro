@@ -59,5 +59,17 @@ namespace EntitiesServices.Model
         public virtual DbSet<UNIDADE> UNIDADE { get; set; }
         public virtual DbSet<USUARIO> USUARIO { get; set; }
         public virtual DbSet<USUARIO_ANEXO> USUARIO_ANEXO { get; set; }
+        public virtual DbSet<CATEGORIA_PRODUTO> CATEGORIA_PRODUTO { get; set; }
+        public virtual DbSet<CATEGORIA_TELEFONE> CATEGORIA_TELEFONE { get; set; }
+        public virtual DbSet<CATEGORIA_USUARIO> CATEGORIA_USUARIO { get; set; }
+        public virtual DbSet<MOVIMENTO_ESTOQUE_PRODUTO> MOVIMENTO_ESTOQUE_PRODUTO { get; set; }
+        public virtual DbSet<PERCENTUAL_REMUNERACAO> PERCENTUAL_REMUNERACAO { get; set; }
+        public virtual DbSet<PRODUTO> PRODUTO { get; set; }
+        public virtual DbSet<PRODUTO_ANEXO> PRODUTO_ANEXO { get; set; }
+        public virtual DbSet<PRODUTO_ESTOQUE_FILIAL> PRODUTO_ESTOQUE_FILIAL { get; set; }
+        public virtual DbSet<TELEFONE> TELEFONE { get; set; }
+        public virtual DbSet<USUARIO_CONTRACHEQUE> USUARIO_CONTRACHEQUE { get; set; }
+        public virtual DbSet<USUARIO_PREMIO> USUARIO_PREMIO { get; set; }
+        public virtual DbSet<USUARIO_REMUNERACAO> USUARIO_REMUNERACAO { get; set; }
     }
 }

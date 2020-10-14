@@ -17,7 +17,7 @@ namespace ModelServices.Interfaces.EntitiesServices
         Int32 Delete(UNIDADE item, LOG log);
 
         UNIDADE GetItemById(Int32 id);
-        List<UNIDADE> GetAllItens();
-        List<UNIDADE> GetAllItensAdm();
+        List<UNIDADE> GetAllItens(Int32 idAss);
+        List<UNIDADE> GetAllItensAdm(Int32 idAss);
     }
 }

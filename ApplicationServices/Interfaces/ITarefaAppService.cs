@@ -23,7 +23,7 @@ namespace ApplicationServices.Interfaces
         TAREFA CheckExist(TAREFA tarefa, Int32 idUsu);
         List<TAREFA> GetTarefaStatus(Int32 user, Int32 tipo);
 
-        List<TIPO_TAREFA> GetAllTipos();
+        List<TIPO_TAREFA> GetAllTipos(Int32 idAss);
         USUARIO GetUserById(Int32 id);
         TAREFA_ANEXO GetAnexoById(Int32 id);
         Int32 ExecuteFilter(Int32? tipoId, String titulo, DateTime? data, Int32 encerrada, Int32 prioridade, Int32 idAss, out List<TAREFA> objeto);

@@ -9,8 +9,8 @@ namespace ModelServices.Interfaces.Repositories
 {
     public interface IRegimeTributarioRepository : IRepositoryBase<REGIME_TRIBUTARIO>
     {
-        List<REGIME_TRIBUTARIO> GetAllItens();
+        List<REGIME_TRIBUTARIO> GetAllItens(Int32 idAss);
         REGIME_TRIBUTARIO GetItemById(Int32 id);
-        List<REGIME_TRIBUTARIO> GetAllItensAdm();
+        List<REGIME_TRIBUTARIO> GetAllItensAdm(Int32 idAss);
     }
 }

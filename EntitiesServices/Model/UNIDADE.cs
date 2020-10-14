@@ -14,10 +14,20 @@ namespace EntitiesServices.Model
     
     public partial class UNIDADE
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public UNIDADE()
+        {
+            this.PRODUTO = new HashSet<PRODUTO>();
+        }
+    
         public int UNID_CD_ID { get; set; }
         public int ASSI_CD_ID { get; set; }
         public string UNID_NM_NOME { get; set; }
         public Nullable<int> UNID_IN_ATIVO { get; set; }
         public string UNID_SG_SIGLA { get; set; }
+    
+        public virtual ASSINANTE ASSINANTE { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PRODUTO> PRODUTO { get; set; }
     }
 }

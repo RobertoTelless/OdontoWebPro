@@ -15,8 +15,8 @@ namespace ApplicationServices.Interfaces
         Int32 ValidateDelete(TIPO_TAG item, USUARIO usuario);
         Int32 ValidateReativar(TIPO_TAG item, USUARIO usuario);
 
-        List<TIPO_TAG> GetAllItens();
-        List<TIPO_TAG> GetAllItensAdm();
+        List<TIPO_TAG> GetAllItens(Int32 idAss);
+        List<TIPO_TAG> GetAllItensAdm(Int32 idAss);
         TIPO_TAG GetItemById(Int32 id);
     }
 }

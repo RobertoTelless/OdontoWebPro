@@ -16,7 +16,7 @@ namespace ModelServices.Interfaces.EntitiesServices
         Int32 Edit(AGENDA perfil);
         Int32 Delete(AGENDA perfil, LOG log);
 
-        List<CATEGORIA_AGENDA> GetAllTipos();
+        List<CATEGORIA_AGENDA> GetAllTipos(Int32 idAss);
         AGENDA_ANEXO GetAnexoById(Int32 id);
 
         List<AGENDA> GetByDate(DateTime data, Int32 idAss);

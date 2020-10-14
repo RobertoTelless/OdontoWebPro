@@ -15,8 +15,8 @@ namespace ApplicationServices.Interfaces
         Int32 ValidateDelete(TIPO_CONTRIBUINTE item, USUARIO usuario);
         Int32 ValidateReativar(TIPO_CONTRIBUINTE item, USUARIO usuario);
 
-        List<TIPO_CONTRIBUINTE> GetAllItens();
-        List<TIPO_CONTRIBUINTE> GetAllItensAdm();
+        List<TIPO_CONTRIBUINTE> GetAllItens(Int32 idAss);
+        List<TIPO_CONTRIBUINTE> GetAllItensAdm(Int32 idAss);
         TIPO_CONTRIBUINTE GetItemById(Int32 id);
     }
 }

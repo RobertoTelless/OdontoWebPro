@@ -35,14 +35,14 @@ namespace ModelServices.EntitiesServices
             return item;
         }
 
-        public List<REGIME_TRIBUTARIO> GetAllItens()
+        public List<REGIME_TRIBUTARIO> GetAllItens(Int32 idAss)
         {
-            return _baseRepository.GetAllItens();
+            return _baseRepository.GetAllItens(idAss);
         }
 
-        public List<REGIME_TRIBUTARIO> GetAllItensAdm()
+        public List<REGIME_TRIBUTARIO> GetAllItensAdm(Int32 idAss)
         {
-            return _baseRepository.GetAllItensAdm();
+            return _baseRepository.GetAllItensAdm(idAss);
         }
 
         public Int32 Create(REGIME_TRIBUTARIO item, LOG log)

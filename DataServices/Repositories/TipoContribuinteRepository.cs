@@ -17,15 +17,17 @@ namespace DataServices.Repositories
             return query.FirstOrDefault();
         }
 
-        public List<TIPO_CONTRIBUINTE> GetAllItens()
+        public List<TIPO_CONTRIBUINTE> GetAllItens(Int32 idAss)
         {
             IQueryable<TIPO_CONTRIBUINTE> query = Db.TIPO_CONTRIBUINTE.Where(p => p.TICO_IN_ATIVO == 1);
+            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.ToList();
         }
 
-        public List<TIPO_CONTRIBUINTE> GetAllItensAdm()
+        public List<TIPO_CONTRIBUINTE> GetAllItensAdm(Int32 idAss)
         {
             IQueryable<TIPO_CONTRIBUINTE> query = Db.TIPO_CONTRIBUINTE;
+            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.ToList();
         }
 

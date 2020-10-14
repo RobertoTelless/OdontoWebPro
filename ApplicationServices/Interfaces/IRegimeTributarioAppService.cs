@@ -15,8 +15,8 @@ namespace ApplicationServices.Interfaces
         Int32 ValidateDelete(REGIME_TRIBUTARIO item, USUARIO usuario);
         Int32 ValidateReativar(REGIME_TRIBUTARIO item, USUARIO usuario);
 
-        List<REGIME_TRIBUTARIO> GetAllItens();
-        List<REGIME_TRIBUTARIO> GetAllItensAdm();
+        List<REGIME_TRIBUTARIO> GetAllItens(Int32 idAss);
+        List<REGIME_TRIBUTARIO> GetAllItensAdm(Int32 idAss);
         REGIME_TRIBUTARIO GetItemById(Int32 id);
     }
 }

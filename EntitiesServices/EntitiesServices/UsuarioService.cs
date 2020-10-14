@@ -27,9 +27,11 @@ namespace ModelServices.EntitiesServices
         private readonly INotificacaoRepository _notRepository;
         private readonly INoticiaRepository _ntcRepository;
         private readonly IUFRepository _ufRepository;
+        private readonly ICategoriaUsuarioRepository _cuRepository;
+        private readonly ISituacaoRepository _siRepository;
         protected Odonto_DBEntities Db = new Odonto_DBEntities();
 
-        public UsuarioService(IUsuarioRepository usuarioRepository, ILogRepository logRepository, IConfiguracaoRepository configuracaoRepository, IPerfilRepository perfRepository, ITemplateRepository tempRepository, IUsuarioAnexoRepository anexoRepository, INotificacaoRepository notRepository, INoticiaRepository ntcRepository, IUFRepository ufRepository) : base(usuarioRepository)
+        public UsuarioService(IUsuarioRepository usuarioRepository, ILogRepository logRepository, IConfiguracaoRepository configuracaoRepository, IPerfilRepository perfRepository, ITemplateRepository tempRepository, IUsuarioAnexoRepository anexoRepository, INotificacaoRepository notRepository, INoticiaRepository ntcRepository, IUFRepository ufRepository, ICategoriaUsuarioRepository cuRepository, ISituacaoRepository siRepository) : base(usuarioRepository)
         {
             _usuarioRepository = usuarioRepository;
             _logRepository = logRepository;
@@ -40,6 +42,8 @@ namespace ModelServices.EntitiesServices
             _notRepository = notRepository;
             _ntcRepository = ntcRepository;
             _ufRepository = ufRepository;
+            _cuRepository = cuRepository;
+            _siRepository = siRepository;
         }
 
         public USUARIO RetriveUserByEmail(String email)
@@ -51,6 +55,16 @@ namespace ModelServices.EntitiesServices
         public TEMPLATE GetTemplate(String code)
         {
             return _tempRepository.GetByCode(code);
+        }
+
+        public List<CATEGORIA_USUARIO> GetAllTipos(Int32 idAss)
+        {
+            return _cuRepository.GetAllItens(idAss);
+        }
+
+        public List<SITUACAO> GetAllSituacao(Int32 idAss)
+        {
+            return _siRepository.GetAllItens(idAss);
         }
 
         public Boolean VerificarCredenciais (String senha, USUARIO usuario)

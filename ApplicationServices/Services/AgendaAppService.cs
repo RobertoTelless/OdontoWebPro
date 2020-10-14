@@ -51,9 +51,9 @@ namespace ApplicationServices.Services
             return item;
         }
 
-        public List<CATEGORIA_AGENDA> GetAllTipos()
+        public List<CATEGORIA_AGENDA> GetAllTipos(Int32 idAss)
         {
-            List<CATEGORIA_AGENDA> lista = _baseService.GetAllTipos();
+            List<CATEGORIA_AGENDA> lista = _baseService.GetAllTipos(idAss);
             return lista;
         }
 

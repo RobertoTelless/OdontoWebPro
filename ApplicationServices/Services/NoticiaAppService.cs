@@ -39,9 +39,9 @@ namespace ApplicationServices.Services
             return item;
         }
 
-        public List<TIPO_TAG> GetAllTiposTag()
+        public List<TIPO_TAG> GetAllTiposTag(Int32 idAss)
         {
-            List<TIPO_TAG> lista = _baseService.GetAllTiposTag();
+            List<TIPO_TAG> lista = _baseService.GetAllTiposTag(idAss);
             return lista;
         }
 

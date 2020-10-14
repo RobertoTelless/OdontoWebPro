@@ -31,6 +31,18 @@ namespace ApplicationServices.Services
             return _usuarioService.GetByEmail(email);
         }
 
+        public List<CATEGORIA_USUARIO> GetAllTipos(Int32 idAss)
+        {
+            List<CATEGORIA_USUARIO> lista = _usuarioService.GetAllTipos(idAss);
+            return lista;
+        }
+
+        public List<SITUACAO> GetAllSituacao(Int32 idAss)
+        {
+            List<SITUACAO> lista = _usuarioService.GetAllSituacao(idAss);
+            return lista;
+        }
+
         public USUARIO GetByLogin(String login)
         {
             return _usuarioService.GetByLogin(login);
@@ -130,6 +142,26 @@ namespace ApplicationServices.Services
                 if (_usuarioService.GetByLogin(usuario.USUA_NM_LOGIN) != null)
                 {
                     return 4;
+                }
+
+                // Verifica admissão e demissão
+                if (usuario.USUA_DT_ADMISSAO != null)
+                {
+                    if (usuario.USUA_DT_ADMISSAO.Value > DateTime.Today.Date)
+                    {
+                        return 5;
+                    }
+                }
+                if (usuario.USUA_DT_DEMISSAO != null)
+                {
+                    if (usuario.USUA_DT_DEMISSAO.Value > DateTime.Today.Date)
+                    {
+                        return 6;
+                    }
+                    if (usuario.USUA_DS_JUSTIFICATIVA_DEMISSAO == null)
+                    {
+                        return 7;
+                    }
                 }
 
                 //Completa campos de usuários
@@ -262,6 +294,26 @@ namespace ApplicationServices.Services
                     }
                 }
 
+                // Verifica admissão e demissão
+                if (usuario.USUA_DT_ADMISSAO != null)
+                {
+                    if (usuario.USUA_DT_ADMISSAO.Value > DateTime.Today.Date)
+                    {
+                        return 4;
+                    }
+                }
+                if (usuario.USUA_DT_DEMISSAO != null)
+                {
+                    if (usuario.USUA_DT_DEMISSAO.Value > DateTime.Today.Date)
+                    {
+                        return 5;
+                    }
+                    if (usuario.USUA_DS_JUSTIFICATIVA_DEMISSAO == null)
+                    {
+                        return 6;
+                    }
+                }
+
                 //Acerta campos de usuários
                 usuario.USUA_DT_ALTERACAO = DateTime.Now;
                 usuario.USUA_IN_ATIVO = 1;
@@ -314,6 +366,26 @@ namespace ApplicationServices.Services
                     if (usu.USUA_CD_ID != usuario.USUA_CD_ID)
                     {
                         return 3;
+                    }
+                }
+
+                // Verifica admissão e demissão
+                if (usuario.USUA_DT_ADMISSAO != null)
+                {
+                    if (usuario.USUA_DT_ADMISSAO.Value > DateTime.Today.Date)
+                    {
+                        return 4;
+                    }
+                }
+                if (usuario.USUA_DT_DEMISSAO != null)
+                {
+                    if (usuario.USUA_DT_DEMISSAO.Value > DateTime.Today.Date)
+                    {
+                        return 5;
+                    }
+                    if (usuario.USUA_DS_JUSTIFICATIVA_DEMISSAO == null)
+                    {
+                        return 6;
                     }
                 }
 

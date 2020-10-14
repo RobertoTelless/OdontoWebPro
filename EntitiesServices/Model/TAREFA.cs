@@ -52,5 +52,6 @@ namespace EntitiesServices.Model
         public virtual USUARIO USUARIO1 { get; set; }
         public virtual USUARIO USUARIO2 { get; set; }
         public virtual USUARIO USUARIO3 { get; set; }
+        public virtual ASSINANTE ASSINANTE { get; set; }
     }
 }

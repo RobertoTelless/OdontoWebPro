@@ -34,14 +34,14 @@ namespace ModelServices.EntitiesServices
             return item;
         }
 
-        public List<TIPO_TAG> GetAllItens()
+        public List<TIPO_TAG> GetAllItens(Int32 idAss)
         {
-            return _baseRepository.GetAllItens();
+            return _baseRepository.GetAllItens(idAss);
         }
 
-        public List<TIPO_TAG> GetAllItensAdm()
+        public List<TIPO_TAG> GetAllItensAdm(Int32 idAss)
         {
-            return _baseRepository.GetAllItensAdm();
+            return _baseRepository.GetAllItensAdm(idAss);
         }
     
         public Int32 Create(TIPO_TAG item, LOG log)

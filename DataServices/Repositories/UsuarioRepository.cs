@@ -35,6 +35,10 @@ namespace DataServices.Repositories
             query = query.Include(p => p.TAREFA);
             query = query.Include(p => p.AGENDA);
             query = query.Include(p => p.LOG);
+            query = query.Include(p => p.USUARIO_ANEXO);
+            query = query.Include(p => p.USUARIO_CONTRACHEQUE);
+            query = query.Include(p => p.USUARIO_PREMIO);
+            query = query.Include(p => p.USUARIO_REMUNERACAO);
             return query.FirstOrDefault();
         }
 

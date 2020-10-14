@@ -71,9 +71,9 @@ namespace ApplicationServices.Services
             return item;
         }
 
-        public List<TIPO_TAREFA> GetAllTipos()
+        public List<TIPO_TAREFA> GetAllTipos(Int32 idAss)
         {
-            List<TIPO_TAREFA> lista = _baseService.GetAllTipos();
+            List<TIPO_TAREFA> lista = _baseService.GetAllTipos(idAss);
             return lista;
         }
 

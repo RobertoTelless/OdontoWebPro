@@ -29,6 +29,11 @@ namespace EntitiesServices.Model
             this.TAREFA_ACOMPANHAMENTO = new HashSet<TAREFA_ACOMPANHAMENTO>();
             this.TAREFA_NOTIFICACAO = new HashSet<TAREFA_NOTIFICACAO>();
             this.USUARIO_ANEXO = new HashSet<USUARIO_ANEXO>();
+            this.MOVIMENTO_ESTOQUE_PRODUTO = new HashSet<MOVIMENTO_ESTOQUE_PRODUTO>();
+            this.PERCENTUAL_REMUNERACAO = new HashSet<PERCENTUAL_REMUNERACAO>();
+            this.USUARIO_CONTRACHEQUE = new HashSet<USUARIO_CONTRACHEQUE>();
+            this.USUARIO_PREMIO = new HashSet<USUARIO_PREMIO>();
+            this.USUARIO_REMUNERACAO = new HashSet<USUARIO_REMUNERACAO>();
         }
     
         public int USUA_CD_ID { get; set; }
@@ -63,6 +68,28 @@ namespace EntitiesServices.Model
         public Nullable<int> USUA_IN_APROVADOR { get; set; }
         public Nullable<int> USUA_IN_LOGADO { get; set; }
         public Nullable<System.DateTime> USUA_DT_LOGADO { get; set; }
+        public Nullable<int> CAUS_CD_ID { get; set; }
+        public string USUA_NR_CPF { get; set; }
+        public string USUA_NR_CTPS { get; set; }
+        public string USUA_NR_CTPS_SERIE { get; set; }
+        public Nullable<System.DateTime> USUA_DT_CTPS_EMISSAO { get; set; }
+        public Nullable<int> USUA_CD_CTPS_UF { get; set; }
+        public string USUA_NR_NIS { get; set; }
+        public Nullable<System.DateTime> USUA_DT_ADMISSAO { get; set; }
+        public Nullable<System.DateTime> USUA_DT_DEMISSAO { get; set; }
+        public string USUA_DS_JUSTIFICATIVA_DEMISSAO { get; set; }
+        public Nullable<int> USUA_IN_TIPO_DEMISSAO { get; set; }
+        public string USUA_NM_ENDERECO { get; set; }
+        public string USUA_NM_BAIRRO { get; set; }
+        public string USUA_NM_CIDADE { get; set; }
+        public Nullable<int> USUA_SG_CIDADE_UF { get; set; }
+        public string USUA_NR_CEP { get; set; }
+        public string USUA_NR_CRO { get; set; }
+        public string USUA_NM_EMPRESA { get; set; }
+        public string USUA_NR_CNPJ { get; set; }
+        public Nullable<int> USUA_IN_CATEGORIA { get; set; }
+        public Nullable<decimal> USUA_VL_SALARIO { get; set; }
+        public Nullable<int> SITU_CD_ID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AGENDA> AGENDA { get; set; }
@@ -92,5 +119,19 @@ namespace EntitiesServices.Model
         public virtual ICollection<TAREFA_NOTIFICACAO> TAREFA_NOTIFICACAO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<USUARIO_ANEXO> USUARIO_ANEXO { get; set; }
+        public virtual CATEGORIA_USUARIO CATEGORIA_USUARIO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MOVIMENTO_ESTOQUE_PRODUTO> MOVIMENTO_ESTOQUE_PRODUTO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PERCENTUAL_REMUNERACAO> PERCENTUAL_REMUNERACAO { get; set; }
+        public virtual UF UF { get; set; }
+        public virtual UF UF1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<USUARIO_CONTRACHEQUE> USUARIO_CONTRACHEQUE { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<USUARIO_PREMIO> USUARIO_PREMIO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<USUARIO_REMUNERACAO> USUARIO_REMUNERACAO { get; set; }
+        public virtual SITUACAO SITUACAO { get; set; }
     }
 }

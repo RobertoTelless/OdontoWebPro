@@ -40,5 +40,7 @@ namespace ModelServices.Interfaces.EntitiesServices
         USUARIO GetAprovador(Int32 idAss);
         USUARIO GetAdministrador(Int32 idAss);
         List<UF> GetAllUF();
+        List<CATEGORIA_USUARIO> GetAllTipos(Int32 idAss);
+        List<SITUACAO> GetAllSituacao(Int32 idAss);
     }
 }

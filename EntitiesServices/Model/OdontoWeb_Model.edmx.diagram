@@ -88,6 +88,48 @@
         <AssociationConnector Association="OdontoWeb_Model.FK_TAREFA_ACOMPANHAMENTO_USUARIO" ManuallyRouted="false" />
         <AssociationConnector Association="OdontoWeb_Model.FK_TAREFA_NOTIFICACAO_USUARIO" ManuallyRouted="false" />
         <AssociationConnector Association="OdontoWeb_Model.FK_USUARIO_ANEXO_USUARIO" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.CATEGORIA_PRODUTO" Width="1.5" PointX="3" PointY="25.5" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.CATEGORIA_TELEFONE" Width="1.5" PointX="3" PointY="65.625" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.CATEGORIA_USUARIO" Width="1.5" PointX="3" PointY="21.5" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.MOVIMENTO_ESTOQUE_PRODUTO" Width="1.5" PointX="16.5" PointY="32.125" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.PERCENTUAL_REMUNERACAO" Width="1.5" PointX="13.5" PointY="31.5" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.PRODUTO" Width="1.5" PointX="7" PointY="20.75" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.PRODUTO_ANEXO" Width="1.5" PointX="9.25" PointY="22.25" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.PRODUTO_ESTOQUE_FILIAL" Width="1.5" PointX="13.25" PointY="27.625" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.TELEFONE" Width="1.5" PointX="8.25" PointY="52.75" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.USUARIO_CONTRACHEQUE" Width="1.5" PointX="10.5" PointY="62.375" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.USUARIO_PREMIO" Width="1.5" PointX="10.5" PointY="29.875" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.USUARIO_REMUNERACAO" Width="1.5" PointX="10.5" PointY="58.375" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_CATEGORIA_NOTIFICACAO_ASSINANTE" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_CATEGORIA_PRODUTO_ASSINANTE" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_CATEGORIA_TELEFONE_ASSINANTE" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_CATEGORIA_USUARIO_ASSINANTE" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_FILIAL_ASSINANTE" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_PRODUTO_ASSINANTE" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_REGIME_TRIBUTARIO_ASSINANTE" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_TAREFA_ASSINANTE" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_TELEFONE_ASSINANTE" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_TIPO_CONTRIBUINTE_ASSINANTE" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_UNIDADE_ASSINANTE" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_PRODUTO_CATEGORIA_PRODUTO" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_TELEFONE_CATEGORIA_TELEFONE" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_PERCENTUAL_REMUNERACAO_CATEGORIA_USUARIO" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_USUARIO_CATEGORIA_USUARIO" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_MOVIMENTO_ESTOQUE_PRODUTO_FILIAL" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_PERCENTUAL_REMUNERACAO_FILIAL" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_PRODUTO_ESTOQUE_FILIAL_FILIAL" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_MOVIMENTO_ESTOQUE_PRODUTO_PRODUTO" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_MOVIMENTO_ESTOQUE_PRODUTO_USUARIO" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_PERCENTUAL_REMUNERACAO_USUARIO" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_PRODUTO_ANEXO_PRODUTO" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_PRODUTO_ESTOQUE_FILIAL_PRODUTO" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_PRODUTO_UNIDADE" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_USUARIO_UF" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_USUARIO_UF1" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_USUARIO_CONTRACHEQUE_USUARIO" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_USUARIO_PREMIO_USUARIO" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_USUARIO_REMUNERACAO_USUARIO" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_USUARIO_SITUACAO" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

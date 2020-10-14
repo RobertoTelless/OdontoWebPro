@@ -9,7 +9,7 @@ namespace ModelServices.Interfaces.Repositories
 {
     public interface ITipoTarefaRepository : IRepositoryBase<TIPO_TAREFA>
     {
-        List<TIPO_TAREFA> GetAllItens();
+        List<TIPO_TAREFA> GetAllItens(Int32 idAss);
         TIPO_TAREFA GetItemById(Int32 id);
     }
 }

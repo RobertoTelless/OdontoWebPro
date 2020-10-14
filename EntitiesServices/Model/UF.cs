@@ -19,6 +19,8 @@ namespace EntitiesServices.Model
         {
             this.FILIAL = new HashSet<FILIAL>();
             this.MATRIZ = new HashSet<MATRIZ>();
+            this.USUARIO = new HashSet<USUARIO>();
+            this.USUARIO1 = new HashSet<USUARIO>();
         }
     
         public int UF_CD_ID { get; set; }
@@ -30,5 +32,9 @@ namespace EntitiesServices.Model
         public virtual ICollection<FILIAL> FILIAL { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MATRIZ> MATRIZ { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<USUARIO> USUARIO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<USUARIO> USUARIO1 { get; set; }
     }
 }

@@ -9,8 +9,8 @@ namespace ModelServices.Interfaces.Repositories
 {
     public interface ISituacaoRepository : IRepositoryBase<SITUACAO>
     {
-        List<SITUACAO> GetAllItens();
+        List<SITUACAO> GetAllItens(Int32 idAss);
         SITUACAO GetItemById(Int32 id);
-        List<SITUACAO> GetAllItensAdm();
+        List<SITUACAO> GetAllItensAdm(Int32 idAss);
     }
 }

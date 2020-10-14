@@ -18,6 +18,9 @@ namespace EntitiesServices.Model
         public FILIAL()
         {
             this.USUARIO = new HashSet<USUARIO>();
+            this.MOVIMENTO_ESTOQUE_PRODUTO = new HashSet<MOVIMENTO_ESTOQUE_PRODUTO>();
+            this.PERCENTUAL_REMUNERACAO = new HashSet<PERCENTUAL_REMUNERACAO>();
+            this.PRODUTO_ESTOQUE_FILIAL = new HashSet<PRODUTO_ESTOQUE_FILIAL>();
         }
     
         public int FILI_CD_ID { get; set; }
@@ -46,6 +49,7 @@ namespace EntitiesServices.Model
         public string FILI_AQ_LOGOTIPO { get; set; }
         public string FILI_NR_CPF { get; set; }
         public string FILI_NR_RG { get; set; }
+        public Nullable<int> ASSI_CD_ID { get; set; }
     
         public virtual CODIGO_REGIME_TRIBUTARIO CODIGO_REGIME_TRIBUTARIO { get; set; }
         public virtual MATRIZ MATRIZ { get; set; }
@@ -53,5 +57,12 @@ namespace EntitiesServices.Model
         public virtual UF UF { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<USUARIO> USUARIO { get; set; }
+        public virtual ASSINANTE ASSINANTE { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MOVIMENTO_ESTOQUE_PRODUTO> MOVIMENTO_ESTOQUE_PRODUTO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PERCENTUAL_REMUNERACAO> PERCENTUAL_REMUNERACAO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PRODUTO_ESTOQUE_FILIAL> PRODUTO_ESTOQUE_FILIAL { get; set; }
     }
 }

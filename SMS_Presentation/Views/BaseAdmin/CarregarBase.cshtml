@@ -32,7 +32,11 @@
                             @Html.ButtonLinkIndex(text: "Alterar Dados", action: "MontarTelaPerfilUsuario", controller: "Usuario", buttonClass: "btn btn-xs btn-white")
                             @if (Model.PERFIL.PERF_SG_SIGLA == "ADM")
                             {
-                                @Html.ButtonLinkIndex(text: "Dashboard Gerencial", action: "CarregarDashboardInicial", controller: "BaseAdmin", buttonClass: "btn btn-xs btn-primary")
+                                @Html.ButtonLinkIndex(text: "Dashboard Gerencial", action: "CarregarDashboardGerencial", controller: "BaseAdmin", buttonClass: "btn btn-xs btn-primary")
+                            }
+                            else
+                            {
+                                @Html.ButtonLinkIndex(text: "Dashboard Usuário", action: "CarregarDashboardUsuario", controller: "BaseAdmin", buttonClass: "btn btn-xs btn-primary")
                             }
                         </div>
                     </div>
@@ -133,7 +137,7 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <br />
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
@@ -159,7 +163,7 @@
                                     {
                                         foreach (var cond in (Model.NOTIFICACAO).OrderByDescending(a => a.NOTI_DT_EMISSAO).Take(6))
                                         {
-                                            if (cond.NOTI_DT_VALIDADE >= DateTime.Today)
+                                            if (cond.NOTI_DT_EMISSAO == DateTime.Today)
                                             {
                                                 <div class="feed-element">
                                                     <div>
@@ -219,7 +223,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <br />
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">

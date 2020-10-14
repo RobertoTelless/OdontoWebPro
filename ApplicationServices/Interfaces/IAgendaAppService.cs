@@ -14,7 +14,7 @@ namespace ApplicationServices.Interfaces
         Int32 ValidateDelete(AGENDA perfil, USUARIO usuario);
         Int32 ValidateReativar(AGENDA perfil, USUARIO usuario);
 
-        List<CATEGORIA_AGENDA> GetAllTipos();
+        List<CATEGORIA_AGENDA> GetAllTipos(Int32 idAss);
         AGENDA_ANEXO GetAnexoById(Int32 id);
 
         List<AGENDA> GetByDate(DateTime data, Int32 idAss);

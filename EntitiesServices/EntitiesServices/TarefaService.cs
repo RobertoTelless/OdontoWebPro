@@ -77,9 +77,9 @@ namespace ModelServices.EntitiesServices
             return _baseRepository.GetAllItensAdm(idUsu);
         }
 
-        public List<TIPO_TAREFA> GetAllTipos()
+        public List<TIPO_TAREFA> GetAllTipos(Int32 idAss)
         {
-            return _tipoRepository.GetAllItens();
+            return _tipoRepository.GetAllItens(idAss);
         }
 
         public List<USUARIO> GetAllUsers(Int32 idAss)

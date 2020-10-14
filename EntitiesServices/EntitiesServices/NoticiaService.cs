@@ -50,9 +50,9 @@ namespace ModelServices.EntitiesServices
             return _baseRepository.GetAllItensAdm(idAss);
         }
 
-        public List<TIPO_TAG> GetAllTiposTag()
+        public List<TIPO_TAG> GetAllTiposTag(Int32 idAss)
         {
-            return _ttgRepository.GetAllItens();
+            return _ttgRepository.GetAllItens(idAss);
         }
 
         public List<NOTICIA> GetAllItensValidos(Int32 idAss)

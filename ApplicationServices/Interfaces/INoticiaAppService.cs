@@ -20,7 +20,7 @@ namespace ApplicationServices.Interfaces
         List<NOTICIA> GetAllItensAdm(Int32 idAss);
         Int32 ExecuteFilter(String titulo, String autor, DateTime? data, String texto, String link, Int32 idAss, out List<NOTICIA> objeto);
         List<NOTICIA> GetAllItensValidos(Int32 idAss);
-        List<TIPO_TAG> GetAllTiposTag();
+        List<TIPO_TAG> GetAllTiposTag(Int32 idAss);
         NOTICIA_COMENTARIO GetComentarioById(Int32 id);
         Int32 ValidateCreateTag(NOTICIA_TAG item);
     }

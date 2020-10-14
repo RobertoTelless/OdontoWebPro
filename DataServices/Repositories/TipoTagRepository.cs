@@ -20,15 +20,17 @@ namespace DataServices.Repositories
             return query.FirstOrDefault();
         }
 
-        public List<TIPO_TAG> GetAllItensAdm()
+        public List<TIPO_TAG> GetAllItensAdm(Int32 idAss)
         {
             IQueryable<TIPO_TAG> query = Db.TIPO_TAG;
+            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.ToList();
         }
 
-        public List<TIPO_TAG> GetAllItens()
+        public List<TIPO_TAG> GetAllItens(Int32 idAss)
         {
             IQueryable<TIPO_TAG> query = Db.TIPO_TAG.Where(p => p.TITA_IN_ATIVO == 1);
+            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.ToList();
         }
 

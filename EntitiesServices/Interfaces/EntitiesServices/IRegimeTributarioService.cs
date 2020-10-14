@@ -17,7 +17,7 @@ namespace ModelServices.Interfaces.EntitiesServices
         Int32 Delete(REGIME_TRIBUTARIO item, LOG log);
 
         REGIME_TRIBUTARIO GetItemById(Int32 id);
-        List<REGIME_TRIBUTARIO> GetAllItens();
-        List<REGIME_TRIBUTARIO> GetAllItensAdm();
+        List<REGIME_TRIBUTARIO> GetAllItens(Int32 idAss);
+        List<REGIME_TRIBUTARIO> GetAllItensAdm(Int32 idAss);
     }
 }

@@ -17,15 +17,17 @@ namespace DataServices.Repositories
             return query.FirstOrDefault();
         }
 
-        public List<CATEGORIA_AGENDA> GetAllItens()
+        public List<CATEGORIA_AGENDA> GetAllItens(Int32 idAss)
         {
             IQueryable<CATEGORIA_AGENDA> query = Db.CATEGORIA_AGENDA.Where(p => p.CAAG_IN_ATIVO == 1);
+            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.ToList();
         }
 
-        public List<CATEGORIA_AGENDA> GetAllItensAdm()
+        public List<CATEGORIA_AGENDA> GetAllItensAdm(Int32 idAss)
         {
             IQueryable<CATEGORIA_AGENDA> query = Db.CATEGORIA_AGENDA;
+            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.ToList();
         }
     }

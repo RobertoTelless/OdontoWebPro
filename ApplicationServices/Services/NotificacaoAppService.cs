@@ -34,9 +34,9 @@ namespace ApplicationServices.Services
             return lista;
         }
 
-        public List<CATEGORIA_NOTIFICACAO> GetAllCategorias()
+        public List<CATEGORIA_NOTIFICACAO> GetAllCategorias(Int32 idAss)
         {
-            List<CATEGORIA_NOTIFICACAO> lista = _baseService.GetAllCategorias();
+            List<CATEGORIA_NOTIFICACAO> lista = _baseService.GetAllCategorias(idAss);
             return lista;
         }
 

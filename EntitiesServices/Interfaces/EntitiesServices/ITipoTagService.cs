@@ -17,7 +17,7 @@ namespace ModelServices.Interfaces.EntitiesServices
         Int32 Delete(TIPO_TAG item, LOG log);
 
         TIPO_TAG GetItemById(Int32 id);
-        List<TIPO_TAG> GetAllItens();
-        List<TIPO_TAG> GetAllItensAdm();
+        List<TIPO_TAG> GetAllItens(Int32 idAss);
+        List<TIPO_TAG> GetAllItensAdm(Int32 idAss);
     }
 }

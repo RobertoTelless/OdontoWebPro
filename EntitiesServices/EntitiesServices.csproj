@@ -218,6 +218,9 @@
     <Compile Include="Interfaces\Repositories\IAgendaRepository.cs" />
     <Compile Include="Interfaces\Repositories\IAssinanteRepository.cs" />
     <Compile Include="Interfaces\Repositories\ICargoRepository.cs" />
+    <Compile Include="Interfaces\Repositories\ICategoriaUsuarioRepository.cs" />
+    <Compile Include="Interfaces\Repositories\ICategoriaTelefoneRepository.cs" />
+    <Compile Include="Interfaces\Repositories\ICategoriaProdutoRepository.cs" />
     <Compile Include="Interfaces\Repositories\ICategoriaAgendaRepository.cs" />
     <Compile Include="Interfaces\Repositories\ICategoriaNotificacaoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IConfiguracaoRepository.cs" />
@@ -264,6 +267,15 @@
     <Compile Include="Model\CATEGORIA_NOTIFICACAO.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\CATEGORIA_PRODUTO.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CATEGORIA_TELEFONE.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CATEGORIA_USUARIO.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\CODIGO_REGIME_TRIBUTARIO.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
@@ -277,6 +289,9 @@
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\MATRIZ.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MOVIMENTO_ESTOQUE_PRODUTO.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\NOTICIA.cs">
@@ -312,7 +327,19 @@
     <Compile Include="Model\PAIS.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\PERCENTUAL_REMUNERACAO.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\PERFIL.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PRODUTO.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PRODUTO_ANEXO.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PRODUTO_ESTOQUE_FILIAL.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\REGIME_TRIBUTARIO.cs">
@@ -334,6 +361,9 @@
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\TAREFA_NOTIFICACAO.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\TELEFONE.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\TEMPLATE.cs">
@@ -361,6 +391,15 @@
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\USUARIO_ANEXO.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\USUARIO_CONTRACHEQUE.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\USUARIO_PREMIO.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\USUARIO_REMUNERACAO.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

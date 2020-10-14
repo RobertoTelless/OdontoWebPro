@@ -58,9 +58,9 @@ namespace ModelServices.EntitiesServices
             return _baseRepository.GetAllItensUser(id, idAss);
         }
 
-        public List<CATEGORIA_NOTIFICACAO> GetAllCategorias()
+        public List<CATEGORIA_NOTIFICACAO> GetAllCategorias(Int32 idAss)
         {
-            return _catRepository.GetAllItens();
+            return _catRepository.GetAllItens(idAss);
         }
 
         public List<NOTIFICACAO> GetNotificacaoNovas(Int32 id, Int32 idAss)

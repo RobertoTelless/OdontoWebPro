@@ -17,9 +17,10 @@ namespace DataServices.Repositories
             return query.FirstOrDefault();
         }
 
-        public List<TIPO_TAREFA> GetAllItens()
+        public List<TIPO_TAREFA> GetAllItens(Int32 idAss)
         {
             IQueryable<TIPO_TAREFA> query = Db.TIPO_TAREFA;
+            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.ToList();
         }
     }

@@ -17,15 +17,17 @@ namespace DataServices.Repositories
             return query.FirstOrDefault();
         }
 
-        public List<REGIME_TRIBUTARIO> GetAllItens()
+        public List<REGIME_TRIBUTARIO> GetAllItens(Int32 idAss)
         {
             IQueryable<REGIME_TRIBUTARIO> query = Db.REGIME_TRIBUTARIO.Where(p => p.RETR_IN_ATIVO == 1);
+            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.ToList();
         }
 
-        public List<REGIME_TRIBUTARIO> GetAllItensAdm()
+        public List<REGIME_TRIBUTARIO> GetAllItensAdm(Int32 idAss)
         {
             IQueryable<REGIME_TRIBUTARIO> query = Db.REGIME_TRIBUTARIO;
+            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.ToList();
         }
     }

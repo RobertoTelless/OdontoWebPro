@@ -73,9 +73,9 @@ namespace ModelServices.EntitiesServices
             return _anexoRepository.GetItemById(id);
         }
 
-        public List<CATEGORIA_AGENDA> GetAllTipos()
+        public List<CATEGORIA_AGENDA> GetAllTipos(Int32 idAss)
         {
-            return _tipoRepository.GetAllItens();
+            return _tipoRepository.GetAllItens(idAss);
         }
 
         public Int32 Create(AGENDA item, LOG log)

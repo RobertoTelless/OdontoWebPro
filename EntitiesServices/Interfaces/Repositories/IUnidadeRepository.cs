@@ -9,8 +9,8 @@ namespace ModelServices.Interfaces.Repositories
 {
     public interface IUnidadeRepository : IRepositoryBase<UNIDADE>
     {
-        List<UNIDADE> GetAllItens();
+        List<UNIDADE> GetAllItens(Int32 idAss);
         UNIDADE GetItemById(Int32 id);
-        List<UNIDADE> GetAllItensAdm();
+        List<UNIDADE> GetAllItensAdm(Int32 idAss);
     }
 }

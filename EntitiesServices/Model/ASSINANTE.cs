@@ -33,6 +33,17 @@ namespace EntitiesServices.Model
             this.TIPO_TAG = new HashSet<TIPO_TAG>();
             this.TIPO_TAREFA = new HashSet<TIPO_TAREFA>();
             this.USUARIO = new HashSet<USUARIO>();
+            this.CATEGORIA_NOTIFICACAO = new HashSet<CATEGORIA_NOTIFICACAO>();
+            this.CATEGORIA_PRODUTO = new HashSet<CATEGORIA_PRODUTO>();
+            this.CATEGORIA_TELEFONE = new HashSet<CATEGORIA_TELEFONE>();
+            this.CATEGORIA_USUARIO = new HashSet<CATEGORIA_USUARIO>();
+            this.FILIAL = new HashSet<FILIAL>();
+            this.PRODUTO = new HashSet<PRODUTO>();
+            this.REGIME_TRIBUTARIO = new HashSet<REGIME_TRIBUTARIO>();
+            this.TAREFA = new HashSet<TAREFA>();
+            this.TELEFONE = new HashSet<TELEFONE>();
+            this.TIPO_CONTRIBUINTE = new HashSet<TIPO_CONTRIBUINTE>();
+            this.UNIDADE = new HashSet<UNIDADE>();
         }
     
         public int ASSI_CD_ID { get; set; }
@@ -75,5 +86,27 @@ namespace EntitiesServices.Model
         public virtual ICollection<TIPO_TAREFA> TIPO_TAREFA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<USUARIO> USUARIO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CATEGORIA_NOTIFICACAO> CATEGORIA_NOTIFICACAO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CATEGORIA_PRODUTO> CATEGORIA_PRODUTO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CATEGORIA_TELEFONE> CATEGORIA_TELEFONE { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CATEGORIA_USUARIO> CATEGORIA_USUARIO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FILIAL> FILIAL { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PRODUTO> PRODUTO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<REGIME_TRIBUTARIO> REGIME_TRIBUTARIO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TAREFA> TAREFA { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TELEFONE> TELEFONE { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TIPO_CONTRIBUINTE> TIPO_CONTRIBUINTE { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UNIDADE> UNIDADE { get; set; }
     }
 }

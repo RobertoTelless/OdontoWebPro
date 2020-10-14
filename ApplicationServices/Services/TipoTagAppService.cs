@@ -21,15 +21,15 @@ namespace ApplicationServices.Services
             _baseService = baseService;
         }
 
-        public List<TIPO_TAG> GetAllItens()
+        public List<TIPO_TAG> GetAllItens(Int32 idAss)
         {
-            List<TIPO_TAG> lista = _baseService.GetAllItens();
+            List<TIPO_TAG> lista = _baseService.GetAllItens(idAss);
             return lista;
         }
 
-        public List<TIPO_TAG> GetAllItensAdm()
+        public List<TIPO_TAG> GetAllItensAdm(Int32 idAss)
         {
-            List<TIPO_TAG> lista = _baseService.GetAllItensAdm();
+            List<TIPO_TAG> lista = _baseService.GetAllItensAdm(idAss);
             return lista;
         }
 

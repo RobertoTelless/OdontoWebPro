@@ -23,6 +23,6 @@ namespace ModelServices.Interfaces.EntitiesServices
         List<NOTIFICACAO> GetNotificacaoNovas(Int32 id, Int32 idAss);
         List<NOTIFICACAO> ExecuteFilter(String titulo, DateTime? data, String texto, Int32 idAss);
         NOTIFICACAO_ANEXO GetAnexoById(Int32 id);
-        List<CATEGORIA_NOTIFICACAO> GetAllCategorias();
+        List<CATEGORIA_NOTIFICACAO> GetAllCategorias(Int32 idAss);
     }
 }

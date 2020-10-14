@@ -21,15 +21,15 @@ namespace ApplicationServices.Services
             _baseService = baseService;
         }
 
-        public List<REGIME_TRIBUTARIO> GetAllItens()
+        public List<REGIME_TRIBUTARIO> GetAllItens(Int32 idAss)
         {
-            List<REGIME_TRIBUTARIO> lista = _baseService.GetAllItens();
+            List<REGIME_TRIBUTARIO> lista = _baseService.GetAllItens(idAss);
             return lista;
         }
 
-        public List<REGIME_TRIBUTARIO> GetAllItensAdm()
+        public List<REGIME_TRIBUTARIO> GetAllItensAdm(Int32 idAss)
         {
-            List<REGIME_TRIBUTARIO> lista = _baseService.GetAllItensAdm();
+            List<REGIME_TRIBUTARIO> lista = _baseService.GetAllItensAdm(idAss);
             return lista;
         }
 

@@ -17,7 +17,7 @@ namespace ModelServices.Interfaces.EntitiesServices
         Int32 Delete(TIPO_CONTRIBUINTE item, LOG log);
 
         TIPO_CONTRIBUINTE GetItemById(Int32 id);
-        List<TIPO_CONTRIBUINTE> GetAllItens();
-        List<TIPO_CONTRIBUINTE> GetAllItensAdm();
+        List<TIPO_CONTRIBUINTE> GetAllItens(Int32 idAss);
+        List<TIPO_CONTRIBUINTE> GetAllItensAdm(Int32 idAss);
     }
 }
