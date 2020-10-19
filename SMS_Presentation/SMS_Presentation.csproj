@@ -339,6 +339,7 @@
     <Compile Include="Controllers\NoticiaController.cs" />
     <Compile Include="Controllers\NotificacaoController.cs" />
     <Compile Include="Controllers\TarefaController.cs" />
+    <Compile Include="Controllers\TelefoneController.cs" />
     <Compile Include="Controllers\TemplateController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Extensions\HMTLHelperExtensions.cs" />
@@ -360,6 +361,7 @@
     <Compile Include="ViewModels\NoticiaComentarioViewModel.cs" />
     <Compile Include="ViewModels\NoticiaViewModel.cs" />
     <Compile Include="ViewModels\NotificacaoAnexoViewModel.cs" />
+    <Compile Include="ViewModels\TelefoneViewModel.cs" />
     <Compile Include="ViewModels\NotificacaoViewModel.cs" />
     <Compile Include="ViewModels\PerfilViewModel.cs" />
     <Compile Include="ViewModels\RegimeTributarioViewModel.cs" />
@@ -2610,6 +2612,10 @@
     <Content Include="Views\Configuracao\EditarConfiguracao.cshtml" />
     <Content Include="Views\Configuracao\MontarTelaConfiguracao.cshtml" />
     <Content Include="Views\Usuario\MontarTelaPerfilUsuario.cshtml" />
+    <Content Include="Views\Telefone\MontarTelaTelefone.cshtml" />
+    <Content Include="Views\Telefone\IncluirTelefone.cshtml" />
+    <Content Include="Views\Telefone\EditarTelefone.cshtml" />
+    <Content Include="Views\Telefone\VerTelefone.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

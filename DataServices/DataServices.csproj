@@ -184,6 +184,7 @@
     <Compile Include="Repositories\NoticiaRepository.cs" />
     <Compile Include="Repositories\NoticiaTagRepository.cs" />
     <Compile Include="Repositories\NotificacaoAnexoRepository.cs" />
+    <Compile Include="Repositories\TelefoneRepository.cs" />
     <Compile Include="Repositories\NotificacaoRepository.cs" />
     <Compile Include="Repositories\PerfilRepository.cs" />
     <Compile Include="Repositories\RegimeTributarioRepository.cs" />

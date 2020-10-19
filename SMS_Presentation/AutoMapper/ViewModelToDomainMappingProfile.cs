@@ -31,6 +31,7 @@ namespace MvcMapping.Mappers
             CreateMap<CategoriaAgendaViewModel, CATEGORIA_AGENDA>();
             CreateMap<AgendaViewModel, AGENDA>();
             CreateMap<TarefaAcompanhamentoViewModel, TAREFA_ACOMPANHAMENTO>();
+            CreateMap<TelefoneViewModel, TELEFONE>();
         }
     }
 }

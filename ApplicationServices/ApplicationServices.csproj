@@ -182,6 +182,7 @@
     <Compile Include="Interfaces\ILogAppService.cs" />
     <Compile Include="Interfaces\IMatrizAppService.cs" />
     <Compile Include="Interfaces\INoticiaAppService.cs" />
+    <Compile Include="Interfaces\ITelefoneAppService.cs" />
     <Compile Include="Interfaces\INotificacaoAppService.cs" />
     <Compile Include="Interfaces\IPerfilAppService.cs" />
     <Compile Include="Interfaces\IRegimeTributarioAppService.cs" />
@@ -202,6 +203,7 @@
     <Compile Include="Services\LogAppService.cs" />
     <Compile Include="Services\MatrizAppService.cs" />
     <Compile Include="Services\NoticiaAppService.cs" />
+    <Compile Include="Services\TelefoneAppService.cs" />
     <Compile Include="Services\NotificacaoAppService.cs" />
     <Compile Include="Services\PerfilAppService.cs" />
     <Compile Include="Services\RegimeTributarioAppService.cs" />

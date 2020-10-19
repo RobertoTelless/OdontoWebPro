@@ -181,6 +181,7 @@
     <Compile Include="EntitiesServices\LogService.cs" />
     <Compile Include="EntitiesServices\MatrizService.cs" />
     <Compile Include="EntitiesServices\NoticiaService.cs" />
+    <Compile Include="EntitiesServices\TelefoneService.cs" />
     <Compile Include="EntitiesServices\NotificacaoService.cs" />
     <Compile Include="EntitiesServices\PerfilService.cs" />
     <Compile Include="EntitiesServices\RegimeTributarioService.cs" />
@@ -201,6 +202,7 @@
     <Compile Include="Interfaces\EntitiesServices\ILogService.cs" />
     <Compile Include="Interfaces\EntitiesServices\IMatrizService.cs" />
     <Compile Include="Interfaces\EntitiesServices\INoticiaService.cs" />
+    <Compile Include="Interfaces\EntitiesServices\ITelefoneService.cs" />
     <Compile Include="Interfaces\EntitiesServices\INotificacaoService.cs" />
     <Compile Include="Interfaces\EntitiesServices\IPerfilService.cs" />
     <Compile Include="Interfaces\EntitiesServices\IRegimeTributarioService.cs" />
@@ -231,6 +233,7 @@
     <Compile Include="Interfaces\Repositories\INoticiaRepository.cs" />
     <Compile Include="Interfaces\Repositories\INoticiaTagRepository.cs" />
     <Compile Include="Interfaces\Repositories\INotificacaoAnexoRepository.cs" />
+    <Compile Include="Interfaces\Repositories\ITelefoneRepository.cs" />
     <Compile Include="Interfaces\Repositories\INotificacaoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IPerfilRepository.cs" />
     <Compile Include="Interfaces\Repositories\IRegimeTributarioRepository.cs" />
