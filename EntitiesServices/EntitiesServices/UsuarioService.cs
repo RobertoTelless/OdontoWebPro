@@ -236,9 +236,9 @@ namespace ModelServices.EntitiesServices
             return conf;
         }
 
-        public List<USUARIO> ExecuteFilter(Int32? perfilId, Int32? cargoId, String nome, String login, String email, Int32 idAss)
+        public List<USUARIO> ExecuteFilter(Int32? causId, Int32? cargoId, Int32? filiId, String nome, String login, String email, Int32 idAss)
         {
-            List<USUARIO> lista = _usuarioRepository.ExecuteFilter(perfilId, cargoId, nome, login, email, idAss);
+            List<USUARIO> lista = _usuarioRepository.ExecuteFilter(causId, cargoId, filiId, nome, login, email, idAss);
             return lista;
         }
 

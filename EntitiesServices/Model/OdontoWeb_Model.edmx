@@ -598,6 +598,8 @@
           <Property Name="USUA_NR_CNPJ" Type="varchar" MaxLength="50" />
           <Property Name="USUA_IN_CATEGORIA" Type="int" />
           <Property Name="USUA_VL_SALARIO" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="USUA_DT_NASCIMENTO" Type="date" />
+          <Property Name="USUA_NR_RG" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="USUARIO_ANEXO">
           <Key>
@@ -2571,6 +2573,8 @@
           <NavigationProperty Name="USUARIO_REMUNERACAO" Relationship="OdontoWeb_Model.FK_USUARIO_REMUNERACAO_USUARIO" FromRole="USUARIO" ToRole="USUARIO_REMUNERACAO" />
           <Property Name="SITU_CD_ID" Type="Int32" />
           <NavigationProperty Name="SITUACAO" Relationship="OdontoWeb_Model.FK_USUARIO_SITUACAO" FromRole="USUARIO" ToRole="SITUACAO" />
+          <Property Name="USUA_DT_NASCIMENTO" Type="DateTime" Precision="0" />
+          <Property Name="USUA_NR_RG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="USUARIO_ANEXO">
           <Key>
@@ -4538,6 +4542,8 @@
           <EntitySetMapping Name="USUARIO">
             <EntityTypeMapping TypeName="OdontoWeb_Model.USUARIO">
               <MappingFragment StoreEntitySet="USUARIO">
+                <ScalarProperty Name="USUA_NR_RG" ColumnName="USUA_NR_RG" />
+                <ScalarProperty Name="USUA_DT_NASCIMENTO" ColumnName="USUA_DT_NASCIMENTO" />
                 <ScalarProperty Name="SITU_CD_ID" ColumnName="SITU_CD_ID" />
                 <ScalarProperty Name="USUA_VL_SALARIO" ColumnName="USUA_VL_SALARIO" />
                 <ScalarProperty Name="USUA_IN_CATEGORIA" ColumnName="USUA_IN_CATEGORIA" />

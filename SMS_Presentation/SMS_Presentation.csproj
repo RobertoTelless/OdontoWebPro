@@ -340,6 +340,7 @@
     <Compile Include="Controllers\NotificacaoController.cs" />
     <Compile Include="Controllers\TarefaController.cs" />
     <Compile Include="Controllers\TemplateController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Extensions\HMTLHelperExtensions.cs" />
     <Compile Include="Extensions\MVCButtonExtensions.cs" />
     <Compile Include="Extensions\WebMvcExtensions.cs" />
@@ -2608,6 +2609,7 @@
     <Content Include="Views\Template\MontarTelaTemplate.cshtml" />
     <Content Include="Views\Configuracao\EditarConfiguracao.cshtml" />
     <Content Include="Views\Configuracao\MontarTelaConfiguracao.cshtml" />
+    <Content Include="Views\Usuario\MontarTelaPerfilUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

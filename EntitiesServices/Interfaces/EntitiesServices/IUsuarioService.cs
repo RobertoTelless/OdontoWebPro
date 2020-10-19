@@ -29,7 +29,7 @@ namespace ModelServices.Interfaces.EntitiesServices
         List<USUARIO> GetAllItens(Int32 idAss);
         List<USUARIO> GetAllItensBloqueados(Int32 idAss);
         List<USUARIO> GetAllItensAcessoHoje(Int32 idAss);
-        List<USUARIO> ExecuteFilter(Int32? perfilId, Int32? cargoId, String nome, String login, String email, Int32 idAss);
+        List<USUARIO> ExecuteFilter(Int32? causId, Int32? cargoId, Int32? filiId, String nome, String login, String email, Int32 idAss);
         TEMPLATE GetTemplateByCode(String codigo);
         USUARIO_ANEXO GetAnexoById(Int32 id);
         List<NOTIFICACAO> GetAllItensUser(Int32 id, Int32 idAss);

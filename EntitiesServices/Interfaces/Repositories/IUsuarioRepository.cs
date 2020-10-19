@@ -17,7 +17,7 @@ namespace ModelServices.Interfaces.Repositories
         List<USUARIO> GetAllItensBloqueados(Int32 idAss);
         List<USUARIO> GetAllItensAcessoHoje(Int32 idAss);
         List<USUARIO> GetAllUsuariosAdm(Int32 idAss);
-        List<USUARIO> ExecuteFilter(Int32? perfilId, Int32? cargoId, String nome, String login, String email, Int32 idAss);
+        List<USUARIO> ExecuteFilter(Int32? causId, Int32? cargoId, Int32? filiId, String nome, String login, String email, Int32 idAss);
         USUARIO GetComprador(Int32 idAss);
         USUARIO GetAprovador(Int32 idAss);
         USUARIO GetAdministrador(Int32 idAss);

@@ -135,7 +135,7 @@ namespace OdontoWeb.Controllers
 
             // Indicadores
             ViewBag.Tarefas = listaMaster.Count;
-            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(), "TITR_CD_ID", "TITR_NM_NOME");
+            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(idAss), "TITR_CD_ID", "TITR_NM_NOME");
             ViewBag.TarefasPendentes = baseApp.GetTarefaStatus(usuario.USUA_CD_ID, 1).Count;
             ViewBag.TarefasEncerradas = baseApp.GetTarefaStatus(usuario.USUA_CD_ID, 2).Count;
 
@@ -220,7 +220,7 @@ namespace OdontoWeb.Controllers
 
             // Indicadores
             ViewBag.Tarefas = listaMaster.Count;
-            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(), "TITR_CD_ID", "TITR_NM_NOME");
+            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(idAss), "TITR_CD_ID", "TITR_NM_NOME");
             ViewBag.TarefasPendentes = baseApp.GetTarefaStatus(usuario.USUA_CD_ID, 1).Count;
             ViewBag.TarefasEncerradas = baseApp.GetTarefaStatus(usuario.USUA_CD_ID, 2).Count; 
 
@@ -321,7 +321,7 @@ namespace OdontoWeb.Controllers
             }
             // Prepara listas
             Int32 idAss = (Int32)Session["IdAssinante"];
-            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(), "TITR_CD_ID", "TITR_NM_NOME");
+            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(idAss), "TITR_CD_ID", "TITR_NM_NOME");
             ViewBag.Usuarios = new SelectList(usuApp.GetAllItens(idAss), "USUA_CD_ID", "USUA_NM_NOME");
             List<SelectListItem> status = new List<SelectListItem>();
             status.Add(new SelectListItem() { Text = "Pendente", Value = "1" });
@@ -354,7 +354,7 @@ namespace OdontoWeb.Controllers
         public ActionResult IncluirTarefa(TarefaViewModel vm)
         {
             Int32 idAss = (Int32)Session["IdAssinante"];
-            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(), "TITR_CD_ID", "TITR_NM_NOME");
+            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(idAss), "TITR_CD_ID", "TITR_NM_NOME");
             ViewBag.Usuarios = new SelectList(usuApp.GetAllItens(idAss), "USUA_CD_ID", "USUA_NM_NOME");
             List<SelectListItem> status = new List<SelectListItem>();
             status.Add(new SelectListItem() { Text = "Pendente", Value = "1" });
@@ -416,7 +416,7 @@ namespace OdontoWeb.Controllers
         {
             // Prepara view
             Int32 idAss = (Int32)Session["IdAssinante"];
-            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(), "TITR_CD_ID", "TITR_NM_NOME");
+            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(idAss), "TITR_CD_ID", "TITR_NM_NOME");
             ViewBag.Usuarios = new SelectList(usuApp.GetAllItens(idAss), "USUA_CD_ID", "USUA_NM_NOME");
             List<SelectListItem> status = new List<SelectListItem>();
             status.Add(new SelectListItem() { Text = "Pendente", Value = "1" });
@@ -445,7 +445,7 @@ namespace OdontoWeb.Controllers
         public ActionResult EditarTarefa(TarefaViewModel vm)
         {
             Int32 idAss = (Int32)Session["IdAssinante"];
-            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(), "TITR_CD_ID", "TITR_NM_NOME");
+            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(idAss), "TITR_CD_ID", "TITR_NM_NOME");
             ViewBag.Usuarios = new SelectList(usuApp.GetAllItens(idAss), "USUA_CD_ID", "USUA_NM_NOME");
             List<SelectListItem> status = new List<SelectListItem>();
             status.Add(new SelectListItem() { Text = "Pendente", Value = "1" });

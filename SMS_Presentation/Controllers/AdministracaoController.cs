@@ -19,6 +19,8 @@ namespace OdontoWeb.Controllers
     {
         private readonly IUsuarioAppService baseApp;
         private readonly ILogAppService logApp;
+        private readonly ICargoAppService carApp;
+        private readonly IFilialAppService filApp;
 
         private String msg;
         private Exception exception;
@@ -30,10 +32,12 @@ namespace OdontoWeb.Controllers
         List<LOG> listaMasterLog = new List<LOG>();
         String extensao;
 
-        public AdministracaoController(IUsuarioAppService baseApps, ILogAppService logApps)
+        public AdministracaoController(IUsuarioAppService baseApps, ILogAppService logApps, ICargoAppService carApps, IFilialAppService filApps)
         {
             baseApp = baseApps;
             logApp = logApps;
+            carApp = carApps;
+            filApp = filApps;
         }
 
         [HttpGet]
@@ -81,6 +85,7 @@ namespace OdontoWeb.Controllers
                 Session["ListaUsuario"] = listaMaster;
             }
             List<USUARIO> lista = (List<USUARIO>)Session["ListaUsuario"];
+            Int32 idMatriz = ((MATRIZ)Session["Matriz"]).MATR_CD_ID;
             ViewBag.Listas = lista;
             ViewBag.Usuarios = lista.Count;
 
@@ -88,6 +93,11 @@ namespace OdontoWeb.Controllers
             ViewBag.UsuariosHoje = lista.Where(p => p.USUA_IN_BLOQUEADO == 0 & p.USUA_DT_ACESSO == DateTime.Today.Date).ToList().Count;
             ViewBag.Title = "Usuários";
             ViewBag.Perfil = usuario.PERFIL.PERF_SG_SIGLA;
+
+            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(idAss), "CAUS_CD_ID", "CAUS_NM_NOME");
+            ViewBag.Cargos = new SelectList(carApp.GetAllItens(idAss), "CARG_CD_ID", "CARG_NM_NOME");
+            ViewBag.Filiais = new SelectList(filApp.GetAllItens(idMatriz), "FILI_CD_ID", "FILI_NM_NOME");
+            ViewBag.Situacoes = new SelectList(baseApp.GetAllSituacao(idAss), "SITU_CD_ID", "SITU_NM_NOME");
 
             // Recupera numero de usuarios do assinante
             Session["NumUsuarios"] = baseApp.GetAllUsuarios(idAss).Count;
@@ -154,7 +164,7 @@ namespace OdontoWeb.Controllers
                 Int32 idAss = (Int32)Session["IdAssinante"];
                 List<USUARIO> listaObj = new List<USUARIO>();
                 Session["FiltroUsuario"] = item;
-                Int32 volta = baseApp.ExecuteFilter(item.PERF_CD_ID, null, item.USUA_NM_NOME, item.USUA_NM_LOGIN, item.USUA_NM_EMAIL, idAss, out listaObj);
+                Int32 volta = baseApp.ExecuteFilter(item.CAUS_CD_ID, item.CARG_CD_ID, item.FILI_CD_ID, item.USUA_NM_NOME, item.USUA_NM_LOGIN, item.USUA_NM_EMAIL, idAss, out listaObj);
 
                 // Verifica retorno
                 if (volta == 1)
@@ -217,7 +227,12 @@ namespace OdontoWeb.Controllers
             }
 
             // Prepara listas
+            Int32 idMatriz = ((MATRIZ)Session["Matriz"]).MATR_CD_ID;
             ViewBag.Perfis = new SelectList((List<PERFIL>)Session["Perfis"], "PERF_CD_ID", "PERF_NM_NOME");
+            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(idAss), "CAUS_CD_ID", "CAUS_NM_NOME");
+            ViewBag.Cargos = new SelectList(carApp.GetAllItens(idAss), "CARG_CD_ID", "CARG_NM_NOME");
+            ViewBag.Filiais = new SelectList(filApp.GetAllItens(idMatriz), "FILI_CD_ID", "FILI_NM_NOME");
+            ViewBag.Situacoes = new SelectList(baseApp.GetAllSituacao(idAss), "SITU_CD_ID", "SITU_NM_NOME");
 
             // Prepara view
             USUARIO item = new USUARIO();
@@ -236,7 +251,12 @@ namespace OdontoWeb.Controllers
                 return RedirectToAction("Login", "ControleAcesso");
             }
             Int32 idAss = (Int32)Session["IdAssinante"];
+            Int32 idMatriz = ((MATRIZ)Session["Matriz"]).MATR_CD_ID;
             ViewBag.Perfis = new SelectList((List<PERFIL>)Session["Perfis"], "PERF_CD_ID", "PERF_NM_NOME");
+            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(idAss), "CAUS_CD_ID", "CAUS_NM_NOME");
+            ViewBag.Cargos = new SelectList(carApp.GetAllItens(idAss), "CARG_CD_ID", "CARG_NM_NOME");
+            ViewBag.Filiais = new SelectList(filApp.GetAllItens(idMatriz), "FILI_CD_ID", "FILI_NM_NOME");
+            ViewBag.Situacoes = new SelectList(baseApp.GetAllSituacao(idAss), "SITU_CD_ID", "SITU_NM_NOME");
             if (ModelState.IsValid)
             {
                 try
@@ -265,6 +285,21 @@ namespace OdontoWeb.Controllers
                     if (volta == 4 )
                     {
                         ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0023", CultureInfo.CurrentCulture));
+                        return View(vm);
+                    }
+                    if (volta == 5)
+                    {
+                        ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0027", CultureInfo.CurrentCulture));
+                        return View(vm);
+                    }
+                    if (volta == 6)
+                    {
+                        ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0028", CultureInfo.CurrentCulture));
+                        return View(vm);
+                    }
+                    if (volta == 7)
+                    {
+                        ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0029", CultureInfo.CurrentCulture));
                         return View(vm);
                     }
 
@@ -326,6 +361,13 @@ namespace OdontoWeb.Controllers
 
             // Prepara view
             ViewBag.Perfis = new SelectList((List<PERFIL>)Session["Perfis"], "PERF_CD_ID", "PERF_NM_NOME");
+            Int32 idMatriz = ((MATRIZ)Session["Matriz"]).MATR_CD_ID;
+            ViewBag.Perfis = new SelectList((List<PERFIL>)Session["Perfis"], "PERF_CD_ID", "PERF_NM_NOME");
+            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(idAss), "CAUS_CD_ID", "CAUS_NM_NOME");
+            ViewBag.Cargos = new SelectList(carApp.GetAllItens(idAss), "CARG_CD_ID", "CARG_NM_NOME");
+            ViewBag.Filiais = new SelectList(filApp.GetAllItens(idMatriz), "FILI_CD_ID", "FILI_NM_NOME");
+            ViewBag.Situacoes = new SelectList(baseApp.GetAllSituacao(idAss), "SITU_CD_ID", "SITU_NM_NOME");
+
             USUARIO item = baseApp.GetItemById(id);
             objetoAntes = item;
             Session["Usuario"] = item;
@@ -342,7 +384,12 @@ namespace OdontoWeb.Controllers
                 return RedirectToAction("Login", "ControleAcesso");
             }
             Int32 idAss = (Int32)Session["IdAssinante"];
+            Int32 idMatriz = ((MATRIZ)Session["Matriz"]).MATR_CD_ID;
             ViewBag.Perfis = new SelectList((List<PERFIL>)Session["Perfis"], "PERF_CD_ID", "PERF_NM_NOME");
+            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(idAss), "CAUS_CD_ID", "CAUS_NM_NOME");
+            ViewBag.Cargos = new SelectList(carApp.GetAllItens(idAss), "CARG_CD_ID", "CARG_NM_NOME");
+            ViewBag.Filiais = new SelectList(filApp.GetAllItens(idMatriz), "FILI_CD_ID", "FILI_NM_NOME");
+            ViewBag.Situacoes = new SelectList(baseApp.GetAllSituacao(idAss), "SITU_CD_ID", "SITU_NM_NOME");
             if (ModelState.IsValid)
             {
                 try
@@ -366,6 +413,21 @@ namespace OdontoWeb.Controllers
                     if (volta == 3)
                     {
                         ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0023", CultureInfo.CurrentCulture));
+                        return View(vm);
+                    }
+                    if (volta == 4)
+                    {
+                        ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0027", CultureInfo.CurrentCulture));
+                        return View(vm);
+                    }
+                    if (volta == 5)
+                    {
+                        ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0028", CultureInfo.CurrentCulture));
+                        return View(vm);
+                    }
+                    if (volta == 6)
+                    {
+                        ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0029", CultureInfo.CurrentCulture));
                         return View(vm);
                     }
 
@@ -1598,38 +1660,38 @@ namespace OdontoWeb.Controllers
             return RedirectToAction("MontarTelaUsuarioAdm");
         }
 
-        [HttpPost]
-        public ActionResult FiltrarUsuarioAdm(USUARIO item)
-        {
-            try
-            {
-                // Executa a operação
-                if ((String)Session["Ativa"] == null)
-                {
-                    return RedirectToAction("Login", "ControleAcesso");
-                }
-                Int32 idAss = (Int32)Session["IdAssinante"];
-                List<USUARIO> listaObj = new List<USUARIO>();
-                Session["FiltroUsuarioAdm"] = item;
-                Int32 volta = baseApp.ExecuteFilter(item.PERF_CD_ID, null, item.USUA_NM_NOME, item.USUA_NM_LOGIN, item.USUA_NM_EMAIL, idAss, out listaObj);
+        //[HttpPost]
+        //public ActionResult FiltrarUsuarioAdm(USUARIO item)
+        //{
+        //    try
+        //    {
+        //        // Executa a operação
+        //        if ((String)Session["Ativa"] == null)
+        //        {
+        //            return RedirectToAction("Login", "ControleAcesso");
+        //        }
+        //        Int32 idAss = (Int32)Session["IdAssinante"];
+        //        List<USUARIO> listaObj = new List<USUARIO>();
+        //        Session["FiltroUsuarioAdm"] = item;
+        //        Int32 volta = baseApp.ExecuteFilter(item.PERF_CD_ID, null, item.USUA_NM_NOME, item.USUA_NM_LOGIN, item.USUA_NM_EMAIL, out listaObj);
 
-                // Verifica retorno
-                if (volta == 1)
-                {
-                    Session["MensUsuarioAdm"] = 1;
-                    ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0016", CultureInfo.CurrentCulture));
-                }
+        //        // Verifica retorno
+        //        if (volta == 1)
+        //        {
+        //            Session["MensUsuarioAdm"] = 1;
+        //            ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0016", CultureInfo.CurrentCulture));
+        //        }
 
-                // Sucesso
-                listaMaster = listaObj;
-                Session["ListaUsuarioAdm"] = listaObj;
-                return RedirectToAction("MontarTelaUsuarioAdm");
-            }
-            catch (Exception ex)
-            {
-                ViewBag.Message = ex.Message;
-                return RedirectToAction("MontarTelaUsuarioAdm");
-            }
-        }
+        //        // Sucesso
+        //        listaMaster = listaObj;
+        //        Session["ListaUsuarioAdm"] = listaObj;
+        //        return RedirectToAction("MontarTelaUsuarioAdm");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ViewBag.Message = ex.Message;
+        //        return RedirectToAction("MontarTelaUsuarioAdm");
+        //    }
+        //}
     }
 }

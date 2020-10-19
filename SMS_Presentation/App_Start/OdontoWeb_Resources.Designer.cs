@@ -277,6 +277,33 @@ namespace SMS_Presentation.App_Start {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Data de admissão maior que a data corrente.
+        /// </summary>
+        internal static string M0027 {
+            get {
+                return ResourceManager.GetString("M0027", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Data de demissão maior que a data corrente.
+        /// </summary>
+        internal static string M0028 {
+            get {
+                return ResourceManager.GetString("M0028", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Justificatica de demissão deve ser informada.
+        /// </summary>
+        internal static string M0029 {
+            get {
+                return ResourceManager.GetString("M0029", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a A Senha não pode ficar em branco.
         /// </summary>
         internal static string M0073 {

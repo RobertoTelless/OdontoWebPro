@@ -7,12 +7,12 @@ using ApplicationServices.Interfaces;
 using EntitiesServices.Model;
 using System.Globalization;
 using SMS_Presentation.App_Start;
-//using EntitiesServices.Work_Classes;
 using AutoMapper;
-using SMS_Presentation.ViewModels;
+using OdontoWeb.ViewModels;
 using System.IO;
+using System.Data.Entity.Migrations.Model;
 
-namespace SMS_Presentation.Controllers
+namespace Odonto.Controllers
 {
     public class UsuarioController : Controller
     {
@@ -50,12 +50,15 @@ namespace SMS_Presentation.Controllers
         public ActionResult MontarTelaPerfilUsuario()
         {
             // Carrega listas
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            USUARIO usuario = new USUARIO();
             if ((String)Session["Ativa"] == null)
             {
                 return RedirectToAction("Login", "ControleAcesso");
             }
-            USUARIO usuario = (USUARIO)Session["UserCredentials"];
+            usuario = (USUARIO)Session["UserCredentials"];
             ViewBag.Perfil = usuario.PERFIL.PERF_SG_SIGLA;
+            ViewBag.UFs = new SelectList(baseApp.GetAllUF(), "UF_CD_ID", "UF_SG_SIGLA");
             ViewBag.Title = "Usuário";
 
             // Abre view
@@ -72,6 +75,7 @@ namespace SMS_Presentation.Controllers
             {
                 return RedirectToAction("Login", "ControleAcesso");
             }
+            ViewBag.UFs = new SelectList(baseApp.GetAllUF(), "UF_CD_ID", "UF_SG_SIGLA");
             if (ModelState.IsValid)
             {
                 try
@@ -80,7 +84,7 @@ namespace SMS_Presentation.Controllers
                     USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
                     USUARIO item = Mapper.Map<UsuarioViewModel, USUARIO>(vm);
                     Int32 idAss = (Int32)Session["IdAssinante"];
-                    Int32 volta = baseApp.ValidateEdit(item, objetoAntes, usuarioLogado, idAss);
+                    Int32 volta = baseApp.ValidateEdit(item, objetoAntes, usuarioLogado);
 
                     // Verifica retorno
 
@@ -120,6 +124,38 @@ namespace SMS_Presentation.Controllers
             return RedirectToAction("MontarTelaPerfilUsuario");
         }
 
+        [HttpGet]
+        public ActionResult SolicitarAlteracao()
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            Session["Usuarios"] = baseApp.GetAllUsuarios(idAss);
+            NOTIFICACAO noti = new NOTIFICACAO();
+            noti.ASSI_CD_ID = idAss;
+            return View(noti);
+        }
+
+        [HttpPost]
+        public ActionResult SolicitarAlteracao(NOTIFICACAO noti)
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            Session["Usuarios"] = baseApp.GetAllUsuarios(idAss);
+
+            // Executa a operação
+            USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
+            Int32 volta = baseApp.CreateNotificacao(noti, usuarioLogado);
+
+            // Sucesso
+            return RedirectToAction("MontarTelaPerfilUsuario");
+        }
+
         [HttpPost]
         public ActionResult UploadFotoUsuario(HttpPostedFileBase file)
         {
@@ -129,7 +165,7 @@ namespace SMS_Presentation.Controllers
             }
             if (file == null)
             {
-                ModelState.AddModelError("", SMS_Resource.ResourceManager.GetString("M0019", CultureInfo.CurrentCulture));
+                ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0019", CultureInfo.CurrentCulture));
                 return RedirectToAction("VoltarAnexoUsuario");
             }
 
@@ -139,7 +175,7 @@ namespace SMS_Presentation.Controllers
             var fileName = Path.GetFileName(file.FileName);
             if (fileName.Length > 100)
             {
-                ModelState.AddModelError("", SMS_Resource.ResourceManager.GetString("M0020", CultureInfo.CurrentCulture));
+                ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0024", CultureInfo.CurrentCulture));
                 return RedirectToAction("MontarTelaPerfilUsuario");
             }
             String caminho = "/Imagens/" + idAss.ToString() + "/Usuarios/" + item.USUA_CD_ID.ToString() + "/Fotos/";
@@ -158,11 +194,11 @@ namespace SMS_Presentation.Controllers
                 // Gravar registro
                 item.USUA_AQ_FOTO = "~" + caminho + fileName;
                 objetoAntes = item;
-                Int32 volta = baseApp.ValidateEdit(item, item, item, idAss);
+                Int32 volta = baseApp.ValidateEdit(item, item, item);
             }
             else
             {
-                ModelState.AddModelError("", SMS_Resource.ResourceManager.GetString("M0021", CultureInfo.CurrentCulture));
+                ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0021", CultureInfo.CurrentCulture));
             }
             return RedirectToAction("MontarTelaPerfilUsuario");
         }

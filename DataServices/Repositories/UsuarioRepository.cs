@@ -118,7 +118,7 @@ namespace DataServices.Repositories
             return query.ToList();
         }
 
-        public List<USUARIO> ExecuteFilter(Int32? perfilId, Int32? cargoId, String nome, String login, String email, Int32 idAss)
+        public List<USUARIO> ExecuteFilter(Int32? causId, Int32? cargoId, Int32? filiId, String nome, String login, String email, Int32 idAss)
         {
             List<USUARIO> lista = new List<USUARIO>();
             IQueryable<USUARIO> query = Db.USUARIO;
@@ -134,13 +134,17 @@ namespace DataServices.Repositories
             {
                 query = query.Where(p => p.USUA_NM_LOGIN == login);
             }
-            if (perfilId != null)
+            if (causId != null)
             {
-                query = query.Where(p => p.PERFIL.PERF_CD_ID == perfilId);
+                query = query.Where(p => p.CAUS_CD_ID == causId);
             }
             if (cargoId != null)
             {
-                query = query.Where(p => p.CARGO.CARG_CD_ID == cargoId);
+                query = query.Where(p => p.CARG_CD_ID == cargoId);
+            }
+            if (filiId != null)
+            {
+                query = query.Where(p => p.FILI_CD_ID == filiId);
             }
             if (query != null)
             {

@@ -97,7 +97,7 @@ namespace OdontoWeb.Controllers
 
             // Processo
             Session["FiltroAgendaCalendario"] = 2;
-            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(), "CAAG_CD_ID", "CAAG_NM_NOME");
+            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(idAss), "CAAG_CD_ID", "CAAG_NM_NOME");
             ViewBag.Usuarios = new SelectList(usuApp.GetAllItens(idAss), "USUA_CD_ID", "USUA_NM_NOME");
 
             AGENDA item = new AGENDA();
@@ -209,7 +209,7 @@ namespace OdontoWeb.Controllers
             ViewBag.Listas = listaMaster;
             ViewBag.Itens = listaMaster.Count;
             ViewBag.Title = "Agenda";
-            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(), "CAAG_CD_ID", "CAAG_NM_NOME");
+            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(idAss), "CAAG_CD_ID", "CAAG_NM_NOME");
 
             // Indicadores
             ViewBag.Perfil = usuario.PERFIL.PERF_SG_SIGLA;
@@ -330,7 +330,7 @@ namespace OdontoWeb.Controllers
             }
             // Prepara listas
             Int32 idAss = (Int32)Session["IdAssinante"];
-            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(), "CAAG_CD_ID", "CAAG_NM_NOME");
+            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(idAss), "CAAG_CD_ID", "CAAG_NM_NOME");
             ViewBag.Usuarios = new SelectList(usuApp.GetAllItens(idAss), "USUA_CD_ID", "USUA_NM_NOME");
 
             // Prepara view
@@ -350,7 +350,7 @@ namespace OdontoWeb.Controllers
         public ActionResult IncluirAgenda(AgendaViewModel vm)
         {
             Int32 idAss = (Int32)Session["IdAssinante"];
-            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(), "CAAG_CD_ID", "CAAG_NM_NOME");
+            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(idAss), "CAAG_CD_ID", "CAAG_NM_NOME");
             ViewBag.Usuarios = new SelectList(usuApp.GetAllItens(idAss), "USUA_CD_ID", "USUA_NM_NOME");
             if (ModelState.IsValid)
             {
@@ -394,7 +394,7 @@ namespace OdontoWeb.Controllers
             }
             // Prepara view
             Int32 idAss = (Int32)Session["IdAssinante"];
-            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(), "CAAG_CD_ID", "CAAG_NM_NOME");
+            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(idAss), "CAAG_CD_ID", "CAAG_NM_NOME");
             ViewBag.Usuarios = new SelectList(usuApp.GetAllItens(idAss), "USUA_CD_ID", "USUA_NM_NOME");
             List<SelectListItem> status = new List<SelectListItem>();
             status.Add(new SelectListItem() { Text = "Ativo", Value = "1" });
@@ -415,7 +415,7 @@ namespace OdontoWeb.Controllers
         public ActionResult EditarAgenda(AgendaViewModel vm)
         {
             Int32 idAss = (Int32)Session["IdAssinante"];
-            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(), "CAAG_CD_ID", "CAAG_NM_NOME");
+            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(idAss), "CAAG_CD_ID", "CAAG_NM_NOME");
             ViewBag.Usuarios = new SelectList(usuApp.GetAllItens(idAss), "USUA_CD_ID", "USUA_NM_NOME");
             List<SelectListItem> status = new List<SelectListItem>();
             status.Add(new SelectListItem() { Text = "Ativo", Value = "1" });
@@ -623,11 +623,11 @@ namespace OdontoWeb.Controllers
             {
                 return RedirectToAction("Login", "ControleAcesso");
             }
+            Int32 idAss = (Int32)Session["IdAssinante"];
             ViewBag.Title = "Agenda";
-            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(), "CAAG_CD_ID", "CAAG_NM_NOME");
+            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(idAss), "CAAG_CD_ID", "CAAG_NM_NOME");
             List<AGENDA> lista = (List<AGENDA>)Session["ListaAgenda"];
             var listaAgenda = lista.Where(x => x.AGEN_DT_DATA.Date == DateTime.Now.Date || x.AGEN_DT_DATA.Date == DateTime.Now.AddDays(1).Date).ToList();
-            Int32 idAss = (Int32)Session["IdAssinante"];
 
             // Carrega listas
             USUARIO usuario = (USUARIO)Session["UserCredentials"];

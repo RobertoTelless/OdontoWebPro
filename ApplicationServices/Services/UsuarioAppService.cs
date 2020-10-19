@@ -12,6 +12,7 @@ using System.Text.RegularExpressions;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 using System.Web;
+using Itenso.TimePeriod;
 
 namespace ApplicationServices.Services
 {
@@ -194,6 +195,68 @@ namespace ApplicationServices.Services
 
                 // Persiste
                 Int32 volta = _usuarioService.CreateUser(usuario, log);
+                return volta;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public Int32 CreateNotificacao(NOTIFICACAO noti, USUARIO usuarioLogado)
+        {
+            try
+            {
+                //Completa campos
+                USUARIO adm = _usuarioService.GetAdministrador(usuarioLogado.ASSI_CD_ID);
+                noti.ASSI_CD_ID = usuarioLogado.ASSI_CD_ID;
+                noti.CANO_CD_ID = 1;
+                noti.NOTI_DT_DATA = DateTime.Today.Date;
+                noti.NOTI_DT_EMISSAO = DateTime.Today.Date;
+                noti.NOTI_DT_VALIDADE = DateTime.Today.Date.AddDays(30);
+                noti.NOTI_DT_VISTA = null;
+                noti.NOTI_IN_ATIVO = 1;
+                noti.NOTI_IN_ENVIADA = 1;
+                noti.NOTI_IN_NIVEL = 1;
+                noti.NOTI_IN_STATUS = 1;
+                noti.NOTI_IN_VISTA = 0;
+                noti.NOTI_NM_TITULO = "Solicição de Alteração de Cadastro";
+                noti.USUA_CD_ID = adm.USUA_CD_ID;
+
+                // Gera Notificação
+                Int32 volta = _notiService.Create(noti);
+
+                // Recupera template e-mail
+                String header = _usuarioService.GetTemplate("SOLCAD").TEMP_TX_CABECALHO;
+                String body = _usuarioService.GetTemplate("SOLCAD").TEMP_TX_CORPO;
+                String data = _usuarioService.GetTemplate("SOLCAD").TEMP_TX_DADOS;
+
+                // Prepara dados do e-mail  
+                header = header.Replace("{Nome}", adm.USUA_NM_NOME);
+                data = data.Replace("{Data}", DateTime.Today.Date.ToLongDateString());
+                data = data.Replace("{Usuario}", usuarioLogado.USUA_NM_NOME);
+                data = data.Replace("{Solicitacao}", noti.NOTI_TX_TEXTO);
+
+                // Concatena
+                String emailBody = header + body + data;
+
+                // Prepara e-mail e enviar
+                CONFIGURACAO conf = _usuarioService.CarregaConfiguracao(usuarioLogado.ASSI_CD_ID);
+                Email mensagem = new Email();
+                mensagem.ASSUNTO = "Solicitacao de Alteracao Cadastral";
+                mensagem.CORPO = emailBody;
+                mensagem.DEFAULT_CREDENTIALS = false;
+                mensagem.EMAIL_DESTINO = adm.USUA_NM_EMAIL;
+                mensagem.EMAIL_EMISSOR = conf.CONF_NM_EMAIL_EMISSOO;
+                mensagem.ENABLE_SSL = true;
+                mensagem.NOME_EMISSOR = "Sistema";
+                mensagem.PORTA = conf.CONF_NM_PORTA_SMTP;
+                mensagem.PRIORIDADE = System.Net.Mail.MailPriority.High;
+                mensagem.SENHA_EMISSOR = conf.CONF_NM_SENHA_EMISSOR;
+                mensagem.SMTP = conf.CONF_NM_HOST_SMTP;
+
+                // Envia e-mail
+                Int32 voltaMail = CommunicationPackage.SendEmail(mensagem);
                 return volta;
             }
             catch (Exception ex)
@@ -820,7 +883,7 @@ namespace ApplicationServices.Services
         }
 
 
-        public Int32 ExecuteFilter(Int32? perfilId, Int32? cargoId, String nome, String login, String email, Int32 idAss, out List<USUARIO> objeto)
+        public Int32 ExecuteFilter(Int32? causId, Int32? cargoId, Int32? filiId, String nome, String login, String email, Int32 idAss, out List<USUARIO> objeto)
         {
             try
             {
@@ -828,7 +891,7 @@ namespace ApplicationServices.Services
                 Int32 volta = 0;
 
                 // Processa filtro
-                objeto = _usuarioService.ExecuteFilter(perfilId, cargoId, nome, login, email, idAss);
+                objeto = _usuarioService.ExecuteFilter(causId, cargoId, filiId, nome, login, email, idAss);
                 if (objeto.Count == 0)
                 {
                     volta = 1;

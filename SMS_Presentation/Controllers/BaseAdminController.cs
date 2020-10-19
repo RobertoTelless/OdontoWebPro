@@ -123,10 +123,10 @@ namespace OdontoWeb.Controllers
                 Session["Usuarios"] = usuApp.GetAllUsuarios(idAss.Value);
                 Session["Filiais"] = filApp.GetAllItens(idAss.Value);
                 Session["UFs"] = usuApp.GetAllUF();
-                Session["TiposContribuintes"] = tcoApp.GetAllItens();
+                Session["TiposContribuintes"] = tcoApp.GetAllItens(idAss.Value);
                 Session["TiposPessoas"] = tpApp.GetAllItens();
-                Session["Regimes"] = rtApp.GetAllItens();
-                Session["Unidades"] = uniApp.GetAllItens();
+                Session["Regimes"] = rtApp.GetAllItens(idAss.Value);
+                Session["Unidades"] = uniApp.GetAllItens(idAss.Value);
             }
             Session["MensTarefa"] = 0;
             Session["MensNoticia"] = 0;
@@ -140,6 +140,7 @@ namespace OdontoWeb.Controllers
 
             USUARIO usu = (USUARIO)Session["Usuario"];
             UsuarioViewModel vm = Mapper.Map<USUARIO, UsuarioViewModel>(usu);
+
 
             List<NOTIFICACAO> lista = usu.NOTIFICACAO.ToList();
             Session["Notificacoes"] = lista;

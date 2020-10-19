@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using EntitiesServices.Model;
+using EntitiesServices.Attributes;
 
 namespace OdontoWeb.ViewModels
 {
@@ -14,6 +15,7 @@ namespace OdontoWeb.ViewModels
         [Required(ErrorMessage = "Campo PERFIL obrigatorio")]
         public int PERF_CD_ID { get; set; }
         public int ASSI_CD_ID { get; set; }
+        [Required(ErrorMessage = "Campo CARGO obrigatorio")]
         public Nullable<int> CARG_CD_ID { get; set; }
         [Required(ErrorMessage = "Campo NOME obrigatorio")]
         [StringLength(50, MinimumLength = 1, ErrorMessage = "O NOME deve ter no minimo 1 caractere e no máximo 50.")]
@@ -62,6 +64,53 @@ namespace OdontoWeb.ViewModels
         public Nullable<int> DEPT_CD_ID { get; set; }
         public Nullable<int> USUA_IN_LOGADO { get; set; }
         public Nullable<System.DateTime> USUA_DT_LOGADO { get; set; }
+
+        [Required(ErrorMessage = "Campo CATEGORIA obrigatorio")]
+        public Nullable<int> CAUS_CD_ID { get; set; }
+        [Required(ErrorMessage = "Campo CPF obrigatorio")]
+        [StringLength(20, ErrorMessage = "O CPF deve ter no máximo 20 caracteres.")]
+        [CustomValidationCPF(ErrorMessage = "CPF inválido")]
+        public string USUA_NR_CPF { get; set; }
+        [StringLength(50, ErrorMessage = "A CTPS deve ter no máximo 50 caracteres.")]
+        public string USUA_NR_CTPS { get; set; }
+        [StringLength(10, ErrorMessage = "A SÉRIE DA CTPS deve ter no máximo 10 caracteres.")]
+        public string USUA_NR_CTPS_SERIE { get; set; }
+        [DataType(DataType.Date, ErrorMessage = "Deve ser uma data válida")]
+        public Nullable<System.DateTime> USUA_DT_CTPS_EMISSAO { get; set; }
+        public Nullable<int> USUA_CD_CTPS_UF { get; set; }
+        [Required(ErrorMessage = "Campo NIS obrigatorio")]
+        [StringLength(20, ErrorMessage = "O NIS deve ter no máximo 20 caracteres.")]
+        public string USUA_NR_NIS { get; set; }
+        [Required(ErrorMessage = "Campo DATA DE ADMISSÂO obrigatorio")]
+        [DataType(DataType.Date, ErrorMessage = "Deve ser uma data válida")]
+        public Nullable<System.DateTime> USUA_DT_ADMISSAO { get; set; }
+        [DataType(DataType.Date, ErrorMessage = "Deve ser uma data válida")]
+        public Nullable<System.DateTime> USUA_DT_DEMISSAO { get; set; }
+        [StringLength(500, ErrorMessage = "A JUSTIFICATIVA DE DEMISSÃO deve ter no máximo 500 caracteres.")]
+        public string USUA_DS_JUSTIFICATIVA_DEMISSAO { get; set; }
+        public Nullable<int> USUA_IN_TIPO_DEMISSAO { get; set; }
+        [StringLength(100, ErrorMessage = "O ENDEREÇO deve ter no máximo 100 caracteres.")]
+        public string USUA_NM_ENDERECO { get; set; }
+        [StringLength(50, ErrorMessage = "O BAIRRO deve ter no máximo 50 caracteres.")]
+        public string USUA_NM_BAIRRO { get; set; }
+        [StringLength(50, ErrorMessage = "A CIDADE deve ter no máximo 50 caracteres.")]
+        public string USUA_NM_CIDADE { get; set; }
+        public Nullable<int> USUA_SG_CIDADE_UF { get; set; }
+        [StringLength(10, ErrorMessage = "O CEP deve ter no máximo 10 caracteres.")]
+        public string USUA_NR_CEP { get; set; }
+        [StringLength(20, ErrorMessage = "O CRO deve ter no máximo 20 caracteres.")]
+        public string USUA_NR_CRO { get; set; }
+        [StringLength(50, ErrorMessage = "A EMPRESA deve ter no máximo 50 caracteres.")]
+        public string USUA_NM_EMPRESA { get; set; }
+        [StringLength(20, ErrorMessage = "O CNPJ deve ter no máximo 20 caracteres.")]
+        [CustomValidationCNPJ(ErrorMessage = "CNPJ inválido")]
+        public string USUA_NR_CNPJ { get; set; }
+        public Nullable<int> USUA_IN_CATEGORIA { get; set; }
+        [RegularExpression(@"^[0-9]+([,.][0-9]+)?$", ErrorMessage = "O SALÁRIO deve ser um valor numérico positivo")]
+        public Nullable<decimal> USUA_VL_SALARIO { get; set; }
+        public Nullable<int> SITU_CD_ID { get; set; }
+        public Nullable<System.DateTime> USUA_DT_NASCIMENTO { get; set; }
+        public string USUA_NR_RG { get; set; }
 
         public bool Bloqueio
         {
@@ -141,6 +190,10 @@ namespace OdontoWeb.ViewModels
         }
 
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AGENDA> AGENDA { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AGENDA> AGENDA1 { get; set; }
         public virtual ASSINANTE ASSINANTE { get; set; }
         public virtual CARGO CARGO { get; set; }
         public virtual FILIAL FILIAL { get; set; }
@@ -160,14 +213,24 @@ namespace OdontoWeb.ViewModels
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TAREFA> TAREFA3 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TAREFA_ACOMPANHAMENTO> TAREFA_ACOMPANHAMENTO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TAREFA_NOTIFICACAO> TAREFA_NOTIFICACAO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<USUARIO_ANEXO> USUARIO_ANEXO { get; set; }
+        public virtual CATEGORIA_USUARIO CATEGORIA_USUARIO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AGENDA> AGENDA { get; set; }
+        public virtual ICollection<MOVIMENTO_ESTOQUE_PRODUTO> MOVIMENTO_ESTOQUE_PRODUTO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AGENDA> AGENDA1 { get; set; }
+        public virtual ICollection<PERCENTUAL_REMUNERACAO> PERCENTUAL_REMUNERACAO { get; set; }
+        public virtual UF UF { get; set; }
+        public virtual UF UF1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TAREFA_ACOMPANHAMENTO> TAREFA_ACOMPANHAMENTO { get; set; }
+        public virtual ICollection<USUARIO_CONTRACHEQUE> USUARIO_CONTRACHEQUE { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<USUARIO_PREMIO> USUARIO_PREMIO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<USUARIO_REMUNERACAO> USUARIO_REMUNERACAO { get; set; }
+        public virtual SITUACAO SITUACAO { get; set; }
     }
 }

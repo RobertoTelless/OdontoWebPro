@@ -78,7 +78,7 @@
                 {
                     <div class="ibox-content">
                             <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
-                                <div class="col-lg-3 col-md-3 col-xs-12">
+                                <div class="col-lg-4 col-md-4 col-xs-12">
                                     Nome
                                     @Html.TextBoxFor(m => m.USUA_NM_NOME, new { @class = "form-control", autofocus = true })
                                 </div>
@@ -90,9 +90,19 @@
                                     E-Mail
                                     @Html.TextBoxFor(m => m.USUA_NM_EMAIL, new { @class = "form-control",  autofocus = true })
                                 </div>
+                                <div class="col-lg-2 col-md-2 col-xs-12">
+                                    Categoria
+                                    @Html.DropDownListFor(m => m.CAUS_CD_ID, (SelectList)ViewBag.Tipos, "Selecionar", new { @class = "form-control" ,  autofocus = true })                            
+                                </div>
+                            </div>
+                            <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
                                 <div class="col-lg-3 col-md-3 col-xs-12">
-                                    Perfil
-                                    @Html.DropDownListFor(m => m.PERF_CD_ID, (SelectList)ViewBag.Perfis, "Selecionar", new { @class = "form-control" ,  autofocus = true })                            
+                                    Unidades
+                                    @Html.DropDownListFor(m => m.FILI_CD_ID, (SelectList)ViewBag.Filiais, "Selecionar", new { @class = "form-control" ,  autofocus = true })                            
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-xs-12">
+                                    Cargo
+                                    @Html.DropDownListFor(m => m.CARG_CD_ID, (SelectList)ViewBag.Cargos, "Selecionar", new { @class = "form-control" ,  autofocus = true })                            
                                 </div>
                             </div>
                             <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
@@ -153,9 +163,11 @@
                                     <thead style ="background-color:lightsteelblue">
                                         <tr>
                                             <th>Nome</th>   
+                                            <th>Categoria</th>
                                             <th>E-Mail</th>
                                             <th>Login</th>
-                                            <th>Perfil</th>
+                                            <th>Cargo</th>
+                                            <th>Unidade</th>
                                             <th>Bloqueado</th>
                                             <th>Acessos</th>
                                             <th></th>
@@ -167,9 +179,11 @@
                                         {
                                             <tr>
                                                 <td>@cond.USUA_NM_NOME</td>
+                                                <td>@cond.CATEGORIA_USUARIO.CAUS_NM_NOME</td>
                                                 <td>@cond.USUA_NM_EMAIL</td>
                                                 <td>@cond.USUA_NM_LOGIN</td>
-                                                <td>@cond.PERFIL.PERF_NM_NOME</td>    
+                                                <td>@cond.CARGO.CARG_NM_NOME</td>
+                                                <td>@cond.FILIAL.FILI_NM_NOME</td>
                                                 @if (cond.USUA_IN_BLOQUEADO == 1)
                                                 {
                                                     <td>Sim</td>    

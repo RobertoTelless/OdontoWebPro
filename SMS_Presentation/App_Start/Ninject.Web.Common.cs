@@ -138,6 +138,9 @@ namespace Presentation.Start
             kernel.Bind<IAgendaRepository>().To<AgendaRepository>();
             kernel.Bind<IAgendaAnexoRepository>().To<AgendaAnexoRepository>();
             kernel.Bind<ICategoriaAgendaRepository>().To<CategoriaAgendaRepository>();
+            kernel.Bind<ICategoriaProdutoRepository>().To<CategoriaProdutoRepository>();
+            kernel.Bind<ICategoriaTelefoneRepository>().To<CategoriaTelefoneRepository>();
+            kernel.Bind<ICategoriaUsuarioRepository>().To<CategoriaUsuarioRepository>();
 
         }
     }

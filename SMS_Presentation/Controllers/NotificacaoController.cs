@@ -147,7 +147,7 @@ namespace OdontoWeb.Controllers
             ViewBag.Listas = (List<NOTIFICACAO>)Session["ListaNotificacao"];
             ViewBag.Perfil = usuario.PERFIL.PERF_SG_SIGLA;
             ViewBag.Title = "Notificações";
-            ViewBag.Cats = new SelectList(baseApp.GetAllCategorias(), "CANO_CD_ID", "CANO_NM_NOME");
+            ViewBag.Cats = new SelectList(baseApp.GetAllCategorias(idAss), "CANO_CD_ID", "CANO_NM_NOME");
 
             // Indicadores
             ViewBag.Notificacoes = baseApp.GetNotificacaoNovas(usuario.USUA_CD_ID, idAss).Count;
