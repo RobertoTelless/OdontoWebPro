@@ -87,11 +87,8 @@
                                 @Html.ButtonActionSubmit(text: "Filtrar")
                                 @Html.ButtonLinkIndex(text: "Retirar Filtro", controller: "Telefone", action: "RetirarFiltroTelefone")
                                 @Html.ButtonLinkIndex(text: "Exibir Todos", controller: "Telefone", action: "MostrarTudoTelefone")
-                                @if (ViewBag.Perfil == "ADM")
-                                {
-                                    @Html.ButtonLinkIndex(text: "Novo Telefone", controller: "Telefone", action: "IncluirTelefone")
-                                }
-                                @Html.ButtonLinkIndex(text: "Visualização Cartões", controller: "Telefone", action: "MontarTelaTelefoneContato")
+                                @Html.ButtonLinkIndex(text: "Novo Telefone", controller: "Telefone", action: "IncluirTelefone")
+                                @Html.ButtonLinkIndex(text: "Visualização Lista", controller: "Telefone", action: "MontarTelaTelefone")
                                 @Html.ButtonLinkIndex(text: "Gerar Relatório", controller: "Telefone", action: "GerarRelatorioLista")
                                 @Html.ButtonLinkIndex(text: "Voltar", controller: "Telefone", action: "Voltar")
                             </div>
@@ -128,50 +125,66 @@
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <div class="row">
-                            @if ((ViewBag.Listas as List<EntitiesServices.Model.TELEFONE>).Count > 0)                                        {
-                                <table class="table table-striped table-bordered table-hover dataTables-example">
-                                    <thead style ="background-color:lightsteelblue">
-                                        <tr>
-                                            <th>Nome</th>   
-                                            <th>Categoria</th>   
-                                            <th>Telefone</th>
-                                            <th>Celular</th>
-                                            <th>WhatsApp</th>   
-                                            <th>E-Mail</th>
-                                            <th class="td-one-action">Ações</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach (var cond in (ViewBag.Listas as List<EntitiesServices.Model.TELEFONE>))
+                    <ul class="notes">
+                        @if ((ViewBag.Listas as List<EntitiesServices.Model.TELEFONE>).Count > 0)                                       
+                        {
+                            foreach (var cond in (ViewBag.Listas as List<EntitiesServices.Model.TELEFONE>))
+                            {
+                                <li>
+                                    <div>
+                                        <span class="label label-primary pull-left">@cond.CATEGORIA_TELEFONE.CATE_NM_NOME</span>
+                                        <br />  
+                                        @if (((USUARIO)Session["UserCredentials"]).PERFIL.PERF_SG_SIGLA == "ADM")
                                         {
-                                            <tr>
-                                                <td>@cond.TELE_NM_NOME</td>
-                                                <td>@cond.CATEGORIA_TELEFONE.CATE_NM_NOME</td>
-                                                <td>@cond.TELE_NR_TELEFONE</td>
-                                                <td>@cond.TELE_NR_CELULAR</td>
-                                                <td>@cond.TELE_NR_WHATSAPP</td>
-                                                <td>@cond.TELE_NM_EMAIL</td>
-                                                @if (((USUARIO)Session["UserCredentials"]).PERFIL.PERF_SG_SIGLA == "ADM")
-	                                            {
-                                                    <td class="td-one-action">
-                                                        @Html.TableLinkDetails(cond.TELE_CD_ID, "EditarTelefone","fa-edit", "Editar")
-                                                        @if (cond.TELE_IN_ATIVO == 1)
-	                                                    {
-                                                            @Html.TableLinkDetails(cond.TELE_CD_ID, "ExcluirTelefone","fa-trash-o", "Desativar")
-                                                        }
-                                                        else
-                                                        {   
-                                                            @Html.TableLinkDetails(cond.TELE_CD_ID, "ReativarTelefone","fa-refresh", "Reativar")
-                                                        }
-                                                    </td>
-                                                }
-                                            </tr>
+                                            <a href="@Url.Action("EditarTelefone", "Telefone", new { id = cond.TELE_CD_ID })" class="btn-link">
+                                                <h4 style="color:blue" >
+                                                    @if (cond.TELE_NM_NOME.IndexOf(' ') == -1)
+                                                    {
+                                                        @cond.TELE_NM_NOME
+                                                    }
+                                                    else
+                                                    {
+                                                        @cond.TELE_NM_NOME.Substring(0, cond.TELE_NM_NOME.IndexOf(' '))
+                                                    }
+                                                </h4>
+                                            </a>
                                         }
-                                    </tbody>
-                                </table>
+                                        else
+                                        {
+                                            <h4 style="color:blue" >
+                                                @if (cond.TELE_NM_NOME.IndexOf(' ') == -1)
+                                                {
+                                                    @cond.TELE_NM_NOME
+                                                }
+                                                else
+                                                {
+                                                    @cond.TELE_NM_NOME.Substring(0, cond.TELE_NM_NOME.IndexOf(' '))
+                                                }
+                                            </h4>
+                                        }
+                                        <h5 style="color:green; font-weight:bold" >@cond.TELE_NR_TELEFONE</h5>
+                                        @if (cond.TELE_NR_CELULAR != null)
+                                        {
+                                            <h5>@cond.TELE_NR_CELULAR</h5>
+                                        }
+                                        else
+                                        {
+                                            <h5>-</h5>
+                                        }
+                                        @if (cond.TELE_NR_WHATSAPP != null)
+                                        {
+                                            <h5>@cond.TELE_NR_WHATSAPP</h5>
+                                        }
+                                        else
+                                        {
+                                            <h5>-</h5>
+                                        }
+                                    </div>
+                                </li>
                             }
-                     </div>
+                        }
+
+                    </ul>
                 </div>
             </div>
         </div>

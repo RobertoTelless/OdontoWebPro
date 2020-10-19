@@ -56,11 +56,65 @@ namespace Odonto.Controllers
             {
                 return RedirectToAction("Login", "ControleAcesso");
             }
+            if ((Int32)Session["VoltaTelefone"] == 2)
+            {
+                return RedirectToAction("MontarTelaTelefoneContato");
+            }
             return RedirectToAction("MontarTelaTelefone");
         }
 
         [HttpGet]
         public ActionResult MontarTelaTelefone()
+        {
+            // Verifica se tem usuario logado
+            USUARIO usuario = new USUARIO();
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
+            }
+            else
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+
+            // Carrega listas
+            if ((List<TELEFONE>)Session["ListaTelefone"] == null)
+            {
+                listaMaster = baseApp.GetAllItens(idAss);
+                Session["ListaTelefone"] = listaMaster;
+                Session["FiltroTelefone"] = null;
+            }
+            ViewBag.Listas = (List<TELEFONE>)Session["ListaTelefone"];
+            ViewBag.Title = "Telefones";
+            ViewBag.Cats = new SelectList(baseApp.GetAllCategorias(idAss), "CATE_CD_ID", "CATE_NM_NOME");
+
+            // Indicadores
+            ViewBag.Tels = ((List<TELEFONE>)Session["ListaTelefone"]).Count;
+
+            // Mensagem
+            if ((Int32)Session["MensTelefone"] == 1)
+            {
+                ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0016", CultureInfo.CurrentCulture));
+            }
+            if ((Int32)Session["MensTelefone"] == 2)
+            {
+                ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0011", CultureInfo.CurrentCulture));
+            }
+
+            // Abre view
+            Session["MensTelefone"] = 0;
+            Session["VoltaTelefone"] = 1;
+            objeto = new TELEFONE();
+            return View(objeto);
+        }
+
+        [HttpGet]
+        public ActionResult MontarTelaTelefoneContato()
         {
             // Verifica se tem usuario logado
             USUARIO usuario = new USUARIO();
@@ -118,7 +172,11 @@ namespace Odonto.Controllers
             Int32 idAss = (Int32)Session["IdAssinante"];
             Session["ListaTelefone"] = null;
             listaMaster = new List<TELEFONE>();
-            return RedirectToAction("MontarTelatelefone");
+            if ((Int32)Session["VoltaTelefone"] == 2)
+            {
+                return RedirectToAction("MontarTelaTelefoneContato");
+            }
+            return RedirectToAction("MontarTelaTelefone");
         }
 
         public ActionResult MostrarTudoTelefone()
@@ -130,6 +188,10 @@ namespace Odonto.Controllers
             Int32 idAss = (Int32)Session["IdAssinante"];
             listaMaster = baseApp.GetAllItensAdm(idAss);
             Session["ListaTelefone"] = listaMaster;
+            if ((Int32)Session["VoltaTelefone"] == 2)
+            {
+                return RedirectToAction("MontarTelaTelefoneContato");
+            }
             return RedirectToAction("MontarTelaTelefone");
         }
 
@@ -162,17 +224,29 @@ namespace Odonto.Controllers
                     Session["MensTelefone"] = 0;
                     listaMaster = listaObj;
                     Session["ListaTelefone"] = listaObj;
+                    if ((Int32)Session["VoltaTelefone"] == 2)
+                    {
+                        return RedirectToAction("MontarTelaTelefoneContato");
+                    }
                     return RedirectToAction("MontarTelaTelefone");
                 }
                 catch (Exception ex)
                 {
                     ViewBag.Message = ex.Message;
+                    if ((Int32)Session["VoltaTelefone"] == 2)
+                    {
+                        return RedirectToAction("MontarTelaTelefoneContato");
+                    }
                     return RedirectToAction("MontarTelaTelefone");
                 }
             }
             catch (Exception ex)
             {
                 ViewBag.Message = ex.Message;
+                if ((Int32)Session["VoltaTelefone"] == 2)
+                {
+                    return RedirectToAction("MontarTelaTelefoneContato");
+                }
                 return RedirectToAction("MontarTelaTelefone");
             }
         }
@@ -240,6 +314,10 @@ namespace Odonto.Controllers
                     Session["IdTelefoneVolta"] = item.TELE_CD_ID;
                     Session["Telefone"] = item;
                     Session["MensTelefone"] = 0;
+                    if ((Int32)Session["VoltaTelefone"] == 2)
+                    {
+                        return RedirectToAction("MontarTelaTelefoneContato");
+                    }
                     return RedirectToAction("MontarTelaTelefone");
                 }
                 catch (Exception ex)
@@ -314,6 +392,10 @@ namespace Odonto.Controllers
                     listaMaster = new List<TELEFONE>();
                     Session["ListaTelefone"] = null;
                     Session["MensTelefone"] = 0;
+                    if ((Int32)Session["VoltaTelefone"] == 2)
+                    {
+                        return RedirectToAction("MontarTelaTelefoneContato");
+                    }
                     return RedirectToAction("MontarTelaTelefone");
                 }
                 catch (Exception ex)
@@ -360,6 +442,10 @@ namespace Odonto.Controllers
             Int32 volta = baseApp.ValidateDelete(item, usuario);
             listaMaster = new List<TELEFONE>();
             Session["ListaTelefone"] = null;
+            if ((Int32)Session["VoltaTelefone"] == 2)
+            {
+                return RedirectToAction("MontarTelaTelefoneContato");
+            }
             return RedirectToAction("MontarTelaTelefone");
         }
 
@@ -395,6 +481,10 @@ namespace Odonto.Controllers
             Int32 volta = baseApp.ValidateReativar(item, usuario);
             listaMaster = new List<TELEFONE>();
             Session["ListaTelefone"] = null;
+            if ((Int32)Session["VoltaTelefone"] == 2)
+            {
+                return RedirectToAction("MontarTelaTelefoneContato");
+            }
             return RedirectToAction("MontarTelaTelefone");
         }
 

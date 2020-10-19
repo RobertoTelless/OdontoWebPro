@@ -2616,6 +2616,7 @@
     <Content Include="Views\Telefone\IncluirTelefone.cshtml" />
     <Content Include="Views\Telefone\EditarTelefone.cshtml" />
     <Content Include="Views\Telefone\VerTelefone.cshtml" />
+    <Content Include="Views\Telefone\MontarTelaTelefoneContato.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
