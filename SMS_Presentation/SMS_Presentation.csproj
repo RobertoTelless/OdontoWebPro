@@ -335,6 +335,7 @@
     <Compile Include="Controllers\BaseAdminController.cs" />
     <Compile Include="Controllers\ConfiguracaoController.cs" />
     <Compile Include="Controllers\ControleAcessoController.cs" />
+    <Compile Include="Controllers\EquipeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NoticiaController.cs" />
     <Compile Include="Controllers\NotificacaoController.cs" />
@@ -2617,6 +2618,9 @@
     <Content Include="Views\Telefone\EditarTelefone.cshtml" />
     <Content Include="Views\Telefone\VerTelefone.cshtml" />
     <Content Include="Views\Telefone\MontarTelaTelefoneContato.cshtml" />
+    <Content Include="Views\Equipe\MontarTelaEquipeLista.cshtml" />
+    <Content Include="Views\Equipe\MontarTelaEquipeCards.cshtml" />
+    <Content Include="Views\Equipe\VerUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
