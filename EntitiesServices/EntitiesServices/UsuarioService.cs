@@ -208,6 +208,13 @@ namespace ModelServices.EntitiesServices
         {
             try
             {
+                usuario.CARGO = null;
+                usuario.FILIAL = null;
+                usuario.PERFIL = null;
+                usuario.CATEGORIA_USUARIO = null;
+                usuario.ASSINANTE = null;
+                usuario.AGENDA = null;
+                usuario.SITUACAO = null;
                 USUARIO obj = _usuarioRepository.GetById(usuario.USUA_CD_ID);
                 _usuarioRepository.Detach(obj);
                 _usuarioRepository.Update(usuario);

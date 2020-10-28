@@ -19,7 +19,7 @@ namespace OdontoWeb.ViewModels
         [DataType(DataType.Date, ErrorMessage = "DATA DE VALIDADE Deve ser uma data válida")]
         public System.DateTime NOTC_DT_VALIDADE { get; set; }
         [Required(ErrorMessage = "Campo TÍTULO obrigatorio")]
-        [StringLength(50, MinimumLength = 1, ErrorMessage = "O TÍTULO deve ter no minimo 1 caractere e no máximo 50.")]
+        [StringLength(50, MinimumLength = 1, ErrorMessage = "O TÍTULO deve ter no minimo 1 caractere e no máximo 250.")]
         public string NOTC_NM_TITULO { get; set; }
         [Required(ErrorMessage = "Campo AUTOR obrigatorio")]
         [StringLength(50, MinimumLength = 1, ErrorMessage = "O AUTOR deve ter no minimo 1 caractere e no máximo 50.")]

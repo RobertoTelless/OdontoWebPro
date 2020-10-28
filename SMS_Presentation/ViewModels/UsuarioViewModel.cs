@@ -33,7 +33,6 @@ namespace OdontoWeb.ViewModels
         [Required(ErrorMessage = "Campo SENHA obrigatorio")]
         public string USUA_NM_SENHA { get; set; }
         [StringLength(10, MinimumLength = 1, ErrorMessage = "O SENHA deve ter no minimo 1 caractere e no máximo 10.")]
-        [Required(ErrorMessage = "Campo CONFIRMAÇÃO DE SENHA obrigatorio")]
         public string USUA_NM_SENHA_CONFIRMA { get; set; }
         [StringLength(10, MinimumLength = 1, ErrorMessage = "O SENHA deve ter no minimo 1 caractere e no máximo 10.")]
         public string USUA_NM_NOVA_SENHA { get; set; }
@@ -78,7 +77,6 @@ namespace OdontoWeb.ViewModels
         [DataType(DataType.Date, ErrorMessage = "Deve ser uma data válida")]
         public Nullable<System.DateTime> USUA_DT_CTPS_EMISSAO { get; set; }
         public Nullable<int> USUA_CD_CTPS_UF { get; set; }
-        [Required(ErrorMessage = "Campo NIS obrigatorio")]
         [StringLength(20, ErrorMessage = "O NIS deve ter no máximo 20 caracteres.")]
         public string USUA_NR_NIS { get; set; }
         [Required(ErrorMessage = "Campo DATA DE ADMISSÂO obrigatorio")]

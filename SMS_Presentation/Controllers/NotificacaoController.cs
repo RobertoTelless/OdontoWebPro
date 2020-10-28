@@ -12,6 +12,7 @@ using OdontoWeb.ViewModels;
 using System.IO;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using System.Collections;
 
 namespace OdontoWeb.Controllers
 {
@@ -20,6 +21,7 @@ namespace OdontoWeb.Controllers
         private readonly INotificacaoAppService baseApp;
         private readonly ILogAppService logApp;
         private readonly IUsuarioAppService usuApp;
+        private readonly IConfiguracaoAppService confApp;
         private String msg;
         private Exception exception;
         NOTIFICACAO objeto = new NOTIFICACAO();
@@ -30,11 +32,12 @@ namespace OdontoWeb.Controllers
         List<LOG> listaMasterLog = new List<LOG>();
         String extensao;
 
-        public NotificacaoController(INotificacaoAppService baseApps, ILogAppService logApps, IUsuarioAppService usuApps)
+        public NotificacaoController(INotificacaoAppService baseApps, ILogAppService logApps, IUsuarioAppService usuApps, IConfiguracaoAppService confApps)
         {
             baseApp = baseApps;
             logApp = logApps;
             usuApp = usuApps;
+            confApp = confApps;
         }
 
         [HttpGet]
@@ -48,6 +51,72 @@ namespace OdontoWeb.Controllers
             NotificacaoViewModel vm = Mapper.Map<NOTIFICACAO, NotificacaoViewModel>(item);
             return View(vm);
         }
+
+        [HttpPost]
+        public JsonResult GetNotificacaoRefreshTime()
+        {
+            var refresh = confApp.GetById(1).CONF_NR_REFRESH_NOTIFICACAO;
+
+            if (refresh == null)
+            {
+                refresh = 60;
+            }
+
+            return Json(refresh);
+        }
+
+        [HttpPost]
+        public JsonResult GetNotificacaoNaoLida()
+        {
+            var usu = (USUARIO)Session["UserCredentials"];
+            Int32 idAss = (Int32)Session["IdAssinante"];
+
+            listaMaster = baseApp.GetNotificacaoNovas(usu.USUA_CD_ID, idAss).Where(x => x.NOTI_DT_VISTA == null & x.NOTI_DT_EMISSAO == DateTime.Today.Date).ToList();
+
+            if (listaMaster.Count == 1)
+            {
+                // Ver Notificacao
+                //return RedirectToAction("VerNotificacao", new { id = listaMaster.FirstOrDefault().NOTI_CD_ID });
+
+                var hash = new Hashtable();
+                hash.Add("msg", "Você possui 1 notificação não lida");
+
+                return Json(hash);
+            }
+            else if (listaMaster.Count > 1)
+            {
+                // Você possui x notificações não lidas
+                //return RedirectToAction("MontarTelaNotificacao", new { lista = listaMaster });
+
+                var hash = new Hashtable();
+                hash.Add("msg", "Você possui " + listaMaster.Count + " notificações não lidas");
+
+                return Json(hash);
+            }
+            else
+            {
+                return null; // Sem notificacoes
+            }
+        }
+
+        [HttpPost]
+        public ActionResult NovaNotificacaoClick()
+        {
+            var usu = (USUARIO)Session["UserCredentials"];
+            Int32 idAss = (Int32)Session["IdAssinante"];
+
+            listaMaster = baseApp.GetNotificacaoNovas(usu.USUA_CD_ID, idAss).Where(x => x.NOTI_DT_VISTA == null).ToList();
+
+            if (listaMaster.Count == 1)
+            {
+                return Json(listaMaster.FirstOrDefault().NOTI_CD_ID);
+            }
+            else
+            {
+                return Json(0);
+            }
+        }
+
 
         public ActionResult VerNotificacao(Int32 id)
         {
@@ -407,6 +476,10 @@ namespace OdontoWeb.Controllers
             {
                 return RedirectToAction("MontarTelaNotificacao");
             }
+            if ((Int32)Session["VoltaNotificacao"] == 3)
+            {
+                return RedirectToAction("CarregarBase", "BaseAdmin");
+            }
             return RedirectToAction("MontarTelaNotificacaoGeral");
         }
 
@@ -436,18 +509,20 @@ namespace OdontoWeb.Controllers
             Int32 idAss = (Int32)Session["IdAssinante"];
 
             // Prepara listas
-            //ViewBag.Cats = new SelectList(baseApp.GetAllCategorias(), "CANO_CD_ID", "CANO_NM_NOME");
+            ViewBag.Cats = new SelectList(baseApp.GetAllCategorias(idAss), "CANO_CD_ID", "CANO_NM_NOME");
             ViewBag.Usus = new SelectList(usuApp.GetAllItens(idAss), "USUA_CD_ID", "USUA_NM_NOME");
 
             // Prepara view
             NOTIFICACAO item = new NOTIFICACAO();
             NotificacaoViewModel vm = Mapper.Map<NOTIFICACAO, NotificacaoViewModel>(item);
             vm.NOTI_DT_EMISSAO = DateTime.Today.Date;
+            vm.NOTI_DT_DATA = DateTime.Today.Date;
             vm.NOTI_IN_ATIVO = 1;
             vm.ASSI_CD_ID = idAss;
             vm.NOTI_DT_VALIDADE = DateTime.Today.Date.AddDays(30);
             vm.NOTI_IN_NIVEL = 1;
-            vm.NOTI_IN_VISTA = 0;          
+            vm.NOTI_IN_ENVIADO = 1;
+            vm.NOTI_IN_VISTA = 0;
             return View(vm);
         }
 
@@ -459,7 +534,7 @@ namespace OdontoWeb.Controllers
                 return RedirectToAction("Login", "ControleAcesso");
             }
             Int32 idAss = (Int32)Session["IdAssinante"];
-            //ViewBag.Cats = new SelectList(baseApp.GetAllCategorias(), "CANO_CD_ID", "CANO_NM_NOME");
+            ViewBag.Cats = new SelectList(baseApp.GetAllCategorias(idAss), "CANO_CD_ID", "CANO_NM_NOME");
             ViewBag.Usus = new SelectList(usuApp.GetAllItens(idAss), "USUA_CD_ID", "USUA_NM_NOME");
             if (ModelState.IsValid)
             {
@@ -523,7 +598,7 @@ namespace OdontoWeb.Controllers
             Int32 idAss = (Int32)Session["IdAssinante"];
 
             // Prepara view
-            //ViewBag.Cats = new SelectList(baseApp.GetAllCategorias(), "CANO_CD_ID", "CANO_NM_NOME");
+            ViewBag.Cats = new SelectList(baseApp.GetAllCategorias(idAss), "CANO_CD_ID", "CANO_NM_NOME");
             ViewBag.Usus = new SelectList(usuApp.GetAllItens(idAss), "USUA_CD_ID", "USUA_NM_NOME");
 
             NOTIFICACAO item = baseApp.GetItemById(id);
@@ -542,7 +617,7 @@ namespace OdontoWeb.Controllers
                 return RedirectToAction("Login", "ControleAcesso");
             }
             Int32 idAss = (Int32)Session["IdAssinante"];
-            //ViewBag.Cats = new SelectList(baseApp.GetAllCategorias(), "CANO_CD_ID", "CANO_NM_NOME");
+            ViewBag.Cats = new SelectList(baseApp.GetAllCategorias(idAss), "CANO_CD_ID", "CANO_NM_NOME");
             ViewBag.Usus = new SelectList(usuApp.GetAllItens(idAss), "USUA_CD_ID", "USUA_NM_NOME");
             if (ModelState.IsValid)
             {

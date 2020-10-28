@@ -1,4 +1,5 @@
 ﻿@using Presentation.Extensions
+@using CrossCutting;
 @model OdontoWeb.ViewModels.AgendaViewModel
 @{
     Layout = "~/Views/Shared/_Layout_Admin.cshtml";
@@ -70,7 +71,7 @@
                                 </div>
                             </div>
                         </div>
-                        <hr />
+                        @*<hr />
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-xs-12">
                                 <h4>Anexos da Agenda</h4><input class="btn btn-sm btn-warning" id="inputFile" type="file" multiple />
@@ -90,7 +91,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>*@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>

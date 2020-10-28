@@ -408,6 +408,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WorkClasses\Endereco.cs" />
     <Compile Include="WorkClasses\Login.cs" />
+    <Compile Include="WorkClasses\SessionMocks.cs" />
     <Compile Include="WorkClasses\TrocaSenha.cs" />
   </ItemGroup>
   <ItemGroup>

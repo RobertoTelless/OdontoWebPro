@@ -2,7 +2,7 @@
 function countChar(elm, total) {
     // Valor Default - Caso necessário obter por Ajax
     if (total == undefined || total == null) {
-        total = 160;
+        total = 10000;
     }
 
     var len = elm.value.length;
@@ -14,7 +14,7 @@ function countChar(elm, total) {
 }
 
 // Conta os caracteres
-$('textarea').attr('onkeyup', "countChar(this, 160)");
+$('textarea').attr('onkeyup', "countChar(this, $(this).attr('data-val-length-max'))");
 
 // Cria o div que mostra o contador
 $('textarea').parent().append('<div name="charNum"></div>');

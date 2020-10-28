@@ -7,7 +7,7 @@ using ApplicationServices.Interfaces;
 using EntitiesServices.Model;
 using System.Globalization;
 using SMS_Presentation.App_Start;
-using EntitiesServices.Work_Classes;
+using EntitiesServices.WorkClasses;
 using AutoMapper;
 using OdontoWeb.ViewModels;
 using System.IO;
@@ -146,10 +146,12 @@ namespace OdontoWeb.Controllers
             List<NOTIFICACAO> lista = usu.NOTIFICACAO.ToList();
             Session["Notificacoes"] = lista;
             Session["ListaNovas"] = lista.Where(p => p.NOTI_IN_VISTA == 0).ToList();
+            SessionMocks.ListaNovas = (List<NOTIFICACAO>)Session["ListaNovas"];
             Session["NovasNotificacoes"] = lista.Where(p => p.NOTI_IN_VISTA == 0).Count();
             Session["Nome"] = usu.USUA_NM_NOME;
             ViewBag.NovasNotificacoes = lista.Where(p => p.NOTI_IN_VISTA == 0).Count();
             ViewBag.ListaNovas = (List<NOTIFICACAO>)Session["ListaNovas"];
+            Session["VoltaNotificacao"] = 3;
 
             List<NOTICIA> lista1 = notiApp.GetAllItensValidos(idAss.Value);
             Session["Noticias"] = lista1;
@@ -174,7 +176,7 @@ namespace OdontoWeb.Controllers
             Session["NumAgendasHoje"] = lista4.Where(p => p.AGEN_DT_DATA == DateTime.Today.Date).ToList().Count;
 
             ViewBag.NumAgendas = lista4.Count;
-            ViewBag.NumAgendasHoje = lista4.Where(p => p.AGEN_DT_DATA == DateTime.Today.Date).ToList();
+            ViewBag.NumAgendasHoje = lista4.Where(p => p.AGEN_DT_DATA == DateTime.Today.Date).ToList().Count;
 
             Session["Logs"] = usu.LOG.Count;
             ViewBag.Logs = usu.LOG.Count;

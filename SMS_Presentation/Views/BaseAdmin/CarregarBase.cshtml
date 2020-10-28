@@ -124,7 +124,7 @@
                                     <h4>@ViewBag.NumAgendas</h4>
                                 </div>
                                 <div class="col-xs-4">
-                                    @Html.ButtonLinkIndex(text: "Agenda", action: "VerTimelineAgenda", controller: "Agenda")
+                                    @Html.ButtonLinkIndex(text: "Agenda", action: "MontarTelaAgenda", controller: "Agenda")
                                 </div>
                             </div>
                         </div>
@@ -303,6 +303,94 @@
                                 @Html.ButtonLinkIndex(text: "Ir Para Notícias", action: "MontarTelaUsuario", controller: "Noticia")
                             </div>
                         }
+
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <br />
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>Mensagens</h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                                <a class="close-link">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content ibox-heading">
+                            <h3><i class="fa fa-comments-o"></i> Novas Mensagens</h3>
+                            <small><i class="fa fa-tim"></i> Você tem 0 novas mensagens </small>
+                        </div>
+                        @*@using (Html.BeginForm("CarregarBase", "BaseAdmnin", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal" }))
+                        {
+                            if ((ViewBag.Noticias as List<EntitiesServices.Model.NOTICIA>).Count > 0)
+                            {
+                                foreach (var cond in (ViewBag.Noticias as List<EntitiesServices.Model.NOTICIA>))
+                                {
+                                    if (cond.NOTC_DT_VALIDADE >= DateTime.Today)
+                                    {
+                                        <div class="ibox">
+                                            <div class="ibox-content">
+                                                <a href="@Url.Action("VerNoticia", "Noticia", new { id = cond.NOTC_CD_ID })" class="btn-link">
+                                                    <h2>
+                                                        @cond.NOTC_NM_TITULO
+                                                    </h2>
+                                                </a>
+                                                <div class="small m-b-xs">
+                                                    <strong>@cond.NOTC_NM_AUTOR    </strong> <span class="text-muted"><i class="fa fa-clock-o"></i>    @cond.NOTC_DT_DATA_AUTOR.Value.ToLongDateString()</span>
+                                                </div>
+                                                <img src="@Url.Content(cond.NOTC_AQ_FOTO)" style="width: auto; height: auto; max-height: 190px; max-width: 120px;">
+                                                <p>
+                                                    @if (cond.NOTC_TX_TEXTO.Length > 1000)
+                                                    {
+                                                        @cond.NOTC_TX_TEXTO.Substring(0, 1000)
+                                                    }
+                                                    else
+                                                    {
+                                                        @cond.NOTC_TX_TEXTO
+                                                    }
+                                                </p>
+                                                <a href=@cond.NOTC_LK_LINK>@cond.NOTC_LK_LINK</a>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <h5>Tags:</h5>
+                                                        @if (cond.NOTICIA_TAG.Count > 0)
+                                                        {
+                                                            foreach (var tag in (cond.NOTICIA_TAG))
+                                                            {
+                                                                if (tag.TIPO_TAG.TITA_IN_TIPO == 1)
+                                                                {
+                                                                    <button class="btn btn-primary btn-xs" type="button">@tag.NOTA_NM_NOME_TAG</button>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <button class="btn btn-white btn-xs" type="button">@tag.NOTA_NM_NOME_TAG</button>
+                                                                }
+                                                            }
+                                                        }
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="small text-right">
+                                                            <h5>Stats:</h5>
+                                                            <div> <i class="fa fa-comments-o"> </i> @cond.NOTICIA_COMENTARIO.Count comentários </div>
+                                                            <i class="fa fa-eye"> </i> @cond.NOTC_NR_ACESSO visualizações
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            }
+                            <div class="form-group">
+                                @Html.ButtonLinkIndex(text: "Ir Para Notícias", action: "MontarTelaUsuario", controller: "Noticia")
+                            </div>
+                        }*@
 
                     </div>
                 </div>

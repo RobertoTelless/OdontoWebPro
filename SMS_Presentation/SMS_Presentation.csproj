@@ -559,6 +559,7 @@
     <Content Include="Content\landing\header_two.jpg" />
     <Content Include="Content\landing\word_map.png" />
     <Content Include="Content\loadingDots.css" />
+    <Content Include="Content\notifier.css" />
     <Content Include="Content\patterns\1.png" />
     <Content Include="Content\patterns\2.png" />
     <Content Include="Content\patterns\3.png" />
@@ -710,6 +711,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Imagens\1\Noticias\1\Fotos\pexels-celular-04072020083212824.jpeg" />
+    <Content Include="Imagens\1\Usuarios\1\Fotos\FotoOficial.jpg" />
     <Content Include="Imagens\Base\FotoBase.jpg" />
     <Content Include="Images\1.jpg" />
     <Content Include="Images\1.png" />
@@ -2529,6 +2532,7 @@
     <Content Include="Scripts\plugins\velocity\velocity.ui.min.js" />
     <Content Include="Scripts\plugins\video\responsible-video.js" />
     <Content Include="Scripts\plugins\wow\wow.min.js" />
+    <Content Include="Scripts\UploadAnexo.js" />
     <Content Include="Views\BaseAdmin\CarregarBase.cshtml" />
     <Content Include="Views\BaseAdmin\CarregarDesenvolvimento.cshtml" />
     <Content Include="Views\Noticia\EditarNoticia.cshtml" />
@@ -2624,7 +2628,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Imagens\1\" />
+    <Folder Include="Imagens\1\Notificacao\1\Anexos\" />
+    <Folder Include="Imagens\1\Usuarios\1\Anexos\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

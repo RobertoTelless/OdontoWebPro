@@ -79,18 +79,11 @@
             <div class="col-lg-12 col-md-12 col-xs-12 ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>Usuário - Edição</h5>&nbsp;&nbsp;&nbsp;
-                    @if (ViewBag.Modo == 0)
-                    {
-                        @Html.ButtonLinkIndex(text: "Bloquear/desbloquear", action: "BloquearUsuario", controller: "Administracao", buttonClass: "warning demo2", routeValues:  new { id = Model.USUA_CD_ID})
-                        @Html.ButtonLinkIndex(text: "Desativar/Reativar", action: "DesativarUsuario", controller: "Administracao", buttonClass: "warning demo2", routeValues:  new { id = Model.USUA_CD_ID})
-                        @Html.ButtonLinkIndex(text: "Trocar Senha", action: "TrocarSenha", controller: "Administracao", buttonClass: "warning demo2", routeValues:  new { id = Model.USUA_CD_ID})
-                        @Html.ButtonLinkIndex(text: "Gerar Relatório", action: "GerarRelatorioDetalhe", controller: "Administracao", buttonClass: "warning demo2", routeValues:  new { id = Model.USUA_CD_ID})
-                        @Html.ButtonLinkIndex(text: "Cancelar", action: "VoltarBase", controller: "Administracao")
-                    }
-                    else
-                    {
-                        @Html.ButtonLinkIndex(text: "Cancelar", action: "VoltarBaseAdm", controller: "Administracao")
-                    }
+                    @Html.ButtonLinkIndex(text: "Bloquear/desbloquear", action: "BloquearUsuario", controller: "Administracao", buttonClass: "warning demo2", routeValues:  new { id = Model.USUA_CD_ID})
+                    @Html.ButtonLinkIndex(text: "Desativar/Reativar", action: "DesativarUsuario", controller: "Administracao", buttonClass: "warning demo2", routeValues:  new { id = Model.USUA_CD_ID})
+                    @Html.ButtonLinkIndex(text: "Trocar Senha", action: "TrocarSenha", controller: "Administracao", buttonClass: "warning demo2", routeValues:  new { id = Model.USUA_CD_ID})
+                    @Html.ButtonLinkIndex(text: "Gerar Relatório", action: "GerarRelatorioDetalhe", controller: "Administracao", buttonClass: "warning demo2", routeValues:  new { id = Model.USUA_CD_ID})
+                    @Html.ButtonLinkIndex(text: "Cancelar", action: "VoltarBase", controller: "Administracao")
                     <div class="ibox-tools">
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>

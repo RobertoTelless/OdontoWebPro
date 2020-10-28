@@ -1,6 +1,8 @@
 @using Inspinia_MVC5;
+@using EntitiesServices.WorkClasses
+@using Presentation.Extensions
 @using CrossCutting
-@using EntitiesServices.Model
+@using EntitiesServices.Model;
 <div class="row border-bottom">
     <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
@@ -21,12 +23,12 @@
                     <i class="fa fa-envelope"></i>  <span class="label label-warning">@((Int32)Session["NovasNotificacoes"])</span>
                 </a>
                 <ul class="dropdown-menu dropdown-messages">
-                    @foreach (var cond in (((List<NOTIFICACAO>)Session["ListaNovas"]) as List<EntitiesServices.Model.NOTIFICACAO>).Take(5))
+                    @foreach (var cond in (((List<NOTIFICACAO>)Session["ListaNovas"]) as List<EntitiesServices.Model.NOTIFICACAO>))
                     {
                         <li>
                             <div class="dropdown-messages-box">
                                 <a href="@Url.Action("VerNotificacao", "Notificacao", new { id = cond.NOTI_CD_ID })" class="pull-left btn-link">
-                                    <img alt="image" class="img-circle" src="@Url.Content(ViewBag.Foto)">
+                                    <img alt="image" class="img-circle" src="@Url.Content((String)Session["Foto"])">
                                 </a>
                                 <div class="media-body">
                                     <small class="pull-right">@cond.NOTI_DT_EMISSAO.Value.ToShortDateString()</small>
@@ -73,7 +75,7 @@
                     <i class="fa fa-tasks"></i>  <span class="label label-warning">@((Int32)Session["TarefasPendentes"])</span>
                 </a>
                 <ul class="dropdown-menu dropdown-messages">
-                    @foreach (var cond in (((List<TAREFA>)Session["TarefasPendentes"]) as List<EntitiesServices.Model.TAREFA>).Take(5))
+                    @foreach (var cond in (((List<TAREFA>)Session["ListaPendentes"]) as List<EntitiesServices.Model.TAREFA>).Take(5))
                     {
                         <li>
                             <div class="dropdown-messages-box">
