@@ -712,6 +712,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Imagens\1\Noticias\1\Fotos\pexels-celular-04072020083212824.jpeg" />
+    <Content Include="Imagens\1\Noticias\6\Fotos\WhatsApp Image 2020-09-01 at 17.03.47.jpeg" />
+    <Content Include="Imagens\1\Noticias\7\Fotos\elcizf5w0auqxmx.jpeg" />
     <Content Include="Imagens\1\Usuarios\1\Fotos\FotoOficial.jpg" />
     <Content Include="Imagens\Base\FotoBase.jpg" />
     <Content Include="Images\1.jpg" />
@@ -1721,6 +1723,7 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <None Include="Properties\PublishProfiles\EnviaSMS - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\EnviaSMSWeb - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\OdontoWeb - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
@@ -2625,10 +2628,21 @@
     <Content Include="Views\Equipe\MontarTelaEquipeLista.cshtml" />
     <Content Include="Views\Equipe\MontarTelaEquipeCards.cshtml" />
     <Content Include="Views\Equipe\VerUsuario.cshtml" />
+    <Content Include="Views\Equipe\IncluirEquipe.cshtml" />
+    <Content Include="Views\Equipe\EditarEquipe.cshtml" />
+    <Content Include="Views\Equipe\VerAnexoEquipe.cshtml" />
+    <Content Include="Views\Equipe\SlideShowEquipe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Imagens\1\Agenda\1\Anexos\" />
+    <Folder Include="Imagens\1\Agenda\2\Anexos\" />
+    <Folder Include="Imagens\1\Agenda\3\Anexos\" />
     <Folder Include="Imagens\1\Notificacao\1\Anexos\" />
+    <Folder Include="Imagens\1\Notificacao\4\Anexos\" />
+    <Folder Include="Imagens\1\Notificacao\5\Anexos\" />
+    <Folder Include="Imagens\1\Tarefas\1\Anexos\" />
+    <Folder Include="Imagens\1\Tarefas\2\Anexos\" />
     <Folder Include="Imagens\1\Usuarios\1\Anexos\" />
     <Folder Include="Models\" />
   </ItemGroup>

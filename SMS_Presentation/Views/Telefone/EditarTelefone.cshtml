@@ -78,7 +78,7 @@
                                                     @Html.HiddenFor(m => m.TELE_IN_ATIVO)
                                                     @Html.HiddenFor(m => m.TELE_CD_ID)
                                                     Categoria*
-                                                    @Html.DropDownListFor(m => m.CATE_CD_ID, (SelectList)ViewBag.Tipos, "Selecionar", new { @class = "form-control", autofocus = true })
+                                                    @Html.DropDownListFor(m => m.CATE_CD_ID, (SelectList)ViewBag.Cats, "Selecionar", new { @class = "form-control", autofocus = true })
                                                     @Html.ValidationMessageFor(m => m.CATE_CD_ID, "", new { @style = "color:red" })
                                                 </div>
                                                 <div class="col-lg-4 col-md-4 col-xs-12">

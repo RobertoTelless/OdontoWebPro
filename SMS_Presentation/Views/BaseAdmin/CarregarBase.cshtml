@@ -159,7 +159,7 @@
                                     {
                                         foreach (var cond in (Model.NOTIFICACAO).OrderByDescending(a => a.NOTI_DT_EMISSAO).Take(6))
                                         {
-                                            if (cond.NOTI_DT_EMISSAO == DateTime.Today)
+                                            if (cond.NOTI_DT_EMISSAO <= DateTime.Today)
                                             {
                                                 <div class="feed-element">
                                                     <div>
@@ -219,7 +219,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4">
+                <div class="col-lg-5">
                     <br />
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
@@ -307,7 +307,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <br />
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
@@ -405,6 +405,7 @@
     @Styles.Render("~/plugins/jasnyBootstrapStyles")
     @Styles.Render("~/Content/loadingDots.css")
     @Styles.Render("~/plugins/toastrStyles")
+    @*@Styles.Render("~/Content/notifier.css")*@
 }
 
 @section Scripts {
@@ -413,6 +414,8 @@
     @Scripts.Render("~/bundles/inputmask")
     @Scripts.Render("~/plugins/jasnyBootstrap")
     @Scripts.Render("~/plugins/sparkline")
+    @*@Scripts.Render("~/Scripts/notifier.js")
+    @Scripts.Render("~/Scripts/notificationHandler.js")*@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.js"></script>
 
     <script type="text/javascript">

@@ -95,6 +95,7 @@ namespace Odonto.Controllers
 
             // Indicadores
             ViewBag.Tels = ((List<TELEFONE>)Session["ListaTelefone"]).Count;
+            ViewBag.Perfil = usuario.PERFIL.PERF_SG_SIGLA;
 
             // Mensagem
             if ((Int32)Session["MensTelefone"] == 1)

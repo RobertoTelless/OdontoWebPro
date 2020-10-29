@@ -171,7 +171,7 @@
 
                                 <div class="form-group">
                                     <br />
-                                    <button class="btnSubmit btn btn-sm btn-success" id="basictoast" type="button">Confirma inclusão de Tarefa</button>
+                                    @Html.ButtonActionSubmit(text: "Confirma Inclusão de Tarefa", htmlAttributes: new { id = "basictoast" })
                                     @Html.ButtonLinkIndex(text: "Cancelar", action: "VoltarBaseTarefa", controller: "Tarefa")
                                 </div>
                             </div>

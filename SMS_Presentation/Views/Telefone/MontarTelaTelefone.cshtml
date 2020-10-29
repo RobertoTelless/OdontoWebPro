@@ -67,7 +67,7 @@
                         <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
                             <div class="col-lg-3 col-md-3 col-xs-12">
                                 Categoria
-                                @Html.DropDownListFor(m => m.CATE_CD_ID, (SelectList)ViewBag.Tipos, "Selecionar", new { @class = "form-control" })                            
+                                @Html.DropDownListFor(m => m.CATE_CD_ID, (SelectList)ViewBag.Cats, "Selecionar", new { @class = "form-control" })                            
                             </div>
                             <div class="col-lg-3 col-md-3 col-xs-12">
                                 Nome
@@ -92,7 +92,7 @@
                                     @Html.ButtonLinkIndex(text: "Novo Telefone", controller: "Telefone", action: "IncluirTelefone")
                                 }
                                 @Html.ButtonLinkIndex(text: "Visualização Cartões", controller: "Telefone", action: "MontarTelaTelefoneContato")
-                                @Html.ButtonLinkIndex(text: "Gerar Relatório", controller: "Telefone", action: "GerarRelatorioLista")
+                                @Html.ButtonLinkIndex(text: "Gerar Relatório", controller: "BaseAdmin", action: "CarregarDesenvolvimento")
                                 @Html.ButtonLinkIndex(text: "Voltar", controller: "Telefone", action: "Voltar")
                             </div>
                         </div>

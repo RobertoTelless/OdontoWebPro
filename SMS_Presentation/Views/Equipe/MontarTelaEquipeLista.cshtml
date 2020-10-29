@@ -97,12 +97,12 @@
                                     @Html.ButtonActionSubmit(text: "Filtrar")
                                     @Html.ButtonLinkIndex(text: "Retirar Filtro", controller: "Equipe", action: "RetirarFiltro")
                                     @Html.ButtonLinkIndex(text: "Exibir Todos", controller: "Equipe", action: "MostrarTudo")
-                                    @Html.ButtonLinkIndex(text: "Exibir Cards", controller: "Equipe", action: "MontarTelaUsuarioCards")
+                                    @Html.ButtonLinkIndex(text: "Exibir Cards", controller: "Equipe", action: "MontarTelaEquipeCards")
                                     @if (ViewBag.Perfil == "ADM")
                                     {
                                         @Html.ButtonLinkIndex(text: "Novo Membro da Equipe", controller: "Equipe", action: "IncluirEquipe")
                                     }
-                                    @Html.ButtonLinkIndex(text: "Gerar Relatório", controller: "Equipe", action: "GerarRelatorioLista")
+                                    @Html.ButtonLinkIndex(text: "Gerar Relatório", controller: "BaseAdmin", action: "CarregarDesenvolvimento")
                                     @Html.ButtonLinkIndex(text: "Voltar", controller: "Equipe", action: "Voltar")
                                 </div>
                             </div>
@@ -188,17 +188,17 @@
                                                     <td><img src="~/Images/a8.jpg" style = "width: auto; height: auto; max-height: 55px; max-width: 45px;"></td>
                                                 }                                              
                                                 <td class="td-one-action">
-                                                    @Html.TableLinkDetails(cond.USUA_CD_ID, "VerUsuario","fa-edit", "Visualizar")
+                                                    @Html.TableLinkDetails(cond.USUA_CD_ID, "VerEquipe","fa-edit", "Visualizar")
                                                     @if (ViewBag.Perfil == "ADM")
 	                                                {
-                                                        @Html.TableLinkDetails(cond.USUA_CD_ID, "EditarUsuario","fa-edit", "Editar")
+                                                        @Html.TableLinkDetails(cond.USUA_CD_ID, "EditarEquipe","fa-edit", "Editar")
                                                         if (cond.USUA_IN_ATIVO == 1)
 	                                                    {
-                                                            @Html.TableLinkDetails(cond.USUA_CD_ID, "ExcluirUsuario","fa-trash-o", "Desativar")
+                                                            @Html.TableLinkDetails(cond.USUA_CD_ID, "DesativarEquipe","fa-trash-o", "Desativar")
                                                         }
                                                         else
                                                         {   
-                                                            @Html.TableLinkDetails(cond.USUA_CD_ID, "ReativarUsuario","fa-refresh", "Reativar")
+                                                            @Html.TableLinkDetails(cond.USUA_CD_ID, "ReativarEquipe","fa-refresh", "Reativar")
                                                         }
                                                     }                                            
                                                 </td>

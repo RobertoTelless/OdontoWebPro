@@ -350,7 +350,7 @@ namespace OdontoWeb.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult IncluirTarefa(TarefaViewModel vm)
         {
             Int32 idAss = (Int32)Session["IdAssinante"];
@@ -397,7 +397,7 @@ namespace OdontoWeb.Controllers
                     listaMaster = new List<TAREFA>();
                     Session["ListaTarefa"] = null;
                     Session["IdVolta"] = item.TARE_CD_ID;
-                    return View(vm);
+                    return RedirectToAction("MontarTelaTarefa");
                 }
                 catch (Exception ex)
                 {
