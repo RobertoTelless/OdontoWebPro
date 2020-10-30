@@ -229,16 +229,16 @@
           <Property Name="ASSI_CD_ID" Type="int" Nullable="false" />
           <Property Name="NOTC_DT_EMISSAO" Type="date" />
           <Property Name="NOTC_DT_VALIDADE" Type="date" />
-          <Property Name="NOTC_NM_TITULO" Type="varchar" MaxLength="100" />
-          <Property Name="NOTC_NM_AUTOR" Type="varchar" MaxLength="50" />
+          <Property Name="NOTC_NM_TITULO" Type="varchar" MaxLength="500" />
+          <Property Name="NOTC_NM_AUTOR" Type="varchar" MaxLength="500" />
           <Property Name="NOTC_DT_DATA_AUTOR" Type="date" />
           <Property Name="NOTC_TX_TEXTO" Type="text" />
           <Property Name="NOTC_AQ_ARQUIVO" Type="varchar" MaxLength="250" />
-          <Property Name="NOTC_LK_LINK" Type="varchar" MaxLength="150" />
+          <Property Name="NOTC_LK_LINK" Type="varchar" MaxLength="550" />
           <Property Name="NOTC_NR_ACESSO" Type="int" />
           <Property Name="NOTC_IN_ATIVO" Type="int" />
           <Property Name="NOTC_IN_ADMIN" Type="int" />
-          <Property Name="NOTC_AQ_FOTO" Type="varchar" MaxLength="250" />
+          <Property Name="NOTC_AQ_FOTO" Type="varchar" MaxLength="550" />
         </EntityType>
         <EntityType Name="NOTICIA_COMENTARIO">
           <Key>
@@ -600,6 +600,7 @@
           <Property Name="USUA_VL_SALARIO" Type="decimal" Precision="18" Scale="2" />
           <Property Name="USUA_DT_NASCIMENTO" Type="date" />
           <Property Name="USUA_NR_RG" Type="varchar" MaxLength="50" />
+          <Property Name="USUA_SG_UF" Type="varchar" MaxLength="5" />
         </EntityType>
         <EntityType Name="USUARIO_ANEXO">
           <Key>
@@ -984,18 +985,6 @@
             </Principal>
             <Dependent Role="MOVIMENTO_ESTOQUE_PRODUTO">
               <PropertyRef Name="USUA_CD_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_NOTICIA_ASSINANTE">
-          <End Role="ASSINANTE" Type="Self.ASSINANTE" Multiplicity="1" />
-          <End Role="NOTICIA" Type="Self.NOTICIA" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ASSINANTE">
-              <PropertyRef Name="ASSI_CD_ID" />
-            </Principal>
-            <Dependent Role="NOTICIA">
-              <PropertyRef Name="ASSI_CD_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1758,10 +1747,6 @@
             <End Role="USUARIO" EntitySet="USUARIO" />
             <End Role="MOVIMENTO_ESTOQUE_PRODUTO" EntitySet="MOVIMENTO_ESTOQUE_PRODUTO" />
           </AssociationSet>
-          <AssociationSet Name="FK_NOTICIA_ASSINANTE" Association="Self.FK_NOTICIA_ASSINANTE">
-            <End Role="ASSINANTE" EntitySet="ASSINANTE" />
-            <End Role="NOTICIA" EntitySet="NOTICIA" />
-          </AssociationSet>
           <AssociationSet Name="FK_NOTICIA_COMENTARIO_NOTICIA" Association="Self.FK_NOTICIA_COMENTARIO_NOTICIA">
             <End Role="NOTICIA" EntitySet="NOTICIA" />
             <End Role="NOTICIA_COMENTARIO" EntitySet="NOTICIA_COMENTARIO" />
@@ -2209,16 +2194,16 @@
           <Property Name="ASSI_CD_ID" Type="Int32" Nullable="false" />
           <Property Name="NOTC_DT_EMISSAO" Type="DateTime" Precision="0" />
           <Property Name="NOTC_DT_VALIDADE" Type="DateTime" Precision="0" />
-          <Property Name="NOTC_NM_TITULO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="NOTC_NM_AUTOR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOTC_NM_TITULO" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="NOTC_NM_AUTOR" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="NOTC_DT_DATA_AUTOR" Type="DateTime" Precision="0" />
           <Property Name="NOTC_TX_TEXTO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="NOTC_AQ_ARQUIVO" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="NOTC_LK_LINK" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="NOTC_LK_LINK" Type="String" MaxLength="550" FixedLength="false" Unicode="false" />
           <Property Name="NOTC_NR_ACESSO" Type="Int32" />
           <Property Name="NOTC_IN_ATIVO" Type="Int32" />
           <Property Name="NOTC_IN_ADMIN" Type="Int32" />
-          <Property Name="NOTC_AQ_FOTO" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="NOTC_AQ_FOTO" Type="String" MaxLength="550" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ASSINANTE" Relationship="Self.FK_NOTICIA_ASSINANTE" FromRole="NOTICIA" ToRole="ASSINANTE" />
           <NavigationProperty Name="NOTICIA_COMENTARIO" Relationship="Self.FK_NOTICIA_COMENTARIO_NOTICIA" FromRole="NOTICIA" ToRole="NOTICIA_COMENTARIO" />
           <NavigationProperty Name="NOTICIA_TAG" Relationship="Self.FK_NOTICIA_TAG_NOTICIA" FromRole="NOTICIA" ToRole="NOTICIA_TAG" />
@@ -2575,6 +2560,7 @@
           <NavigationProperty Name="SITUACAO" Relationship="OdontoWeb_Model.FK_USUARIO_SITUACAO" FromRole="USUARIO" ToRole="SITUACAO" />
           <Property Name="USUA_DT_NASCIMENTO" Type="DateTime" Precision="0" />
           <Property Name="USUA_NR_RG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="USUA_SG_UF" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="USUARIO_ANEXO">
           <Key>
@@ -4542,6 +4528,7 @@
           <EntitySetMapping Name="USUARIO">
             <EntityTypeMapping TypeName="OdontoWeb_Model.USUARIO">
               <MappingFragment StoreEntitySet="USUARIO">
+                <ScalarProperty Name="USUA_SG_UF" ColumnName="USUA_SG_UF" />
                 <ScalarProperty Name="USUA_NR_RG" ColumnName="USUA_NR_RG" />
                 <ScalarProperty Name="USUA_DT_NASCIMENTO" ColumnName="USUA_DT_NASCIMENTO" />
                 <ScalarProperty Name="SITU_CD_ID" ColumnName="SITU_CD_ID" />

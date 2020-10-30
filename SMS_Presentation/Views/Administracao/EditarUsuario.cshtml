@@ -234,12 +234,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        if (ViewBag.Modo == 0)
-                                        {
-                                            <div class="form-group">
-                                                @Html.ButtonActionSubmit(text: "Confirma edição de Usuário", htmlAttributes: new { id = "basictoast" })
-                                            </div>
-                                        }
+                                        <div class="form-group">
+                                            @Html.ButtonActionSubmit(text: "Confirma edição de Usuário", htmlAttributes: new { id = "basictoast" })
+                                        </div>
                                     }
                                 </div>
                             </div>
@@ -249,21 +246,18 @@
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-lg-10 col-md-10 col-xs-12">   
-                                            @if (ViewBag.Modo == 0)
-                                            {
-                                                <div class="form-group">
-                                                    <h4>Fotografia do Usuário</h4>
-                                                    @using (Html.BeginForm("UploadFotoUsuario", "Administracao", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { enctype = "multipart/form-data", @id="pwd-container3" }))
-                                                    {
-                                                        <br />
-                                                        <input type="file" accept=".jpg, .png, .jpeg, .gif|images/*" name="file" id="file" class="btn btn-sm btn-warning"/>
-                                                        <br />
-                                                        <div class="form-group">
-                                                            <input type="submit" value="Incluir Foto do Usuário" class="btn btn-sm btn-success" />
-                                                        </div>
-                                                    }
-                                                </div>
-                                            }
+                                            <div class="form-group">
+                                                <h4>Fotografia do Usuário</h4>
+                                                @using (Html.BeginForm("UploadFotoUsuario", "Administracao", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { enctype = "multipart/form-data", @id="pwd-container3" }))
+                                                {
+                                                    <br />
+                                                    <input type="file" accept=".jpg, .png, .jpeg, .gif|images/*" name="file" id="file" class="btn btn-sm btn-warning"/>
+                                                    <br />
+                                                    <div class="form-group">
+                                                        <input type="submit" value="Incluir Foto do Usuário" class="btn btn-sm btn-success" />
+                                                    </div>
+                                                }
+                                            </div>
                                         </div>
                                         <div class="col-lg-2 col-md-2 col-xs-12">
                                             <div class="form-group">
@@ -327,15 +321,12 @@
                                                                 </tbody>
                                                             </table>
                                                         }
-                                                        @if (ViewBag.Modo == 0)
-                                                        {
-                                                            <input type="file" name="file" id="file" class="btn btn-sm btn-warning"/>
-                                                            <br />
-                                                            <div class="form-group">
-                                                                <input type="submit" value="Incluir Anexo do Usuário" class="btn btn-sm btn-success" />
-                                                                @Html.ButtonLinkIndex(text: "Ver Imagens em Sequencia", action: "SlideShowUsuario", controller: "Administracao")
-                                                            </div>
-                                                        }
+                                                        <input type="file" name="file" id="file" class="btn btn-sm btn-warning"/>
+                                                        <br />
+                                                        <div class="form-group">
+                                                            <input type="submit" value="Incluir Anexo do Usuário" class="btn btn-sm btn-success" />
+                                                            @Html.ButtonLinkIndex(text: "Ver Imagens em Sequencia", action: "SlideShowUsuario", controller: "Administracao")
+                                                        </div>
                                                     </div>
                                                 }
                                             </div>
@@ -474,12 +465,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        if (ViewBag.Modo == 0)
-                                        {
-                                            <div class="form-group">
-                                                @Html.ButtonActionSubmit(text: "Confirma Edição de Usuário", htmlAttributes: new { id = "basictoast" })
-                                            </div>
-                                        }
+                                        <div class="form-group">
+                                            @Html.ButtonActionSubmit(text: "Confirma Edição de Usuário", htmlAttributes: new { id = "basictoast" })
+                                        </div>
                                     }
                                 </div>
                             </div>

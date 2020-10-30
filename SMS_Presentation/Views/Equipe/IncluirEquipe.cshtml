@@ -180,15 +180,15 @@
                                     @Html.TextBoxFor(m => m.USUA_NM_BAIRRO, new { @class = "form-control", autofocus = true })
                                     @Html.ValidationMessageFor(m => m.USUA_NM_BAIRRO, "",new { @style="color:red" })
                                 </div>
-                                <div class="col-lg-2 col-md-2 col-xs-12">
+                                <div class="col-lg-3 col-md-3 col-xs-12">
                                     Cidade
                                     @Html.TextBoxFor(m => m.USUA_NM_CIDADE, new { @class = "form-control", autofocus = true})
                                     @Html.ValidationMessageFor(m => m.USUA_NM_CIDADE, "",new { @style="color:red" })
                                 </div>
-                                <div class="col-lg-2 col-md-2 col-xs-12">
+                                <div class="col-lg-1 col-md-1 col-xs-12">
                                     UF
-                                    @Html.DropDownListFor(m => m.USUA_SG_CIDADE_UF, (SelectList)ViewBag.UFs, "Selecionar", new { @class = "form-control", autofocus = true })                            
-                                    @Html.ValidationMessageFor(m => m.USUA_SG_CIDADE_UF, "",new { @style="color:red" })
+                                    @Html.TextBoxFor(m => m.USUA_SG_UF, new { @class = "form-control", autofocus = true })
+                                    @Html.ValidationMessageFor(m => m.USUA_SG_UF, "",new { @style="color:red" })
                                 </div>
                                 <div class="col-lg-2 col-md-2 col-xs-12">
                                     CEP

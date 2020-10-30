@@ -65,7 +65,11 @@ namespace Odonto.Controllers
             }
             Int32 idAss = (Int32)Session["IdAssinante"];
             Session["ListaUsuarios"] = baseApp.GetAllUsuarios(idAss);
-            return RedirectToAction("MontarTelaUsuario");
+            if ((Int32)Session["VoltaUsuario"] == 2)
+            {
+                return RedirectToAction("MontarTelaEquipeCards");
+            }
+            return RedirectToAction("MontarTelaEquipeLista");
         }
 
         [HttpGet]
@@ -203,9 +207,9 @@ namespace Odonto.Controllers
             Session["FiltroUsuario"] = null;
             if ((Int32)Session["VoltaUsuario"] == 2)
             {
-                return RedirectToAction("MontarTelaUsuarioCards");
+                return RedirectToAction("MontarTelaEquipeCards");
             }
-            return RedirectToAction("MontarTelaUsuarioLista");
+            return RedirectToAction("MontarTelaEquipeLista");
         }
 
         public ActionResult MostrarTudo()
@@ -220,9 +224,9 @@ namespace Odonto.Controllers
             Session["FiltroUsuario"] = null;
             if ((Int32)Session["VoltaUsuario"] == 2)
             {
-                return RedirectToAction("MontarTelaUsuarioCards");
+                return RedirectToAction("MontarTelaEquipeCards");
             }
-            return RedirectToAction("MontarTelaUsuarioLista");
+            return RedirectToAction("MontarTelaEquipeLista");
         }
 
         [HttpPost]
@@ -252,18 +256,18 @@ namespace Odonto.Controllers
                 Session["ListaUsuario"] = listaObj;
                 if ((Int32)Session["VoltaUsuario"] == 2)
                 {
-                    return RedirectToAction("MontarTelaUsuarioCards");
+                    return RedirectToAction("MontarTelaEquipeCards");
                 }
-                return RedirectToAction("MontarTelaUsuarioLista");
+                return RedirectToAction("MontarTelaEquipeLista");
             }
             catch (Exception ex)
             {
                 ViewBag.Message = ex.Message;
                 if ((Int32)Session["VoltaUsuario"] == 2)
                 {
-                    return RedirectToAction("MontarTelaUsuarioCards");
+                    return RedirectToAction("MontarTelaEquipeCards");
                 }
-                return RedirectToAction("MontarTelaUsuarioLista");
+                return RedirectToAction("MontarTelaEquipeLista");
             }
         }
 

@@ -714,7 +714,9 @@
     <Content Include="Imagens\1\Noticias\1\Fotos\pexels-celular-04072020083212824.jpeg" />
     <Content Include="Imagens\1\Noticias\6\Fotos\WhatsApp Image 2020-09-01 at 17.03.47.jpeg" />
     <Content Include="Imagens\1\Noticias\7\Fotos\elcizf5w0auqxmx.jpeg" />
+    <Content Include="Imagens\1\Usuarios\1\Anexos\dentista.jpg" />
     <Content Include="Imagens\1\Usuarios\1\Fotos\FotoOficial.jpg" />
+    <Content Include="Imagens\1\Usuarios\2\Fotos\Fernando.jpg" />
     <Content Include="Imagens\Base\FotoBase.jpg" />
     <Content Include="Images\1.jpg" />
     <Content Include="Images\1.png" />
@@ -2643,7 +2645,7 @@
     <Folder Include="Imagens\1\Notificacao\5\Anexos\" />
     <Folder Include="Imagens\1\Tarefas\1\Anexos\" />
     <Folder Include="Imagens\1\Tarefas\2\Anexos\" />
-    <Folder Include="Imagens\1\Usuarios\1\Anexos\" />
+    <Folder Include="Imagens\1\Usuarios\2\Anexos\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

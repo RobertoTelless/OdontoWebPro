@@ -91,7 +91,7 @@ namespace OdontoWeb.Controllers
 
             ViewBag.UsuariosBloqueados = lista.Where(p => p.USUA_IN_BLOQUEADO == 1).ToList().Count;
             ViewBag.UsuariosHoje = lista.Where(p => p.USUA_IN_BLOQUEADO == 0 & p.USUA_DT_ACESSO == DateTime.Today.Date).ToList().Count;
-            ViewBag.Title = "Usuários";
+            ViewBag.Title = "Usuáriosxx";
             ViewBag.Perfil = usuario.PERFIL.PERF_SG_SIGLA;
 
             ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(idAss), "CAUS_CD_ID", "CAUS_NM_NOME");

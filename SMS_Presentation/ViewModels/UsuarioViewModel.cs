@@ -63,6 +63,7 @@ namespace OdontoWeb.ViewModels
         public Nullable<int> DEPT_CD_ID { get; set; }
         public Nullable<int> USUA_IN_LOGADO { get; set; }
         public Nullable<System.DateTime> USUA_DT_LOGADO { get; set; }
+        public string USUA_SG_UF { get; set; }
 
         [Required(ErrorMessage = "Campo CATEGORIA obrigatorio")]
         public Nullable<int> CAUS_CD_ID { get; set; }
