@@ -96,7 +96,7 @@ namespace Odonto.Controllers
             if ((List<USUARIO>)Session["ListaUsuario"] == null)
             {
                 listaMaster = baseApp.GetAllItens(idAss);
-                listaMaster = listaMaster.Where(p => p.USUA_DT_DEMISSAO == null).ToList();
+                listaMaster = listaMaster.Where(p => p.USUA_DT_DEMISSAO == null & p.USUA_IN_CATEGORIA == 1).ToList();
                 Session["ListaUsuario"] = listaMaster;
             }
             List<USUARIO> lista = (List<USUARIO>)Session["ListaUsuario"];
@@ -158,7 +158,7 @@ namespace Odonto.Controllers
             if ((List<USUARIO>)Session["ListaUsuario"] == null)
             {
                 listaMaster = baseApp.GetAllItens(idAss);
-                listaMaster = listaMaster.Where(p => p.USUA_DT_DEMISSAO == null).ToList();
+                listaMaster = listaMaster.Where(p => p.USUA_DT_DEMISSAO == null & p.USUA_IN_CATEGORIA == 1).ToList();
                 Session["ListaUsuario"] = listaMaster;
             }
             List<USUARIO> lista = (List<USUARIO>)Session["ListaUsuario"];

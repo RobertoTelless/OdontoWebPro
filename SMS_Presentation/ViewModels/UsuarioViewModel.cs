@@ -67,7 +67,6 @@ namespace OdontoWeb.ViewModels
 
         [Required(ErrorMessage = "Campo CATEGORIA obrigatorio")]
         public Nullable<int> CAUS_CD_ID { get; set; }
-        [Required(ErrorMessage = "Campo CPF obrigatorio")]
         [StringLength(20, ErrorMessage = "O CPF deve ter no máximo 20 caracteres.")]
         [CustomValidationCPF(ErrorMessage = "CPF inválido")]
         public string USUA_NR_CPF { get; set; }
@@ -80,7 +79,6 @@ namespace OdontoWeb.ViewModels
         public Nullable<int> USUA_CD_CTPS_UF { get; set; }
         [StringLength(20, ErrorMessage = "O NIS deve ter no máximo 20 caracteres.")]
         public string USUA_NR_NIS { get; set; }
-        [Required(ErrorMessage = "Campo DATA DE ADMISSÂO obrigatorio")]
         [DataType(DataType.Date, ErrorMessage = "Deve ser uma data válida")]
         public Nullable<System.DateTime> USUA_DT_ADMISSAO { get; set; }
         [DataType(DataType.Date, ErrorMessage = "Deve ser uma data válida")]

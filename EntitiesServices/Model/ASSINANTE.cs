@@ -46,6 +46,9 @@ namespace EntitiesServices.Model
             this.UNIDADE = new HashSet<UNIDADE>();
             this.CATEGORIA_FORNECEDOR = new HashSet<CATEGORIA_FORNECEDOR>();
             this.FORNECEDOR = new HashSet<FORNECEDOR>();
+            this.CENTRO_CUSTO = new HashSet<CENTRO_CUSTO>();
+            this.GRUPO = new HashSet<GRUPO>();
+            this.SUBGRUPO = new HashSet<SUBGRUPO>();
         }
     
         public int ASSI_CD_ID { get; set; }
@@ -114,5 +117,11 @@ namespace EntitiesServices.Model
         public virtual ICollection<CATEGORIA_FORNECEDOR> CATEGORIA_FORNECEDOR { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FORNECEDOR> FORNECEDOR { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CENTRO_CUSTO> CENTRO_CUSTO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GRUPO> GRUPO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SUBGRUPO> SUBGRUPO { get; set; }
     }
 }

@@ -44,6 +44,16 @@ namespace ApplicationServices.Services
             return lista;
         }
 
+        public USUARIO_REMUNERACAO GetRemuneracaoByUser(Int32 id, DateTime data)
+        {
+            return _usuarioService.GetRemuneracaoByUser(id, data);
+        }
+
+        public USUARIO_CONTRACHEQUE GetContrachequeByUser(Int32 id, DateTime data)
+        {
+            return _usuarioService.GetContrachequeByUser(id, data);
+        }
+
         public USUARIO GetByLogin(String login)
         {
             return _usuarioService.GetByLogin(login);
@@ -180,6 +190,7 @@ namespace ApplicationServices.Services
                 usuario.USUA_IN_ATIVO = 1;
                 usuario.USUA_DT_ULTIMA_FALHA = DateTime.Now;
                 usuario.ASSI_CD_ID = usuarioLogado.ASSI_CD_ID;
+                usuario.USUA_IN_CATEGORIA = 2;
 
                 // Monta Log
                 LOG log = new LOG
@@ -221,6 +232,7 @@ namespace ApplicationServices.Services
                 noti.NOTI_IN_STATUS = 1;
                 noti.NOTI_IN_VISTA = 0;
                 noti.NOTI_NM_TITULO = "Solicição de Alteração de Cadastro";
+
                 noti.USUA_CD_ID = adm.USUA_CD_ID;
 
                 // Gera Notificação

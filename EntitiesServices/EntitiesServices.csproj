@@ -176,6 +176,7 @@
     <Compile Include="EntitiesServices\AgendaService.cs" />
     <Compile Include="EntitiesServices\AssinanteService.cs" />
     <Compile Include="EntitiesServices\CargoService.cs" />
+    <Compile Include="EntitiesServices\CentroCustoService.cs" />
     <Compile Include="EntitiesServices\ConfiguracaoService.cs" />
     <Compile Include="EntitiesServices\FilialService.cs" />
     <Compile Include="EntitiesServices\LogService.cs" />
@@ -199,6 +200,7 @@
     <Compile Include="Interfaces\EntitiesServices\IAgendaService.cs" />
     <Compile Include="Interfaces\EntitiesServices\IAssinanteService.cs" />
     <Compile Include="Interfaces\EntitiesServices\ICargoService.cs" />
+    <Compile Include="Interfaces\EntitiesServices\ICentroCustoService.cs" />
     <Compile Include="Interfaces\EntitiesServices\IConfiguracaoService.cs" />
     <Compile Include="Interfaces\EntitiesServices\IFilialService.cs" />
     <Compile Include="Interfaces\EntitiesServices\ILogService.cs" />
@@ -229,8 +231,10 @@
     <Compile Include="Interfaces\Repositories\ICategoriaProdutoRepository.cs" />
     <Compile Include="Interfaces\Repositories\ICategoriaAgendaRepository.cs" />
     <Compile Include="Interfaces\Repositories\ICategoriaNotificacaoRepository.cs" />
+    <Compile Include="Interfaces\Repositories\ICentroCustoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IConfiguracaoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IFilialRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IGrupoRepository.cs" />
     <Compile Include="Interfaces\Repositories\ILogRepository.cs" />
     <Compile Include="Interfaces\Repositories\IMatrizRepository.cs" />
     <Compile Include="Interfaces\Repositories\INoticiaComentarioRepository.cs" />
@@ -241,6 +245,7 @@
     <Compile Include="Interfaces\Repositories\IProdutoFornecedorRepository.cs" />
     <Compile Include="Interfaces\Repositories\IProdutoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IProdutoAnexoRepository.cs" />
+    <Compile Include="Interfaces\Repositories\ISubgrupoRepository.cs" />
     <Compile Include="Interfaces\Repositories\ITelefoneRepository.cs" />
     <Compile Include="Interfaces\Repositories\INotificacaoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IPerfilRepository.cs" />
@@ -292,6 +297,9 @@
     <Compile Include="Model\CATEGORIA_USUARIO.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\CENTRO_CUSTO.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\CODIGO_REGIME_TRIBUTARIO.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
@@ -302,6 +310,9 @@
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\FORNECEDOR.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\GRUPO.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\LOG.cs">
@@ -371,6 +382,9 @@
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\SITUACAO.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\SUBGRUPO.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\TAREFA.cs">

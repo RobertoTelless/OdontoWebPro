@@ -176,6 +176,7 @@
     <Compile Include="Repositories\CategoriaProdutoRepository.cs" />
     <Compile Include="Repositories\CategoriaAgendaRepository.cs" />
     <Compile Include="Repositories\CategoriaNotificacaoRepository.cs" />
+    <Compile Include="Repositories\CentroCustoRepository.cs" />
     <Compile Include="Repositories\ConfiguracaoRepository.cs" />
     <Compile Include="Repositories\FilialRepository.cs" />
     <Compile Include="Repositories\LogRepository.cs" />
@@ -185,7 +186,9 @@
     <Compile Include="Repositories\NoticiaTagRepository.cs" />
     <Compile Include="Repositories\NotificacaoAnexoRepository.cs" />
     <Compile Include="Repositories\MovimentoEstoqueProdutoRepository.cs" />
+    <Compile Include="Repositories\ProdutoAnexoRepository.cs" />
     <Compile Include="Repositories\ProdutoRepository.cs" />
+    <Compile Include="Repositories\ProdutoFornecedorRepository.cs" />
     <Compile Include="Repositories\TelefoneRepository.cs" />
     <Compile Include="Repositories\NotificacaoRepository.cs" />
     <Compile Include="Repositories\PerfilRepository.cs" />

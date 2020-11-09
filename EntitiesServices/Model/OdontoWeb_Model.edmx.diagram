@@ -142,6 +142,15 @@
         <AssociationConnector Association="OdontoWeb_Model.FK_FORNECEDOR_UF" />
         <AssociationConnector Association="OdontoWeb_Model.FK_PRODUTO_FORNECEDOR_FORNECEDOR" />
         <AssociationConnector Association="OdontoWeb_Model.FK_PRODUTO_FORNECEDOR_PRODUTO" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.CENTRO_CUSTO" Width="1.5" PointX="8.25" PointY="57.625" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.GRUPO" Width="1.5" PointX="3" PointY="69" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.SUBGRUPO" Width="1.5" PointX="5.25" PointY="58.875" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_CENTRO_CUSTO_ASSINANTE" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_GRUPO_ASSINANTE" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_SUBGRUPO_ASSINANTE" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_CENTRO_CUSTO_GRUPO" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_CENTRO_CUSTO_SUBGRUPO" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_SUBGRUPO_GRUPO" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

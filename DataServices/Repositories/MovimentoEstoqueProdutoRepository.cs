@@ -36,6 +36,26 @@ namespace DataServices.Repositories
             return query.ToList();
         }
 
+        public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItensUserDataMes(Int32 idUsu, DateTime data, Int32? idAss)
+        {
+            IQueryable<MOVIMENTO_ESTOQUE_PRODUTO> query = Db.MOVIMENTO_ESTOQUE_PRODUTO;
+            //query = query.Where(p => p.ASSI_CD_ID == idAss);
+            query = query.Where(p => p.MOEP_IN_ATIVO == 1);
+            query = query.Where(p => p.USUA_CD_ID == idUsu);
+            query = query.Where(p => DbFunctions.TruncateTime(p.MOEP_DT_MOVIMENTO).Value.Month == DbFunctions.TruncateTime(data).Value.Month);
+            return query.ToList();
+        }
+
+        public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItensUserDataDia(Int32 idUsu, DateTime data, Int32? idAss)
+        {
+            IQueryable<MOVIMENTO_ESTOQUE_PRODUTO> query = Db.MOVIMENTO_ESTOQUE_PRODUTO;
+            //query = query.Where(p => p.ASSI_CD_ID == idAss);
+            query = query.Where(p => p.MOEP_IN_ATIVO == 1);
+            query = query.Where(p => p.USUA_CD_ID == idUsu);
+            query = query.Where(p => p.MOEP_DT_MOVIMENTO == data);
+            return query.ToList();
+        }
+
         public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItensSaida(Int32? idAss)
         {
             IQueryable<MOVIMENTO_ESTOQUE_PRODUTO> query = Db.MOVIMENTO_ESTOQUE_PRODUTO;

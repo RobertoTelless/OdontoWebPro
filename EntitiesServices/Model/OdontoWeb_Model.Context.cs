@@ -74,5 +74,8 @@ namespace EntitiesServices.Model
         public virtual DbSet<CATEGORIA_FORNECEDOR> CATEGORIA_FORNECEDOR { get; set; }
         public virtual DbSet<FORNECEDOR> FORNECEDOR { get; set; }
         public virtual DbSet<PRODUTO_FORNECEDOR> PRODUTO_FORNECEDOR { get; set; }
+        public virtual DbSet<CENTRO_CUSTO> CENTRO_CUSTO { get; set; }
+        public virtual DbSet<GRUPO> GRUPO { get; set; }
+        public virtual DbSet<SUBGRUPO> SUBGRUPO { get; set; }
     }
 }
