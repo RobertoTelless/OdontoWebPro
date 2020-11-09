@@ -130,6 +130,18 @@
         <AssociationConnector Association="OdontoWeb_Model.FK_USUARIO_PREMIO_USUARIO" />
         <AssociationConnector Association="OdontoWeb_Model.FK_USUARIO_REMUNERACAO_USUARIO" />
         <AssociationConnector Association="OdontoWeb_Model.FK_USUARIO_SITUACAO" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.CATEGORIA_FORNECEDOR" Width="1.5" PointX="3" PointY="17.75" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.FORNECEDOR" Width="1.5" PointX="18.5" PointY="39.25" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.PRODUTO_FORNECEDOR" Width="1.5" PointX="20.75" PointY="32.5" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_CATEGORIA_FORNECEDOR_ASSINANTE" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_FORNECEDOR_ASSINANTE" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_FORNECEDOR_CATEGORIA_FORNECEDOR" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_FORNECEDOR_FILIAL" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_FORNECEDOR_MATRIZ" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_FORNECEDOR_TIPO_PESSOA" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_FORNECEDOR_UF" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_PRODUTO_FORNECEDOR_FORNECEDOR" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_PRODUTO_FORNECEDOR_PRODUTO" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

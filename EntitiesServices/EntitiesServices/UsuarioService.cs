@@ -29,9 +29,12 @@ namespace ModelServices.EntitiesServices
         private readonly IUFRepository _ufRepository;
         private readonly ICategoriaUsuarioRepository _cuRepository;
         private readonly ISituacaoRepository _siRepository;
+        private readonly IUsuarioRemuneracaoRepository _remRepository;
+        private readonly IUsuarioContrachequeRepository _ccRepository;
+
         protected Odonto_DBEntities Db = new Odonto_DBEntities();
 
-        public UsuarioService(IUsuarioRepository usuarioRepository, ILogRepository logRepository, IConfiguracaoRepository configuracaoRepository, IPerfilRepository perfRepository, ITemplateRepository tempRepository, IUsuarioAnexoRepository anexoRepository, INotificacaoRepository notRepository, INoticiaRepository ntcRepository, IUFRepository ufRepository, ICategoriaUsuarioRepository cuRepository, ISituacaoRepository siRepository) : base(usuarioRepository)
+        public UsuarioService(IUsuarioRepository usuarioRepository, ILogRepository logRepository, IConfiguracaoRepository configuracaoRepository, IPerfilRepository perfRepository, ITemplateRepository tempRepository, IUsuarioAnexoRepository anexoRepository, INotificacaoRepository notRepository, INoticiaRepository ntcRepository, IUFRepository ufRepository, ICategoriaUsuarioRepository cuRepository, ISituacaoRepository siRepository, IUsuarioRemuneracaoRepository remRepository, IUsuarioContrachequeRepository ccRepository) : base(usuarioRepository)
         {
             _usuarioRepository = usuarioRepository;
             _logRepository = logRepository;
@@ -44,6 +47,8 @@ namespace ModelServices.EntitiesServices
             _ufRepository = ufRepository;
             _cuRepository = cuRepository;
             _siRepository = siRepository;
+            _remRepository = remRepository;
+            _ccRepository = ccRepository;
         }
 
         public USUARIO RetriveUserByEmail(String email)
@@ -94,6 +99,16 @@ namespace ModelServices.EntitiesServices
         public USUARIO GetByLogin(String login)
         {
             return _usuarioRepository.GetByLogin(login);
+        }
+
+        public USUARIO_REMUNERACAO GetRemuneracaoByUser(Int32 id, DateTime data)
+        {
+            return _remRepository.GetItemByUser(id, data);
+        }
+
+        public USUARIO_CONTRACHEQUE GetContrachequeByUser(Int32 id, DateTime data)
+        {
+            return _ccRepository.GetItemByUser(id, data);
         }
 
         public TEMPLATE GetTemplateByCode(String codigo)

@@ -12,26 +12,20 @@ namespace EntitiesServices.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class TIPO_PESSOA
+    public partial class CATEGORIA_FORNECEDOR
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TIPO_PESSOA()
+        public CATEGORIA_FORNECEDOR()
         {
-            this.FILIAL = new HashSet<FILIAL>();
-            this.MATRIZ = new HashSet<MATRIZ>();
             this.FORNECEDOR = new HashSet<FORNECEDOR>();
         }
     
-        public int TIPE_CD_ID { get; set; }
+        public int CAFO_CD_ID { get; set; }
         public int ASSI_CD_ID { get; set; }
-        public string TIPE_NM_NOME { get; set; }
-        public int TIPE_IN_ATIVO { get; set; }
+        public string CAFO_NM_NOME { get; set; }
+        public int CAFO_IN_ATIVO { get; set; }
     
         public virtual ASSINANTE ASSINANTE { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FILIAL> FILIAL { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MATRIZ> MATRIZ { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FORNECEDOR> FORNECEDOR { get; set; }
     }

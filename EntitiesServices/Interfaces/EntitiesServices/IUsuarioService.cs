@@ -42,5 +42,8 @@ namespace ModelServices.Interfaces.EntitiesServices
         List<UF> GetAllUF();
         List<CATEGORIA_USUARIO> GetAllTipos(Int32 idAss);
         List<SITUACAO> GetAllSituacao(Int32 idAss);
+
+        USUARIO_REMUNERACAO GetRemuneracaoByUser(Int32 id, DateTime data);
+        USUARIO_CONTRACHEQUE GetContrachequeByUser(Int32 id, DateTime data);
     }
 }

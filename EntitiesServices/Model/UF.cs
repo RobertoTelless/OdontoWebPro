@@ -21,6 +21,7 @@ namespace EntitiesServices.Model
             this.MATRIZ = new HashSet<MATRIZ>();
             this.USUARIO = new HashSet<USUARIO>();
             this.USUARIO1 = new HashSet<USUARIO>();
+            this.FORNECEDOR = new HashSet<FORNECEDOR>();
         }
     
         public int UF_CD_ID { get; set; }
@@ -36,5 +37,7 @@ namespace EntitiesServices.Model
         public virtual ICollection<USUARIO> USUARIO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<USUARIO> USUARIO1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FORNECEDOR> FORNECEDOR { get; set; }
     }
 }

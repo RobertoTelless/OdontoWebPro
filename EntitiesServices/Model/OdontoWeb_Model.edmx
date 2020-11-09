@@ -65,6 +65,15 @@
           <Property Name="CAAG_NM_NOME" Type="varchar" MaxLength="50" />
           <Property Name="CAAG_IN_ATIVO" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="CATEGORIA_FORNECEDOR">
+          <Key>
+            <PropertyRef Name="CAFO_CD_ID" />
+          </Key>
+          <Property Name="CAFO_CD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ASSI_CD_ID" Type="int" Nullable="false" />
+          <Property Name="CAFO_NM_NOME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CAFO_IN_ATIVO" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="CATEGORIA_NOTIFICACAO">
           <Key>
             <PropertyRef Name="CANO_CD_ID" />
@@ -161,6 +170,36 @@
           <Property Name="FILI_AQ_LOGOTIPO" Type="varchar" MaxLength="250" />
           <Property Name="FILI_NR_CPF" Type="varchar" MaxLength="20" />
           <Property Name="FILI_NR_RG" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="FORNECEDOR">
+          <Key>
+            <PropertyRef Name="FORN_CD_ID" />
+          </Key>
+          <Property Name="FORN_CD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ASSI_CD_ID" Type="int" Nullable="false" />
+          <Property Name="MATR_CD_ID" Type="int" />
+          <Property Name="FILI_CD_ID" Type="int" />
+          <Property Name="CAFO_CD_ID" Type="int" />
+          <Property Name="TIPE_CD_ID" Type="int" />
+          <Property Name="FORN_NM_NOME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FORN_NM_RAZAO" Type="varchar" MaxLength="100" />
+          <Property Name="FORN_NR_CPF" Type="varchar" MaxLength="15" />
+          <Property Name="FORN_NR_CNPJ" Type="varchar" MaxLength="20" />
+          <Property Name="FORN_NM_EMAIL" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FORN_NM_TELEFONES" Type="varchar" MaxLength="250" />
+          <Property Name="FORN_NM_REDES_SOCIAIS" Type="varchar" MaxLength="250" />
+          <Property Name="FORN_NM_ENDERECO" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FORN_NM_BAIRRO" Type="varchar" MaxLength="50" />
+          <Property Name="FORN_NM_CIDADE" Type="varchar" MaxLength="50" />
+          <Property Name="FORN_SG_UF" Type="varchar" MaxLength="2" />
+          <Property Name="FORN_NR_CEP" Type="varchar" MaxLength="10" />
+          <Property Name="FORN_DT_CADASTRO" Type="date" Nullable="false" />
+          <Property Name="FORN_IN_ATIVO" Type="int" Nullable="false" />
+          <Property Name="FORN_AQ_FOTO" Type="varchar" MaxLength="250" />
+          <Property Name="FORN_TX_OBSERVACOES" Type="text" />
+          <Property Name="FORN_NR_INSCRICAO_ESTADUAL" Type="varchar" MaxLength="50" />
+          <Property Name="UF_CD_ID" Type="int" />
+          <Property Name="FORN_NM_SITUACAO" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="LOG">
           <Key>
@@ -368,6 +407,15 @@
           <Property Name="PREF_QN_ESTOQUE" Type="int" />
           <Property Name="PREF_DT_ULTIMO_MOVIMENTO" Type="date" />
           <Property Name="PREF_IN_ATIVO" Type="int" />
+        </EntityType>
+        <EntityType Name="PRODUTO_FORNECEDOR">
+          <Key>
+            <PropertyRef Name="PRFO_CD_ID" />
+          </Key>
+          <Property Name="PRFO_CD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PROD_CD_ID" Type="int" Nullable="false" />
+          <Property Name="FORN_CD_ID" Type="int" Nullable="false" />
+          <Property Name="PRFO_IN_ATIVO" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="REGIME_TRIBUTARIO">
           <Key>
@@ -736,6 +784,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CATEGORIA_FORNECEDOR_ASSINANTE">
+          <End Role="ASSINANTE" Type="Self.ASSINANTE" Multiplicity="1" />
+          <End Role="CATEGORIA_FORNECEDOR" Type="Self.CATEGORIA_FORNECEDOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ASSINANTE">
+              <PropertyRef Name="ASSI_CD_ID" />
+            </Principal>
+            <Dependent Role="CATEGORIA_FORNECEDOR">
+              <PropertyRef Name="ASSI_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CATEGORIA_NOTIFICACAO_ASSINANTE">
           <End Role="ASSINANTE" Type="Self.ASSINANTE" Multiplicity="1" />
           <End Role="CATEGORIA_NOTIFICACAO" Type="Self.CATEGORIA_NOTIFICACAO" Multiplicity="*" />
@@ -864,6 +924,78 @@
               <PropertyRef Name="UF_CD_ID" />
             </Principal>
             <Dependent Role="FILIAL">
+              <PropertyRef Name="UF_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FORNECEDOR_ASSINANTE">
+          <End Role="ASSINANTE" Type="Self.ASSINANTE" Multiplicity="1" />
+          <End Role="FORNECEDOR" Type="Self.FORNECEDOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ASSINANTE">
+              <PropertyRef Name="ASSI_CD_ID" />
+            </Principal>
+            <Dependent Role="FORNECEDOR">
+              <PropertyRef Name="ASSI_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FORNECEDOR_CATEGORIA_FORNECEDOR">
+          <End Role="CATEGORIA_FORNECEDOR" Type="Self.CATEGORIA_FORNECEDOR" Multiplicity="0..1" />
+          <End Role="FORNECEDOR" Type="Self.FORNECEDOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIA_FORNECEDOR">
+              <PropertyRef Name="CAFO_CD_ID" />
+            </Principal>
+            <Dependent Role="FORNECEDOR">
+              <PropertyRef Name="CAFO_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FORNECEDOR_FILIAL">
+          <End Role="FILIAL" Type="Self.FILIAL" Multiplicity="0..1" />
+          <End Role="FORNECEDOR" Type="Self.FORNECEDOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FILIAL">
+              <PropertyRef Name="FILI_CD_ID" />
+            </Principal>
+            <Dependent Role="FORNECEDOR">
+              <PropertyRef Name="FILI_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FORNECEDOR_MATRIZ">
+          <End Role="MATRIZ" Type="Self.MATRIZ" Multiplicity="0..1" />
+          <End Role="FORNECEDOR" Type="Self.FORNECEDOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MATRIZ">
+              <PropertyRef Name="MATR_CD_ID" />
+            </Principal>
+            <Dependent Role="FORNECEDOR">
+              <PropertyRef Name="MATR_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FORNECEDOR_TIPO_PESSOA">
+          <End Role="TIPO_PESSOA" Type="Self.TIPO_PESSOA" Multiplicity="0..1" />
+          <End Role="FORNECEDOR" Type="Self.FORNECEDOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_PESSOA">
+              <PropertyRef Name="TIPE_CD_ID" />
+            </Principal>
+            <Dependent Role="FORNECEDOR">
+              <PropertyRef Name="TIPE_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FORNECEDOR_UF">
+          <End Role="UF" Type="Self.UF" Multiplicity="0..1" />
+          <End Role="FORNECEDOR" Type="Self.FORNECEDOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UF">
+              <PropertyRef Name="UF_CD_ID" />
+            </Principal>
+            <Dependent Role="FORNECEDOR">
               <PropertyRef Name="UF_CD_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -1176,6 +1308,30 @@
               <PropertyRef Name="PROD_CD_ID" />
             </Principal>
             <Dependent Role="PRODUTO_ESTOQUE_FILIAL">
+              <PropertyRef Name="PROD_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUTO_FORNECEDOR_FORNECEDOR">
+          <End Role="FORNECEDOR" Type="Self.FORNECEDOR" Multiplicity="1" />
+          <End Role="PRODUTO_FORNECEDOR" Type="Self.PRODUTO_FORNECEDOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FORNECEDOR">
+              <PropertyRef Name="FORN_CD_ID" />
+            </Principal>
+            <Dependent Role="PRODUTO_FORNECEDOR">
+              <PropertyRef Name="FORN_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUTO_FORNECEDOR_PRODUTO">
+          <End Role="PRODUTO" Type="Self.PRODUTO" Multiplicity="1" />
+          <End Role="PRODUTO_FORNECEDOR" Type="Self.PRODUTO_FORNECEDOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUTO">
+              <PropertyRef Name="PROD_CD_ID" />
+            </Principal>
+            <Dependent Role="PRODUTO_FORNECEDOR">
               <PropertyRef Name="PROD_CD_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -1594,6 +1750,7 @@
           <EntitySet Name="ASSINANTE" EntityType="Self.ASSINANTE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CARGO" EntityType="Self.CARGO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CATEGORIA_AGENDA" EntityType="Self.CATEGORIA_AGENDA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATEGORIA_FORNECEDOR" EntityType="Self.CATEGORIA_FORNECEDOR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CATEGORIA_NOTIFICACAO" EntityType="Self.CATEGORIA_NOTIFICACAO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CATEGORIA_PRODUTO" EntityType="Self.CATEGORIA_PRODUTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CATEGORIA_TELEFONE" EntityType="Self.CATEGORIA_TELEFONE" Schema="dbo" store:Type="Tables" />
@@ -1601,6 +1758,7 @@
           <EntitySet Name="CODIGO_REGIME_TRIBUTARIO" EntityType="Self.CODIGO_REGIME_TRIBUTARIO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CONFIGURACAO" EntityType="Self.CONFIGURACAO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FILIAL" EntityType="Self.FILIAL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FORNECEDOR" EntityType="Self.FORNECEDOR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LOG" EntityType="Self.LOG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MATRIZ" EntityType="Self.MATRIZ" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MOVIMENTO_ESTOQUE_PRODUTO" EntityType="Self.MOVIMENTO_ESTOQUE_PRODUTO" Schema="dbo" store:Type="Tables" />
@@ -1615,6 +1773,7 @@
           <EntitySet Name="PRODUTO" EntityType="Self.PRODUTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRODUTO_ANEXO" EntityType="Self.PRODUTO_ANEXO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRODUTO_ESTOQUE_FILIAL" EntityType="Self.PRODUTO_ESTOQUE_FILIAL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUTO_FORNECEDOR" EntityType="Self.PRODUTO_FORNECEDOR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="REGIME_TRIBUTARIO" EntityType="Self.REGIME_TRIBUTARIO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEXO" EntityType="Self.SEXO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SITUACAO" EntityType="Self.SITUACAO" Schema="dbo" store:Type="Tables" />
@@ -1663,6 +1822,10 @@
             <End Role="ASSINANTE" EntitySet="ASSINANTE" />
             <End Role="CATEGORIA_AGENDA" EntitySet="CATEGORIA_AGENDA" />
           </AssociationSet>
+          <AssociationSet Name="FK_CATEGORIA_FORNECEDOR_ASSINANTE" Association="Self.FK_CATEGORIA_FORNECEDOR_ASSINANTE">
+            <End Role="ASSINANTE" EntitySet="ASSINANTE" />
+            <End Role="CATEGORIA_FORNECEDOR" EntitySet="CATEGORIA_FORNECEDOR" />
+          </AssociationSet>
           <AssociationSet Name="FK_CATEGORIA_NOTIFICACAO_ASSINANTE" Association="Self.FK_CATEGORIA_NOTIFICACAO_ASSINANTE">
             <End Role="ASSINANTE" EntitySet="ASSINANTE" />
             <End Role="CATEGORIA_NOTIFICACAO" EntitySet="CATEGORIA_NOTIFICACAO" />
@@ -1706,6 +1869,30 @@
           <AssociationSet Name="FK_FILIAL_UF" Association="Self.FK_FILIAL_UF">
             <End Role="UF" EntitySet="UF" />
             <End Role="FILIAL" EntitySet="FILIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FORNECEDOR_ASSINANTE" Association="Self.FK_FORNECEDOR_ASSINANTE">
+            <End Role="ASSINANTE" EntitySet="ASSINANTE" />
+            <End Role="FORNECEDOR" EntitySet="FORNECEDOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FORNECEDOR_CATEGORIA_FORNECEDOR" Association="Self.FK_FORNECEDOR_CATEGORIA_FORNECEDOR">
+            <End Role="CATEGORIA_FORNECEDOR" EntitySet="CATEGORIA_FORNECEDOR" />
+            <End Role="FORNECEDOR" EntitySet="FORNECEDOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FORNECEDOR_FILIAL" Association="Self.FK_FORNECEDOR_FILIAL">
+            <End Role="FILIAL" EntitySet="FILIAL" />
+            <End Role="FORNECEDOR" EntitySet="FORNECEDOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FORNECEDOR_MATRIZ" Association="Self.FK_FORNECEDOR_MATRIZ">
+            <End Role="MATRIZ" EntitySet="MATRIZ" />
+            <End Role="FORNECEDOR" EntitySet="FORNECEDOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FORNECEDOR_TIPO_PESSOA" Association="Self.FK_FORNECEDOR_TIPO_PESSOA">
+            <End Role="TIPO_PESSOA" EntitySet="TIPO_PESSOA" />
+            <End Role="FORNECEDOR" EntitySet="FORNECEDOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FORNECEDOR_UF" Association="Self.FK_FORNECEDOR_UF">
+            <End Role="UF" EntitySet="UF" />
+            <End Role="FORNECEDOR" EntitySet="FORNECEDOR" />
           </AssociationSet>
           <AssociationSet Name="FK_LOG_ASSINANTE" Association="Self.FK_LOG_ASSINANTE">
             <End Role="ASSINANTE" EntitySet="ASSINANTE" />
@@ -1810,6 +1997,14 @@
           <AssociationSet Name="FK_PRODUTO_ESTOQUE_FILIAL_PRODUTO" Association="Self.FK_PRODUTO_ESTOQUE_FILIAL_PRODUTO">
             <End Role="PRODUTO" EntitySet="PRODUTO" />
             <End Role="PRODUTO_ESTOQUE_FILIAL" EntitySet="PRODUTO_ESTOQUE_FILIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUTO_FORNECEDOR_FORNECEDOR" Association="Self.FK_PRODUTO_FORNECEDOR_FORNECEDOR">
+            <End Role="FORNECEDOR" EntitySet="FORNECEDOR" />
+            <End Role="PRODUTO_FORNECEDOR" EntitySet="PRODUTO_FORNECEDOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUTO_FORNECEDOR_PRODUTO" Association="Self.FK_PRODUTO_FORNECEDOR_PRODUTO">
+            <End Role="PRODUTO" EntitySet="PRODUTO" />
+            <End Role="PRODUTO_FORNECEDOR" EntitySet="PRODUTO_FORNECEDOR" />
           </AssociationSet>
           <AssociationSet Name="FK_PRODUTO_UNIDADE" Association="Self.FK_PRODUTO_UNIDADE">
             <End Role="UNIDADE" EntitySet="UNIDADE" />
@@ -2025,6 +2220,8 @@
           <NavigationProperty Name="TELEFONE" Relationship="OdontoWeb_Model.FK_TELEFONE_ASSINANTE" FromRole="ASSINANTE" ToRole="TELEFONE" />
           <NavigationProperty Name="TIPO_CONTRIBUINTE" Relationship="OdontoWeb_Model.FK_TIPO_CONTRIBUINTE_ASSINANTE" FromRole="ASSINANTE" ToRole="TIPO_CONTRIBUINTE" />
           <NavigationProperty Name="UNIDADE" Relationship="OdontoWeb_Model.FK_UNIDADE_ASSINANTE" FromRole="ASSINANTE" ToRole="UNIDADE" />
+          <NavigationProperty Name="CATEGORIA_FORNECEDOR" Relationship="OdontoWeb_Model.FK_CATEGORIA_FORNECEDOR_ASSINANTE" FromRole="ASSINANTE" ToRole="CATEGORIA_FORNECEDOR" />
+          <NavigationProperty Name="FORNECEDOR" Relationship="OdontoWeb_Model.FK_FORNECEDOR_ASSINANTE" FromRole="ASSINANTE" ToRole="FORNECEDOR" />
         </EntityType>
         <EntityType Name="CARGO">
           <Key>
@@ -2133,6 +2330,7 @@
           <NavigationProperty Name="MOVIMENTO_ESTOQUE_PRODUTO" Relationship="OdontoWeb_Model.FK_MOVIMENTO_ESTOQUE_PRODUTO_FILIAL" FromRole="FILIAL" ToRole="MOVIMENTO_ESTOQUE_PRODUTO" />
           <NavigationProperty Name="PERCENTUAL_REMUNERACAO" Relationship="OdontoWeb_Model.FK_PERCENTUAL_REMUNERACAO_FILIAL" FromRole="FILIAL" ToRole="PERCENTUAL_REMUNERACAO" />
           <NavigationProperty Name="PRODUTO_ESTOQUE_FILIAL" Relationship="OdontoWeb_Model.FK_PRODUTO_ESTOQUE_FILIAL_FILIAL" FromRole="FILIAL" ToRole="PRODUTO_ESTOQUE_FILIAL" />
+          <NavigationProperty Name="FORNECEDOR" Relationship="OdontoWeb_Model.FK_FORNECEDOR_FILIAL" FromRole="FILIAL" ToRole="FORNECEDOR" />
         </EntityType>
         <EntityType Name="LOG">
           <Key>
@@ -2185,6 +2383,7 @@
           <NavigationProperty Name="FILIAL" Relationship="Self.FK_FILIAL_MATRIZ" FromRole="MATRIZ" ToRole="FILIAL" />
           <NavigationProperty Name="TIPO_PESSOA" Relationship="Self.FK_MATRIZ_TIPO_PESSOA" FromRole="MATRIZ" ToRole="TIPO_PESSOA" />
           <NavigationProperty Name="UF" Relationship="Self.FK_MATRIZ_UF" FromRole="MATRIZ" ToRole="UF" />
+          <NavigationProperty Name="FORNECEDOR" Relationship="OdontoWeb_Model.FK_FORNECEDOR_MATRIZ" FromRole="MATRIZ" ToRole="FORNECEDOR" />
         </EntityType>
         <EntityType Name="NOTICIA">
           <Key>
@@ -2425,6 +2624,7 @@
           <NavigationProperty Name="ASSINANTE" Relationship="Self.FK_TIPO_PESSOA_ASSINANTE" FromRole="TIPO_PESSOA" ToRole="ASSINANTE" />
           <NavigationProperty Name="FILIAL" Relationship="Self.FK_FILIAL_TIPO_PESSOA" FromRole="TIPO_PESSOA" ToRole="FILIAL" />
           <NavigationProperty Name="MATRIZ" Relationship="Self.FK_MATRIZ_TIPO_PESSOA" FromRole="TIPO_PESSOA" ToRole="MATRIZ" />
+          <NavigationProperty Name="FORNECEDOR" Relationship="OdontoWeb_Model.FK_FORNECEDOR_TIPO_PESSOA" FromRole="TIPO_PESSOA" ToRole="FORNECEDOR" />
         </EntityType>
         <EntityType Name="TIPO_TAG">
           <Key>
@@ -2462,6 +2662,7 @@
           <NavigationProperty Name="MATRIZ" Relationship="Self.FK_MATRIZ_UF" FromRole="UF" ToRole="MATRIZ" />
           <NavigationProperty Name="USUARIO" Relationship="OdontoWeb_Model.FK_USUARIO_UF" FromRole="UF" ToRole="USUARIO" />
           <NavigationProperty Name="USUARIO1" Relationship="OdontoWeb_Model.FK_USUARIO_UF1" FromRole="UF" ToRole="USUARIO" />
+          <NavigationProperty Name="FORNECEDOR" Relationship="OdontoWeb_Model.FK_FORNECEDOR_UF" FromRole="UF" ToRole="FORNECEDOR" />
         </EntityType>
         <EntityType Name="UNIDADE">
           <Key>
@@ -3526,6 +3727,45 @@
             <End Role="SITUACAO" EntitySet="SITUACAO" />
             <End Role="USUARIO" EntitySet="USUARIO" />
           </AssociationSet>
+          <EntitySet Name="CATEGORIA_FORNECEDOR" EntityType="OdontoWeb_Model.CATEGORIA_FORNECEDOR" />
+          <EntitySet Name="FORNECEDOR" EntityType="OdontoWeb_Model.FORNECEDOR" />
+          <EntitySet Name="PRODUTO_FORNECEDOR" EntityType="OdontoWeb_Model.PRODUTO_FORNECEDOR" />
+          <AssociationSet Name="FK_CATEGORIA_FORNECEDOR_ASSINANTE" Association="OdontoWeb_Model.FK_CATEGORIA_FORNECEDOR_ASSINANTE">
+            <End Role="ASSINANTE" EntitySet="ASSINANTE" />
+            <End Role="CATEGORIA_FORNECEDOR" EntitySet="CATEGORIA_FORNECEDOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FORNECEDOR_ASSINANTE" Association="OdontoWeb_Model.FK_FORNECEDOR_ASSINANTE">
+            <End Role="ASSINANTE" EntitySet="ASSINANTE" />
+            <End Role="FORNECEDOR" EntitySet="FORNECEDOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FORNECEDOR_CATEGORIA_FORNECEDOR" Association="OdontoWeb_Model.FK_FORNECEDOR_CATEGORIA_FORNECEDOR">
+            <End Role="CATEGORIA_FORNECEDOR" EntitySet="CATEGORIA_FORNECEDOR" />
+            <End Role="FORNECEDOR" EntitySet="FORNECEDOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FORNECEDOR_FILIAL" Association="OdontoWeb_Model.FK_FORNECEDOR_FILIAL">
+            <End Role="FILIAL" EntitySet="FILIAL" />
+            <End Role="FORNECEDOR" EntitySet="FORNECEDOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FORNECEDOR_MATRIZ" Association="OdontoWeb_Model.FK_FORNECEDOR_MATRIZ">
+            <End Role="MATRIZ" EntitySet="MATRIZ" />
+            <End Role="FORNECEDOR" EntitySet="FORNECEDOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FORNECEDOR_TIPO_PESSOA" Association="OdontoWeb_Model.FK_FORNECEDOR_TIPO_PESSOA">
+            <End Role="TIPO_PESSOA" EntitySet="TIPO_PESSOA" />
+            <End Role="FORNECEDOR" EntitySet="FORNECEDOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FORNECEDOR_UF" Association="OdontoWeb_Model.FK_FORNECEDOR_UF">
+            <End Role="UF" EntitySet="UF" />
+            <End Role="FORNECEDOR" EntitySet="FORNECEDOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUTO_FORNECEDOR_FORNECEDOR" Association="OdontoWeb_Model.FK_PRODUTO_FORNECEDOR_FORNECEDOR">
+            <End Role="FORNECEDOR" EntitySet="FORNECEDOR" />
+            <End Role="PRODUTO_FORNECEDOR" EntitySet="PRODUTO_FORNECEDOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUTO_FORNECEDOR_PRODUTO" Association="OdontoWeb_Model.FK_PRODUTO_FORNECEDOR_PRODUTO">
+            <End Role="PRODUTO" EntitySet="PRODUTO" />
+            <End Role="PRODUTO_FORNECEDOR" EntitySet="PRODUTO_FORNECEDOR" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="CATEGORIA_PRODUTO">
           <Key>
@@ -3625,6 +3865,7 @@
           <NavigationProperty Name="PRODUTO_ANEXO" Relationship="OdontoWeb_Model.FK_PRODUTO_ANEXO_PRODUTO" FromRole="PRODUTO" ToRole="PRODUTO_ANEXO" />
           <NavigationProperty Name="PRODUTO_ESTOQUE_FILIAL" Relationship="OdontoWeb_Model.FK_PRODUTO_ESTOQUE_FILIAL_PRODUTO" FromRole="PRODUTO" ToRole="PRODUTO_ESTOQUE_FILIAL" />
           <NavigationProperty Name="UNIDADE" Relationship="OdontoWeb_Model.FK_PRODUTO_UNIDADE" FromRole="PRODUTO" ToRole="UNIDADE" />
+          <NavigationProperty Name="PRODUTO_FORNECEDOR" Relationship="OdontoWeb_Model.FK_PRODUTO_FORNECEDOR_PRODUTO" FromRole="PRODUTO" ToRole="PRODUTO_FORNECEDOR" />
         </EntityType>
         <EntityType Name="PRODUTO_ANEXO">
           <Key>
@@ -4066,6 +4307,173 @@
             </Principal>
             <Dependent Role="USUARIO">
               <PropertyRef Name="SITU_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CATEGORIA_FORNECEDOR">
+          <Key>
+            <PropertyRef Name="CAFO_CD_ID" />
+          </Key>
+          <Property Name="CAFO_CD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ASSI_CD_ID" Type="Int32" Nullable="false" />
+          <Property Name="CAFO_NM_NOME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CAFO_IN_ATIVO" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ASSINANTE" Relationship="OdontoWeb_Model.FK_CATEGORIA_FORNECEDOR_ASSINANTE" FromRole="CATEGORIA_FORNECEDOR" ToRole="ASSINANTE" />
+          <NavigationProperty Name="FORNECEDOR" Relationship="OdontoWeb_Model.FK_FORNECEDOR_CATEGORIA_FORNECEDOR" FromRole="CATEGORIA_FORNECEDOR" ToRole="FORNECEDOR" />
+        </EntityType>
+        <EntityType Name="FORNECEDOR">
+          <Key>
+            <PropertyRef Name="FORN_CD_ID" />
+          </Key>
+          <Property Name="FORN_CD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ASSI_CD_ID" Type="Int32" Nullable="false" />
+          <Property Name="MATR_CD_ID" Type="Int32" />
+          <Property Name="FILI_CD_ID" Type="Int32" />
+          <Property Name="CAFO_CD_ID" Type="Int32" />
+          <Property Name="TIPE_CD_ID" Type="Int32" />
+          <Property Name="FORN_NM_NOME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FORN_NM_RAZAO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FORN_NR_CPF" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="FORN_NR_CNPJ" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FORN_NM_EMAIL" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FORN_NM_TELEFONES" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="FORN_NM_REDES_SOCIAIS" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="FORN_NM_ENDERECO" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FORN_NM_BAIRRO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FORN_NM_CIDADE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FORN_SG_UF" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="FORN_NR_CEP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FORN_DT_CADASTRO" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FORN_IN_ATIVO" Type="Int32" Nullable="false" />
+          <Property Name="FORN_AQ_FOTO" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="FORN_TX_OBSERVACOES" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FORN_NR_INSCRICAO_ESTADUAL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UF_CD_ID" Type="Int32" />
+          <Property Name="FORN_NM_SITUACAO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ASSINANTE" Relationship="OdontoWeb_Model.FK_FORNECEDOR_ASSINANTE" FromRole="FORNECEDOR" ToRole="ASSINANTE" />
+          <NavigationProperty Name="CATEGORIA_FORNECEDOR" Relationship="OdontoWeb_Model.FK_FORNECEDOR_CATEGORIA_FORNECEDOR" FromRole="FORNECEDOR" ToRole="CATEGORIA_FORNECEDOR" />
+          <NavigationProperty Name="FILIAL" Relationship="OdontoWeb_Model.FK_FORNECEDOR_FILIAL" FromRole="FORNECEDOR" ToRole="FILIAL" />
+          <NavigationProperty Name="MATRIZ" Relationship="OdontoWeb_Model.FK_FORNECEDOR_MATRIZ" FromRole="FORNECEDOR" ToRole="MATRIZ" />
+          <NavigationProperty Name="TIPO_PESSOA" Relationship="OdontoWeb_Model.FK_FORNECEDOR_TIPO_PESSOA" FromRole="FORNECEDOR" ToRole="TIPO_PESSOA" />
+          <NavigationProperty Name="UF" Relationship="OdontoWeb_Model.FK_FORNECEDOR_UF" FromRole="FORNECEDOR" ToRole="UF" />
+          <NavigationProperty Name="PRODUTO_FORNECEDOR" Relationship="OdontoWeb_Model.FK_PRODUTO_FORNECEDOR_FORNECEDOR" FromRole="FORNECEDOR" ToRole="PRODUTO_FORNECEDOR" />
+        </EntityType>
+        <EntityType Name="PRODUTO_FORNECEDOR">
+          <Key>
+            <PropertyRef Name="PRFO_CD_ID" />
+          </Key>
+          <Property Name="PRFO_CD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PROD_CD_ID" Type="Int32" Nullable="false" />
+          <Property Name="FORN_CD_ID" Type="Int32" Nullable="false" />
+          <Property Name="PRFO_IN_ATIVO" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FORNECEDOR" Relationship="OdontoWeb_Model.FK_PRODUTO_FORNECEDOR_FORNECEDOR" FromRole="PRODUTO_FORNECEDOR" ToRole="FORNECEDOR" />
+          <NavigationProperty Name="PRODUTO" Relationship="OdontoWeb_Model.FK_PRODUTO_FORNECEDOR_PRODUTO" FromRole="PRODUTO_FORNECEDOR" ToRole="PRODUTO" />
+        </EntityType>
+        <Association Name="FK_CATEGORIA_FORNECEDOR_ASSINANTE">
+          <End Type="OdontoWeb_Model.ASSINANTE" Role="ASSINANTE" Multiplicity="1" />
+          <End Type="OdontoWeb_Model.CATEGORIA_FORNECEDOR" Role="CATEGORIA_FORNECEDOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ASSINANTE">
+              <PropertyRef Name="ASSI_CD_ID" />
+            </Principal>
+            <Dependent Role="CATEGORIA_FORNECEDOR">
+              <PropertyRef Name="ASSI_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FORNECEDOR_ASSINANTE">
+          <End Type="OdontoWeb_Model.ASSINANTE" Role="ASSINANTE" Multiplicity="1" />
+          <End Type="OdontoWeb_Model.FORNECEDOR" Role="FORNECEDOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ASSINANTE">
+              <PropertyRef Name="ASSI_CD_ID" />
+            </Principal>
+            <Dependent Role="FORNECEDOR">
+              <PropertyRef Name="ASSI_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FORNECEDOR_CATEGORIA_FORNECEDOR">
+          <End Type="OdontoWeb_Model.CATEGORIA_FORNECEDOR" Role="CATEGORIA_FORNECEDOR" Multiplicity="0..1" />
+          <End Type="OdontoWeb_Model.FORNECEDOR" Role="FORNECEDOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIA_FORNECEDOR">
+              <PropertyRef Name="CAFO_CD_ID" />
+            </Principal>
+            <Dependent Role="FORNECEDOR">
+              <PropertyRef Name="CAFO_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FORNECEDOR_FILIAL">
+          <End Type="OdontoWeb_Model.FILIAL" Role="FILIAL" Multiplicity="0..1" />
+          <End Type="OdontoWeb_Model.FORNECEDOR" Role="FORNECEDOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FILIAL">
+              <PropertyRef Name="FILI_CD_ID" />
+            </Principal>
+            <Dependent Role="FORNECEDOR">
+              <PropertyRef Name="FILI_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FORNECEDOR_MATRIZ">
+          <End Type="OdontoWeb_Model.MATRIZ" Role="MATRIZ" Multiplicity="0..1" />
+          <End Type="OdontoWeb_Model.FORNECEDOR" Role="FORNECEDOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MATRIZ">
+              <PropertyRef Name="MATR_CD_ID" />
+            </Principal>
+            <Dependent Role="FORNECEDOR">
+              <PropertyRef Name="MATR_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FORNECEDOR_TIPO_PESSOA">
+          <End Type="OdontoWeb_Model.TIPO_PESSOA" Role="TIPO_PESSOA" Multiplicity="0..1" />
+          <End Type="OdontoWeb_Model.FORNECEDOR" Role="FORNECEDOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_PESSOA">
+              <PropertyRef Name="TIPE_CD_ID" />
+            </Principal>
+            <Dependent Role="FORNECEDOR">
+              <PropertyRef Name="TIPE_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FORNECEDOR_UF">
+          <End Type="OdontoWeb_Model.UF" Role="UF" Multiplicity="0..1" />
+          <End Type="OdontoWeb_Model.FORNECEDOR" Role="FORNECEDOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UF">
+              <PropertyRef Name="UF_CD_ID" />
+            </Principal>
+            <Dependent Role="FORNECEDOR">
+              <PropertyRef Name="UF_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUTO_FORNECEDOR_FORNECEDOR">
+          <End Type="OdontoWeb_Model.FORNECEDOR" Role="FORNECEDOR" Multiplicity="1" />
+          <End Type="OdontoWeb_Model.PRODUTO_FORNECEDOR" Role="PRODUTO_FORNECEDOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FORNECEDOR">
+              <PropertyRef Name="FORN_CD_ID" />
+            </Principal>
+            <Dependent Role="PRODUTO_FORNECEDOR">
+              <PropertyRef Name="FORN_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUTO_FORNECEDOR_PRODUTO">
+          <End Type="OdontoWeb_Model.PRODUTO" Role="PRODUTO" Multiplicity="1" />
+          <End Type="OdontoWeb_Model.PRODUTO_FORNECEDOR" Role="PRODUTO_FORNECEDOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUTO">
+              <PropertyRef Name="PROD_CD_ID" />
+            </Principal>
+            <Dependent Role="PRODUTO_FORNECEDOR">
+              <PropertyRef Name="PROD_CD_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4765,6 +5173,57 @@
                 <ScalarProperty Name="USRE_DT_REFERENCIA" ColumnName="USRE_DT_REFERENCIA" />
                 <ScalarProperty Name="USUA_CD_ID" ColumnName="USUA_CD_ID" />
                 <ScalarProperty Name="USRE_CD_ID" ColumnName="USRE_CD_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATEGORIA_FORNECEDOR">
+            <EntityTypeMapping TypeName="OdontoWeb_Model.CATEGORIA_FORNECEDOR">
+              <MappingFragment StoreEntitySet="CATEGORIA_FORNECEDOR">
+                <ScalarProperty Name="CAFO_IN_ATIVO" ColumnName="CAFO_IN_ATIVO" />
+                <ScalarProperty Name="CAFO_NM_NOME" ColumnName="CAFO_NM_NOME" />
+                <ScalarProperty Name="ASSI_CD_ID" ColumnName="ASSI_CD_ID" />
+                <ScalarProperty Name="CAFO_CD_ID" ColumnName="CAFO_CD_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FORNECEDOR">
+            <EntityTypeMapping TypeName="OdontoWeb_Model.FORNECEDOR">
+              <MappingFragment StoreEntitySet="FORNECEDOR">
+                <ScalarProperty Name="FORN_NM_SITUACAO" ColumnName="FORN_NM_SITUACAO" />
+                <ScalarProperty Name="UF_CD_ID" ColumnName="UF_CD_ID" />
+                <ScalarProperty Name="FORN_NR_INSCRICAO_ESTADUAL" ColumnName="FORN_NR_INSCRICAO_ESTADUAL" />
+                <ScalarProperty Name="FORN_TX_OBSERVACOES" ColumnName="FORN_TX_OBSERVACOES" />
+                <ScalarProperty Name="FORN_AQ_FOTO" ColumnName="FORN_AQ_FOTO" />
+                <ScalarProperty Name="FORN_IN_ATIVO" ColumnName="FORN_IN_ATIVO" />
+                <ScalarProperty Name="FORN_DT_CADASTRO" ColumnName="FORN_DT_CADASTRO" />
+                <ScalarProperty Name="FORN_NR_CEP" ColumnName="FORN_NR_CEP" />
+                <ScalarProperty Name="FORN_SG_UF" ColumnName="FORN_SG_UF" />
+                <ScalarProperty Name="FORN_NM_CIDADE" ColumnName="FORN_NM_CIDADE" />
+                <ScalarProperty Name="FORN_NM_BAIRRO" ColumnName="FORN_NM_BAIRRO" />
+                <ScalarProperty Name="FORN_NM_ENDERECO" ColumnName="FORN_NM_ENDERECO" />
+                <ScalarProperty Name="FORN_NM_REDES_SOCIAIS" ColumnName="FORN_NM_REDES_SOCIAIS" />
+                <ScalarProperty Name="FORN_NM_TELEFONES" ColumnName="FORN_NM_TELEFONES" />
+                <ScalarProperty Name="FORN_NM_EMAIL" ColumnName="FORN_NM_EMAIL" />
+                <ScalarProperty Name="FORN_NR_CNPJ" ColumnName="FORN_NR_CNPJ" />
+                <ScalarProperty Name="FORN_NR_CPF" ColumnName="FORN_NR_CPF" />
+                <ScalarProperty Name="FORN_NM_RAZAO" ColumnName="FORN_NM_RAZAO" />
+                <ScalarProperty Name="FORN_NM_NOME" ColumnName="FORN_NM_NOME" />
+                <ScalarProperty Name="TIPE_CD_ID" ColumnName="TIPE_CD_ID" />
+                <ScalarProperty Name="CAFO_CD_ID" ColumnName="CAFO_CD_ID" />
+                <ScalarProperty Name="FILI_CD_ID" ColumnName="FILI_CD_ID" />
+                <ScalarProperty Name="MATR_CD_ID" ColumnName="MATR_CD_ID" />
+                <ScalarProperty Name="ASSI_CD_ID" ColumnName="ASSI_CD_ID" />
+                <ScalarProperty Name="FORN_CD_ID" ColumnName="FORN_CD_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUTO_FORNECEDOR">
+            <EntityTypeMapping TypeName="OdontoWeb_Model.PRODUTO_FORNECEDOR">
+              <MappingFragment StoreEntitySet="PRODUTO_FORNECEDOR">
+                <ScalarProperty Name="PRFO_IN_ATIVO" ColumnName="PRFO_IN_ATIVO" />
+                <ScalarProperty Name="FORN_CD_ID" ColumnName="FORN_CD_ID" />
+                <ScalarProperty Name="PROD_CD_ID" ColumnName="PROD_CD_ID" />
+                <ScalarProperty Name="PRFO_CD_ID" ColumnName="PRFO_CD_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

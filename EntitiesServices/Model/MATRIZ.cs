@@ -18,6 +18,7 @@ namespace EntitiesServices.Model
         public MATRIZ()
         {
             this.FILIAL = new HashSet<FILIAL>();
+            this.FORNECEDOR = new HashSet<FORNECEDOR>();
         }
     
         public int MATR_CD_ID { get; set; }
@@ -53,5 +54,7 @@ namespace EntitiesServices.Model
         public virtual ICollection<FILIAL> FILIAL { get; set; }
         public virtual TIPO_PESSOA TIPO_PESSOA { get; set; }
         public virtual UF UF { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FORNECEDOR> FORNECEDOR { get; set; }
     }
 }

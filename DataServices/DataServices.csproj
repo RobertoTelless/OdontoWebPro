@@ -184,6 +184,8 @@
     <Compile Include="Repositories\NoticiaRepository.cs" />
     <Compile Include="Repositories\NoticiaTagRepository.cs" />
     <Compile Include="Repositories\NotificacaoAnexoRepository.cs" />
+    <Compile Include="Repositories\MovimentoEstoqueProdutoRepository.cs" />
+    <Compile Include="Repositories\ProdutoRepository.cs" />
     <Compile Include="Repositories\TelefoneRepository.cs" />
     <Compile Include="Repositories\NotificacaoRepository.cs" />
     <Compile Include="Repositories\PerfilRepository.cs" />
@@ -200,6 +202,8 @@
     <Compile Include="Repositories\TipoTagRepository.cs" />
     <Compile Include="Repositories\TipoTarefaRepository.cs" />
     <Compile Include="Repositories\UFRepository.cs" />
+    <Compile Include="Repositories\UsuarioContrachequeRepository.cs" />
+    <Compile Include="Repositories\UsuarioRemuneracaoRepository.cs" />
     <Compile Include="Repositories\UnidadeRepository.cs" />
     <Compile Include="Repositories\UsuarioAnexoRepository.cs" />
     <Compile Include="Repositories\UsuarioRepository.cs" />

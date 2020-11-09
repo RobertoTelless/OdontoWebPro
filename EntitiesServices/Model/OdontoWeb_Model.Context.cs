@@ -71,5 +71,8 @@ namespace EntitiesServices.Model
         public virtual DbSet<USUARIO_CONTRACHEQUE> USUARIO_CONTRACHEQUE { get; set; }
         public virtual DbSet<USUARIO_PREMIO> USUARIO_PREMIO { get; set; }
         public virtual DbSet<USUARIO_REMUNERACAO> USUARIO_REMUNERACAO { get; set; }
+        public virtual DbSet<CATEGORIA_FORNECEDOR> CATEGORIA_FORNECEDOR { get; set; }
+        public virtual DbSet<FORNECEDOR> FORNECEDOR { get; set; }
+        public virtual DbSet<PRODUTO_FORNECEDOR> PRODUTO_FORNECEDOR { get; set; }
     }
 }

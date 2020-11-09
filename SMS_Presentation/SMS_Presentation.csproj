@@ -1723,6 +1723,8 @@
     <Content Include="Scripts\ImagemModal.js" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Imagens\1\Usuarios\1\CC\ContraCheque_1_092020.pdf" />
+    <Content Include="Imagens\1\Usuarios\2\CC\ContraCheque_2_092020.pdf" />
     <None Include="Properties\PublishProfiles\EnviaSMS - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\EnviaSMSWeb - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\OdontoWeb - Web Deploy.pubxml" />

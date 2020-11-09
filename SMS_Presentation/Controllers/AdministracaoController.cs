@@ -312,6 +312,8 @@ namespace OdontoWeb.Controllers
                     Directory.CreateDirectory(Server.MapPath(caminho));
                     caminho = "/Imagens/" + idAss.ToString() + "/Usuarios/" + item.USUA_CD_ID.ToString() + "/Anexos/";
                     Directory.CreateDirectory(Server.MapPath(caminho));
+                    caminho = "/Imagens/" + idAss.ToString() + "/Usuarios/" + item.USUA_CD_ID.ToString() + "/CC/";
+                    Directory.CreateDirectory(Server.MapPath(caminho));
 
                     // Sucesso
                     listaMaster = new List<USUARIO>();

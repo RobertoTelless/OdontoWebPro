@@ -44,6 +44,8 @@ namespace EntitiesServices.Model
             this.TELEFONE = new HashSet<TELEFONE>();
             this.TIPO_CONTRIBUINTE = new HashSet<TIPO_CONTRIBUINTE>();
             this.UNIDADE = new HashSet<UNIDADE>();
+            this.CATEGORIA_FORNECEDOR = new HashSet<CATEGORIA_FORNECEDOR>();
+            this.FORNECEDOR = new HashSet<FORNECEDOR>();
         }
     
         public int ASSI_CD_ID { get; set; }
@@ -108,5 +110,9 @@ namespace EntitiesServices.Model
         public virtual ICollection<TIPO_CONTRIBUINTE> TIPO_CONTRIBUINTE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UNIDADE> UNIDADE { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CATEGORIA_FORNECEDOR> CATEGORIA_FORNECEDOR { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FORNECEDOR> FORNECEDOR { get; set; }
     }
 }
