@@ -155,6 +155,8 @@ namespace Presentation.Start
             kernel.Bind<IMovimentoEstoqueProdutoRepository>().To<MovimentoEstoqueProdutoRepository>();
             kernel.Bind<IProdutoFornecedorRepository>().To<ProdutoFornecedorRepository>();
             kernel.Bind<IProdutoAnexoRepository>().To<ProdutoAnexoRepository>();
+            kernel.Bind<IUsuarioRemuneracaoRepository>().To<UsuarioRemuneracaoRepository>();
+            kernel.Bind<IUsuarioContrachequeRepository>().To<UsuarioContrachequeRepository>();
 
         }
     }

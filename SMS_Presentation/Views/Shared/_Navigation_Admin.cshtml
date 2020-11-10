@@ -59,7 +59,7 @@
                 <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "BaseAdmin", cssClass: "in")">
                     <li class="@Html.IsSelected(action: "MontarTelaEquipeCards")"><a href="@Url.Action("MontarTelaEquipeCards", "Equipe")">Equipe</a></li>
                     <li class="@Html.IsSelected(action: "CarregarDesenvolvimento")"><a href="@Url.Action("CarregarDesenvolvimento", "BaseAdmin")">Remuneração</a></li>
-                    <li class="@Html.IsSelected(action: "CarregarDesenvolvimento")"><a href="@Url.Action("CarregarDesenvolvimento", "BaseAdmin")">Consumo</a></li>
+                    <li class="@Html.IsSelected(action: "MontarTelaConsumoProduto")"><a href="@Url.Action("MontarTelaConsumoProduto", "Produto")">Consumo de Material</a></li>
                     <li class="@Html.IsSelected(action: "MontarTelaTelefone")"><a href="@Url.Action("MontarTelaTelefone", "Telefone")">Telefones</a></li>
                 </ul>
             </li>
@@ -83,7 +83,7 @@
                         <li class="@Html.IsSelected(action: "MontarTelaNoticia")"><a href="@Url.Action("MontarTelaNoticia", "Noticia")">Notícias</a></li>
                         <li class="@Html.IsSelected(action: "CarregarBase")"><a href="@Url.Action("CarregarBase", "BaseAdmin")"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Tabelas Auxiliares</span> <span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level collapse @Html.IsSelected(controller: "BaseAdmin", cssClass: "in")">
-                                <li class="@Html.IsSelected(action: "CarregarDesenvolvimento")"><a href="@Url.Action("CarregarDesenvolvimento", "BaseAdmin")">Cargos</a></li>
+                                <li class="@Html.IsSelected(action: "MontarTelaCargo")"><a href="@Url.Action("MontarTelaCargo", "Cargo")">Cargos</a></li>
                                 <li class="@Html.IsSelected(action: "CarregarDesenvolvimento")"><a href="@Url.Action("CarregarDesenvolvimento", "BaseAdmin")">Cat. Usuários</a></li>
                                 <li class="@Html.IsSelected(action: "CarregarDesenvolvimento")"><a href="@Url.Action("CarregarDesenvolvimento", "BaseAdmin")">Cat. Agenda</a></li>
                                 <li class="@Html.IsSelected(action: "CarregarDesenvolvimento")"><a href="@Url.Action("CarregarDesenvolvimento", "BaseAdmin")">Tipo Tarefas</a></li>

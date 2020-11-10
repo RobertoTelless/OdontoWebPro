@@ -75,6 +75,8 @@ namespace ApplicationServices.Services
             try
             {
                 // Monta Log
+                item.ASSINANTE = null;
+                itemAntes.ASSINANTE = null;
                 LOG log = new LOG
                 {
                     LOG_DT_DATA = DateTime.Now,

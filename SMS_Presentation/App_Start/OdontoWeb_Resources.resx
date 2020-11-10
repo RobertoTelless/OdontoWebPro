@@ -198,6 +198,12 @@
   <data name="M0029" xml:space="preserve">
     <value>Justificatica de demissão deve ser informada</value>
   </data>
+  <data name="M0030" xml:space="preserve">
+    <value>Cargo já cadastrado</value>
+  </data>
+  <data name="M0031" xml:space="preserve">
+    <value>Impossível excluir esse cargo. Existem registros associados a ele.</value>
+  </data>
   <data name="M0073" xml:space="preserve">
     <value>A Senha não pode ficar em branco</value>
   </data>

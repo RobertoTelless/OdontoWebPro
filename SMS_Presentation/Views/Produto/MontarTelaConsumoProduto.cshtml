@@ -1,7 +1,278 @@
-﻿
+﻿@using Presentation.Extensions
+@using CrossCutting;
+@model EntitiesServices.Model.MOVIMENTO_ESTOQUE_PRODUTO
 @{
-    ViewBag.Title = "MontarTelaConsumoProduto";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="page-title"> 
+        <h3 class="title">Consumo de Material</h3> 
+        <br />
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("CarregarBase", "BaseAdmin")">Dashboard</a>
+            </li>
+            <li class="active">
+                <strong>Consumo de Material - Consulta</strong>
+            </li>
+        </ol>
+        <br />
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <span class="label label-primary pull-right">Hoje</span>
+                    <h5>Consumo de Material</h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins">@ViewBag.Cont</h1>
+                    <div class="stat-percent font-bold text-navy">32% <i class="fa fa-level-up"></i></div>
+                    <small>Movimentações deste Usuário</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="widget style1 blue-bg">
+                <div class="row vertical-align">
+                    <div class="col-xs-3">
+                        <i class="fa fa-user-o  fa-3x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <h3 class="font-normal">@ViewBag.Nome</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-xs-12 ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Filtros</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li>
+                                <a href="#">Config option 1</a>
+                            </li>
+                            <li>
+                                <a href="#">Config option 2</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>           
+            
+                @using (Html.BeginForm("FiltrarConsumo", "Produto", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    <div class="ibox-content">
+                            <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+                                <div class="col-lg-3 col-md-3 col-xs-12">
+                                    Material
+                                    @Html.TextBoxFor(m => m.PRODUTO.PROD_NM_NOME, new { @class = "form-control", autofocus = true })
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-xs-12">
+                                    Data
+                                    @Html.TextBoxFor(m => m.MOEP_DT_MOVIMENTO,  "{0:dd/MM/yyyy}", new { @class = "form-control date-picker", autofocus = true })
+                                </div>
+                            </div>
+                            <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+                                <div class="col-lg-12 col-md-12 col-xs-12">
+                                    @Html.ButtonActionSubmit(text: "Filtrar")
+                                    @Html.ButtonLinkIndex(text: "Retirar Filtro", controller: "Produto", action: "RetirarFiltroConsumo")
+                                    @Html.ButtonLinkIndex(text: "Exibir Mês Corrente", controller: "Produto", action: "MostrarConsumoMes")
+                                    @Html.ButtonLinkIndex(text: "Exibir Data Corrente", controller: "Produto", action: "MostrarConsumoDia")
+                                    @Html.ButtonLinkIndex(text: "Gerar Relatório", controller: "Produto", action: "GerarRelatorioConsumo")
+                                    @Html.ButtonLinkIndex(text: "Voltar", controller: "Produto", action: "Voltar")
+                                </div>
+                            </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-xs-12 ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Consumo de Material</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li>
+                                <a href="#">Config option 1</a>
+                            </li>
+                            <li>
+                                <a href="#">Config option 2</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                            @if ((ViewBag.Listas as List<EntitiesServices.Model.MOVIMENTO_ESTOQUE_PRODUTO>).Count > 0)                                        {
+                                <table class="table table-striped table-bordered table-hover dataTables-example">
+                                    <thead style ="background-color:lightsteelblue">
+                                        <tr>
+                                            <th>Data</th>   
+                                            <th>Material</th>   
+                                            <th>Código</th>   
+                                            <th>Tipo Mov.</th>
+                                            <th>Quantidade</th>   
+                                            <th></th>
+                                            <th class="td-one-action">Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var cond in (ViewBag.Listas as List<EntitiesServices.Model.MOVIMENTO_ESTOQUE_PRODUTO>))
+                                        {
+                                            <tr>
+                                                <td>@cond.MOEP_DT_MOVIMENTO.Value.ToShortDateString()</td>
+                                                <td>@cond.PRODUTO.PROD_NM_NOME</td>
+                                                <td>@cond.PRODUTO.PROD_NR_BARCODE</td>
+                                                @if (cond.MOEP_IN_TIPO_MOVIMENTO == 1)
+                                                {
+                                                    <td>Entrada</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>Saída</td>
+                                                }
+                                                <td>@cond.MOEP_QN_QUANTIDADE</td>
+                                                @if (!String.IsNullOrEmpty(cond.PRODUTO.PROD_AQ_FOTO))
+	                                            {
+                                                    <td><img src="@Url.Content(cond.PRODUTO.PROD_AQ_FOTO)" style = "width: auto; height: auto; max-height: 55px; max-width: 45px;"></td>
+                                                }
+                                                else
+                                                {
+                                                    <td><img src="~/Images/a8.jpg" style = "width: auto; height: auto; max-height: 55px; max-width: 45px;"></td>
+                                                }
+                                                <td class="td-one-action">
+                                                    @Html.TableLinkDetails(cond.MOEP_CD_ID, "VerProdutoConsumo","fa-search", "Ver Detalhes")
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            }
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/all.css" rel="stylesheet" />  
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/jasnyBootstrapStyles")
 }
 
-<h2>MontarTelaConsumoProduto</h2>
+@section Scripts {
+
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    @Scripts.Render("~/plugins/dataTables")
+    @Scripts.Render("~/bundles/inputmask")
+    @Scripts.Render("~/plugins/jasnyBootstrap")
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.js"></script>
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('.dataTables-example').DataTable({
+                pageLength: 25,
+                dom: '<"html5buttons"B>lTfgitp',
+                buttons: [
+                    { extend: 'copy' },
+                    { extend: 'csv' },
+                    { extend: 'excel', title: 'ExampleFile' },
+                    { extend: 'pdf', title: 'ExampleFile' },
+
+                    {
+                        extend: 'print',
+                        customize: function (win) {
+                            $(win.document.body).addClass('white-bg');
+                            $(win.document.body).css('font-size', '10px');
+
+                            $(win.document.body).find('table')
+                                    .addClass('compact')
+                                    .css('font-size', 'inherit');
+                        }
+                    }
+                ]
+
+            });
+
+           
+
+        });
+
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $("#cpf").mask("999.999.999-99");
+            $("#cnpj").mask("99.999.999/9999-99");
+        });
+    </script>
+    <script type="text/javascript" language="javascript">
+        $(function () {
+            $('.date-picker').datepicker(
+                {
+                    dateFormat: 'dd/mm/yy',
+                    dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+                    dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+                    dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+                    monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                    monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                    nextText: 'Proximo',
+                    prevText: 'Anterior',
+                    showOn: "focus"
+                }
+            )
+            .css("display", "normal")
+            .next("button").button({
+                icons: { primary: "ui-icon-calendar" },
+                label: "Selecione uma data",
+                text: false 
+            });
+        });
+    </script>  
+    <script type="text/javascript">
+        $(function () {
+            $("#cpf").mask("999.999.999-99");
+        });
+    </script>
+
+}
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>
+}
+
+
 

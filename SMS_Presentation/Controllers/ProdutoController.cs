@@ -87,7 +87,7 @@ namespace Odonto.Controllers
             }
 
             // Carrega listas
-            if ((List<USUARIO>)Session["ListaConsumo"] == null)
+            if ((List<MOVIMENTO_ESTOQUE_PRODUTO>)Session["ListaConsumo"] == null)
             {
                 listaMov = movApp.GetAllItensUserDataMes(usuario.USUA_CD_ID, DateTime.Today.Date, idAss);
                 Session["ListaConsumo"] = listaMov;
@@ -103,6 +103,8 @@ namespace Odonto.Controllers
             tipo.Add(new SelectListItem() { Text = "Entrada", Value = "1" });
             tipo.Add(new SelectListItem() { Text = "Saída", Value = "2" });
             ViewBag.Tipos = new SelectList(tipo, "Value", "Text");
+            ViewBag.Cats = new SelectList(baseApp.GetAllTipos(idAss), "CAPR_CD_ID", "CAPR_NM_NOME");
+            ViewBag.Nome = usuario.USUA_NM_NOME;
 
             // Mensagem
             if ((Int32)Session["MensConsumo"] == 1)
@@ -117,11 +119,91 @@ namespace Odonto.Controllers
             Session["MensConsumo"] = 0;
             Session["VoltaConsumo"] = 1;
             objetoMov = new MOVIMENTO_ESTOQUE_PRODUTO();
-            return View(objeto);
+            return View(objetoMov);
         }
 
+        public ActionResult RetirarFiltroConsumo()
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            Session["ListaConsumo"] = null;
+            Session["FiltroConsumo"] = null;
+            return RedirectToAction("MontarTelaConsumoProduto");
+        }
 
+        public ActionResult MostrarConsumoMes()
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            USUARIO usuario = (USUARIO)Session["UserCredentials"];
+            listaMov = movApp.GetAllItensUserDataMes(usuario.USUA_CD_ID, DateTime.Today.Date, idAss);
+            Session["ListaConsumo"] = listaMov;
+            Session["FiltroConsumo"] = null;
+            return RedirectToAction("MontarTelaConsumoProduto");
+        }
 
+        public ActionResult VerProdutoConsumo(Int32 id)
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            return RedirectToAction("CarregarDesenvolvimento", "BaseAdmin");
+        }
+
+        public ActionResult MostrarConsumoDia()
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            USUARIO usuario = (USUARIO)Session["UserCredentials"];
+            listaMov = movApp.GetAllItensUserDataMes(usuario.USUA_CD_ID, DateTime.Today.Date, idAss);
+            Session["ListaConsumo"] = listaMov;
+            Session["FiltroConsumo"] = null;
+            return RedirectToAction("MontarTelaConsumoProduto");
+        }
+
+        [HttpPost]
+        public ActionResult FiltrarConsumo(MOVIMENTO_ESTOQUE_PRODUTO item)
+        {
+            try
+            {
+                // Executa a operação
+                if ((String)Session["Ativa"] == null)
+                {
+                    return RedirectToAction("Login", "ControleAcesso");
+                }
+                Int32 idAss = (Int32)Session["IdAssinante"];
+                List<MOVIMENTO_ESTOQUE_PRODUTO> listaObj = new List<MOVIMENTO_ESTOQUE_PRODUTO>();
+                Session["FiltroConsumo"] = item;
+                Int32 volta = movApp.ExecuteFilter(null, item.PRODUTO.PROD_NM_NOME, null, null, item.MOEP_DT_MOVIMENTO, idAss, out listaObj);
+
+                // Verifica retorno
+                if (volta == 1)
+                {
+                    Session["MensConsumo"] = 1;
+                    ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0016", CultureInfo.CurrentCulture));
+                }
+
+                // Sucesso
+                listaMov = listaObj;
+                Session["ListaConsumo"] = listaObj;
+                return RedirectToAction("MontarTelaConsumoProduto");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Message = ex.Message;
+                return RedirectToAction("MontarTelaConsumoProduto");
+            }
+        }
 
 
     }

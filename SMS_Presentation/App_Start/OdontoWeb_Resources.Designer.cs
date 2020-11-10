@@ -304,6 +304,24 @@ namespace SMS_Presentation.App_Start {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Cargo já cadastrado.
+        /// </summary>
+        internal static string M0030 {
+            get {
+                return ResourceManager.GetString("M0030", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Impossível excluir esse cargo. Existem registros associados a ele..
+        /// </summary>
+        internal static string M0031 {
+            get {
+                return ResourceManager.GetString("M0031", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a A Senha não pode ficar em branco.
         /// </summary>
         internal static string M0073 {

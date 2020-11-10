@@ -718,6 +718,9 @@
     <Content Include="Imagens\1\Noticias\1\Fotos\pexels-celular-04072020083212824.jpeg" />
     <Content Include="Imagens\1\Noticias\6\Fotos\WhatsApp Image 2020-09-01 at 17.03.47.jpeg" />
     <Content Include="Imagens\1\Noticias\7\Fotos\elcizf5w0auqxmx.jpeg" />
+    <Content Include="Imagens\1\Produto\1\Foto\PapelA4.jpg" />
+    <Content Include="Imagens\1\Produto\3\Foto\colgate.jpg" />
+    <Content Include="Imagens\1\Produto\4\Foto\Algodao.jpg" />
     <Content Include="Imagens\1\Usuarios\1\Anexos\dentista.jpg" />
     <Content Include="Imagens\1\Usuarios\1\Fotos\FotoOficial.jpg" />
     <Content Include="Imagens\1\Usuarios\2\Fotos\Fernando.jpg" />
@@ -2641,6 +2644,9 @@
     <Content Include="Views\Equipe\VerAnexoEquipe.cshtml" />
     <Content Include="Views\Equipe\SlideShowEquipe.cshtml" />
     <Content Include="Views\Produto\MontarTelaConsumoProduto.cshtml" />
+    <Content Include="Views\Cargo\MontarTelaCargo.cshtml" />
+    <Content Include="Views\Cargo\IncluirCargo.cshtml" />
+    <Content Include="Views\Cargo\EditarCargo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2654,7 +2660,6 @@
     <Folder Include="Imagens\1\Tarefas\2\Anexos\" />
     <Folder Include="Imagens\1\Usuarios\2\Anexos\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Cargo\" />
     <Folder Include="Views\CentroCusto\" />
   </ItemGroup>
   <ItemGroup>

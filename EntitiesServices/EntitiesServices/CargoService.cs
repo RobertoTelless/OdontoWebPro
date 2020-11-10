@@ -91,6 +91,7 @@ namespace ModelServices.EntitiesServices
                     CARGO obj = _baseRepository.GetById(item.CARG_CD_ID);
                     _baseRepository.Detach(obj);
                     _logRepository.Add(log);
+                    item.ASSINANTE = null;
                     _baseRepository.Update(item);
                     transaction.Commit();
                     return 0;
@@ -111,6 +112,7 @@ namespace ModelServices.EntitiesServices
                 {
                     CARGO obj = _baseRepository.GetById(item.CARG_CD_ID);
                     _baseRepository.Detach(obj);
+                    item.ASSINANTE = null;
                     _baseRepository.Update(item);
                     transaction.Commit();
                     return 0;
