@@ -20,7 +20,7 @@ namespace ModelServices.EntitiesServices
     {
         private readonly ITipoContaRepository _baseRepository;
         private readonly ILogRepository _logRepository;
-        protected SystemBRDatabaseEntities Db = new SystemBRDatabaseEntities();
+        protected Odonto_DBEntities Db = new Odonto_DBEntities();
 
         public TipoContaService(ITipoContaRepository baseRepository, ILogRepository logRepository) : base(baseRepository)
         {

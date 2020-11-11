@@ -15,19 +15,22 @@ namespace ModelServices.Interfaces.EntitiesServices
         Int32 Edit(CONTA_BANCO perfil, LOG log);
         Int32 Edit(CONTA_BANCO perfil);
         Int32 Delete(CONTA_BANCO perfil, LOG log);
-        CONTA_BANCO CheckExist(CONTA_BANCO conta);
+
+        CONTA_BANCO CheckExist(CONTA_BANCO conta, Int32? idAss);
         CONTA_BANCO GetItemById(Int32 id);
-        CONTA_BANCO GetContaPadrao();
-        List<CONTA_BANCO> GetAllItens();
-        List<CONTA_BANCO> GetAllItensAdm();
+        CONTA_BANCO GetContaPadrao(Int32? idAss);
+        List<CONTA_BANCO> GetAllItens(Int32? idAss);
+        List<CONTA_BANCO> GetAllItensAdm(Int32? idAss);
         List<TIPO_CONTA> GetAllTipos();
-        Decimal GetTotalContas();
+        Decimal GetTotalContas(Int32? idAss);
+
         CONTA_BANCO_CONTATO GetContatoById(Int32 id);
         CONTA_BANCO_LANCAMENTO GetLancamentoById(Int32 id);
         Int32 EditContato(CONTA_BANCO_CONTATO item);
         Int32 CreateContato(CONTA_BANCO_CONTATO item);
         Int32 EditLancamento(CONTA_BANCO_LANCAMENTO item);
         Int32 CreateLancamento(CONTA_BANCO_LANCAMENTO item, CONTA_BANCO conta);
+
         Decimal GetTotalReceita(Int32 conta);
         Decimal GetTotalDespesa(Int32 conta);
         Decimal GetTotalReceitaMes(Int32 conta, Int32 mes);

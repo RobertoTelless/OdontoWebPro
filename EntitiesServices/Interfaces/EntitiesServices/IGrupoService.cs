@@ -15,9 +15,9 @@ namespace ModelServices.Interfaces.EntitiesServices
         Int32 Edit(GRUPO item, LOG log);
         Int32 Edit(GRUPO item);
         Int32 Delete(GRUPO item, LOG log);
+        GRUPO CheckExist(GRUPO item, Int32? idAss);
+        List<GRUPO> GetAllItens(Int32? idAss);
         GRUPO GetItemById(Int32 id);
-        GRUPO CheckExist(GRUPO item);
-        List<GRUPO> GetAllItens();
-        List<GRUPO> GetAllItensAdm();
+        List<GRUPO> GetAllItensAdm(Int32? idAss);
     }
 }
