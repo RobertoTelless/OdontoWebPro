@@ -276,6 +276,9 @@
     <Compile Include="Model\ASSINANTE.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\BANCO.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\CARGO.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
@@ -304,6 +307,15 @@
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\CONFIGURACAO.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CONTA_BANCO.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CONTA_BANCO_CONTATO.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CONTA_BANCO_LANCAMENTO.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\FILIAL.cs">
@@ -403,6 +415,9 @@
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\TEMPLATE.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\TIPO_CONTA.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\TIPO_CONTRIBUINTE.cs">

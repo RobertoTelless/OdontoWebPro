@@ -56,15 +56,15 @@ namespace Odonto.Controllers
             return RedirectToAction("CarregarBase", "BaseAdmin");
         }
 
-        public ActionResult VoltarBase()
+        public ActionResult VoltarBaseConsumo()
         {
             if ((String)Session["Ativa"] == null)
             {
                 return RedirectToAction("Login", "ControleAcesso");
             }
             Int32 idAss = (Int32)Session["IdAssinante"];
-            Session["ListaProdutos"] = baseApp.GetAllItens(idAss);
-            return RedirectToAction("MontarTela");
+            Session["ListaConsumo"] = null;
+            return RedirectToAction("MontarTelaConsumoProduto");
         }
 
         [HttpGet]
@@ -90,6 +90,7 @@ namespace Odonto.Controllers
             if ((List<MOVIMENTO_ESTOQUE_PRODUTO>)Session["ListaConsumo"] == null)
             {
                 listaMov = movApp.GetAllItensUserDataMes(usuario.USUA_CD_ID, DateTime.Today.Date, idAss);
+                listaMov = listaMov.Where(p => p.MOEP_IN_TIPO_MOVIMENTO == 2).ToList();
                 Session["ListaConsumo"] = listaMov;
             }
             List<MOVIMENTO_ESTOQUE_PRODUTO> lista = (List<MOVIMENTO_ESTOQUE_PRODUTO>)Session["ListaConsumo"];
@@ -143,6 +144,7 @@ namespace Odonto.Controllers
             Int32 idAss = (Int32)Session["IdAssinante"];
             USUARIO usuario = (USUARIO)Session["UserCredentials"];
             listaMov = movApp.GetAllItensUserDataMes(usuario.USUA_CD_ID, DateTime.Today.Date, idAss);
+            listaMov = listaMov.Where(p => p.MOEP_IN_TIPO_MOVIMENTO == 2).ToList();
             Session["ListaConsumo"] = listaMov;
             Session["FiltroConsumo"] = null;
             return RedirectToAction("MontarTelaConsumoProduto");
@@ -154,7 +156,13 @@ namespace Odonto.Controllers
             {
                 return RedirectToAction("Login", "ControleAcesso");
             }
-            return RedirectToAction("CarregarDesenvolvimento", "BaseAdmin");
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            USUARIO usuario = (USUARIO)Session["UserCredentials"];
+            ViewBag.Nome = usuario.USUA_NM_NOME;
+            ViewBag.Filial = usuario.FILIAL.FILI_NM_NOME;
+            MOVIMENTO_ESTOQUE_PRODUTO item = movApp.GetItemById(id);
+            Session["Movimento"] = item;
+            return View(item);
         }
 
         public ActionResult MostrarConsumoDia()
@@ -166,6 +174,7 @@ namespace Odonto.Controllers
             Int32 idAss = (Int32)Session["IdAssinante"];
             USUARIO usuario = (USUARIO)Session["UserCredentials"];
             listaMov = movApp.GetAllItensUserDataMes(usuario.USUA_CD_ID, DateTime.Today.Date, idAss);
+            listaMov = listaMov.Where(p => p.MOEP_IN_TIPO_MOVIMENTO == 2).ToList();
             Session["ListaConsumo"] = listaMov;
             Session["FiltroConsumo"] = null;
             return RedirectToAction("MontarTelaConsumoProduto");
@@ -195,7 +204,8 @@ namespace Odonto.Controllers
 
                 // Sucesso
                 listaMov = listaObj;
-                Session["ListaConsumo"] = listaObj;
+                listaMov = listaMov.Where(p => p.MOEP_IN_TIPO_MOVIMENTO == 2).ToList();
+                Session["ListaConsumo"] = listaMov;
                 return RedirectToAction("MontarTelaConsumoProduto");
             }
             catch (Exception ex)

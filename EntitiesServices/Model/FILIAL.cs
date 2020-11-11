@@ -22,6 +22,8 @@ namespace EntitiesServices.Model
             this.PERCENTUAL_REMUNERACAO = new HashSet<PERCENTUAL_REMUNERACAO>();
             this.PRODUTO_ESTOQUE_FILIAL = new HashSet<PRODUTO_ESTOQUE_FILIAL>();
             this.FORNECEDOR = new HashSet<FORNECEDOR>();
+            this.BANCO = new HashSet<BANCO>();
+            this.CONTA_BANCO = new HashSet<CONTA_BANCO>();
         }
     
         public int FILI_CD_ID { get; set; }
@@ -67,5 +69,9 @@ namespace EntitiesServices.Model
         public virtual ICollection<PRODUTO_ESTOQUE_FILIAL> PRODUTO_ESTOQUE_FILIAL { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FORNECEDOR> FORNECEDOR { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BANCO> BANCO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CONTA_BANCO> CONTA_BANCO { get; set; }
     }
 }

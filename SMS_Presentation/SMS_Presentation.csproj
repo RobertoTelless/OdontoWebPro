@@ -2647,6 +2647,7 @@
     <Content Include="Views\Cargo\MontarTelaCargo.cshtml" />
     <Content Include="Views\Cargo\IncluirCargo.cshtml" />
     <Content Include="Views\Cargo\EditarCargo.cshtml" />
+    <Content Include="Views\Produto\VerProdutoConsumo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

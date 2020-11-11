@@ -151,6 +151,19 @@
         <AssociationConnector Association="OdontoWeb_Model.FK_CENTRO_CUSTO_GRUPO" />
         <AssociationConnector Association="OdontoWeb_Model.FK_CENTRO_CUSTO_SUBGRUPO" />
         <AssociationConnector Association="OdontoWeb_Model.FK_SUBGRUPO_GRUPO" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.BANCO" Width="1.5" PointX="13.5" PointY="45.875" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.CONTA_BANCO" Width="1.5" PointX="15.75" PointY="43.75" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.CONTA_BANCO_CONTATO" Width="1.5" PointX="18" PointY="48.125" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.CONTA_BANCO_LANCAMENTO" Width="1.5" PointX="18" PointY="51.5" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.TIPO_CONTA" Width="1.5" PointX="13.5" PointY="53.5" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_BANCO_ASSINANTE" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_CONTA_BANCO_ASSINANTE" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_BANCO_FILIAL" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_CONTA_BANCO_BANCO" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_CONTA_BANCO_CONTATO_CONTA_BANCO" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_CONTA_BANCO_FILIAL" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_CONTA_BANCO_LANCAMENTO_CONTA_BANCO" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_CONTA_BANCO_TIPO_CONTA" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -77,5 +77,10 @@ namespace EntitiesServices.Model
         public virtual DbSet<CENTRO_CUSTO> CENTRO_CUSTO { get; set; }
         public virtual DbSet<GRUPO> GRUPO { get; set; }
         public virtual DbSet<SUBGRUPO> SUBGRUPO { get; set; }
+        public virtual DbSet<BANCO> BANCO { get; set; }
+        public virtual DbSet<CONTA_BANCO> CONTA_BANCO { get; set; }
+        public virtual DbSet<CONTA_BANCO_CONTATO> CONTA_BANCO_CONTATO { get; set; }
+        public virtual DbSet<CONTA_BANCO_LANCAMENTO> CONTA_BANCO_LANCAMENTO { get; set; }
+        public virtual DbSet<TIPO_CONTA> TIPO_CONTA { get; set; }
     }
 }
