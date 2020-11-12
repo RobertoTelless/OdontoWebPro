@@ -342,6 +342,7 @@
     <Compile Include="Controllers\NoticiaController.cs" />
     <Compile Include="Controllers\NotificacaoController.cs" />
     <Compile Include="Controllers\ProdutoController.cs" />
+    <Compile Include="Controllers\TabelasAuxiliaresController.cs" />
     <Compile Include="Controllers\TarefaController.cs" />
     <Compile Include="Controllers\TelefoneController.cs" />
     <Compile Include="Controllers\TemplateController.cs" />
@@ -361,11 +362,13 @@
     <Compile Include="ViewModels\CentroCustoViewModel.cs" />
     <Compile Include="ViewModels\ConfiguracaoViewModel.cs" />
     <Compile Include="ViewModels\FilialViewModel.cs" />
+    <Compile Include="ViewModels\GrupoViewModel.cs" />
     <Compile Include="ViewModels\LogViewModel.cs" />
     <Compile Include="ViewModels\MatrizViewModel.cs" />
     <Compile Include="ViewModels\NoticiaComentarioViewModel.cs" />
     <Compile Include="ViewModels\NoticiaViewModel.cs" />
     <Compile Include="ViewModels\NotificacaoAnexoViewModel.cs" />
+    <Compile Include="ViewModels\SubgrupoViewModel.cs" />
     <Compile Include="ViewModels\TelefoneViewModel.cs" />
     <Compile Include="ViewModels\NotificacaoViewModel.cs" />
     <Compile Include="ViewModels\PerfilViewModel.cs" />
@@ -2648,6 +2651,12 @@
     <Content Include="Views\Cargo\IncluirCargo.cshtml" />
     <Content Include="Views\Cargo\EditarCargo.cshtml" />
     <Content Include="Views\Produto\VerProdutoConsumo.cshtml" />
+    <Content Include="Views\TabelasAuxiliares\MontarTelaGrupo.cshtml" />
+    <Content Include="Views\TabelasAuxiliares\IncluirGrupo.cshtml" />
+    <Content Include="Views\TabelasAuxiliares\EditarGrupo.cshtml" />
+    <Content Include="Views\TabelasAuxiliares\MontarTelaSubGrupo.cshtml" />
+    <Content Include="Views\TabelasAuxiliares\IncluirSubGrupo.cshtml" />
+    <Content Include="Views\TabelasAuxiliares\EditarSubGrupo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

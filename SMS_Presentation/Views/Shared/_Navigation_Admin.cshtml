@@ -48,6 +48,8 @@
                             <ul class="nav nav-third-level collapse @Html.IsSelected(controller: "BaseAdmin", cssClass: "in")">
                                 <li class="@Html.IsSelected(action: "CarregarDesenvolvimento")"><a href="@Url.Action("CarregarDesenvolvimento", "BaseAdmin")">Bancos & Contas</a></li>
                                 <li class="@Html.IsSelected(action: "CarregarDesenvolvimento")"><a href="@Url.Action("CarregarDesenvolvimento", "BaseAdmin")">Centro de Custos</a></li>
+                                <li class="@Html.IsSelected(action: "MontarTelaGrupo")"><a href="@Url.Action("MontarTelaGrupo", "TabelasAuxiliares")">Grupos</a></li>
+                                <li class="@Html.IsSelected(action: "MontarTelaSubGrupo")"><a href="@Url.Action("MontarTelaSubGrupo", "TabelasAuxiliares")">Sub-Grupos</a></li>
                             </ul>                    
                         </li>
                     </ul>

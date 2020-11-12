@@ -32,6 +32,9 @@ namespace MvcMapping.Mappers
             CreateMap<AGENDA, AgendaViewModel>();
             CreateMap<TAREFA_ACOMPANHAMENTO, TarefaAcompanhamentoViewModel>();
             CreateMap<TELEFONE, TelefoneViewModel>();
+            CreateMap<GRUPO, GrupoViewModel>();
+            CreateMap<SUBGRUPO, SubgrupoViewModel>();
+            CreateMap<CENTRO_CUSTO, CentroCustoViewModel>();
 
         }
     }
