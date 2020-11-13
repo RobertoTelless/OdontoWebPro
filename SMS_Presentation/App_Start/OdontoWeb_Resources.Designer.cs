@@ -358,6 +358,24 @@ namespace SMS_Presentation.App_Start {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Centro de Custos já cadastrado.
+        /// </summary>
+        internal static string M0036 {
+            get {
+                return ResourceManager.GetString("M0036", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Impossível excluir este Centro de Custo. Existem registros vinculados a ele.
+        /// </summary>
+        internal static string M0037 {
+            get {
+                return ResourceManager.GetString("M0037", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a A Senha não pode ficar em branco.
         /// </summary>
         internal static string M0073 {

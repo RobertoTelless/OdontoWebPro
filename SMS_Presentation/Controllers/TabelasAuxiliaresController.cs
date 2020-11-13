@@ -13,7 +13,7 @@ using System.IO;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 
-namespace SMS_Presentation.Controllers
+namespace Odonto.Controllers
 {
     public class TabelasAuxiliaresController : Controller
     {

@@ -2657,6 +2657,9 @@
     <Content Include="Views\TabelasAuxiliares\MontarTelaSubGrupo.cshtml" />
     <Content Include="Views\TabelasAuxiliares\IncluirSubGrupo.cshtml" />
     <Content Include="Views\TabelasAuxiliares\EditarSubGrupo.cshtml" />
+    <Content Include="Views\CentroCusto\MontarTelaCC.cshtml" />
+    <Content Include="Views\CentroCusto\IncluirCC.cshtml" />
+    <Content Include="Views\CentroCusto\EditarCC.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2670,7 +2673,6 @@
     <Folder Include="Imagens\1\Tarefas\2\Anexos\" />
     <Folder Include="Imagens\1\Usuarios\2\Anexos\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\CentroCusto\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

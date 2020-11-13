@@ -216,6 +216,12 @@
   <data name="M0035" xml:space="preserve">
     <value>Impossível excluir esse subgrupo. Existem registros associados a ele.</value>
   </data>
+  <data name="M0036" xml:space="preserve">
+    <value>Centro de Custos já cadastrado</value>
+  </data>
+  <data name="M0037" xml:space="preserve">
+    <value>Impossível excluir este Centro de Custo. Existem registros vinculados a ele</value>
+  </data>
   <data name="M0073" xml:space="preserve">
     <value>A Senha não pode ficar em branco</value>
   </data>
