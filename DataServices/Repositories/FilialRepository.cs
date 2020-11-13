@@ -18,7 +18,6 @@ namespace DataServices.Repositories
             IQueryable<FILIAL> query = Db.FILIAL;
             query = query.Where(p => p.FILI_NM_NOME == conta.FILI_NM_NOME);
             query = query.Where(p => p.FILI_NR_CNPJ == conta.FILI_NR_CNPJ);
-            query = query.Where(p => p.MATR_CD_ID == conta.MATR_CD_ID);
             return query.FirstOrDefault();
         }
 
@@ -26,23 +25,20 @@ namespace DataServices.Repositories
         {
             IQueryable<FILIAL> query = Db.FILIAL;
             query = query.Where(p => p.FILI_CD_ID == id);
-            query = query.Include(p => p.MATRIZ);
             return query.FirstOrDefault();
         }
 
         public List<FILIAL> GetAllItens(Int32 idMatriz)
         {
             IQueryable<FILIAL> query = Db.FILIAL.Where(p => p.FILI_IN_ATIVO == 1);
-            query = query.Where(p => p.MATR_CD_ID == idMatriz);
-            query = query.Include(p => p.MATRIZ);
+            query = query.Where(p => p.ASSI_CD_ID == idMatriz);
             return query.ToList();
         }
 
         public List<FILIAL> GetAllItensAdm(Int32 idMatriz)
         {
             IQueryable<FILIAL> query = Db.FILIAL;
-            query = query.Where(p => p.MATR_CD_ID == idMatriz);
-            query = query.Include(p => p.MATRIZ);
+            query = query.Where(p => p.ASSI_CD_ID == idMatriz);
             return query.ToList();
         }
     }

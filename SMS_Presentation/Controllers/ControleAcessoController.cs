@@ -110,6 +110,7 @@ namespace OdontoWeb.Controllers
                 Session["IdAssinante"] = usuario.ASSI_CD_ID;
                 Session["TipoAssinante"] = usuario.ASSINANTE.ASSI_IN_TIPO.Value;
                 Session["Assinante"] = usuario.ASSINANTE;
+                Session["idMatriz"] = 3;
                 if (usuario.FILI_CD_ID != null)
                 {
                     Session["IdFilial"] = usuario.FILI_CD_ID.Value;

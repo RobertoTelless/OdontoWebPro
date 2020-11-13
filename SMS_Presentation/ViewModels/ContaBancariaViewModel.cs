@@ -5,7 +5,7 @@ using System.Linq;
 using EntitiesServices.Model;
 using System.Web;
 
-namespace SystemBRPresentation.ViewModels
+namespace OdontoWeb.ViewModels
 {
     public class ContaBancariaViewModel
     {
@@ -46,7 +46,6 @@ namespace SystemBRPresentation.ViewModels
         [Required(ErrorMessage = "Campo NOME DA CONTA obrigatorio")]
         [StringLength(30, MinimumLength = 1, ErrorMessage = "O NOME DA CONTA deve conter no minimo 1 caracteres e no máximo 30.")]
         public string COBA_NM_NOME { get; set; }
-        public Nullable<int> MATR_CD_ID { get; set; }
         public Nullable<int> FILI_CD_ID { get; set; }
         public int COBA_IN_PRINCIPAL { get; set; }
 
@@ -88,17 +87,6 @@ namespace SystemBRPresentation.ViewModels
         public virtual FILIAL FILIAL { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CONTA_BANCO_LANCAMENTO> CONTA_BANCO_LANCAMENTO { get; set; }
-        public virtual MATRIZ MATRIZ { get; set; }
         public virtual TIPO_CONTA TIPO_CONTA { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CONTA_PAGAR> CONTA_PAGAR { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CONTA_RECEBER> CONTA_RECEBER { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CONTA_PAGAR> CONTA_PAGAR1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CONTA_PAGAR_PARCELA> CONTA_PAGAR_PARCELA { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FORMA_PAGAMENTO> FORMA_PAGAMENTO { get; set; }
     }
 }

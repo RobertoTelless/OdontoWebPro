@@ -332,6 +332,7 @@
     <Compile Include="AutoMapper\ViewModelToDomainMappingProfile.cs" />
     <Compile Include="Controllers\AdministracaoController.cs" />
     <Compile Include="Controllers\AgendaController.cs" />
+    <Compile Include="Controllers\BancoController.cs" />
     <Compile Include="Controllers\BaseAdminController.cs" />
     <Compile Include="Controllers\CargoController.cs" />
     <Compile Include="Controllers\CentroCustoController.cs" />
@@ -357,10 +358,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AgendaViewModel.cs" />
     <Compile Include="ViewModels\AssinanteViewModel.cs" />
+    <Compile Include="ViewModels\BancoViewModel.cs" />
     <Compile Include="ViewModels\CargoViewModel.cs" />
     <Compile Include="ViewModels\CategoriaAgendaViewModel.cs" />
     <Compile Include="ViewModels\CentroCustoViewModel.cs" />
     <Compile Include="ViewModels\ConfiguracaoViewModel.cs" />
+    <Compile Include="ViewModels\ContaBancariaContatoViewModel.cs" />
+    <Compile Include="ViewModels\ContaBancariaLancamentoViewModel.cs" />
+    <Compile Include="ViewModels\ContaBancariaViewModel.cs" />
     <Compile Include="ViewModels\FilialViewModel.cs" />
     <Compile Include="ViewModels\GrupoViewModel.cs" />
     <Compile Include="ViewModels\LogViewModel.cs" />
@@ -2660,6 +2665,11 @@
     <Content Include="Views\CentroCusto\MontarTelaCC.cshtml" />
     <Content Include="Views\CentroCusto\IncluirCC.cshtml" />
     <Content Include="Views\CentroCusto\EditarCC.cshtml" />
+    <Content Include="Views\Banco\MontarTelaBanco.cshtml" />
+    <Content Include="Views\Banco\IncluirBanco.cshtml" />
+    <Content Include="Views\Banco\EditarBanco.cshtml" />
+    <Content Include="Views\Banco\IncluirConta.cshtml" />
+    <Content Include="Views\Banco\EditarConta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

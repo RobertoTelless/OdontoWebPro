@@ -5,7 +5,7 @@ using System.Linq;
 using EntitiesServices.Model;
 using System.Web;
 
-namespace SystemBRPresentation.ViewModels
+namespace OdontoWeb.ViewModels
 {
     public class ContaBancariaContatoViewModel
     {
@@ -19,7 +19,8 @@ namespace SystemBRPresentation.ViewModels
         [StringLength(50, ErrorMessage = "O CARGO deve conter no máximo 50.")]
         public string CBCT_NM_CARGO { get; set; }
         [Required(ErrorMessage = "Campo E-MAIL obrigatorio")]
-        [StringLength(100, MinimumLength = 1, ErrorMessage = "O NOME deve conter no minimo 1 caracteres e no máximo 100.")]
+        [StringLength(100, MinimumLength = 1, ErrorMessage = "O E-MAIL deve conter no minimo 1 caracteres e no máximo 100.")]
+        [RegularExpression("^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$", ErrorMessage = "Deve ser um e-mail válido")]
         public string CBCT_NM_EMAIL { get; set; }
         [StringLength(50, ErrorMessage = "O TELEFONE deve conter no máximo 50.")]
         public string CBCT_NR_TELEFONES { get; set; }

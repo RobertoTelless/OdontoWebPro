@@ -376,6 +376,42 @@ namespace SMS_Presentation.App_Start {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Banco já cadastrado.
+        /// </summary>
+        internal static string M0038 {
+            get {
+                return ResourceManager.GetString("M0038", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Impossível excluir esse banco. Existem contas vinculadas a ele..
+        /// </summary>
+        internal static string M0039 {
+            get {
+                return ResourceManager.GetString("M0039", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Conta bancária já cadastrada.
+        /// </summary>
+        internal static string M0040 {
+            get {
+                return ResourceManager.GetString("M0040", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Impossível excluir essa conta bancária. Existem registros vinculados a ela..
+        /// </summary>
+        internal static string M0041 {
+            get {
+                return ResourceManager.GetString("M0041", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a A Senha não pode ficar em branco.
         /// </summary>
         internal static string M0073 {

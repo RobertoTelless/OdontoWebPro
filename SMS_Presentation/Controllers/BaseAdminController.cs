@@ -144,6 +144,7 @@ namespace OdontoWeb.Controllers
             Session["MensGrupo"] = 0;
             Session["MensSubGrupo"] = 0;
             Session["MensCC"] = 0;
+            Session["MensBanco"] = 0;
 
             USUARIO usu = (USUARIO)Session["Usuario"];
             UsuarioViewModel vm = Mapper.Map<USUARIO, UsuarioViewModel>(usu);
@@ -249,6 +250,10 @@ namespace OdontoWeb.Controllers
                 ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0011", CultureInfo.CurrentCulture));
             }
             if ((Int32)Session["MensCC"] == 2)
+            {
+                ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0011", CultureInfo.CurrentCulture));
+            }
+            if ((Int32)Session["MensBanco"] == 2)
             {
                 ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0011", CultureInfo.CurrentCulture));
             }

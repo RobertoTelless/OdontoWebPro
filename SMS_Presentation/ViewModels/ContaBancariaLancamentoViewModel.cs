@@ -5,7 +5,7 @@ using System.Linq;
 using EntitiesServices.Model;
 using System.Web;
 
-namespace SystemBRPresentation.ViewModels
+namespace OdontoWeb.ViewModels
 {
     public class ContaBancariaLancamentoViewModel
     {
@@ -25,7 +25,7 @@ namespace SystemBRPresentation.ViewModels
         [RegularExpression(@"^[0-9]+([,][0-9]+)?$", ErrorMessage = "Deve ser um valor numérico positivo")]
         public Nullable<decimal> CBLA_VL_VALOR { get; set; }
         public Nullable<int> CBLA_IN_ATIVO { get; set; }
-        [StringLength(50, MinimumLength = 1, ErrorMessage = "A DESCRIÇÂO deve conter no minimo 1 caracteres e no máximo 50.")]
+        [StringLength(50, MinimumLength = 1, ErrorMessage = "O NÚMERO deve conter no minimo 1 caracteres e no máximo 50.")]
         public string CBLA_NR_NUMERO { get; set; }
         public Nullable<int> CBLA_IN_ORIGEM { get; set; }
 

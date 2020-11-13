@@ -35,6 +35,10 @@ namespace MvcMapping.Mappers
             CreateMap<GRUPO, GrupoViewModel>();
             CreateMap<SUBGRUPO, SubgrupoViewModel>();
             CreateMap<CENTRO_CUSTO, CentroCustoViewModel>();
+            CreateMap<BANCO, BancoViewModel>();
+            CreateMap<CONTA_BANCO, ContaBancariaViewModel>();
+            CreateMap<CONTA_BANCO_CONTATO, ContaBancariaContatoViewModel>();
+            CreateMap<CONTA_BANCO_LANCAMENTO, ContaBancariaLancamentoViewModel>();
 
         }
     }
