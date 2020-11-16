@@ -2670,6 +2670,14 @@
     <Content Include="Views\Banco\EditarBanco.cshtml" />
     <Content Include="Views\Banco\IncluirConta.cshtml" />
     <Content Include="Views\Banco\EditarConta.cshtml" />
+    <Content Include="Views\Banco\EditarContato.cshtml" />
+    <Content Include="Views\Banco\IncluirContato.cshtml" />
+    <Content Include="Views\Banco\IncluirLancamento.cshtml" />
+    <Content Include="Views\Banco\EditarLancamento.cshtml" />
+    <Content Include="Views\Banco\VerBanco.cshtml" />
+    <Content Include="Views\Banco\VerConta.cshtml" />
+    <Content Include="Views\Banco\VerContato.cshtml" />
+    <Content Include="Views\Banco\VerLancamento.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

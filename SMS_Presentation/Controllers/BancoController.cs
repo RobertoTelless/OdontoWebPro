@@ -254,20 +254,27 @@ namespace Odonto.Controllers
         public ActionResult EditarBanco(Int32 id)
         {
             // Verifica se tem usuario logado
+            USUARIO usuario = new USUARIO();
             if ((String)Session["Ativa"] == null)
             {
                 return RedirectToAction("Login", "ControleAcesso");
             }
-            Int32 idAss = (Int32)Session["IdAssinante"];
-            USUARIO usuario = new USUARIO();
             if ((USUARIO)Session["UserCredentials"] != null)
             {
                 usuario = (USUARIO)Session["UserCredentials"];
+
+                // Verfifica permissão
+                if (usuario.PERFIL.PERF_SG_SIGLA != "ADM")
+                {
+                    Session["MensBanco"] = 2;
+                    return RedirectToAction("MontarTelaBanco", "Banco");
+                }
             }
             else
             {
                 return RedirectToAction("Login", "ControleAcesso");
             }
+            Int32 idAss = (Int32)Session["IdAssinante"];
 
             // Mensagem
             if ((Int32)Session["MensBanco"] == 2)
@@ -325,6 +332,75 @@ namespace Odonto.Controllers
             else
             {
                 return RedirectToAction("EditarBanco", new { id = (Int32)Session["IdBanco"] });
+            }
+        }
+
+        [HttpGet]
+        public ActionResult VerBanco(Int32 id)
+        {
+            // Verifica se tem usuario logado
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            USUARIO usuario = new USUARIO();
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
+            }
+            else
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+
+            // Mensagem
+            if ((Int32)Session["MensBanco"] == 2)
+            {
+                ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0011", CultureInfo.CurrentCulture));
+            }
+            if ((Int32)Session["MensBanco"] == 6)
+            {
+                ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0041", CultureInfo.CurrentCulture));
+            }
+
+            // Prepara view
+            ViewBag.Filiais = new SelectList(filApp.GetAllItens(idAss), "FILI_CD_ID", "FILI_NM_NOME");
+            BANCO item = baseApp.GetItemById(id);
+            objetoBancoAntes = item;
+            Session["IdBanco"] = id;
+            Session["Banco"] = item;
+            BancoViewModel vm = Mapper.Map<BANCO, BancoViewModel>(item);
+            return View(vm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult VerBanco(BancoViewModel vm)
+        {
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            ViewBag.Filiais = new SelectList(filApp.GetAllItens(idAss), "FILI_CD_ID", "FILI_NM_NOME");
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    // Executa a operação
+                    USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
+
+                    // Sucesso
+                    listaMasterBanco = new List<BANCO>();
+                    Session["ListaBanco"] = null;
+                    return RedirectToAction("MontarTelaBanco");
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = ex.Message;
+                    return RedirectToAction("VerBanco", new { id = (Int32)Session["IdBanco"] });
+                }
+            }
+            else
+            {
+                return RedirectToAction("VerBanco", new { id = (Int32)Session["IdBanco"] });
             }
         }
 
@@ -564,6 +640,70 @@ namespace Odonto.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult VerConta(Int32 id)
+        {
+            // Verifica se tem usuario logado
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            USUARIO usuario = new USUARIO();
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
+            }
+            else
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+
+            // Prepara listas
+
+            // Prepara view
+            CONTA_BANCO item = contaApp.GetItemById(id);
+            ViewBag.Lanc = item.CONTA_BANCO_LANCAMENTO.Count;
+            //ViewBag.Pagar = pagApp.GetAllItens().Where(p => p.COBA_CD_ID == id).ToList().Count;
+            //ViewBag.Receber = recApp.GetAllItens().Where(p => p.COBA_CD_ID == id).ToList().Count;
+
+            objContaAntes = item;
+            Session["IdVolta"] = id;
+            Session["ContaPadrao"] = item;
+            ContaBancariaViewModel vm = Mapper.Map<CONTA_BANCO, ContaBancariaViewModel>(item);
+            return View(vm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult VerConta(ContaBancariaViewModel vm)
+        {
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    // Executa a operação
+
+                    // Verifica retorno
+
+                    // Sucesso
+                    listaMasterConta = new List<CONTA_BANCO>();
+                    Session["ListaContaBancaria"] = null;
+                    return RedirectToAction("VerBanco", new { id = (Int32)Session["IdBanco"] });
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = ex.Message;
+                    return View(vm);
+                }
+            }
+            else
+            {
+                return View(vm);
+            }
+        }
+
         public ActionResult ExcluirConta(Int32 id)
         {
             // Verifica se tem usuario logado
@@ -606,67 +746,47 @@ namespace Odonto.Controllers
             return RedirectToAction("EditarBanco", new { id = (Int32)Session["IdBanco"] });
         }
 
-        =====================================
-
-
-
-
-
-        [HttpGet]
         public ActionResult ReativarConta(Int32 id)
         {
             // Verifica se tem usuario logado
-            USUARIO usu = new USUARIO();
-            if (SessionMocks.UserCredentials != null)
+            USUARIO usuario = new USUARIO();
+            if ((String)Session["Ativa"] == null)
             {
-                usu = SessionMocks.UserCredentials;
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
 
                 // Verfifica permissão
-                if (usu.PERFIL.PERF_SG_SIGLA == "USU")
+                if (usuario.PERFIL.PERF_SG_SIGLA != "ADM")
                 {
-                    return RedirectToAction("CarregarBase", "BaseAdmin");
+                    Session["MensBanco"] = 2;
+                    return RedirectToAction("EditarBanco", new { id = (Int32)Session["IdBanco"] });
                 }
             }
             else
             {
                 return RedirectToAction("Login", "ControleAcesso");
             }
+            Int32 idAss = (Int32)Session["IdAssinante"];
 
-            // Prepara view
+            // Executar
             CONTA_BANCO item = contaApp.GetItemById(id);
-            ContaBancariaViewModel vm = Mapper.Map<CONTA_BANCO, ContaBancariaViewModel>(item);
-            return View(vm);
-        }
-
-        [HttpPost]
-        public ActionResult ReativarConta(ContaBancariaViewModel vm)
-        {
-            try
-            {
-                // Executa a operação
-                USUARIO usuarioLogado = SessionMocks.UserCredentials;
-                CONTA_BANCO item = Mapper.Map<ContaBancariaViewModel, CONTA_BANCO>(vm);
-                Int32 volta = contaApp.ValidateReativar(item, usuarioLogado);
-
-                // Verifica retorno
-
-                // Sucesso
-                listaMasterConta = new List<CONTA_BANCO>();
-                SessionMocks.listaContaBancaria = null;
-                return RedirectToAction("EditarBanco", new { id = SessionMocks.banco.BANC_CD_ID });
-            }
-            catch (Exception ex)
-            {
-                ViewBag.Message = ex.Message;
-                return View(objetoBanco);
-            }
+            objContaAntes = (CONTA_BANCO)Session["ContaBancaria"];
+            item.COBA_IN_ATIVO = 1;
+            item.ASSINANTE = null;
+            Int32 volta = contaApp.ValidateReativar(item, usuario);
+            listaMasterConta = new List<CONTA_BANCO>();
+            Session["ListaContaBancaria"] = null;
+            return RedirectToAction("EditarBanco", new { id = (Int32)Session["IdBanco"] });
         }
 
         public ActionResult VoltarBaseConta()
         {
             listaMasterConta = new List<CONTA_BANCO>();
-            SessionMocks.listaContaBancaria = null;
-            return RedirectToAction("EditarBanco", new { id = SessionMocks.banco.BANC_CD_ID });
+            Session["ListaContaBancaria"] = null;
+            return RedirectToAction("EditarBanco", new { id = (Int32)Session["IdBanco"] });
         }
 
         [HttpGet]
@@ -687,7 +807,7 @@ namespace Odonto.Controllers
                 try
                 {
                     // Executa a operação
-                    USUARIO usuarioLogado = SessionMocks.UserCredentials;
+                    USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
                     CONTA_BANCO_CONTATO item = Mapper.Map<ContaBancariaContatoViewModel, CONTA_BANCO_CONTATO>(vm);
                     Int32 volta = contaApp.ValidateEditContato(item);
 
@@ -707,8 +827,66 @@ namespace Odonto.Controllers
         }
 
         [HttpGet]
+        public ActionResult VerContato(Int32 id)
+        {
+            // Prepara view
+            CONTA_BANCO_CONTATO item = contaApp.GetContatoById(id);
+            ContaBancariaContatoViewModel vm = Mapper.Map<CONTA_BANCO_CONTATO, ContaBancariaContatoViewModel>(item);
+            return View(vm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult VerContato(ContaBancariaContatoViewModel vm)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    // Executa a operação
+
+                    // Verifica retorno
+                    return RedirectToAction("VoltarAnexoContaVer");
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = ex.Message;
+                    return View(vm);
+                }
+            }
+            else
+            {
+                return View(vm);
+            }
+        }
+
+        [HttpGet]
         public ActionResult ExcluirContato(Int32 id)
         {
+            // Verifica se tem usuario logado
+            USUARIO usuario = new USUARIO();
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
+
+                // Verfifica permissão
+                if (usuario.PERFIL.PERF_SG_SIGLA != "ADM")
+                {
+                    Session["MensBanco"] = 2;
+                    return RedirectToAction("EditarBanco", new { id = (Int32)Session["IdBanco"] });
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+
+            // Executar
             CONTA_BANCO_CONTATO item = contaApp.GetContatoById(id);
             item.CBCT_IN_ATIVO = 0;
             Int32 volta = contaApp.ValidateEditContato(item);
@@ -718,6 +896,30 @@ namespace Odonto.Controllers
         [HttpGet]
         public ActionResult ReativarContato(Int32 id)
         {
+            // Verifica se tem usuario logado
+            USUARIO usuario = new USUARIO();
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
+
+                // Verfifica permissão
+                if (usuario.PERFIL.PERF_SG_SIGLA != "ADM")
+                {
+                    Session["MensBanco"] = 2;
+                    return RedirectToAction("EditarBanco", new { id = (Int32)Session["IdBanco"] });
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+
+            // Executar
             CONTA_BANCO_CONTATO item = contaApp.GetContatoById(id);
             item.CBCT_IN_ATIVO = 1;
             Int32 volta = contaApp.ValidateEditContato(item);
@@ -728,10 +930,10 @@ namespace Odonto.Controllers
         public ActionResult IncluirContato()
         {
             // Prepara view
-            USUARIO usuario = SessionMocks.UserCredentials;
+            USUARIO usuario = (USUARIO)Session["UserCredentials"];
             CONTA_BANCO_CONTATO item = new CONTA_BANCO_CONTATO();
             ContaBancariaContatoViewModel vm = Mapper.Map<CONTA_BANCO_CONTATO, ContaBancariaContatoViewModel>(item);
-            vm.COBA_CD_ID = SessionMocks.idVolta;
+            vm.COBA_CD_ID = (Int32)Session["IdVolta"];
             vm.CBCT_IN_ATIVO = 1;
             return View(vm);
         }
@@ -746,8 +948,9 @@ namespace Odonto.Controllers
                 {
                     // Executa a operação
                     CONTA_BANCO_CONTATO item = Mapper.Map<ContaBancariaContatoViewModel, CONTA_BANCO_CONTATO>(vm);
-                    USUARIO usuarioLogado = SessionMocks.UserCredentials;
+                    USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
                     Int32 volta = contaApp.ValidateCreateContato(item);
+
                     // Verifica retorno
                     return RedirectToAction("VoltarAnexoConta");
                 }
@@ -771,14 +974,14 @@ namespace Odonto.Controllers
             tipoLancamento.Add(new SelectListItem() { Text = "Crédito", Value = "1" });
             tipoLancamento.Add(new SelectListItem() { Text = "Débito", Value = "2" });
             ViewBag.TiposLancamento = new SelectList(tipoLancamento, "Value", "Text");
-            USUARIO usuario = SessionMocks.UserCredentials;
+            USUARIO usuario = (USUARIO)Session["UserCredentials"];
             CONTA_BANCO_LANCAMENTO item = new CONTA_BANCO_LANCAMENTO();
             ContaBancariaLancamentoViewModel vm = Mapper.Map<CONTA_BANCO_LANCAMENTO, ContaBancariaLancamentoViewModel>(item);
-            vm.COBA_CD_ID = SessionMocks.idVolta;
+            vm.COBA_CD_ID = (Int32)Session["IdVolta"];
             vm.CBLA_IN_ATIVO = 1;
             vm.CBLA_IN_ORIGEM = 1;
             vm.CBLA_DT_LANCAMENTO = DateTime.Today.Date;
-            vm.CONTA_BANCO = SessionMocks.contaPadrao;
+            vm.CONTA_BANCO = (CONTA_BANCO)Session["ContaPadrao"];
             return View(vm);
         }
 
@@ -796,8 +999,8 @@ namespace Odonto.Controllers
                 {
                     // Executa a operação
                     CONTA_BANCO_LANCAMENTO item = Mapper.Map<ContaBancariaLancamentoViewModel, CONTA_BANCO_LANCAMENTO>(vm);
-                    USUARIO usuarioLogado = SessionMocks.UserCredentials;
-                    Int32 volta = contaApp.ValidateCreateLancamento(item);
+                    USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
+                    Int32 volta = contaApp.ValidateCreateLancamento(item, null);
                     Int32 volta1 = AcertaSaldo(item);
 
                     // Verifica retorno
@@ -841,7 +1044,7 @@ namespace Odonto.Controllers
                 try
                 {
                     // Executa a operação
-                    USUARIO usuarioLogado = SessionMocks.UserCredentials;
+                    USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
                     CONTA_BANCO_LANCAMENTO item = Mapper.Map<ContaBancariaLancamentoViewModel, CONTA_BANCO_LANCAMENTO>(vm);
                     Int32 volta = contaApp.ValidateEditLancamento(item);
 
@@ -861,8 +1064,65 @@ namespace Odonto.Controllers
         }
 
         [HttpGet]
+        public ActionResult VerLancamento(Int32 id)
+        {
+            // Prepara view
+            CONTA_BANCO_LANCAMENTO item = contaApp.GetLancamentoById(id);
+            ContaBancariaLancamentoViewModel vm = Mapper.Map<CONTA_BANCO_LANCAMENTO, ContaBancariaLancamentoViewModel>(item);
+            return View(vm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult VerLancamento(ContaBancariaLancamentoViewModel vm)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    // Executa a operação
+
+                    // Verifica retorno
+                    return RedirectToAction("VoltarAnexoContaVer");
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = ex.Message;
+                    return View(vm);
+                }
+            }
+            else
+            {
+                return View(vm);
+            }
+        }
+
+        [HttpGet]
         public ActionResult ExcluirLancamento(Int32 id)
         {
+            // Verifica se tem usuario logado
+            USUARIO usuario = new USUARIO();
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
+
+                // Verfifica permissão
+                if (usuario.PERFIL.PERF_SG_SIGLA != "ADM")
+                {
+                    Session["MensBanco"] = 2;
+                    return RedirectToAction("EditarBanco", new { id = (Int32)Session["IdBanco"] });
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+
             CONTA_BANCO_LANCAMENTO item = contaApp.GetLancamentoById(id);
             item.CBLA_IN_ATIVO = 0;
             if (item.CBLA_IN_TIPO == 1)
@@ -881,6 +1141,29 @@ namespace Odonto.Controllers
         [HttpGet]
         public ActionResult ReativarLancamento(Int32 id)
         {
+            // Verifica se tem usuario logado
+            USUARIO usuario = new USUARIO();
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
+
+                // Verfifica permissão
+                if (usuario.PERFIL.PERF_SG_SIGLA != "ADM")
+                {
+                    Session["MensBanco"] = 2;
+                    return RedirectToAction("EditarBanco", new { id = (Int32)Session["IdBanco"] });
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+
             CONTA_BANCO_LANCAMENTO item = contaApp.GetLancamentoById(id);
             item.CBLA_IN_ATIVO = 1;
             if (item.CBLA_IN_TIPO == 1)
@@ -898,12 +1181,22 @@ namespace Odonto.Controllers
 
         public ActionResult VoltarAnexoConta()
         {
-            return RedirectToAction("EditarConta", new { id = SessionMocks.idVolta });
+            return RedirectToAction("EditarConta", new { id = (Int32)Session["IdVolta"] });
+        }
+
+        public ActionResult VoltarAnexoContaVer()
+        {
+            return RedirectToAction("VerConta", new { id = (Int32)Session["IdVolta"] });
         }
 
         public ActionResult VoltarAnexoBanco()
         {
-            return RedirectToAction("EditarBanco", new { id = SessionMocks.idBanco });
+            return RedirectToAction("EditarBanco", new { id = (Int32)Session["IdBanco"] });
+        }
+
+        public ActionResult VoltarAnexoBancoVer()
+        {
+            return RedirectToAction("VerBanco", new { id = (Int32)Session["IdBanco"] });
         }
 
         public Int32 AcertaSaldo(CONTA_BANCO_LANCAMENTO item)
@@ -911,7 +1204,7 @@ namespace Odonto.Controllers
             try
             {
                 // Acerta saldo
-                USUARIO usuarioLogado = SessionMocks.UserCredentials;
+                USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
                 CONTA_BANCO_LANCAMENTO lanc = contaApp.GetLancamentoById(item.CBLA_CD_ID);
                 if (item.CBLA_IN_TIPO == 1)
                 {
@@ -929,11 +1222,5 @@ namespace Odonto.Controllers
                 throw ex;
             }            
         }
-
-
-
-
-
-
     }
 }
