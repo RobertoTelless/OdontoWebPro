@@ -12,7 +12,6 @@ namespace OdontoWeb.ViewModels
     {
         [Key]
         public int FILI_CD_ID { get; set; }
-        [Required(ErrorMessage = "Campo MATRIZ obrigatorio")]
         public int MATR_CD_ID { get; set; }
         public int TIPE_CD_ID { get; set; }
         public Nullable<int> CRTR_CD_ID { get; set; }
@@ -25,7 +24,6 @@ namespace OdontoWeb.ViewModels
         [StringLength(20, MinimumLength = 14, ErrorMessage = "O CNPJ deve conter no minimo 14 caracteres e no máximo 20.")]
         [CustomValidationCNPJ(ErrorMessage = "CNPJ inválido")]
         public string FILI_NR_CNPJ { get; set; }
-        [Required(ErrorMessage = "Campo E-MAIL obrigatorio")]
         [StringLength(100, MinimumLength = 1, ErrorMessage = "O E-MAIL deve conter no minimo 1 caracteres e no máximo 100.")]
         [RegularExpression("^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$", ErrorMessage = "Deve ser um e-mail válido")]
         public string FILI_NM_EMAIL { get; set; }

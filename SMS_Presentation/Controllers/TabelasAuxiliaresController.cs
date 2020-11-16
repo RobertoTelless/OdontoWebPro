@@ -440,6 +440,7 @@ namespace Odonto.Controllers
         [HttpPost]
         public ActionResult IncluirSubGrupo(SubgrupoViewModel vm)
         {
+            Int32 idAss = (Int32)Session["IdAssinante"];
             ViewBag.Grupos = new SelectList(gruApp.GetAllItens(idAss), "GRUP_CD_ID", "GR_NM_EXIBE");
             if (ModelState.IsValid)
             {
@@ -448,7 +449,6 @@ namespace Odonto.Controllers
                     // Executa a operação
                     SUBGRUPO item = Mapper.Map<SubgrupoViewModel, SUBGRUPO>(vm);
                     USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
-                    Int32 idAss = (Int32)Session["IdAssinante"];
                     Int32 volta = subApp.ValidateCreate(item, usuarioLogado);
 
                     // Sucesso
@@ -471,6 +471,7 @@ namespace Odonto.Controllers
         [HttpGet]
         public ActionResult EditarSubGrupo(Int32 id)
         {
+            Int32 idAss = (Int32)Session["IdAssinante"];
             ViewBag.Grupos = new SelectList(gruApp.GetAllItens(idAss), "GRUP_CD_ID", "GR_NM_EXIBE");
             SUBGRUPO item = subApp.GetItemById(id);
             objetoSubAntes = item;
@@ -484,6 +485,7 @@ namespace Odonto.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditarSubGrupo(SubgrupoViewModel vm)
         {
+            Int32 idAss = (Int32)Session["IdAssinante"];
             ViewBag.Grupos = new SelectList(gruApp.GetAllItens(idAss), "GRUP_CD_ID", "GR_NM_EXIBE");
             if (ModelState.IsValid)
             {
@@ -491,7 +493,6 @@ namespace Odonto.Controllers
                 {
                     // Executa a operação
                     USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
-                    Int32 idAss = (Int32)Session["IdAssinante"];
                     SUBGRUPO item = Mapper.Map<SubgrupoViewModel, SUBGRUPO>(vm);
                     Int32 volta = subApp.ValidateEdit(item, objetoSubAntes, usuarioLogado);
 

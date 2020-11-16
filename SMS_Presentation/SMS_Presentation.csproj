@@ -339,6 +339,7 @@
     <Compile Include="Controllers\ConfiguracaoController.cs" />
     <Compile Include="Controllers\ControleAcessoController.cs" />
     <Compile Include="Controllers\EquipeController.cs" />
+    <Compile Include="Controllers\FilialController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NoticiaController.cs" />
     <Compile Include="Controllers\NotificacaoController.cs" />
@@ -2678,6 +2679,7 @@
     <Content Include="Views\Banco\VerConta.cshtml" />
     <Content Include="Views\Banco\VerContato.cshtml" />
     <Content Include="Views\Banco\VerLancamento.cshtml" />
+    <Content Include="Views\Filial\MontarTelaFilial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
