@@ -21,5 +21,6 @@ namespace ModelServices.Interfaces.EntitiesServices
         List<FILIAL> GetAllItens(Int32 idMatriz);
         List<FILIAL> GetAllItensAdm(Int32 idMatriz);
         List<UF> GetAllUF();
+        UF GetUFBySigla(String sigla);
     }
 }

@@ -19,5 +19,6 @@ namespace ApplicationServices.Interfaces
         FILIAL GetItemById(Int32 id);
         FILIAL CheckExist(FILIAL filial);
         List<UF> GetAllUF();
+        UF GetUFBySigla(String sigla);
     }
 }

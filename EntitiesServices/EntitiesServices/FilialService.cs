@@ -47,6 +47,11 @@ namespace ModelServices.EntitiesServices
             return _ufRepository.GetAllItens();
         }
 
+        public UF GetUFBySigla(String sigla)
+        {
+            return _ufRepository.GetItemBySigla(sigla);
+        }
+
         public List<FILIAL> GetAllItens(Int32 idMatriz)
         {
             return _baseRepository.GetAllItens(idMatriz);

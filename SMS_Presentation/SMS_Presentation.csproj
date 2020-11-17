@@ -52,8 +52,8 @@
     <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
       <HintPath>..\packages\Portable.BouncyCastle.1.8.5\lib\net40\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
-    <Reference Include="Canducci.Zip, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\CanducciCep.4.0.0\lib\netstandard1.6\Canducci.Zip.dll</HintPath>
+    <Reference Include="Canducci.Zip, Version=3.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CanducciCep.3.0.1\lib\net451\Canducci.Zip.dll</HintPath>
     </Reference>
     <Reference Include="Common.Logging, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <HintPath>..\packages\Common.Logging.3.4.1\lib\net40\Common.Logging.dll</HintPath>
@@ -2680,6 +2680,10 @@
     <Content Include="Views\Banco\VerContato.cshtml" />
     <Content Include="Views\Banco\VerLancamento.cshtml" />
     <Content Include="Views\Filial\MontarTelaFilial.cshtml" />
+    <Content Include="Views\Filial\MontarTelaFilialCard.cshtml" />
+    <Content Include="Views\Filial\VerFilial.cshtml" />
+    <Content Include="Views\Filial\IncluirFilial.cshtml" />
+    <Content Include="Views\Filial\EditarFilial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

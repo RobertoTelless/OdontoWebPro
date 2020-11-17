@@ -12,6 +12,7 @@ namespace OdontoWeb.ViewModels
     {
         [Key]
         public int FILI_CD_ID { get; set; }
+        public int ASSI_CD_ID { get; set; }
         public int MATR_CD_ID { get; set; }
         public int TIPE_CD_ID { get; set; }
         public Nullable<int> CRTR_CD_ID { get; set; }
@@ -61,6 +62,7 @@ namespace OdontoWeb.ViewModels
         [StringLength(50, ErrorMessage = "O RG deve conter no máximo 50.")]
         public string FILI_NR_RG { get; set; }
 
+        public virtual ASSINANTE ASSINANTE { get; set; }
         public virtual CODIGO_REGIME_TRIBUTARIO CODIGO_REGIME_TRIBUTARIO { get; set; }
         public virtual MATRIZ MATRIZ { get; set; }
         public virtual TIPO_PESSOA TIPO_PESSOA { get; set; }

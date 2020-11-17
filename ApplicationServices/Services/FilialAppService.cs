@@ -38,6 +38,11 @@ namespace ApplicationServices.Services
             return _baseService.GetAllUF();
         }
 
+        public UF GetUFBySigla(String sigla)
+        {
+            return _baseService.GetUFBySigla(sigla);
+        }
+
         public FILIAL GetItemById(Int32 id)
         {
             FILIAL item = _baseService.GetItemById(id);
@@ -114,10 +119,10 @@ namespace ApplicationServices.Services
             try
             {
                 // Verifica integridade referencial
-                //if (item.CLIENTE.Count > 0)
-                //{
-                //    return 1;
-                //}
+                if (item.USUARIO.Count > 0)
+                {
+                    return 1;
+                }
                 //if (item.COLABORADOR.Count > 0)
                 //{
                 //    return 1;

@@ -234,6 +234,9 @@
   <data name="M0041" xml:space="preserve">
     <value>Impossível excluir essa conta bancária. Existem registros vinculados a ela.</value>
   </data>
+  <data name="M0042" xml:space="preserve">
+    <value>Filial já cadastrada</value>
+  </data>
   <data name="M0073" xml:space="preserve">
     <value>A Senha não pode ficar em branco</value>
   </data>
