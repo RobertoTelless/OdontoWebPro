@@ -93,7 +93,7 @@ namespace Odonto.Controllers
             ViewBag.Title = "Filiais";
 
             // Indicadores
-            ViewBag.Tels = ((List<FILIAL>)Session["ListaFilial"]).Count;
+            ViewBag.Filiais = ((List<FILIAL>)Session["ListaFilial"]).Count;
             ViewBag.Perfil = usuario.PERFIL.PERF_SG_SIGLA;
 
             // Mensagem
@@ -144,7 +144,7 @@ namespace Odonto.Controllers
             ViewBag.Title = "Filiais";
 
             // Indicadores
-            ViewBag.Tels = ((List<FILIAL>)Session["ListaFilial"]).Count;
+            ViewBag.Filiais = ((List<FILIAL>)Session["ListaFilial"]).Count;
             ViewBag.Perfil = usuario.PERFIL.PERF_SG_SIGLA;
 
             // Mensagem
