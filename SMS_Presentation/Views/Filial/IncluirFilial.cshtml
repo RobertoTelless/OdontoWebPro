@@ -1,7 +1,394 @@
-﻿
+﻿@using Presentation.Extensions
+@model OdontoWeb.ViewModels.FilialViewModel
 @{
-    ViewBag.Title = "IncluirFilial";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="page-title">
+        <h3 class="title">Unidades / Filiais</h3>
+        <br />
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("CarregarBase", "BaseAdmin")">Dashboard</a>
+            </li>
+            <li>
+                <a href="@Url.Action("MontarTelaFilial", "Filial")">Unidades / Filiais</a>
+            </li>
+            <li class="active">
+                <strong>Filial - Inclusão</strong>
+            </li>
+        </ol>
+        <br />
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-xs-12 ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Filial - Inclusão</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li>
+                                <a href="#">Configuração 1</a>
+                            </li>
+                            <li>
+                                <a href="#">Configuração 2</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                @using (Html.BeginForm("IncluirFilial", "Filial", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", @id = "pwd-container1" }))
+                {
+                    <div class="ibox-content">
+                        @Html.AntiForgeryToken()
+                        @if (!ViewData.ModelState.IsValid)
+                        {
+                            <div class="alert alert-danger">
+                                <button type="button" class="close" data-dismiss="alert">Fechar</button>
+                                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                            </div>
+                        }
+                        <div class="row">
+                            <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+                                <div class="col-lg-4 col-md-4 col-xs-12">
+                                    @Html.HiddenFor(m => m.MATR_CD_ID)
+                                    @Html.HiddenFor(m => m.FILI_DT_CADASTRO)
+                                    @Html.HiddenFor(m => m.FILI_IN_ATIVO)
+                                    @Html.HiddenFor(m => m.ASSI_CD_ID)
+                                    Tipo de Pessoa*
+                                    @Html.DropDownListFor(m => m.TIPE_CD_ID, (SelectList)ViewBag.TipoPessoa, "Selecionar", new { @class = "form-control", autofocus = true, @id = "pessoa", onchange = "ValidaDiv($(this).val())" })
+                                    @Html.ValidationMessageFor(m => m.TIPE_CD_ID, "", new { @style = "color:red" })
+                                </div>
+                            </div>
+
+                            <div class="form-group" style=" margin-left: -15px; margin-right: -15px;" id="PJ">
+                                <div class="col-lg-3 col-md-3 col-xs-12">
+                                    CNPJ
+                                    @Html.TextBoxFor(m => m.FILI_NR_CNPJ, new { @class = "form-control", autofocus = true, @id = "cnpj" })
+                                    @Html.ValidationMessageFor(m => m.FILI_NR_CNPJ, "", new { @style = "color:red" })
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-xs-12">
+                                    Inscrição Municipal
+                                    @Html.TextBoxFor(m => m.FILI_NR_INSCRICAO_ESTADUAL, new { @class = "form-control", autofocus = true, @id = "ie" })
+                                    @Html.ValidationMessageFor(m => m.FILI_NR_INSCRICAO_ESTADUAL, "", new { @style = "color:red" })
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-xs-12">
+                                    Inscrição Estadual
+                                    @Html.TextBoxFor(m => m.FILI_NR_INSCRICAO_MUNICIPAL, new { @class = "form-control", autofocus = true, @id = "im" })
+                                    @Html.ValidationMessageFor(m => m.FILI_NR_INSCRICAO_MUNICIPAL, "", new { @style = "color:red" })
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-xs-12">
+                                    CNAE
+                                    @Html.TextBoxFor(m => m.FILI_NR_CNAE, new { @class = "form-control", autofocus = true, @id = "cnae" })
+                                    @Html.ValidationMessageFor(m => m.FILI_NR_CNAE, "", new { @style = "color:red" })
+                                </div>
+                            </div>
+
+                            <div class="form-group" style=" margin-left: -15px; margin-right: -15px;" id="PF">
+                                <div class="col-lg-3 col-md-3 col-xs-12">
+                                    CPF
+                                    @Html.TextBoxFor(m => m.FILI_NR_CPF, new { @class = "form-control", autofocus = true, @id = "cpf" })
+                                    @Html.ValidationMessageFor(m => m.FILI_NR_CPF, "", new { @style = "color:red" })
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-xs-12">
+                                    RG
+                                    @Html.TextBoxFor(m => m.FILI_NR_RG, new { @class = "form-control", autofocus = true, @id = "rg" })
+                                    @Html.ValidationMessageFor(m => m.FILI_NR_RG, "", new { @style = "color:red" })
+                                </div>
+                            </div>
+
+                            <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+                                <div class="col-lg-6 col-md-6 col-xs-12">
+                                    Razão Social
+                                    @Html.TextBoxFor(m => m.FILI_NM_RAZAO, new { @class = "form-control", autofocus = true })
+                                    @Html.ValidationMessageFor(m => m.FILI_NM_RAZAO, "", new { @style = "color:red" })
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-xs-12">
+                                    Nome Fantasia*
+                                    @Html.TextBoxFor(m => m.FILI_NM_NOME, new { @class = "form-control", autofocus = true })
+                                    @Html.ValidationMessageFor(m => m.FILI_NM_NOME, "", new { @style = "color:red" })
+                                </div>
+                            </div>
+
+                            <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+                                <div class="col-lg-4 col-md-4 col-xs-12">
+                                    E-Mail*
+                                    @Html.TextBoxFor(m => m.FILI_NM_EMAIL, new { @class = "form-control", autofocus = true })
+                                    @Html.ValidationMessageFor(m => m.FILI_NM_EMAIL, "", new { @style = "color:red" })
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-xs-12">
+                                    Contato
+                                    @Html.TextBoxFor(m => m.FILI_NM_CONTATOS, new { @class = "form-control", autofocus = true })
+                                    @Html.ValidationMessageFor(m => m.FILI_NM_CONTATOS, "", new { @style = "color:red" })
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-xs-12">
+                                    Telefone
+                                    @Html.TextBoxFor(m => m.FILI_NM_TELEFONES, new { @class = "form-control", autofocus = true, @id ="tel" })
+                                    @Html.ValidationMessageFor(m => m.FILI_NM_TELEFONES, "", new { @style = "color:red" })
+                                </div>
+                            </div>
+
+                            <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+                                <div class="col-lg-4 col-md-4 col-xs-12">
+                                    Celular
+                                    @Html.TextBoxFor(m => m.FILI_NR_CELULAR, new { @class = "form-control", autofocus = true, @id = "cel" })
+                                    @Html.ValidationMessageFor(m => m.FILI_NR_CELULAR, "", new { @style = "color:red" })
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-xs-12">
+                                    Website
+                                    @Html.TextBoxFor(m => m.FILI_NM_WEBSITE, new { @class = "form-control", autofocus = true })
+                                    @Html.ValidationMessageFor(m => m.FILI_NM_WEBSITE, "", new { @style = "color:red" })
+                                </div>
+                            </div>
+
+                            <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+                                <div class="col-lg-2 col-md-2 col-xs-12">
+                                    CEP
+                                    @Html.TextBoxFor(m => m.FILI_NR_CEP, new { @class = "form-control", @id = "cep", autofocus = true })
+                                    @Html.ValidationMessageFor(m => m.FILI_NR_CEP, "", new { @style = "color:red" })
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-xs-12">
+                                    <span class="btn btn-warning btn-sm" style="margin-bottom: -45px;" id="btnBuscaCep" onclick="PesquisaCep($('#cep').val(), $(this), 1)">Buscar CEP</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+                                <div class="col-lg-4 col-md-4 col-xs-12">
+                                    Endereço
+                                    @Html.TextBoxFor(m => m.FILI_NM_ENDERECO, new { @class = "form-control", autofocus = true, @id = "endereco" })
+                                    @Html.ValidationMessageFor(m => m.FILI_NM_ENDERECO, "", new { @style = "color:red" })
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-xs-12">
+                                    Bairro
+                                    @Html.TextBoxFor(m => m.FILI_NM_BAIRRO, new { @class = "form-control", autofocus = true, @id = "bairro" })
+                                    @Html.ValidationMessageFor(m => m.FILI_NM_BAIRRO, "", new { @style = "color:red" })
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-xs-12">
+                                    Cidade
+                                    @Html.TextBoxFor(m => m.FILI_NM_CIDADE, new { @class = "form-control", autofocus = true, @id = "cidade" })
+                                    @Html.ValidationMessageFor(m => m.FILI_NM_CIDADE, "", new { @style = "color:red" })
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-xs-12">
+                                    UF
+                                    @Html.DropDownListFor(m => m.UF_CD_ID, (SelectList)ViewBag.UF, "Selecionar", new { @class = "form-control", autofocus = true, @id = "uf" })
+                                    @Html.ValidationMessageFor(m => m.UF_CD_ID, "", new { @style = "color:red" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.ButtonActionSubmit(text: "Confirma Inclusão de Filial", htmlAttributes: new { id = "basictoast" })
+                            @Html.ButtonLinkIndex(text: "Cancelar", action: "VoltarBase", controller: "Filial")
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <link href="~/Content/themes/base/all.css" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/jasnyBootstrapStyles")
+    @Styles.Render("~/plugins/toastrStyles")
+}
+@section Scripts {
+    @Scripts.Render("~/plugins/toastr")
+    @Scripts.Render("~/plugins/dataTables")
+    @Scripts.Render("~/bundles/inputmask")
+    @Scripts.Render("~/plugins/jasnyBootstrap")
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#cnpj").mask("99.999.999/9999-99");
+            $("#cep").mask("99999-999");
+            $("#cpf").mask("999.999.999-99");
+            $("#tel").mask("(99)9999-9999");
+            $("#cel").mask("(99)99999-9999");
+        });
+    </script>
+    <script type="text/javascript">
+        function ValidaDiv(valPessoa) {
+            console.error("aaaaaaaaaaaaaa");
+            if (valPessoa == '2') {
+                $("#PF").hide();
+                $("#PJ").show();
+                LimpaPF();
+            } else if (valPessoa == '1') { //Se o tipo for igual a 2 mostra a divCpf
+                $("#PJ").hide();
+                $("#PF").show();
+                LimpaPJ();
+            } else if (valPessoa == '4') {
+                $("#PF").show();
+                $("#PJ").hide();
+                LimpaPJ();
+            } else { //Se não for 1, 2 ou 4 esconde as duas
+                $("#PJ").hide();
+                $("#PF").hide();
+            }
+        }
+
+        $(document).ready(function () {
+            ValidaDiv($('#pessoa').val());
+        });
+
+        function LimpaPJ() {
+            $('#cnpj').val('');
+
+            $('#ie').val('');
+            $('#im').val('');
+            $('#cnae').val('');
+        }
+
+        function LimpaPF() {
+            $('#cpf').val('');
+            $('#rg').val('');
+        }
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var i = -1;
+            var toastCount = 0;
+            var $toastlast;
+            var getMessage = function () {
+                var msg = 'Hi, welcome to Inspinia. This is example of Toastr notification box.';
+                return msg;
+            };
+
+            $('#basictoast').click(function () {
+                // Display a success toast, with a title
+                toastr.success('Inclusão em andamento!')
+            });
+            $('#showtoast').click(function () {
+                var shortCutFunction = $("#toastTypeGroup input:radio:checked").val();
+                var msg = $('#message').val();
+                var title = $('#title').val() || '';
+                var $showDuration = $('#showDuration');
+                var $hideDuration = $('#hideDuration');
+                var $timeOut = $('#timeOut');
+                var $extendedTimeOut = $('#extendedTimeOut');
+                var $showEasing = $('#showEasing');
+                var $hideEasing = $('#hideEasing');
+                var $showMethod = $('#showMethod');
+                var $hideMethod = $('#hideMethod');
+                var toastIndex = toastCount++;
+                toastr.options = {
+                    closeButton: $('#closeButton').prop('checked'),
+                    debug: $('#debugInfo').prop('checked'),
+                    progressBar: $('#progressBar').prop('checked'),
+                    positionClass: $('#positionGroup input:radio:checked').val() || 'toast-top-right',
+                    onclick: null
+                };
+                if ($('#addBehaviorOnToastClick').prop('checked')) {
+                    toastr.options.onclick = function () {
+                        alert('You can perform some custom action after a toast goes away');
+                    };
+                }
+                if ($showDuration.val().length) {
+                    toastr.options.showDuration = $showDuration.val();
+                }
+                if ($hideDuration.val().length) {
+                    toastr.options.hideDuration = $hideDuration.val();
+                }
+                if ($timeOut.val().length) {
+                    toastr.options.timeOut = $timeOut.val();
+                }
+                if ($extendedTimeOut.val().length) {
+                    toastr.options.extendedTimeOut = $extendedTimeOut.val();
+                }
+                if ($showEasing.val().length) {
+                    toastr.options.showEasing = $showEasing.val();
+                }
+                if ($hideEasing.val().length) {
+                    toastr.options.hideEasing = $hideEasing.val();
+                }
+                if ($showMethod.val().length) {
+                    toastr.options.showMethod = $showMethod.val();
+                }
+                if ($hideMethod.val().length) {
+                    toastr.options.hideMethod = $hideMethod.val();
+                }
+                if (!msg) {
+                    msg = getMessage();
+                }
+                $("#toastrOptions").text("Command: toastr["
+                    + shortCutFunction
+                    + "](\""
+                    + msg
+                    + (title ? "\", \"" + title : '')
+                    + "\")\n\ntoastr.options = "
+                    + JSON.stringify(toastr.options, null, 2)
+                );
+                var $toast = toastr[shortCutFunction](msg, title); // Wire up an event handler to a button in the toast, if it exists
+                $toastlast = $toast;
+                if ($toast.find('#okBtn').length) {
+                    $toast.delegate('#okBtn', 'click', function () {
+                        alert('you clicked me. i was toast #' + toastIndex + '. goodbye!');
+                        $toast.remove();
+                    });
+                }
+                if ($toast.find('#surpriseBtn').length) {
+                    $toast.delegate('#surpriseBtn', 'click', function () {
+                        alert('Surprise! you clicked me. i was toast #' + toastIndex + '. You could perform an action here.');
+                    });
+                }
+            });
+            function getLastToast() {
+                return $toastlast;
+            }
+            $('#clearlasttoast').click(function () {
+                toastr.clear(getLastToast());
+            });
+            $('#cleartoasts').click(function () {
+                toastr.clear();
+            });
+
+        });
+    </script>
+
+    <script>
+        function PesquisaCep(cep, btn, tipoEnd) {
+            data = {
+                cep: cep
+                , tipoEnd: tipoEnd
+            }
+
+            $('#btnBuscaCep').attr("disabled", "disabled");
+
+            $.ajax({
+                url: '../Filial/PesquisaCEP_Javascript'
+                , type: 'POST'
+                , data: data
+                , success: function (r) {
+                    $('#endereco').val(r.FILI_NM_ENDERECO);
+                    $('#bairro').val(r.FILI_NM_BAIRRO);
+                    $('#cidade').val(r.FILI_NM_CIDADE);
+
+                    $('#uf option[value="' + r.UF_CD_ID + '"]').attr("selected", "selected");
+                    $('#btnBuscaCep').removeAttr("disabled");
+                }
+            });
+        }
+    </script>
+
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                  alert("@ViewBag.Message");
+            };
+        </script>
+    }
 }
 
-<h2>IncluirFilial</h2>
 

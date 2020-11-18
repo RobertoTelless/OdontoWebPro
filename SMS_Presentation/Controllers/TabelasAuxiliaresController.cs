@@ -210,7 +210,6 @@ namespace Odonto.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult EditarGrupo(GrupoViewModel vm)
         {
             if (ModelState.IsValid)
@@ -482,7 +481,6 @@ namespace Odonto.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult EditarSubGrupo(SubgrupoViewModel vm)
         {
             Int32 idAss = (Int32)Session["IdAssinante"];
