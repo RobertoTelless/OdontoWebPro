@@ -92,7 +92,6 @@ namespace Presentation.Start
             kernel.Bind<IMovimentoEstoqueProdutoAppService>().To<MovimentoEstoqueProdutoAppService>();
             kernel.Bind<IGrupoAppService>().To<GrupoAppService>();
             kernel.Bind<ISubgrupoAppService>().To<SubgrupoAppService>();
-            kernel.Bind<ICentroCustoAppService>().To<CentroCustoAppService>();
             kernel.Bind<IBancoAppService>().To<BancoAppService>();
             kernel.Bind<IContaBancariaAppService>().To<ContaBancariaAppService>();
             kernel.Bind<ITipoContaAppService>().To<TipoContaAppService>();
@@ -122,7 +121,6 @@ namespace Presentation.Start
             kernel.Bind<IMovimentoEstoqueProdutoService>().To<MovimentoEstoqueProdutoService>();
             kernel.Bind<IGrupoService>().To<GrupoService>();
             kernel.Bind<ISubgrupoService>().To<SubgrupoService>();
-            kernel.Bind<ICentroCustoService>().To<CentroCustoService>();
             kernel.Bind<IBancoService>().To<BancoService>();
             kernel.Bind<IContaBancariaService>().To<ContaBancariaService>();
             kernel.Bind<ITipoContaService>().To<TipoContaService>();
@@ -171,7 +169,6 @@ namespace Presentation.Start
             kernel.Bind<IUsuarioContrachequeRepository>().To<UsuarioContrachequeRepository>();
             kernel.Bind<IGrupoRepository>().To<GrupoRepository>();
             kernel.Bind<ISubgrupoRepository>().To<SubgrupoRepository>();
-            kernel.Bind<ICentroCustoRepository>().To<CentroCustoRepository>();
             kernel.Bind<IBancoRepository>().To<BancoRepository>();
             kernel.Bind<IContaBancariaRepository>().To<ContaBancariaRepository>();
             kernel.Bind<IContaBancariaContatoRepository>().To<ContaBancariaContatoRepository>();

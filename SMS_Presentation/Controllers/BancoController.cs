@@ -236,6 +236,7 @@ namespace Odonto.Controllers
                     listaMasterBanco = new List<BANCO>();
                     Session["ListaBanco"] = null;
                     Session["VoltaConta"] = 1;
+                    Session["IdBanco"] = item.BANC_CD_ID;
                     return RedirectToAction("IncluirConta");
                 }
                 catch (Exception ex)
@@ -514,6 +515,7 @@ namespace Odonto.Controllers
             // Prepara listas
             ViewBag.Tipos = new SelectList(tcApp.GetAllItens(), "TICO_CD_ID", "TICO_NM_NOME");
             ViewBag.Filiais = new SelectList(filApp.GetAllItens(idAss), "FILI_CD_ID", "FILI_NM_NOME");
+            ViewBag.Banco = banco.BANC_NM_NOME;
 
             // Prepara view
             CONTA_BANCO item = new CONTA_BANCO();
@@ -572,7 +574,6 @@ namespace Odonto.Controllers
         public ActionResult EditarConta(Int32 id)
         {
             // Verifica se tem usuario logado
-            // Verifica se tem usuario logado
             if ((String)Session["Ativa"] == null)
             {
                 return RedirectToAction("Login", "ControleAcesso");
@@ -597,6 +598,7 @@ namespace Odonto.Controllers
             ViewBag.Lanc = item.CONTA_BANCO_LANCAMENTO.Count;
             //ViewBag.Pagar = pagApp.GetAllItens().Where(p => p.COBA_CD_ID == id).ToList().Count;
             //ViewBag.Receber = recApp.GetAllItens().Where(p => p.COBA_CD_ID == id).ToList().Count;
+            ViewBag.Banco = item.BANCO.BANC_NM_NOME;
 
             objContaAntes = item;
             Session["IdVolta"] = id;

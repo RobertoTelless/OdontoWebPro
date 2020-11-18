@@ -211,7 +211,7 @@ namespace ApplicationServices.Services
                     USUA_CD_ID = usuario.USUA_CD_ID,
                     LOG_IN_ATIVO = 1,
                     LOG_NM_OPERACAO = "DelCOBA",
-                    LOG_TX_REGISTRO = Serialization.SerializeJSON<CONTA_BANCO>(item)
+                    LOG_TX_REGISTRO = "Exclusão de conta bancária - " + item.COBA_NM_NOME_EXIBE
                 };
 
                 // Persiste
@@ -240,7 +240,7 @@ namespace ApplicationServices.Services
                     USUA_CD_ID = usuario.USUA_CD_ID,
                     LOG_IN_ATIVO = 1,
                     LOG_NM_OPERACAO = "ReatCOBA",
-                    LOG_TX_REGISTRO = Serialization.SerializeJSON<CONTA_BANCO>(item)
+                    LOG_TX_REGISTRO = "Reativação de conta bancária - " + item.COBA_NM_NOME_EXIBE
                 };
 
                 // Persiste

@@ -84,6 +84,13 @@
                 @using (Html.BeginForm("FiltrarUsuario", "Equipe", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal" }))
                 {
                     <div class="ibox-content">
+                            @if (!ViewData.ModelState.IsValid)
+                            {
+                                <div class="alert alert-danger">
+                                    <button type="button" class="close" data-dismiss="alert">Fechar</button>
+                                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                                </div>
+                            }
                             <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
                                 <div class="col-lg-4 col-md-4 col-xs-12">
                                     Nome

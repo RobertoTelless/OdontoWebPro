@@ -94,6 +94,7 @@ namespace ApplicationServices.Services
             try
             {
                 //// Monta Log
+                item.ASSINANTE = null;
                 LOG log = new LOG
                 {
                     LOG_DT_DATA = DateTime.Now,
@@ -101,8 +102,8 @@ namespace ApplicationServices.Services
                     ASSI_CD_ID = usuario.ASSI_CD_ID,
                     LOG_NM_OPERACAO = "EditFILI",
                     LOG_IN_ATIVO = 1,
-                    LOG_TX_REGISTRO = Serialization.SerializeJSON<FILIAL>(item),
-                    LOG_TX_REGISTRO_ANTES = Serialization.SerializeJSON<FILIAL>(itemAntes)
+                    LOG_TX_REGISTRO = "Edição de Filial - " + item.FILI_NM_NOME,
+                    LOG_TX_REGISTRO_ANTES = null
                 };
 
                 // Persiste
@@ -187,7 +188,7 @@ namespace ApplicationServices.Services
                     ASSI_CD_ID = usuario.ASSI_CD_ID,
                     LOG_IN_ATIVO = 1,
                     LOG_NM_OPERACAO = "DelFILI",
-                    LOG_TX_REGISTRO = Serialization.SerializeJSON<FILIAL>(item)
+                    LOG_TX_REGISTRO = "Desativação de Unidade /Filial - " + item.FILI_NM_NOME
                 };
 
                 // Persiste
@@ -216,7 +217,7 @@ namespace ApplicationServices.Services
                     ASSI_CD_ID = usuario.ASSI_CD_ID,
                     LOG_IN_ATIVO = 1,
                     LOG_NM_OPERACAO = "ReatFILI",
-                    LOG_TX_REGISTRO = Serialization.SerializeJSON<FILIAL>(item)
+                    LOG_TX_REGISTRO = "Desativação de Unidade /Filial - " + item.FILI_NM_NOME
                 };
 
                 // Persiste

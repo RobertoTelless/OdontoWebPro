@@ -191,7 +191,7 @@ namespace Odonto.Controllers
             }
             else
             {
-                listaSubFiltrada = subApp.GetAllItens(idAss).Where(x => x.SUBG_CD_ID == id).ToList();
+                listaSubFiltrada = subApp.GetAllItens(idAss).Where(x => x.GRUP_CD_ID == id).ToList();
             }
 
             return Json(listaSubFiltrada.Select(x => new { x.SUBG_CD_ID, x.SUBG_NM_NOME }));

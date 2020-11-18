@@ -81,6 +81,13 @@
                     </div>
                 </div>
                 <div class="ibox-content">
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <div class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert">Fechar</button>
+                            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                        </div>
+                    }
                     <div class="row">
                         @if ((ViewBag.Listas as List<EntitiesServices.Model.GRUPO>).Count > 0)
                         {

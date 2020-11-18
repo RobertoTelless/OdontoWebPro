@@ -85,7 +85,7 @@ namespace Odonto.Controllers
             // Carrega listas
             if ((List<FILIAL>)Session["ListaFilial"] == null)
             {
-                listaMaster = baseApp.GetAllItens(idMatriz);
+                listaMaster = baseApp.GetAllItens(idAss);
                 Session["ListaFilial"] = listaMaster;
                 Session["FiltroFilial"] = null;
             }
@@ -95,6 +95,11 @@ namespace Odonto.Controllers
             // Indicadores
             ViewBag.Filiais = ((List<FILIAL>)Session["ListaFilial"]).Count;
             ViewBag.Perfil = usuario.PERFIL.PERF_SG_SIGLA;
+            List<SelectListItem> tipoPessoa = new List<SelectListItem>();
+            tipoPessoa.Add(new SelectListItem() { Text = "Pessoa Física", Value = "1" });
+            tipoPessoa.Add(new SelectListItem() { Text = "Pessoa Jurídica", Value = "2" });
+            ViewBag.TiposPessoa = new SelectList(tipoPessoa, "Value", "Text");
+            ViewBag.UFs = new SelectList(baseApp.GetAllUF(), "UF_CD_ID", "UF_NM_NOME");
 
             // Mensagem
             if ((Int32)Session["MensFilial"] == 1)
@@ -136,12 +141,17 @@ namespace Odonto.Controllers
             // Carrega listas
             if ((List<FILIAL>)Session["ListaFilial"] == null)
             {
-                listaMaster = baseApp.GetAllItens(idMatriz);
+                listaMaster = baseApp.GetAllItens(idAss);
                 Session["ListaFilial"] = listaMaster;
                 Session["FiltroFilial"] = null;
             }
             ViewBag.Listas = (List<FILIAL>)Session["ListaFilial"];
             ViewBag.Title = "Filiais";
+            List<SelectListItem> tipoPessoa = new List<SelectListItem>();
+            tipoPessoa.Add(new SelectListItem() { Text = "Pessoa Física", Value = "1" });
+            tipoPessoa.Add(new SelectListItem() { Text = "Pessoa Jurídica", Value = "2" });
+            ViewBag.TiposPessoa = new SelectList(tipoPessoa, "Value", "Text");
+            ViewBag.UFs = new SelectList(baseApp.GetAllUF(), "UF_CD_ID", "UF_NM_NOME");
 
             // Indicadores
             ViewBag.Filiais = ((List<FILIAL>)Session["ListaFilial"]).Count;
@@ -302,7 +312,7 @@ namespace Odonto.Controllers
                     Session["IdFilialVolta"] = item.FILI_CD_ID;
                     Session["Filial"] = item;
                     Session["MensFilial"] = 0;
-                    return RedirectToAction("EditarFilial", new { id = item.FILI_CD_ID });
+                    return RedirectToAction("MontarTelaFilial");
                 }
                 catch (Exception ex)
                 {
@@ -444,7 +454,7 @@ namespace Odonto.Controllers
         }
 
         [HttpGet]
-        public ActionResult ReativarEquipe(Int32 id)
+        public ActionResult ReativarFilial(Int32 id)
         {
             // Verifica se tem usuario logado
             if ((String)Session["Ativa"] == null)
@@ -575,7 +585,7 @@ namespace Odonto.Controllers
         public JsonResult PesquisaCEP_Javascript(String cep, int tipoEnd)
         {
             // Chama servico ECT
-            FILIAL cli = baseApp.GetItemById((Int32)Session["IdVolta"]);
+            //FILIAL cli = baseApp.GetItemById((Int32)Session["IdVolta"]);
 
             ZipCodeLoad zipLoad = new ZipCodeLoad();
             ZipCodeInfo end = new ZipCodeInfo();

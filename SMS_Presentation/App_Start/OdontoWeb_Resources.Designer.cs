@@ -331,7 +331,7 @@ namespace SMS_Presentation.App_Start {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Subgrupo d Centros de Custo já cadastrado.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Subgrupo de Centros de Custo já cadastrado.
         /// </summary>
         internal static string M0033 {
             get {

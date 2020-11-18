@@ -161,7 +161,7 @@ namespace ApplicationServices.Services
                     USUA_CD_ID = usuario.USUA_CD_ID,
                     LOG_IN_ATIVO = 1,
                     LOG_NM_OPERACAO = "DelBANC",
-                    LOG_TX_REGISTRO = Serialization.SerializeJSON<BANCO>(item)
+                    LOG_TX_REGISTRO = "Exclusão de Banco - " + item.BANC_NM_NOME
                 };
 
                 // Persiste
@@ -190,7 +190,7 @@ namespace ApplicationServices.Services
                     USUA_CD_ID = usuario.USUA_CD_ID,
                     LOG_IN_ATIVO = 1,
                     LOG_NM_OPERACAO = "ReatBANC",
-                    LOG_TX_REGISTRO = Serialization.SerializeJSON<BANCO>(item)
+                    LOG_TX_REGISTRO = "Reativação de Banco - " + item.BANC_NM_NOME
                 };
 
                 // Persiste

@@ -112,6 +112,8 @@ namespace ApplicationServices.Services
             try
             {
                 // Monta Log
+                item.ASSINANTE = null;
+                itemAntes.ASSINANTE = null;
                 LOG log = new LOG
                 {
                     LOG_DT_DATA = DateTime.Now,
@@ -141,6 +143,7 @@ namespace ApplicationServices.Services
                 // Acerta campos
                 item.CECU_IN_ATIVO = 0;
                 item.ASSI_CD_ID = usuario.ASSI_CD_ID;
+                item.ASSINANTE = null;
 
                 // Monta Log
                 LOG log = new LOG
@@ -150,7 +153,7 @@ namespace ApplicationServices.Services
                     USUA_CD_ID = usuario.USUA_CD_ID,
                     LOG_IN_ATIVO = 1,
                     LOG_NM_OPERACAO = "DelCECU",
-                    LOG_TX_REGISTRO = Serialization.SerializeJSON<CENTRO_CUSTO>(item)
+                    LOG_TX_REGISTRO = "Desativação Centro de Custos - " + item.CECU_NM_EXIBE
                 };
 
                 // Persiste
@@ -173,6 +176,7 @@ namespace ApplicationServices.Services
                 item.ASSI_CD_ID = usuario.ASSI_CD_ID;
 
                 // Monta Log
+                item.ASSINANTE = null;
                 LOG log = new LOG
                 {
                     LOG_DT_DATA = DateTime.Now,
@@ -180,7 +184,7 @@ namespace ApplicationServices.Services
                     USUA_CD_ID = usuario.USUA_CD_ID,
                     LOG_IN_ATIVO = 1,
                     LOG_NM_OPERACAO = "ReatCECU",
-                    LOG_TX_REGISTRO = Serialization.SerializeJSON<CENTRO_CUSTO>(item)
+                    LOG_TX_REGISTRO = "Reativação Centro de Custos - " + item.CECU_NM_EXIBE
                 };
 
                 // Persiste

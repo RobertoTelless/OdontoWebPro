@@ -97,6 +97,10 @@ namespace Odonto.Controllers
             }
             if ((Int32)Session["MensGrupo"] == 3)
             {
+                ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0034", CultureInfo.CurrentCulture));
+            }
+            if ((Int32)Session["MensGrupo"] == 2)
+            {
                 ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0032", CultureInfo.CurrentCulture));
             }
 
@@ -180,6 +184,14 @@ namespace Odonto.Controllers
                     USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
                     Int32 idAss = (Int32)Session["IdAssinante"];
                     Int32 volta = gruApp.ValidateCreate(item, usuarioLogado);
+
+                    // Retorno
+                    if (volta == 1)
+                    {
+                        Session["MensGrupo"] = 2;
+                        ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0032", CultureInfo.CurrentCulture));
+                        return RedirectToAction("MontarTelaGrupo");
+                    }
 
                     // Sucesso
                     listaMasterGru = new List<GRUPO>();
@@ -366,6 +378,10 @@ namespace Odonto.Controllers
             {
                 ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0033", CultureInfo.CurrentCulture));
             }
+            if ((Int32)Session["MensSubGrupo"] == 2)
+            {
+                ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0033", CultureInfo.CurrentCulture));
+            }
 
             // Abre view
             objetoSub = new SUBGRUPO();
@@ -449,6 +465,14 @@ namespace Odonto.Controllers
                     SUBGRUPO item = Mapper.Map<SubgrupoViewModel, SUBGRUPO>(vm);
                     USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
                     Int32 volta = subApp.ValidateCreate(item, usuarioLogado);
+
+                    // Retorno
+                    if (volta == 1)
+                    {
+                        Session["MensSubGrupo"] = 2;
+                        ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0033", CultureInfo.CurrentCulture));
+                        return RedirectToAction("MontarTelaSubGrupo");
+                    }
 
                     // Sucesso
                     listaMasterSub = new List<SUBGRUPO>();
