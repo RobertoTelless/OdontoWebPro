@@ -51,6 +51,8 @@ namespace EntitiesServices.Model
             this.SUBGRUPO = new HashSet<SUBGRUPO>();
             this.BANCO = new HashSet<BANCO>();
             this.CONTA_BANCO = new HashSet<CONTA_BANCO>();
+            this.PACIENTE = new HashSet<PACIENTE>();
+            this.TIPO_PROCEDIMENTO = new HashSet<TIPO_PROCEDIMENTO>();
         }
     
         public int ASSI_CD_ID { get; set; }
@@ -129,5 +131,9 @@ namespace EntitiesServices.Model
         public virtual ICollection<BANCO> BANCO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CONTA_BANCO> CONTA_BANCO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PACIENTE> PACIENTE { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TIPO_PROCEDIMENTO> TIPO_PROCEDIMENTO { get; set; }
     }
 }

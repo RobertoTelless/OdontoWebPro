@@ -288,6 +288,15 @@
     <Compile Include="Model\AGENDA_ANEXO.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\ANAMNESE.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ANAMNESE_IMAGEM.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ANAMNESE_NOVA_PERGUNTA.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\ASSINANTE.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
@@ -381,6 +390,24 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>OdontoWeb_Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Model\ORCAMENTO.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ORCAMENTO_ANEXO.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ORCAMENTO_ITEM.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PACIENTE.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PACIENTE_ANEXO.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PACIE_NTE_ACOMPANHAMENTO.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\PAIS.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
@@ -388,6 +415,12 @@
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\PERFIL.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PRESCRICAO.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PRESCRICAO_ANEXO.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\PRODUTO.cs">
@@ -400,6 +433,12 @@
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\PRODUTO_FORNECEDOR.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\RECOMENDACAO.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\REGIAO_DENTE.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\REGIME_TRIBUTARIO.cs">
@@ -439,6 +478,12 @@
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\TIPO_PESSOA.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\TIPO_PROCEDIMENTO.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\TIPO_PROCEDIMENTO_ANEXO.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\TIPO_TAG.cs">

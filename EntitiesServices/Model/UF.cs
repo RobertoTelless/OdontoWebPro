@@ -22,6 +22,7 @@ namespace EntitiesServices.Model
             this.USUARIO = new HashSet<USUARIO>();
             this.USUARIO1 = new HashSet<USUARIO>();
             this.FORNECEDOR = new HashSet<FORNECEDOR>();
+            this.PACIENTE = new HashSet<PACIENTE>();
         }
     
         public int UF_CD_ID { get; set; }
@@ -39,5 +40,7 @@ namespace EntitiesServices.Model
         public virtual ICollection<USUARIO> USUARIO1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FORNECEDOR> FORNECEDOR { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PACIENTE> PACIENTE { get; set; }
     }
 }

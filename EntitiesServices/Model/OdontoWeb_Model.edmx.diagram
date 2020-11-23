@@ -164,6 +164,41 @@
         <AssociationConnector Association="OdontoWeb_Model.FK_CONTA_BANCO_FILIAL" />
         <AssociationConnector Association="OdontoWeb_Model.FK_CONTA_BANCO_LANCAMENTO_CONTA_BANCO" />
         <AssociationConnector Association="OdontoWeb_Model.FK_CONTA_BANCO_TIPO_CONTA" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.ANAMNESE" Width="1.5" PointX="21.5" PointY="61.25" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.ANAMNESE_IMAGEM" Width="1.5" PointX="23.75" PointY="60.5" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.ANAMNESE_NOVA_PERGUNTA" Width="1.5" PointX="23.75" PointY="64.25" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.ORCAMENTO" Width="1.5" PointX="21.5" PointY="52.5" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.ORCAMENTO_ANEXO" Width="1.5" PointX="23.75" PointY="56.375" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.ORCAMENTO_ITEM" Width="1.5" PointX="23.75" PointY="52.375" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.PACIE_NTE_ACOMPANHAMENTO" Width="1.5" PointX="19.5" PointY="36" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.PACIENTE" Width="1.5" PointX="19.25" PointY="55.75" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.PACIENTE_ANEXO" Width="1.5" PointX="21.5" PointY="70.375" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.PRESCRICAO" Width="1.5" PointX="21.5" PointY="67.125" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.PRESCRICAO_ANEXO" Width="1.5" PointX="23.75" PointY="67.125" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.RECOMENDACAO" Width="1.5" PointX="21.5" PointY="49.375" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.REGIAO_DENTE" Width="1.5" PointX="21.5" PointY="56.75" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.TIPO_PROCEDIMENTO" Width="1.5" PointX="16.5" PointY="55.75" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.TIPO_PROCEDIMENTO_ANEXO" Width="1.5" PointX="18.75" PointY="64.125" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_ANAMNESE_IMAGEM_ANAMNESE" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_ANAMNESE_NOVA_PERGUNTA_ANAMNESE" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_ANAMNESE_PACIENTE" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_PACIENTE_ASSINANTE" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_TIPO_PROCEDIMENTO_ASSINANTE" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_PACIENTE_FILIAL" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_TIPO_PROCEDIMENTO_FILIAL" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_ORCAMENTO_ANEXO_ORCAMENTO" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_ORCAMENTO_ITEM_ORCAMENTO" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_ORCAMENTO_PACIENTE" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_ORCAMENTO_ITEM_REGIAO_DENTE" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_ORCAMENTO_ITEM_TIPO_PROCEDIMENTO" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_PACIE_NTE_ACOMPANHAMENTO_PACIENTE" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_PACIE_NTE_ACOMPANHAMENTO_USUARIO" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_PACIENTE_ANEXO_PACIENTE" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_PACIENTE_UF" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_PRESCRICAO_PACIENTE" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_RECOMENDACAO_PACIENTE" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_PRESCRICAO_ANEXO_PRESCRICAO" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_TIPO_PROCEDIMENTO_ANEXO_TIPO_PROCEDIMENTO" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

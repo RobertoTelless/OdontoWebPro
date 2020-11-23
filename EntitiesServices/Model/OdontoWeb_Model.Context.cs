@@ -82,5 +82,20 @@ namespace EntitiesServices.Model
         public virtual DbSet<CONTA_BANCO_CONTATO> CONTA_BANCO_CONTATO { get; set; }
         public virtual DbSet<CONTA_BANCO_LANCAMENTO> CONTA_BANCO_LANCAMENTO { get; set; }
         public virtual DbSet<TIPO_CONTA> TIPO_CONTA { get; set; }
+        public virtual DbSet<ANAMNESE> ANAMNESE { get; set; }
+        public virtual DbSet<ANAMNESE_IMAGEM> ANAMNESE_IMAGEM { get; set; }
+        public virtual DbSet<ANAMNESE_NOVA_PERGUNTA> ANAMNESE_NOVA_PERGUNTA { get; set; }
+        public virtual DbSet<ORCAMENTO> ORCAMENTO { get; set; }
+        public virtual DbSet<ORCAMENTO_ANEXO> ORCAMENTO_ANEXO { get; set; }
+        public virtual DbSet<ORCAMENTO_ITEM> ORCAMENTO_ITEM { get; set; }
+        public virtual DbSet<PACIE_NTE_ACOMPANHAMENTO> PACIE_NTE_ACOMPANHAMENTO { get; set; }
+        public virtual DbSet<PACIENTE> PACIENTE { get; set; }
+        public virtual DbSet<PACIENTE_ANEXO> PACIENTE_ANEXO { get; set; }
+        public virtual DbSet<PRESCRICAO> PRESCRICAO { get; set; }
+        public virtual DbSet<PRESCRICAO_ANEXO> PRESCRICAO_ANEXO { get; set; }
+        public virtual DbSet<RECOMENDACAO> RECOMENDACAO { get; set; }
+        public virtual DbSet<REGIAO_DENTE> REGIAO_DENTE { get; set; }
+        public virtual DbSet<TIPO_PROCEDIMENTO> TIPO_PROCEDIMENTO { get; set; }
+        public virtual DbSet<TIPO_PROCEDIMENTO_ANEXO> TIPO_PROCEDIMENTO_ANEXO { get; set; }
     }
 }

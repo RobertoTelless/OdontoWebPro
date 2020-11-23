@@ -34,6 +34,7 @@ namespace EntitiesServices.Model
             this.USUARIO_CONTRACHEQUE = new HashSet<USUARIO_CONTRACHEQUE>();
             this.USUARIO_PREMIO = new HashSet<USUARIO_PREMIO>();
             this.USUARIO_REMUNERACAO = new HashSet<USUARIO_REMUNERACAO>();
+            this.PACIE_NTE_ACOMPANHAMENTO = new HashSet<PACIE_NTE_ACOMPANHAMENTO>();
         }
     
         public int USUA_CD_ID { get; set; }
@@ -136,5 +137,7 @@ namespace EntitiesServices.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<USUARIO_REMUNERACAO> USUARIO_REMUNERACAO { get; set; }
         public virtual SITUACAO SITUACAO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PACIE_NTE_ACOMPANHAMENTO> PACIE_NTE_ACOMPANHAMENTO { get; set; }
     }
 }
