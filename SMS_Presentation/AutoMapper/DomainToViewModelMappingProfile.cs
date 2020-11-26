@@ -39,6 +39,9 @@ namespace MvcMapping.Mappers
             CreateMap<CONTA_BANCO, ContaBancariaViewModel>();
             CreateMap<CONTA_BANCO_CONTATO, ContaBancariaContatoViewModel>();
             CreateMap<CONTA_BANCO_LANCAMENTO, ContaBancariaLancamentoViewModel>();
+            CreateMap<REGIAO_DENTE, DenteRegiaoViewModel>();
+            CreateMap<TIPO_PROCEDIMENTO_ANEXO, TipoProcedimentoAnexoViewModel>();
+            CreateMap<TIPO_PROCEDIMENTO, TipoProcedimentoViewModel>();
 
         }
     }

@@ -12,58 +12,41 @@ using System.Text.RegularExpressions;
 
 namespace ApplicationServices.Services
 {
-    public class SubgrupoAppService : AppServiceBase<SUBGRUPO>, ISubgrupoAppService
+    public class DenteRegiaoAppService : AppServiceBase<REGIAO_DENTE>, IDenteRegiaoAppService
     {
-        private readonly ISubgrupoService _baseService;
+        private readonly IDenteRegiaoService _baseService;
 
-        public SubgrupoAppService(ISubgrupoService baseService): base(baseService)
+        public DenteRegiaoAppService(IDenteRegiaoService baseService): base(baseService)
         {
             _baseService = baseService;
         }
 
-        public List<SUBGRUPO> GetAllItens(Int32? idAss)
+        public List<REGIAO_DENTE> GetAllItens(Int32 idAss)
         {
-            List<SUBGRUPO> lista = _baseService.GetAllItens(idAss);
+            List<REGIAO_DENTE> lista = _baseService.GetAllItens(idAss);
             return lista;
         }
 
-        public List<SUBGRUPO> GetAllItensAdm(Int32? idAss)
+        public List<REGIAO_DENTE> GetAllItensAdm(Int32 idAss)
         {
-            List<SUBGRUPO> lista = _baseService.GetAllItensAdm(idAss);
+            List<REGIAO_DENTE> lista = _baseService.GetAllItensAdm(idAss);
             return lista;
         }
 
-        public SUBGRUPO GetItemById(Int32 id)
+        public REGIAO_DENTE GetItemById(Int32 id)
         {
-            SUBGRUPO item = _baseService.GetItemById(id);
+            REGIAO_DENTE item = _baseService.GetItemById(id);
             return item;
         }
 
-        public List<GRUPO> GetAllGrupos(Int32? idAss)
-        {
-            List<GRUPO> lista = _baseService.GetAllGrupos(idAss);
-            return lista;
-        }
-
-        public SUBGRUPO CheckExist(SUBGRUPO obj, Int32? idAss)
-        {
-            SUBGRUPO item = _baseService.CheckExist(obj, idAss);
-            return item;
-        }
-
-        public Int32 ValidateCreate(SUBGRUPO item, USUARIO usuario)
+        public Int32 ValidateCreate(REGIAO_DENTE item, USUARIO usuario)
         {
             try
             {
                 // Verifica existencia prévia
-                if (_baseService.CheckExist(item, usuario.ASSI_CD_ID) != null)
-                {
-                    return 1;
-                }
 
                 // Completa objeto
-                item.SUBG_IN_ATIVO = 1;
-                item.ASSI_CD_ID = usuario.ASSI_CD_ID;
+                item.REDE_IN_ATIVO = 1;
 
                 // Monta Log
                 LOG log = new LOG
@@ -71,9 +54,9 @@ namespace ApplicationServices.Services
                     LOG_DT_DATA = DateTime.Now,
                     ASSI_CD_ID = usuario.ASSI_CD_ID,
                     USUA_CD_ID = usuario.USUA_CD_ID,
-                    LOG_NM_OPERACAO = "AddSUBG",
+                    LOG_NM_OPERACAO = "AddREDE",
                     LOG_IN_ATIVO = 1,
-                    LOG_TX_REGISTRO = Serialization.SerializeJSON<SUBGRUPO>(item)
+                    LOG_TX_REGISTRO = Serialization.SerializeJSON<REGIAO_DENTE>(item)
                 };
 
                 // Persiste
@@ -86,7 +69,7 @@ namespace ApplicationServices.Services
             }
         }
 
-        public Int32 ValidateEdit(SUBGRUPO item, SUBGRUPO itemAntes, USUARIO usuario)
+        public Int32 ValidateEdit(REGIAO_DENTE item, REGIAO_DENTE itemAntes, USUARIO usuario)
         {
             try
             {
@@ -96,10 +79,10 @@ namespace ApplicationServices.Services
                     LOG_DT_DATA = DateTime.Now,
                     ASSI_CD_ID = usuario.ASSI_CD_ID,
                     USUA_CD_ID = usuario.USUA_CD_ID,
-                    LOG_NM_OPERACAO = "EditSUBG",
+                    LOG_NM_OPERACAO = "EditREDE",
                     LOG_IN_ATIVO = 1,
-                    LOG_TX_REGISTRO = Serialization.SerializeJSON<SUBGRUPO>(item),
-                    LOG_TX_REGISTRO_ANTES = Serialization.SerializeJSON<SUBGRUPO>(itemAntes)
+                    LOG_TX_REGISTRO = Serialization.SerializeJSON<REGIAO_DENTE>(item),
+                    LOG_TX_REGISTRO_ANTES = Serialization.SerializeJSON<REGIAO_DENTE>(itemAntes)
                 };
 
                 // Persiste
@@ -111,7 +94,7 @@ namespace ApplicationServices.Services
             }
         }
 
-        public Int32 ValidateEdit(SUBGRUPO item, SUBGRUPO itemAntes)
+        public Int32 ValidateEdit(REGIAO_DENTE item, REGIAO_DENTE itemAntes)
         {
             try
             {
@@ -124,18 +107,18 @@ namespace ApplicationServices.Services
             }
         }
 
-        public Int32 ValidateDelete(SUBGRUPO item, USUARIO usuario)
+        public Int32 ValidateDelete(REGIAO_DENTE item, USUARIO usuario)
         {
             try
             {
                 // Verifica integridade referencial
-                if (item.CENTRO_CUSTO.Count > 0)
+                if (item.ORCAMENTO_ITEM.Count > 0)
                 {
                     return 1;
                 }
 
                 // Acerta campos
-                item.SUBG_IN_ATIVO = 0;
+                item.REDE_IN_ATIVO = 0;
 
                 // Monta Log
                 LOG log = new LOG
@@ -144,8 +127,8 @@ namespace ApplicationServices.Services
                     ASSI_CD_ID = usuario.ASSI_CD_ID,
                     USUA_CD_ID = usuario.USUA_CD_ID,
                     LOG_IN_ATIVO = 1,
-                    LOG_NM_OPERACAO = "DeleSUBG",
-                    LOG_TX_REGISTRO = "SubGrupo: " + item.SUBG_NM_NOME
+                    LOG_NM_OPERACAO = "DeleREDE",
+                    LOG_TX_REGISTRO = "Dente/Região: " + item.REDE_NM_NOME
                 };
 
                 // Persiste
@@ -157,14 +140,14 @@ namespace ApplicationServices.Services
             }
         }
 
-        public Int32 ValidateReativar(SUBGRUPO item, USUARIO usuario)
+        public Int32 ValidateReativar(REGIAO_DENTE item, USUARIO usuario)
         {
             try
             {
                 // Verifica integridade referencial
 
                 // Acerta campos
-                item.SUBG_IN_ATIVO = 1;
+                item.REDE_IN_ATIVO = 1;
 
                 // Monta Log
                 LOG log = new LOG
@@ -173,8 +156,8 @@ namespace ApplicationServices.Services
                     ASSI_CD_ID = usuario.ASSI_CD_ID,
                     USUA_CD_ID = usuario.USUA_CD_ID,
                     LOG_IN_ATIVO = 1,
-                    LOG_NM_OPERACAO = "ReatSUBG",
-                    LOG_TX_REGISTRO = "SubGrupo: " + item.SUBG_NM_NOME
+                    LOG_NM_OPERACAO = "ReatREDE",
+                    LOG_TX_REGISTRO = "Região/Dente: " + item.REDE_NM_NOME
                 };
 
                 // Persiste

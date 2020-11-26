@@ -186,6 +186,7 @@
     <Compile Include="Interfaces\ILogAppService.cs" />
     <Compile Include="Interfaces\IMatrizAppService.cs" />
     <Compile Include="Interfaces\INoticiaAppService.cs" />
+    <Compile Include="Interfaces\ITipoProcedimentoAppService.cs" />
     <Compile Include="Interfaces\IProdutoAppService.cs" />
     <Compile Include="Interfaces\IMovimentoEstoqueProdutoAppService.cs" />
     <Compile Include="Interfaces\ISubgrupoAppService.cs" />
@@ -196,6 +197,7 @@
     <Compile Include="Interfaces\ITarefaAppService.cs" />
     <Compile Include="Interfaces\ITemplateAppService.cs" />
     <Compile Include="Interfaces\ITipoContaAppService.cs" />
+    <Compile Include="Interfaces\IDenteRegiaoAppService.cs" />
     <Compile Include="Interfaces\ITipoContribuinteAppService.cs" />
     <Compile Include="Interfaces\ITipoPessoaAppService.cs" />
     <Compile Include="Interfaces\ITipoTagAppService.cs" />
@@ -216,6 +218,7 @@
     <Compile Include="Services\MatrizAppService.cs" />
     <Compile Include="Services\NoticiaAppService.cs" />
     <Compile Include="Services\MovimentoEstoqueProdutoAppService.cs" />
+    <Compile Include="Services\TipoProcedimentoAppService.cs" />
     <Compile Include="Services\ProdutoAppService.cs" />
     <Compile Include="Services\SubgrupoAppService.cs" />
     <Compile Include="Services\TelefoneAppService.cs" />
@@ -225,6 +228,7 @@
     <Compile Include="Services\TarefaAppService.cs" />
     <Compile Include="Services\TemplateAppService.cs" />
     <Compile Include="Services\TipoContaAppService.cs" />
+    <Compile Include="Services\DenteRegiaoAppService.cs" />
     <Compile Include="Services\TipoContribuinteAppService.cs" />
     <Compile Include="Services\TipoPessoaAppService.cs" />
     <Compile Include="Services\TipoTagAppService.cs" />

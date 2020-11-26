@@ -189,6 +189,8 @@
     <Compile Include="Repositories\NoticiaComentarioRepository.cs" />
     <Compile Include="Repositories\NoticiaRepository.cs" />
     <Compile Include="Repositories\NoticiaTagRepository.cs" />
+    <Compile Include="Repositories\TipoProcedimentoRepository.cs" />
+    <Compile Include="Repositories\TipoProcedimentoAnexoRepository.cs" />
     <Compile Include="Repositories\NotificacaoAnexoRepository.cs" />
     <Compile Include="Repositories\MovimentoEstoqueProdutoRepository.cs" />
     <Compile Include="Repositories\ProdutoAnexoRepository.cs" />
@@ -207,6 +209,7 @@
     <Compile Include="Repositories\TarefaRepository.cs" />
     <Compile Include="Repositories\TemplateRepository.cs" />
     <Compile Include="Repositories\TipoContaRepository.cs" />
+    <Compile Include="Repositories\DenteRegiaoRepository.cs" />
     <Compile Include="Repositories\TipoContribuinteRepository.cs" />
     <Compile Include="Repositories\TipoPessoaRepository.cs" />
     <Compile Include="Repositories\TipoTagRepository.cs" />

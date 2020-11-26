@@ -338,6 +338,7 @@
     <Compile Include="Controllers\CentroCustoController.cs" />
     <Compile Include="Controllers\ConfiguracaoController.cs" />
     <Compile Include="Controllers\ControleAcessoController.cs" />
+    <Compile Include="Controllers\DenteRegiaoController.cs" />
     <Compile Include="Controllers\EquipeController.cs" />
     <Compile Include="Controllers\FilialController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -374,7 +375,9 @@
     <Compile Include="ViewModels\MatrizViewModel.cs" />
     <Compile Include="ViewModels\NoticiaComentarioViewModel.cs" />
     <Compile Include="ViewModels\NoticiaViewModel.cs" />
+    <Compile Include="ViewModels\TipoProcedimentoAnexoViewModel.cs" />
     <Compile Include="ViewModels\NotificacaoAnexoViewModel.cs" />
+    <Compile Include="ViewModels\TipoProcedimentoViewModel.cs" />
     <Compile Include="ViewModels\SubgrupoViewModel.cs" />
     <Compile Include="ViewModels\TelefoneViewModel.cs" />
     <Compile Include="ViewModels\NotificacaoViewModel.cs" />
@@ -384,6 +387,7 @@
     <Compile Include="ViewModels\TarefaAcompanhamentoViewModel.cs" />
     <Compile Include="ViewModels\TarefaViewModel.cs" />
     <Compile Include="ViewModels\TemplateViewModel.cs" />
+    <Compile Include="ViewModels\DenteRegiaoViewModel.cs" />
     <Compile Include="ViewModels\TipoContribuinteViewModel.cs" />
     <Compile Include="ViewModels\TipoPessoaViewModel.cs" />
     <Compile Include="ViewModels\TipoTagViewModel.cs" />
@@ -2693,6 +2697,9 @@
     <Content Include="Views\Remuneracao\MontarTelaConsultaRemuneracao.cshtml" />
     <Content Include="Views\Remuneracao\VerContracheque.cshtml" />
     <Content Include="Views\Remuneracao\VerRemuneracao.cshtml" />
+    <Content Include="Views\DenteRegiao\MontarTelaDenteRegiao.cshtml" />
+    <Content Include="Views\DenteRegiao\IncluirDente.cshtml" />
+    <Content Include="Views\DenteRegiao\EditarDente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

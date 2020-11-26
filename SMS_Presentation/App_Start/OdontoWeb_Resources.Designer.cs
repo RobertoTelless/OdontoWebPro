@@ -421,6 +421,24 @@ namespace SMS_Presentation.App_Start {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Impossível excluir este dente/região. Existem registros associados a ele..
+        /// </summary>
+        internal static string M0043 {
+            get {
+                return ResourceManager.GetString("M0043", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Dente/Região já cadastrado.
+        /// </summary>
+        internal static string M0044 {
+            get {
+                return ResourceManager.GetString("M0044", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a A Senha não pode ficar em branco.
         /// </summary>
         internal static string M0073 {

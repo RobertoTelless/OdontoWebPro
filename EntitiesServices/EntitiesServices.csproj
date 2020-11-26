@@ -185,6 +185,7 @@
     <Compile Include="EntitiesServices\LogService.cs" />
     <Compile Include="EntitiesServices\MatrizService.cs" />
     <Compile Include="EntitiesServices\NoticiaService.cs" />
+    <Compile Include="EntitiesServices\TipoProcedimentoService.cs" />
     <Compile Include="EntitiesServices\ProdutoService.cs" />
     <Compile Include="EntitiesServices\MovimentoEstoqueProdutoService.cs" />
     <Compile Include="EntitiesServices\SubgrupoService.cs" />
@@ -197,6 +198,7 @@
     <Compile Include="EntitiesServices\TarefaService.cs" />
     <Compile Include="EntitiesServices\TemplateService.cs" />
     <Compile Include="EntitiesServices\TipoContaService.cs" />
+    <Compile Include="EntitiesServices\DenteRegiaoService.cs" />
     <Compile Include="EntitiesServices\TipoContribuinteService.cs" />
     <Compile Include="EntitiesServices\TipoPessoaService.cs" />
     <Compile Include="EntitiesServices\TipoTagService.cs" />
@@ -213,6 +215,7 @@
     <Compile Include="Interfaces\EntitiesServices\IGrupoService.cs" />
     <Compile Include="Interfaces\EntitiesServices\ILogService.cs" />
     <Compile Include="Interfaces\EntitiesServices\IMovimentoEstoqueProdutoService.cs" />
+    <Compile Include="Interfaces\EntitiesServices\ITipoProcedimentoService.cs" />
     <Compile Include="Interfaces\EntitiesServices\IProdutoService.cs" />
     <Compile Include="Interfaces\EntitiesServices\IMatrizService.cs" />
     <Compile Include="Interfaces\EntitiesServices\INoticiaService.cs" />
@@ -226,6 +229,7 @@
     <Compile Include="Interfaces\EntitiesServices\ITarefaService.cs" />
     <Compile Include="Interfaces\EntitiesServices\ITemplateService.cs" />
     <Compile Include="Interfaces\EntitiesServices\ITipoContaService.cs" />
+    <Compile Include="Interfaces\EntitiesServices\IDenteRegiaoService.cs" />
     <Compile Include="Interfaces\EntitiesServices\ITipoContribuinteService.cs" />
     <Compile Include="Interfaces\EntitiesServices\ITipoPessoaService.cs" />
     <Compile Include="Interfaces\EntitiesServices\ITipoTagService.cs" />
@@ -254,6 +258,8 @@
     <Compile Include="Interfaces\Repositories\INoticiaComentarioRepository.cs" />
     <Compile Include="Interfaces\Repositories\INoticiaRepository.cs" />
     <Compile Include="Interfaces\Repositories\INoticiaTagRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IDenteRegiaoRepository.cs" />
+    <Compile Include="Interfaces\Repositories\ITipoProcedimentoAnexoRepository.cs" />
     <Compile Include="Interfaces\Repositories\INotificacaoAnexoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IMovimentoEstoqueProdutoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IProdutoFornecedorRepository.cs" />
@@ -272,6 +278,7 @@
     <Compile Include="Interfaces\Repositories\ITarefaRepository.cs" />
     <Compile Include="Interfaces\Repositories\ITemplateRepository.cs" />
     <Compile Include="Interfaces\Repositories\ITipoContaRepository.cs" />
+    <Compile Include="Interfaces\Repositories\ITipoProcedimentoRepository.cs" />
     <Compile Include="Interfaces\Repositories\ITipoContribuinteRepository.cs" />
     <Compile Include="Interfaces\Repositories\ITipoPessoaRepository.cs" />
     <Compile Include="Interfaces\Repositories\ITipoTagRepository.cs" />

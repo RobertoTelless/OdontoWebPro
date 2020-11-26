@@ -53,6 +53,12 @@
                             }
                         </ul>                    
                     </li>
+                    <li class="@Html.IsSelected(action: "CarregarBase")"><a href="@Url.Action("CarregarBase", "BaseAdmin")"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Cadastros Auxiliares</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-third-level collapse @Html.IsSelected(controller: "BaseAdmin", cssClass: "in")">
+                            <li class="@Html.IsSelected(action: "CarregarDesenvolvimento")"><a href="@Url.Action("CarregarDesenvolvimento", "BaseAdmin")">Procedimentos</a></li>
+                            <li class="@Html.IsSelected(action: "CarregarDesenvolvimento")"><a href="@Url.Action("CarregarDesenvolvimento", "BaseAdmin")">Dentes & Regiões</a></li>
+                        </ul>                    
+                    </li>
                 </ul>
             </li>
 
