@@ -44,5 +44,7 @@ namespace ApplicationServices.Interfaces
         List<SITUACAO> GetAllSituacao(Int32 idAss);
         USUARIO_REMUNERACAO GetRemuneracaoByUser(Int32 id, DateTime data);
         USUARIO_CONTRACHEQUE GetContrachequeByUser(Int32 id, DateTime data);
+        USUARIO_REMUNERACAO GetRemuneracaoById(Int32 id);
+        USUARIO_CONTRACHEQUE GetContrachequeById(Int32 id);
     }
 }

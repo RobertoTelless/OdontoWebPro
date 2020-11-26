@@ -111,6 +111,16 @@ namespace ModelServices.EntitiesServices
             return _ccRepository.GetItemByUser(id, data);
         }
 
+        public USUARIO_REMUNERACAO GetRemuneracaoById(Int32 id)
+        {
+            return _remRepository.GetItemById(id);
+        }
+
+        public USUARIO_CONTRACHEQUE GetContrachequeById(Int32 id)
+        {
+            return _ccRepository.GetItemById(id);
+        }
+
         public TEMPLATE GetTemplateByCode(String codigo)
         {
             return _tempRepository.GetByCode(codigo);

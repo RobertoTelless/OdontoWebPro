@@ -25,6 +25,12 @@ namespace EntitiesServices.Model
         public Nullable<decimal> USRE_VL_AVAL_PACIENTES { get; set; }
         public Nullable<decimal> USRE_VL_CONVERSAO { get; set; }
         public Nullable<int> USRE_IN_ATIVO { get; set; }
+        public Nullable<decimal> USRE_PC_TAREFAS { get; set; }
+        public Nullable<decimal> USRE_PC_PRODUCAO { get; set; }
+        public Nullable<decimal> USRE_PC_AVAL_EQUIPE { get; set; }
+        public Nullable<decimal> USRE_PC_AVAL_PACIENTES { get; set; }
+        public Nullable<decimal> USRE_PC_CONVERSAO { get; set; }
+        public Nullable<decimal> USRE_VL_TOTAL { get; set; }
     
         public virtual USUARIO USUARIO { get; set; }
     }

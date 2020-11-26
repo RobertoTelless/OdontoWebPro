@@ -1002,13 +1002,19 @@
           <Property Name="USUA_CD_ID" Type="int" Nullable="false" />
           <Property Name="USRE_DT_REFERENCIA" Type="date" />
           <Property Name="USRE_VL_VALOR_FIXO" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="USRE_PC_TAREFAS" Type="decimal" Precision="18" Scale="2" />
           <Property Name="USRE_VL_TAREFAS" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="USRE_PC_PRODUCAO" Type="decimal" Precision="18" Scale="2" />
           <Property Name="USRE_VL_PRODUCAO" Type="decimal" Precision="18" Scale="2" />
           <Property Name="USRE_VL_PREMIO" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="USRE_PC_AVAL_EQUIPE" Type="decimal" Precision="18" Scale="2" />
           <Property Name="USRE_VL_AVAL_EQUIPE" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="USRE_PC_AVAL_PACIENTES" Type="decimal" Precision="18" Scale="2" />
           <Property Name="USRE_VL_AVAL_PACIENTES" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="USRE_PC_CONVERSAO" Type="decimal" Precision="18" Scale="2" />
           <Property Name="USRE_VL_CONVERSAO" Type="decimal" Precision="18" Scale="2" />
           <Property Name="USRE_IN_ATIVO" Type="int" />
+          <Property Name="USRE_VL_TOTAL" Type="decimal" Precision="24" Scale="2" StoreGeneratedPattern="Computed" />
         </EntityType>
         <Association Name="FK_AGENDA_ANEXO_AGENDA">
           <End Role="AGENDA" Type="Self.AGENDA" Multiplicity="1" />
@@ -4998,6 +5004,12 @@
           <Property Name="USRE_VL_CONVERSAO" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="USRE_IN_ATIVO" Type="Int32" />
           <NavigationProperty Name="USUARIO" Relationship="OdontoWeb_Model.FK_USUARIO_REMUNERACAO_USUARIO" FromRole="USUARIO_REMUNERACAO" ToRole="USUARIO" />
+          <Property Name="USRE_PC_TAREFAS" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="USRE_PC_PRODUCAO" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="USRE_PC_AVAL_EQUIPE" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="USRE_PC_AVAL_PACIENTES" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="USRE_PC_CONVERSAO" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="USRE_VL_TOTAL" Type="Decimal" Precision="24" Scale="2" annotation:StoreGeneratedPattern="Computed" />
         </EntityType>
         <Association Name="FK_CATEGORIA_NOTIFICACAO_ASSINANTE">
           <End Type="OdontoWeb_Model.ASSINANTE" Role="ASSINANTE" Multiplicity="1" />
@@ -6984,6 +6996,12 @@
           <EntitySetMapping Name="USUARIO_REMUNERACAO">
             <EntityTypeMapping TypeName="OdontoWeb_Model.USUARIO_REMUNERACAO">
               <MappingFragment StoreEntitySet="USUARIO_REMUNERACAO">
+                <ScalarProperty Name="USRE_VL_TOTAL" ColumnName="USRE_VL_TOTAL" />
+                <ScalarProperty Name="USRE_PC_CONVERSAO" ColumnName="USRE_PC_CONVERSAO" />
+                <ScalarProperty Name="USRE_PC_AVAL_PACIENTES" ColumnName="USRE_PC_AVAL_PACIENTES" />
+                <ScalarProperty Name="USRE_PC_AVAL_EQUIPE" ColumnName="USRE_PC_AVAL_EQUIPE" />
+                <ScalarProperty Name="USRE_PC_PRODUCAO" ColumnName="USRE_PC_PRODUCAO" />
+                <ScalarProperty Name="USRE_PC_TAREFAS" ColumnName="USRE_PC_TAREFAS" />
                 <ScalarProperty Name="USRE_IN_ATIVO" ColumnName="USRE_IN_ATIVO" />
                 <ScalarProperty Name="USRE_VL_CONVERSAO" ColumnName="USRE_VL_CONVERSAO" />
                 <ScalarProperty Name="USRE_VL_AVAL_PACIENTES" ColumnName="USRE_VL_AVAL_PACIENTES" />

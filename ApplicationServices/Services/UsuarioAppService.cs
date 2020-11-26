@@ -54,6 +54,16 @@ namespace ApplicationServices.Services
             return _usuarioService.GetContrachequeByUser(id, data);
         }
 
+        public USUARIO_REMUNERACAO GetRemuneracaoById(Int32 id)
+        {
+            return _usuarioService.GetRemuneracaoById(id);
+        }
+
+        public USUARIO_CONTRACHEQUE GetContrachequeById(Int32 id)
+        {
+            return _usuarioService.GetContrachequeById(id);
+        }
+
         public USUARIO GetByLogin(String login)
         {
             return _usuarioService.GetByLogin(login);
