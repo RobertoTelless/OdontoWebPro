@@ -132,21 +132,22 @@
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-lg-2">
+                        <div class="col-lg-3">
                             <div class="ibox float-e-margins">
                                 <div class="ibox-title">
                                     <span class="label label-primary pull-right">Hoje</span>
                                     <h5>Valor Fixo</h5>
                                 </div>
                                 <div class="ibox-content">
-                                    <h1 class="no-margins">R$ @CrossCutting.Formatters.DecimalFormatter(Model.USRE_VL_VALOR_FIXO.Value)</h1>
-                                    <div class="stat-percent font-bold text-navy">  <i class="fa fa-level-up"></i></div>
+                                    <h1 class="no-margins">@CrossCutting.Formatters.DecimalFormatter(Model.USRE_VL_VALOR_FIXO.Value)</h1>
+                                    @*<div class="stat-percent font-bold text-navy">  <i class="fa fa-level-up"></i></div>*@
+                                    <div class="stat-percent font-bold text-navy">  </div>
                                     <small>Valor Fixo (R$)</small>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-lg-2">
+                        <div class="col-lg-3">
                             <div class="ibox float-e-margins">
                                 <div class="ibox-title">
                                     <span class="label label-primary pull-right">Hoje</span>
@@ -154,13 +155,13 @@
                                 </div>
                                 <div class="ibox-content">
                                     <h1 class="no-margins">@CrossCutting.Formatters.DecimalFormatter(Model.USRE_VL_TAREFAS.Value)</h1>
-                                    <div class="stat-percent font-bold text-navy">@Model.USRE_PC_TAREFAS % <i class="fa fa-level-up"></i></div>
+                                    <div class="stat-percent font-bold text-navy">@Model.USRE_PC_TAREFAS %</div>
                                     <small>Tarefas (R$)</small>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-lg-2">
+                        <div class="col-lg-3">
                             <div class="ibox float-e-margins">
                                 <div class="ibox-title">
                                     <span class="label label-primary pull-right">Hoje</span>
@@ -168,13 +169,13 @@
                                 </div>
                                 <div class="ibox-content">
                                     <h1 class="no-margins">@CrossCutting.Formatters.DecimalFormatter(Model.USRE_VL_PRODUCAO.Value)</h1>
-                                    <div class="stat-percent font-bold text-navy">@Model.USRE_PC_PRODUCAO % <i class="fa fa-level-up"></i></div>
+                                    <div class="stat-percent font-bold text-navy">@Model.USRE_PC_PRODUCAO % </div>
                                     <small>Produção (R$)</small>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-lg-2">
+                        <div class="col-lg-3">
                             <div class="ibox float-e-margins">
                                 <div class="ibox-title">
                                     <span class="label label-primary pull-right">Hoje</span>
@@ -182,7 +183,7 @@
                                 </div>
                                 <div class="ibox-content">
                                     <h1 class="no-margins">@CrossCutting.Formatters.DecimalFormatter(Model.USRE_VL_PREMIO.Value)</h1>
-                                    <div class="stat-percent font-bold text-navy"> <i class="fa fa-level-up"></i></div>
+                                    <div class="stat-percent font-bold text-navy"> </div>
                                     <small>Prêmios (R$)</small>
                                 </div>
                             </div>
@@ -190,21 +191,21 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-lg-2">
+                        <div class="col-lg-3">
                             <div class="ibox float-e-margins">
                                 <div class="ibox-title">
                                     <span class="label label-primary pull-right">Hoje</span>
                                     <h5>Avaliação Equipe</h5>
                                 </div>
                                 <div class="ibox-content">
-                                    <h1 class="no-margins">R$ @CrossCutting.Formatters.DecimalFormatter(Model.USRE_VL_AVAL_EQUIPE.Value)</h1>
-                                    <div class="stat-percent font-bold text-navy">@Model.USRE_PC_AVAL_EQUIPE % <i class="fa fa-level-up"></i></div>
+                                    <h1 class="no-margins">@CrossCutting.Formatters.DecimalFormatter(Model.USRE_VL_AVAL_EQUIPE.Value)</h1>
+                                    <div class="stat-percent font-bold text-navy">@Model.USRE_PC_AVAL_EQUIPE % </div>
                                     <small>Aval.Equipe (R$)</small>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-lg-2">
+                        <div class="col-lg-3">
                             <div class="ibox float-e-margins">
                                 <div class="ibox-title">
                                     <span class="label label-primary pull-right">Hoje</span>
@@ -212,13 +213,13 @@
                                 </div>
                                 <div class="ibox-content">
                                     <h1 class="no-margins">@CrossCutting.Formatters.DecimalFormatter(Model.USRE_VL_AVAL_PACIENTES.Value)</h1>
-                                    <div class="stat-percent font-bold text-navy">@Model.USRE_PC_AVAL_PACIENTES % <i class="fa fa-level-up"></i></div>
+                                    <div class="stat-percent font-bold text-navy">@Model.USRE_PC_AVAL_PACIENTES % </div>
                                     <small>Aval.Pacientes (R$)</small>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-lg-2">
+                        <div class="col-lg-3">
                             <div class="ibox float-e-margins">
                                 <div class="ibox-title">
                                     <span class="label label-primary pull-right">Hoje</span>
@@ -226,13 +227,13 @@
                                 </div>
                                 <div class="ibox-content">
                                     <h1 class="no-margins">@CrossCutting.Formatters.DecimalFormatter(Model.USRE_VL_CONVERSAO.Value)</h1>
-                                    <div class="stat-percent font-bold text-navy">@Model.USRE_PC_CONVERSAO % <i class="fa fa-level-up"></i></div>
+                                    <div class="stat-percent font-bold text-navy">@Model.USRE_PC_CONVERSAO % </div>
                                     <small>Conversão (R$)</small>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-lg-2">
+                        <div class="col-lg-3">
                             <div class="ibox float-e-margins">
                                 <div class="ibox-title">
                                     <span class="label label-primary pull-right">Hoje</span>
@@ -240,7 +241,7 @@
                                 </div>
                                 <div class="ibox-content">
                                     <h1 class="no-margins" style="color:green; font-weight: bold">@CrossCutting.Formatters.DecimalFormatter(Model.USRE_VL_TOTAL.Value)</h1>
-                                    <div class="stat-percent font-bold text-navy"> <i class="fa fa-level-up"></i></div>
+                                    <div class="stat-percent font-bold text-navy"> </div>
                                     <small style="color:green; font-weight: bold">TOTAL (R$)</small>
                                 </div>
                             </div>

@@ -87,22 +87,17 @@ namespace Odonto.Controllers
             }
 
             // Carrega listas
-            ViewBag.Usuario = usuario;
-            ViewBag.Contracheques = usuario.USUARIO_CONTRACHEQUE.ToList();
-            ViewBag.Remuneracao = usuario.USUARIO_REMUNERACAO.ToList();
+            USUARIO usu = baseApp.GetItemById(usuario.USUA_CD_ID);
+            ViewBag.Usuario = usu;
+            ViewBag.Contracheques = usu.USUARIO_CONTRACHEQUE.ToList();
+            ViewBag.Remuneracao = usu.USUARIO_REMUNERACAO.ToList();
 
             ViewBag.Title = "Remuneração";
-            ViewBag.Perfil = usuario.PERFIL.PERF_SG_SIGLA;
+            ViewBag.Perfil = usu.PERFIL.PERF_SG_SIGLA;
 
             // Recupera numero de usuarios do assinante
-            ViewBag.NumeroCC = usuario.USUARIO_CONTRACHEQUE.Count;
-            ViewBag.NumeroRemuneracao = usuario.USUARIO_REMUNERACAO.Count;
-
-            // Mensagem
-            if ((Int32)Session["MensRemu"] == 1)
-            {
-                ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0016", CultureInfo.CurrentCulture));
-            }
+            ViewBag.NumeroCC = usu.USUARIO_CONTRACHEQUE.Count;
+            ViewBag.NumeroRemuneracao = usu.USUARIO_REMUNERACAO.Count;
 
             // Abre view
             Session["FiltroRemu"] = null;
@@ -120,6 +115,8 @@ namespace Odonto.Controllers
             }
             Int32 idAss = (Int32)Session["IdAssinante"];
             USUARIO_CONTRACHEQUE item = baseApp.GetContrachequeById(id);
+            item.USCC_IN_VISUALIZACOES = item.USCC_IN_VISUALIZACOES + 1;
+            Int32 volta = baseApp.ValidateEditContracheque(item);
             return View(item);
         }
 
@@ -136,9 +133,29 @@ namespace Odonto.Controllers
             return View(item);
         }
 
+        public ActionResult DownloadContrachequeGeral(Int32 id)
+        {
+            // Executa a operação
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+
+            DownloadContracheque(id);
+
+            USUARIO_CONTRACHEQUE item = baseApp.GetContrachequeById(id);
+            item.USCC_IN_DOWNLOADS = item.USCC_IN_DOWNLOADS + 1;
+            Int32 volta = baseApp.ValidateEditContracheque(item);
+            return RedirectToAction("MontarTelaConsultaRemuneracao");
+        }
+
         public FileResult DownloadContracheque(Int32 id)
         {
             USUARIO_CONTRACHEQUE item = baseApp.GetContrachequeById(id);
+            item.USCC_IN_DOWNLOADS = item.USCC_IN_DOWNLOADS + 1;
+            Int32 volta = baseApp.ValidateEditContracheque(item);
+
             String arquivo = item.USCC_AQ_ARQUIVO;
             Int32 pos = arquivo.LastIndexOf("/") + 1;
             String nomeDownload = arquivo.Substring(pos);

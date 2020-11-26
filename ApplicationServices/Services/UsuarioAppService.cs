@@ -931,5 +931,19 @@ namespace ApplicationServices.Services
             List<PERFIL> lista = _usuarioService.GetAllPerfis();
             return lista;
         }
+
+        public Int32 ValidateEditContracheque(USUARIO_CONTRACHEQUE item)
+        {
+            try
+            {
+                // Persiste
+                return _usuarioService.EditContracheque(item);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
     }
 }

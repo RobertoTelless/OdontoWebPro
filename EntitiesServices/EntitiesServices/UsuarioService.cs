@@ -300,5 +300,26 @@ namespace ModelServices.EntitiesServices
         {
             return _ntcRepository.GetAllItens(idAss);
         }
+
+        public Int32 EditContracheque(USUARIO_CONTRACHEQUE item)
+        {
+            using (DbContextTransaction transaction = Db.Database.BeginTransaction(IsolationLevel.ReadCommitted))
+            {
+                try
+                {
+                    USUARIO_CONTRACHEQUE obj = _ccRepository.GetById(item.USCC_CD_ID);
+                    _ccRepository.Detach(obj);
+                    _ccRepository.Update(item);
+                    transaction.Commit();
+                    return 0;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw ex;
+                }
+            }
+        }
+
     }
 }

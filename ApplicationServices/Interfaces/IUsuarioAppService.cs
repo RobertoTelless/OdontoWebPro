@@ -46,5 +46,8 @@ namespace ApplicationServices.Interfaces
         USUARIO_CONTRACHEQUE GetContrachequeByUser(Int32 id, DateTime data);
         USUARIO_REMUNERACAO GetRemuneracaoById(Int32 id);
         USUARIO_CONTRACHEQUE GetContrachequeById(Int32 id);
+
+        Int32 ValidateEditContracheque(USUARIO_CONTRACHEQUE item);
+
     }
 }

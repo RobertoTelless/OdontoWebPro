@@ -245,7 +245,7 @@
         // If absolute URL from the remote server is provided, configure the CORS
         // header on that server.
         //
-        var url = '../Imagens/1/Usuarios/1/CC/ContraCheque_1_092020.pdf';
+        var urlpdf = '~/Imagens/1/Usuarios/1/CC/ContraCheque_1_092020.pdf';
 
         var pdfDoc = null,
                 pageNum = 1,
@@ -370,7 +370,7 @@
         /**
          * Asynchronously downloads PDF.
          */
-        PDFJS.getDocument(url).then(function (pdfDoc_) {
+        PDFJS.getDocument(urlpdf).then(function (pdfDoc_) {
             pdfDoc = pdfDoc_;
             var documentPagesNumber = pdfDoc.numPages;
             document.getElementById('page_count').textContent = '/ ' + documentPagesNumber;
