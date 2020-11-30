@@ -13,7 +13,7 @@ using System.IO;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 
-namespace SMS_Presentation.Controllers
+namespace Odonto.Controllers
 {
     public class DenteRegiaoController : Controller
     {
@@ -179,10 +179,15 @@ namespace SMS_Presentation.Controllers
                         return RedirectToAction("MontarTelaDenteRegiao");
                     }
 
+                    // Cria pastas
+                    String caminho = "/Imagens/" + "Base/Dentes/" + item.REDE_CD_ID.ToString() + "/Dentes/";
+                    Directory.CreateDirectory(Server.MapPath(caminho));
+
                     // Sucesso
                     listaMaster = new List<REGIAO_DENTE>();
                     Session["ListaDente"] = null;
-                    return RedirectToAction("EditarDente");
+                    Session["IdDente"] = item.REDE_CD_ID;
+                    return RedirectToAction("VoltarAnexoDente");
                 }
                 catch (Exception ex)
                 {
@@ -202,7 +207,7 @@ namespace SMS_Presentation.Controllers
             REGIAO_DENTE item = denApp.GetItemById(id);
             objetoAntes = item;
             Session["Dente"] = item;
-            Session["idDente"] = id;
+            Session["IdDente"] = id;
             DenteRegiaoViewModel vm = Mapper.Map<REGIAO_DENTE, DenteRegiaoViewModel>(item);
             return View(vm);
         }
@@ -314,6 +319,67 @@ namespace SMS_Presentation.Controllers
             listaMaster = new List<REGIAO_DENTE>();
             Session["ListaDente"] = null;
             return RedirectToAction("MontarTelaDenteRegiao");
+        }
+
+        [HttpPost]
+        public ActionResult UploadFotoDente(HttpPostedFileBase file)
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            if (file == null)
+            {
+                ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0019", CultureInfo.CurrentCulture));
+                return RedirectToAction("VoltarAnexoDente");
+            }
+
+            // Recupera arquivo
+            Int32 idDente = (Int32)Session["IdDente"];
+            Int32 idAss = (Int32)Session["IdAssinante"];
+
+            REGIAO_DENTE item = denApp.GetById(idDente);
+            USUARIO usu = (USUARIO)Session["UserCredentials"];
+            var fileName = Path.GetFileName(file.FileName);
+            if (fileName.Length > 100)
+            {
+                ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0024", CultureInfo.CurrentCulture));
+                return RedirectToAction("VoltarAnexoDente");
+            }
+            String caminho = "/Imagens/" + "Base/Dentes/" + item.REDE_CD_ID.ToString() + "/Fotos/";
+            String path = Path.Combine(Server.MapPath(caminho), fileName);
+
+            //Recupera tipo de arquivo
+            extensao = Path.GetExtension(fileName);
+            String a = extensao;
+
+            // Checa extensão
+            if (extensao.ToUpper() == ".JPG" || extensao.ToUpper() == ".GIF" || extensao.ToUpper() == ".PNG" || extensao.ToUpper() == ".JPEG")
+            {
+                // Salva arquivo
+                file.SaveAs(path);
+
+                // Gravar registro
+                item.REDE_AQ_FOTO = "~" + caminho + fileName;
+                objetoAntes = item;
+                Int32 volta = denApp.ValidateEdit(item, objetoAntes);
+            }
+            else
+            {
+                ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0021", CultureInfo.CurrentCulture));
+            }
+            return RedirectToAction("VoltarAnexoDente");
+        }
+
+        public ActionResult VoltarAnexoDente()
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            Int32 idDente = (Int32)Session["IdDente"];
+            return RedirectToAction("EditarDente", new { id = idDente });
         }
 
     }

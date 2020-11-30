@@ -350,6 +350,7 @@
     <Compile Include="Controllers\TarefaController.cs" />
     <Compile Include="Controllers\TelefoneController.cs" />
     <Compile Include="Controllers\TemplateController.cs" />
+    <Compile Include="Controllers\TipoProcedimentoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Extensions\HMTLHelperExtensions.cs" />
     <Compile Include="Extensions\MVCButtonExtensions.cs" />
@@ -2700,6 +2701,11 @@
     <Content Include="Views\DenteRegiao\MontarTelaDenteRegiao.cshtml" />
     <Content Include="Views\DenteRegiao\IncluirDente.cshtml" />
     <Content Include="Views\DenteRegiao\EditarDente.cshtml" />
+    <Content Include="Views\TipoProcedimento\MontarTelaTipoProcedimento.cshtml" />
+    <Content Include="Views\TipoProcedimento\VerTipoProcedimento.cshtml" />
+    <Content Include="Views\TipoProcedimento\IncluirTipoProcedimento.cshtml" />
+    <Content Include="Views\TipoProcedimento\EditarTipoProcedimento.cshtml" />
+    <Content Include="Views\TipoProcedimento\VerAnexoTipoProcedimento.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2712,9 +2718,11 @@
     <Folder Include="Imagens\1\Notificacao\1\Anexos\" />
     <Folder Include="Imagens\1\Notificacao\4\Anexos\" />
     <Folder Include="Imagens\1\Notificacao\5\Anexos\" />
+    <Folder Include="Imagens\1\Procedimentos\" />
     <Folder Include="Imagens\1\Tarefas\1\Anexos\" />
     <Folder Include="Imagens\1\Tarefas\2\Anexos\" />
     <Folder Include="Imagens\1\Usuarios\2\Anexos\" />
+    <Folder Include="Imagens\Base\Dentes\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

@@ -57,9 +57,9 @@ namespace ModelServices.EntitiesServices
             return _anexoRepository.GetItemById(id);
         }
 
-        public List<TIPO_PROCEDIMENTO> ExecuteFilter(String nome, String descricao, Int32 idAss)
+        public List<TIPO_PROCEDIMENTO> ExecuteFilter(String nome, String descricao, Int32? idFilial, Int32 idAss)
         {
-            return _baseRepository.ExecuteFilter(nome, descricao, idAss);
+            return _baseRepository.ExecuteFilter(nome, descricao, idFilial, idAss);
 
         }
 

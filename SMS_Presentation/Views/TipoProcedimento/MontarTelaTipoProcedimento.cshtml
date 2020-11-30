@@ -1,6 +1,6 @@
 ﻿@using Presentation.Extensions
 @using CrossCutting;
-@model EntitiesServices.Model.REGIAO_DENTE
+@model EntitiesServices.Model.TIPO_PROCEDIMENTO
 @{
     Layout = "~/Views/Shared/_Layout_Admin.cshtml";
 }
@@ -27,14 +27,14 @@
     </div>
 
     <div class="page-title">
-        <h3 class="title">Dentes & Regiões</h3>
+        <h3 class="title">Tipos de Procedimentos</h3>
         <br />
         <ol class="breadcrumb">
             <li>
                 <a href="@Url.Action("CarregarAdmin", "BaseAdmin")">Dashboard</a>
             </li>
             <li class="active">
-                <strong>Dentes & Regiões</strong>
+                <strong>Tipos de Procedimentos</strong>
             </li>
         </ol>
         <br />
@@ -44,10 +44,10 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <span class="label label-primary pull-right">Hoje</span>
-                    <h5>Dentes & Regiões</h5>
+                    <h5>Tipos de Procedimentos</h5>
                 </div>
                 <div class="ibox-content">
-                    <h1 class="no-margins">@ViewBag.Dentes</h1>
+                    <h1 class="no-margins">@ViewBag.Procs</h1>
                     <div class="stat-percent font-bold text-navy">45% <i class="fa fa-level-up"></i></div>
                     <small>Itens Cadastrados</small>
                 </div>
@@ -59,7 +59,73 @@
         <div class="col-lg-12 col-md-12 col-xs-12">
             <div class="col-lg-12 col-md-12 col-xs-12 ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Dentes & Regiões</h5>
+                    <h5>Filtros</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li>
+                                <a href="#">Config option 1</a>
+                            </li>
+                            <li>
+                                <a href="#">Config option 2</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>           
+            
+                @using (Html.BeginForm("FiltrarTipoProcedimento", "TipoProcedimento", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    <div class="ibox-content">
+                            <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+                                <div class="col-lg-4 col-md-4 col-xs-12">
+                                    Nome
+                                    @Html.TextBoxFor(m => m.TIPR_NM_NOME, new { @class = "form-control", autofocus = true })
+                                </div>
+                                @if (ViewBag.Perfil == "ADM")
+                                {
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        Unidade
+                                        @Html.DropDownListFor(m => m.FILI_CD_ID, (SelectList)ViewBag.Filiais, "Selecionar", new { @class = "form-control" ,  autofocus = true })                            
+                                    </div>
+                                }
+                                <div class="col-lg-5 col-md-5 col-xs-12">
+                                    Descrição
+                                    @Html.TextBoxFor(m => m.TIPR_DS_DESCRICAO, new { @class = "form-control", autofocus = true })
+                                </div>
+                            </div>
+                            <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+                                <div class="col-lg-12 col-md-12 col-xs-12">
+                                    @Html.ButtonActionSubmit(text: "Filtrar")
+                                    @Html.ButtonLinkIndex(text: "Retirar Filtro", controller: "TipoProcedimento", action: "RetirarFiltro")
+                                    @Html.ButtonLinkIndex(text: "Exibir Todos", controller: "TipoProcedimento", action: "MostrarTudo")
+                                    @if (ViewBag.Perfil == "ADM")
+                                    {
+                                        @Html.ButtonLinkIndex(text: "Novo Tipo de Procedimento", controller: "TipoProcedimento", action: "IncluirTipoProcedimento")
+                                        @Html.ButtonLinkIndex(text: "Replicar Para outra Unidade", controller: "TipoProcedimento", action: "ReplicarUnidade")
+                                    }
+                                    @Html.ButtonLinkIndex(text: "Gerar Relatório", controller: "TipoProcedimento", action: "GerarRelatorioLista")
+                                    @Html.ButtonLinkIndex(text: "Voltar", controller: "TipoProcedimento", action: "Voltar")
+                                </div>
+                            </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-xs-12 ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Tipos de Procedimentos</h5>
                     <div class="ibox-tools">
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
@@ -89,55 +155,60 @@
                         </div>
                     }
                     <div class="row">
-                        @if ((ViewBag.Listas as List<EntitiesServices.Model.REGIAO_DENTE>).Count > 0)
+                        @if ((ViewBag.Listas as List<EntitiesServices.Model.TIPO_PROCEDIMENTO>).Count > 0)
                         {
                             <table class="table table-striped table-bordered table-hover dataTables-example">
                                 <thead>
                                     <tr>
                                         <th>Nome</th>
-                                        <th></th>
+                                        <th>Unidade</th>
+                                        <th>Valor</th>
                                         <th class="td-one-action">Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var cond in (ViewBag.Listas as List<EntitiesServices.Model.REGIAO_DENTE>))
+                                    @foreach (var cond in (ViewBag.Listas as List<EntitiesServices.Model.TIPO_PROCEDIMENTO>))
                                     {
                                         <tr>
-                                            <td>@cond.REDE_NM_NOME</td>
-                                            @if (!String.IsNullOrEmpty(cond.REDE_AQ_FOTO))
-	                                        {
-                                                <td><img src="@Url.Content(cond.REDE_AQ_FOTO)" style = "width: auto; height: auto; max-height: 55px; max-width: 45px;"></td>
+                                            <td>@cond.TIPR_NM_NOME</td>
+                                            <td>@cond.FILIAL.FILI_NM_NOME</td>
+                                            @if (cond.TIPR_VL_VALOR != null)
+                                            {
+                                                <td>@CrossCutting.Formatters.DecimalFormatter(cond.TIPR_VL_VALOR.Value)</td>
                                             }
                                             else
                                             {
-                                                <td><img src="~/Images/a8.jpg" style = "width: auto; height: auto; max-height: 55px; max-width: 45px;"></td>
+                                                <td>0,00</td>
                                             }
                                             <td class="td-one-action">
-                                                @Html.TableLinkDetails(cond.REDE_CD_ID, "EditarDente", "fa-edit", "Editar/Consultar")
-                                                @if (cond.REDE_IN_ATIVO == 1)
+                                                @if (ViewBag.Perfil == "ADM")
                                                 {
-                                                    <span style="color: #337ab7; cursor:pointer;" alt="Desativar" class="tbl-link fa-lg fa fa-trash-o" onclick="ShowModalExcluir('/DenteRegiao/ExcluirDente/@cond.REDE_CD_ID)" title="Desativar"></span>
-                                                    @*@Html.TableLinkDetails(cond.CAMA_CD_ID, "ExcluirCategoriaMateria", "fa-trash-o", "Desativar")*@
+                                                    @Html.TableLinkDetails(cond.TIPR_CD_ID, "EditarTipoProcedimento", "fa-edit", "Editar")
                                                 }
                                                 else
                                                 {
-                                                    <span style="color: #337ab7; cursor:pointer;" alt="Reativar" class="tbl-link fa-lg fa fa-refresh" onclick="ShowModalReativar('/DenteRegiao/ReativarDente/@cond.REDE_CD_ID')" title="Reativar"></span>
-                                                    @*@Html.TableLinkDetails(cond.CAMA_CD_ID, "ReativarCategoriaMateria", "fa-refresh", "Reativar")*@
+                                                    @Html.TableLinkDetails(cond.TIPR_CD_ID, "VerTipoProcedimento", "fa-search", "Consultar")
                                                 }
+                                                @if (ViewBag.Perfil == "ADM")
+                                                {
+                                                    if (cond.TIPR_IN_ATIVO == 1)
+                                                    {
+                                                        <span style="color: #337ab7; cursor:pointer;" alt="Desativar" class="tbl-link fa-lg fa fa-trash-o" onclick="ShowModalExcluir('/TipoProcedimento/ExcluirTipoProcedimento/@cond.TIPR_CD_ID)" title="Desativar"></span>
+                                                        @*@Html.TableLinkDetails(cond.CAMA_CD_ID, "ExcluirCategoriaMateria", "fa-trash-o", "Desativar")*@
+                                                    }
+                                                    else
+                                                    {
+                                                        <span style="color: #337ab7; cursor:pointer;" alt="Reativar" class="tbl-link fa-lg fa fa-refresh" onclick="ShowModalReativar('/TipoProcedimento/ReativarTipoProcedimento/@cond.TIPR_CD_ID')" title="Reativar"></span>
+                                                        @*@Html.TableLinkDetails(cond.CAMA_CD_ID, "ReativarCategoriaMateria", "fa-refresh", "Reativar")*@
+                                                    }
+                                                }
+
                                             </td>
                                         </tr>
                                     }
                                 </tbody>
                             </table>
                         }
-                    </div>
-                    <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
-                        <div class="col-lg-12 col-md-12 col-xs-12">
-                            @Html.ButtonLinkIndex(text: "Exibir Todos", controller: "DenteRegiao", action: "MostrarTudoDente")
-                            @Html.ButtonLinkIndex(text: "Novo Dente/Região", controller: "DenteRegiao", action: "IncluirDente")
-                            @Html.ButtonLinkIndex(text: "Gerar Relatório", action: "GerarRelatorioLista", controller: "DenteRegiao", buttonClass: "warning demo2", routeValues:  new { id = Model.USUA_CD_ID})
-                            @Html.ButtonLinkIndex(text: "Voltar", controller: "DenteRegiao", action: "Voltar")
-                        </div>
                     </div>
                 </div>
             </div>
@@ -170,14 +241,14 @@
 
         function ShowModalExcluir(url) {
             $('#modal').find('.modal-footer').prepend('<a id="btnModal" alt="Desativar" class="btn btn-primary" href="' + url + '" target="_self" title="Desativar">Confirmar</a>');
-            $('#modal').find('.modal-body').html('Confirma exclusão de dente/região?');
+            $('#modal').find('.modal-body').html('Confirma exclusão de tipo de procedimento?');
             $('#modal').find('.modal-header').prepend('<h5 id="modalTitle" class="modal-title">Confimar Exclusão</h5>');
             $('#modal').modal('show');
         }
 
         function ShowModalReativar(url) {
             $('#modal').find('.modal-footer').prepend('<a id="btnModal" alt="Reativar" class="btn btn-primary" href="' + url + '" target="_self" title="Reativar">Confirmar</a>');
-            $('#modal').find('.modal-body').html('Confirma reativação de dente/região?');
+            $('#modal').find('.modal-body').html('Confirma reativação de tipo de procedimento?');
             $('#modal').find('.modal-header').prepend('<h5 id="modalTitle" class="modal-title">Confimar Reativação</h5>');
             $('#modal').modal('show');
         }

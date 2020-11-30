@@ -1,21 +1,21 @@
 ﻿@using Presentation.Extensions
-@model OdontoWeb.ViewModels.DenteRegiaoViewModel
+@model OdontoWeb.ViewModels.TipoProcedimentoViewModel
 @{
     Layout = "~/Views/Shared/_Layout_Admin.cshtml";
 }
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="page-title"> 
-        <h3 class="title">Dentes & Regiões</h3>
+        <h3 class="title">Tipos de Procedimentos</h3>
         <br />
         <ol class="breadcrumb">
             <li>
                 <a href="@Url.Action("CarregarAdmin", "BaseAdmin")">Dashboard</a>
             </li>
             <li>
-                <a href="@Url.Action("MontarTelaDenteRegiao", "DenteRegiao")">Dentes & Regiões</a>
+                <a href="@Url.Action("MontarTelaTipoProcedimento", "TipoProcedimento")">Tipos de Procedimentos</a>
             </li>
             <li class="active">
-                <strong>Dentes & Regiões - Inclusão</strong>
+                <strong>Tipos de Procedimentos - Inclusão</strong>
             </li>
         </ol>
         <br />
@@ -24,7 +24,7 @@
         <div class="col-lg-12 col-md-12 col-xs-12">
             <div class="col-lg-12 col-md-12 col-xs-12 ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Dentes & Regiões - Inclusão</h5>
+                    <h5>Tipos de Procedimentos - Inclusão</h5>
                     <div class="ibox-tools">
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
@@ -45,7 +45,7 @@
                         </a>
                     </div>
                 </div>
-                @using (Html.BeginForm("IncluirDente", "DenteRegiao", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", @id="pwd-container1" }))
+                @using (Html.BeginForm("IncluirTipoProcedimento", "TipoProcedimento", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", @id="pwd-container1" }))
                 {
                     <div class="ibox-content">
                         @Html.AntiForgeryToken()
@@ -59,23 +59,40 @@
                         <div class="row">
                             <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">                
                                 <div class="col-lg-4 col-md-4 col-xs-12">
-                                    @Html.HiddenFor(m => m.REDE_IN_ATIVO)
+                                    @Html.HiddenFor(m => m.TIPR_IN_ATIVO)
+                                    @if (ViewBag.Perfil != "ADM")
+                                    {
+                                        @Html.HiddenFor(m => m.FILI_CD_ID)
+                                    }
                                     Nome*
-                                    @Html.TextBoxFor(m => m.REDE_NM_NOME, new { @class = "form-control", autofocus = true })
-                                    @Html.ValidationMessageFor(m => m.REDE_NM_NOME, "",new { @style="color:red" })
+                                    @Html.TextBoxFor(m => m.TIPR_NM_NOME, new { @class = "form-control", autofocus = true })
+                                    @Html.ValidationMessageFor(m => m.TIPR_NM_NOME, "",new { @style="color:red" })
+                                </div> 
+                                @if (ViewBag.Perfil == "ADM")
+                                {
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        Unidade*
+                                        @Html.DropDownListFor(m => m.FILI_CD_ID, (SelectList)ViewBag.Filiais, "Selecionar", new { @class = "form-control", autofocus = true })                            
+                                        @Html.ValidationMessageFor(m => m.FILI_CD_ID, "",new { @style="color:red" })
+                                    </div>
+                                }
+                                <div class="col-lg-2 col-md-2 col-xs-12">
+                                    Valor (R$)
+                                    @Html.TextBoxFor(m => m.TIPR_VL_VALOR, new { @class = "form-control", autofocus = true })
+                                    @Html.ValidationMessageFor(m => m.TIPR_VL_VALOR, "",new { @style="color:red" })
                                 </div>
                             </div>
-                            <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">               
+                            <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">                
                                 <div class="col-lg-12 col-md-12 col-xs-12">
-                                    Descrição*
-                                    @Html.TextBoxFor(m => m.REDE_DS_DESCRICAO, new { @class = "form-control", autofocus = true })
-                                    @Html.ValidationMessageFor(m => m.REDE_DS_DESCRICAO, "",new { @style="color:red" })
+                                    Descrição
+                                    @Html.TextAreaFor(m => m.TIPR_DS_DESCRICAO, new { @class = "form-control", style = "width: 100%; height: 100px;", autofocus = true})
+                                    @Html.ValidationMessageFor(m => m.TIPR_DS_DESCRICAO, "",new { @style="color:red" })
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             @Html.ButtonActionSubmit(text: "Confirma Inclusão", htmlAttributes: new { id = "basictoast" })
-                            @Html.ButtonLinkIndex(text: "Cancelar", action: "VoltarBaseDente", controller: "DenteRegiao")
+                            @Html.ButtonLinkIndex(text: "Cancelar", action: "VoltarBaseTipoProcedimento", controller: "TipoProcedimento")
                         </div>
                     </div>
                 }

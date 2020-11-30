@@ -19,7 +19,7 @@ namespace ApplicationServices.Interfaces
         TIPO_PROCEDIMENTO GetItemById(Int32 id);
         List<TIPO_PROCEDIMENTO> GetAllItens(Int32 idAss);
         List<TIPO_PROCEDIMENTO> GetAllItensAdm(Int32 idAss);
-        Int32 ExecuteFilter(String nome, String descricao, Int32 idAss, out List<TIPO_PROCEDIMENTO> objeto);
+        Int32 ExecuteFilter(String nome, String descricao, Int32? idFilial, Int32 idAss, out List<TIPO_PROCEDIMENTO> objeto);
         TIPO_PROCEDIMENTO_ANEXO GetAnexoById(Int32 id);
     }
 }

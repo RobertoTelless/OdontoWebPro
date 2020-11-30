@@ -439,6 +439,24 @@ namespace SMS_Presentation.App_Start {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Procedimento já cadastrado.
+        /// </summary>
+        internal static string M0045 {
+            get {
+                return ResourceManager.GetString("M0045", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Impossível excluir esse Tipo de Procedimento. Existem registros vinculados a ele.
+        /// </summary>
+        internal static string M0046 {
+            get {
+                return ResourceManager.GetString("M0046", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a A Senha não pode ficar em branco.
         /// </summary>
         internal static string M0073 {

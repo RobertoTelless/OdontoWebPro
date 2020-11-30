@@ -52,7 +52,7 @@ namespace ApplicationServices.Services
             return lista;
         }
 
-        public Int32 ExecuteFilter(String nome, String descricao, Int32 idAss, out List<TIPO_PROCEDIMENTO> objeto)
+        public Int32 ExecuteFilter(String nome, String descricao, Int32? idFilial, Int32 idAss, out List<TIPO_PROCEDIMENTO> objeto)
         {
             try
             {
@@ -60,7 +60,7 @@ namespace ApplicationServices.Services
                 Int32 volta = 0;
 
                 // Processa filtro
-                objeto = _baseService.ExecuteFilter(nome, descricao, idAss);
+                objeto = _baseService.ExecuteFilter(nome, descricao, idFilial, idAss);
                 if (objeto.Count == 0)
                 {
                     volta = 1;

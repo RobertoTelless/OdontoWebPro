@@ -43,7 +43,7 @@ namespace DataServices.Repositories
             return query.ToList();
         }
 
-        public List<TIPO_PROCEDIMENTO> ExecuteFilter(String nome, String descricao, Int32 idAss)
+        public List<TIPO_PROCEDIMENTO> ExecuteFilter(String nome, String descricao, Int32? idFilial, Int32 idAss)
         {
             List<TIPO_PROCEDIMENTO> lista = new List<TIPO_PROCEDIMENTO>();
             IQueryable<TIPO_PROCEDIMENTO> query = Db.TIPO_PROCEDIMENTO;
@@ -54,6 +54,10 @@ namespace DataServices.Repositories
             if (!String.IsNullOrEmpty(descricao))
             {
                 query = query.Where(p => p.TIPR_DS_DESCRICAO.Contains(descricao));
+            }
+            if (idFilial != null)
+            {
+                query = query.Where(p => p.FILI_CD_ID == idFilial);
             }
             if (query != null)
             {

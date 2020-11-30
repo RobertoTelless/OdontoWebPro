@@ -243,6 +243,12 @@
   <data name="M0044" xml:space="preserve">
     <value>Dente/Região já cadastrado</value>
   </data>
+  <data name="M0045" xml:space="preserve">
+    <value>Procedimento já cadastrado</value>
+  </data>
+  <data name="M0046" xml:space="preserve">
+    <value>Impossível excluir esse Tipo de Procedimento. Existem registros vinculados a ele</value>
+  </data>
   <data name="M0073" xml:space="preserve">
     <value>A Senha não pode ficar em branco</value>
   </data>

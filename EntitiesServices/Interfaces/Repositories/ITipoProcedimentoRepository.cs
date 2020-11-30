@@ -13,6 +13,6 @@ namespace ModelServices.Interfaces.Repositories
         List<TIPO_PROCEDIMENTO> GetAllItens(Int32 idAss);
         List<TIPO_PROCEDIMENTO> GetAllItensAdm(Int32 idAss);
         TIPO_PROCEDIMENTO GetItemById(Int32 id);
-        List<TIPO_PROCEDIMENTO> ExecuteFilter(String nome, String descricao, Int32 idAss);
+        List<TIPO_PROCEDIMENTO> ExecuteFilter(String nome, String descricao, Int32? idFilial, Int32 idAss);
     }
 }
