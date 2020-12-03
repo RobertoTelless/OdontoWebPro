@@ -47,6 +47,7 @@ namespace ApplicationServices.Services
 
                 // Completa objeto
                 item.REDE_IN_ATIVO = 1;
+                item.REDE_AQ_FOTO = "~/Images/dentebase.jpeg";
 
                 // Monta Log
                 LOG log = new LOG

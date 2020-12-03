@@ -31,7 +31,7 @@ namespace DataServices.Repositories
         public List<FILIAL> GetAllItens(Int32 idMatriz)
         {
             IQueryable<FILIAL> query = Db.FILIAL.Where(p => p.FILI_IN_ATIVO == 1);
-            query = query.Where(p => p.ASSI_CD_ID == idMatriz);
+            query = query.Where(p => p.MATR_CD_ID == idMatriz);
             return query.ToList();
         }
 

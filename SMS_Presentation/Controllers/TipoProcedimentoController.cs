@@ -227,7 +227,7 @@ namespace Odonto.Controllers
             }
 
             // Prepara listas
-            Int32 idMatriz = (Int32)Session["IdMatriz"];
+            Int32 idMatriz = ((MATRIZ)Session["Matriz"]).MATR_CD_ID;
             ViewBag.Filiais = new SelectList(filApp.GetAllItens(idMatriz), "FILI_CD_ID", "FILI_NM_NOME");
             ViewBag.Perfil = usuario.PERFIL.PERF_SG_SIGLA;
 
@@ -376,7 +376,7 @@ namespace Odonto.Controllers
             }
         }
 
-        public ActionResult VoltarBase()
+        public ActionResult VoltarBaseTipoProcedimento()
         {
             if ((String)Session["Ativa"] == null)
             {
@@ -507,9 +507,17 @@ namespace Odonto.Controllers
             {
                 contentType = "image/jpg";
             }
+            else if (arquivo.Contains(".jpeg"))
+            {
+                contentType = "image/jpg";
+            }
             else if (arquivo.Contains(".png"))
             {
                 contentType = "image/png";
+            }
+            else
+            {
+                contentType = "image/jpg";
             }
             return File(arquivo, contentType, nomeDownload);
         }

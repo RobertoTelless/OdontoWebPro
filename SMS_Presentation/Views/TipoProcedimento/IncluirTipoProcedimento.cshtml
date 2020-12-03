@@ -60,6 +60,7 @@
                             <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">                
                                 <div class="col-lg-4 col-md-4 col-xs-12">
                                     @Html.HiddenFor(m => m.TIPR_IN_ATIVO)
+                                    @Html.HiddenFor(m => m.ASSI_CD_ID)
                                     @if (ViewBag.Perfil != "ADM")
                                     {
                                         @Html.HiddenFor(m => m.FILI_CD_ID)

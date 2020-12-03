@@ -180,8 +180,8 @@ namespace Odonto.Controllers
                     }
 
                     // Cria pastas
-                    String caminho = "/Imagens/" + "Base/Dentes/" + item.REDE_CD_ID.ToString() + "/Dentes/";
-                    Directory.CreateDirectory(Server.MapPath(caminho));
+                    //String caminho = "/Imagens/Base/Dentes/" + item.REDE_CD_ID.ToString() + "/Dentes/";
+                    //Directory.CreateDirectory(Server.MapPath(caminho));
 
                     // Sucesso
                     listaMaster = new List<REGIAO_DENTE>();
@@ -230,7 +230,7 @@ namespace Odonto.Controllers
                     // Sucesso
                     listaMaster = new List<REGIAO_DENTE>();
                     Session["ListaDente"] = null;
-                    return RedirectToAction("MontarTelaDenteRegião");
+                    return RedirectToAction("MontarTelaDenteRegiao");
                 }
                 catch (Exception ex)
                 {
@@ -346,7 +346,7 @@ namespace Odonto.Controllers
                 ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0024", CultureInfo.CurrentCulture));
                 return RedirectToAction("VoltarAnexoDente");
             }
-            String caminho = "/Imagens/" + "Base/Dentes/" + item.REDE_CD_ID.ToString() + "/Fotos/";
+            String caminho = "/Imagens/Base/Dentes/";
             String path = Path.Combine(Server.MapPath(caminho), fileName);
 
             //Recupera tipo de arquivo
