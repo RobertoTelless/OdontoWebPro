@@ -734,12 +734,16 @@
     <Content Include="Imagens\1\Noticias\1\Fotos\pexels-celular-04072020083212824.jpeg" />
     <Content Include="Imagens\1\Noticias\6\Fotos\WhatsApp Image 2020-09-01 at 17.03.47.jpeg" />
     <Content Include="Imagens\1\Noticias\7\Fotos\elcizf5w0auqxmx.jpeg" />
+    <Content Include="Imagens\1\Procedimentos\1\Anexos\proc3 canal.jpeg" />
+    <Content Include="Imagens\1\Procedimentos\2\Anexos\proc2.jpeg" />
     <Content Include="Imagens\1\Produto\1\Foto\PapelA4.jpg" />
     <Content Include="Imagens\1\Produto\3\Foto\colgate.jpg" />
     <Content Include="Imagens\1\Produto\4\Foto\Algodao.jpg" />
     <Content Include="Imagens\1\Usuarios\1\Anexos\dentista.jpg" />
     <Content Include="Imagens\1\Usuarios\1\Fotos\FotoOficial.jpg" />
     <Content Include="Imagens\1\Usuarios\2\Fotos\Fernando.jpg" />
+    <Content Include="Imagens\Base\Dentes\dente.jpeg" />
+    <Content Include="Imagens\Base\Dentes\dente3.jpeg" />
     <Content Include="Imagens\Base\FotoBase.jpg" />
     <Content Include="Images\1.jpg" />
     <Content Include="Images\1.png" />
@@ -2719,11 +2723,11 @@
     <Folder Include="Imagens\1\Notificacao\1\Anexos\" />
     <Folder Include="Imagens\1\Notificacao\4\Anexos\" />
     <Folder Include="Imagens\1\Notificacao\5\Anexos\" />
-    <Folder Include="Imagens\1\Procedimentos\" />
     <Folder Include="Imagens\1\Tarefas\1\Anexos\" />
     <Folder Include="Imagens\1\Tarefas\2\Anexos\" />
     <Folder Include="Imagens\1\Usuarios\2\Anexos\" />
-    <Folder Include="Imagens\Base\Dentes\" />
+    <Folder Include="Imagens\Base\Dentes\1\Dentes\" />
+    <Folder Include="Imagens\Base\Dentes\2\Dentes\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
