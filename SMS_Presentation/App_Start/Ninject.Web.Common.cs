@@ -185,6 +185,9 @@ namespace Presentation.Start
             kernel.Bind<ITipoProcedimentoAnexoRepository>().To<TipoProcedimentoAnexoRepository>();
             kernel.Bind<IPacienteRepository>().To<PacienteRepository>();
             kernel.Bind<IPacienteAnexoRepository>().To<PacienteAnexoRepository>();
+            kernel.Bind<IPacienteAcompanhamentoRepository>().To<PacienteAcompanhamentoRepository>();
+            kernel.Bind<IPacientePrescricaoRepository>().To<PacientePrescricaoRepository>();
+            kernel.Bind<IPacienteRecomendacaoRepository>().To<PacienteRecomendacaoRepository>();
 
         }
     }

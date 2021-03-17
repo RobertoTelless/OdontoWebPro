@@ -25,5 +25,15 @@ namespace ApplicationServices.Interfaces
         UF GetUFBySigla(String sigla);
         PACIENTE_ANEXO GetAnexoById(Int32 id);
         Int32 ExecuteFilter(Int32? filialId, String nome, String cpf, String telefone, String celular, String cidade, DateTime dataNasc, String email, Int32? idAss, out List<PACIENTE> objeto);
+
+        PACIENTE_ACOMPANHAMENTO GetAcompanhamentoById(Int32 id);
+
+        PACIENTE_PRESCRICAO GetPrescricaoById(Int32 id);
+        Int32 EditPrescricao(PACIENTE_PRESCRICAO item);
+        Int32 CreatePrescricao(PACIENTE_PRESCRICAO item);
+
+        PACIENTE_RECOMENDACAO GetRecomendacaoById(Int32 id);
+        Int32 EditRecomendacao(PACIENTE_RECOMENDACAO item);
+        Int32 CreateRecomendacao(PACIENTE_RECOMENDACAO item);
     }
 }

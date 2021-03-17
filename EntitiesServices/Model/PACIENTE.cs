@@ -50,6 +50,7 @@ namespace EntitiesServices.Model
         public Nullable<System.DateTime> PACI_DT_CADASTRO { get; set; }
         public Nullable<System.DateTime> PACI_DT_NASCIMENTO { get; set; }
         public string PACI_AQ_FOTO { get; set; }
+        public string PACI_TX_OBSERVACOES { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ANAMNESE> ANAMNESE { get; set; }

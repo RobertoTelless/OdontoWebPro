@@ -75,6 +75,12 @@ namespace ApplicationServices.Services
             return lista;
         }
 
+        public PACIENTE_ACOMPANHAMENTO GetAcompanhamentoById(Int32 id)
+        {
+            PACIENTE_ACOMPANHAMENTO lista = _baseService.GetAcompanhamentoById(id);
+            return lista;
+        }
+
         public Int32 ExecuteFilter(Int32? filialId, String nome, String cpf, String telefone, String celular, String cidade, DateTime dataNasc, String email, Int32? idAss, out List<PACIENTE> objeto)
         {
             try
@@ -233,5 +239,75 @@ namespace ApplicationServices.Services
                 throw;
             }
         }
+
+        public PACIENTE_PRESCRICAO GetPrescricaoById(Int32 id)
+        {
+            PACIENTE_PRESCRICAO lista = _baseService.GetPrescricaoById(id);
+            return lista;
+        }
+
+        public Int32 EditPrescricao(PACIENTE_PRESCRICAO item)
+        {
+            try
+            {
+                // Persiste
+                return _baseService.EditPrescricao(item);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public Int32 CreatePrescricao(PACIENTE_PRESCRICAO item)
+        {
+            try
+            {
+                // Persiste
+                item.PRES_IN_ATIVO = 1;
+                Int32 volta = _baseService.CreatePrescricao(item);
+                return volta;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public PACIENTE_RECOMENDACAO GetRecomendacaoById(Int32 id)
+        {
+            PACIENTE_RECOMENDACAO lista = _baseService.GetRecomendacaoById(id);
+            return lista;
+        }
+
+        public Int32 EditRecomendacao(PACIENTE_RECOMENDACAO item)
+        {
+            try
+            {
+                // Persiste
+                return _baseService.EditRecomendacao(item);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public Int32 CreateRecomendacao(PACIENTE_RECOMENDACAO item)
+        {
+            try
+            {
+                // Persiste
+                item.RECO_IN_ATIVO = 1;
+                Int32 volta = _baseService.CreateRecomendacao(item);
+                return volta;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+
     }
 }

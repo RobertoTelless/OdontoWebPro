@@ -371,6 +371,9 @@
     <Compile Include="ViewModels\ContaBancariaContatoViewModel.cs" />
     <Compile Include="ViewModels\ContaBancariaLancamentoViewModel.cs" />
     <Compile Include="ViewModels\ContaBancariaViewModel.cs" />
+    <Compile Include="ViewModels\PacienteRecomendacaoViewModel.cs" />
+    <Compile Include="ViewModels\PacientePrescricaoViewModel.cs" />
+    <Compile Include="ViewModels\PacienteAcompanhamentoViewModel.cs" />
     <Compile Include="ViewModels\PacienteViewModel.cs" />
     <Compile Include="ViewModels\FilialViewModel.cs" />
     <Compile Include="ViewModels\GrupoViewModel.cs" />
@@ -2719,6 +2722,11 @@
     <Content Include="Views\Paciente\VerAnexoPaciente.cshtml" />
     <Content Include="Views\Paciente\VerCardsPaciente.cshtml" />
     <Content Include="Views\Paciente\VerPaciente.cshtml" />
+    <Content Include="Views\Paciente\EditarPrescricao.cshtml" />
+    <Content Include="Views\Paciente\IncluirPrescricao.cshtml" />
+    <Content Include="Views\Paciente\EditarRecomendacao.cshtml" />
+    <Content Include="Views\Paciente\IncluirRecomendacao.cshtml" />
+    <Content Include="Views\Paciente\IncluirAcompanhamento.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

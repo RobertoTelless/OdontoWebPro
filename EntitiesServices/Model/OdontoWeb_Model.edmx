@@ -531,6 +531,7 @@
           <Property Name="PACI_IN_ATIVO" Type="int" />
           <Property Name="PACI_DT_CADASTRO" Type="date" />
           <Property Name="PACI_DT_NASCIMENTO" Type="date" />
+          <Property Name="PACI_TX_OBSERVACOES" Type="text" />
         </EntityType>
         <EntityType Name="PACIENTE_ACOMPANHAMENTO">
           <Key>
@@ -6007,6 +6008,7 @@
           <NavigationProperty Name="PACIENTE_ACOMPANHAMENTO" Relationship="OdontoWeb_Model.FK_PACIE_NTE_ACOMPANHAMENTO_PACIENTE1" FromRole="PACIENTE" ToRole="PACIENTE_ACOMPANHAMENTO" />
           <NavigationProperty Name="PACIENTE_PRESCRICAO" Relationship="OdontoWeb_Model.FK_PRESCRICAO_PACIENTE1" FromRole="PACIENTE" ToRole="PACIENTE_PRESCRICAO" />
           <NavigationProperty Name="PACIENTE_RECOMENDACAO" Relationship="OdontoWeb_Model.FK_RECOMENDACAO_PACIENTE1" FromRole="PACIENTE" ToRole="PACIENTE_RECOMENDACAO" />
+          <Property Name="PACI_TX_OBSERVACOES" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="PACIENTE_ANEXO">
           <Key>
@@ -7404,6 +7406,7 @@
           <EntitySetMapping Name="PACIENTE">
             <EntityTypeMapping TypeName="OdontoWeb_Model.PACIENTE">
               <MappingFragment StoreEntitySet="PACIENTE">
+                <ScalarProperty Name="PACI_TX_OBSERVACOES" ColumnName="PACI_TX_OBSERVACOES" />
                 <ScalarProperty Name="PACI_AQ_FOTO" ColumnName="PACI_AQ_FOTO" />
                 <ScalarProperty Name="PACI_DT_NASCIMENTO" ColumnName="PACI_DT_NASCIMENTO" />
                 <ScalarProperty Name="PACI_DT_CADASTRO" ColumnName="PACI_DT_CADASTRO" />

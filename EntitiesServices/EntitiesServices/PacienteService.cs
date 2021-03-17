@@ -23,15 +23,21 @@ namespace ModelServices.EntitiesServices
         private readonly IFilialRepository _filialRepository;
         private readonly IPacienteAnexoRepository _anexoRepository;
         private readonly IUFRepository _ufRepository;
+        private readonly IPacienteAcompanhamentoRepository _paRepository;
+        private readonly IPacientePrescricaoRepository _ppRepository;
+        private readonly IPacienteRecomendacaoRepository _prRepository;
         protected Odonto_DBEntities Db = new Odonto_DBEntities();
 
-        public PacienteService(IPacienteRepository baseRepository, ILogRepository logRepository, IFilialRepository filialRepository, IPacienteAnexoRepository anexoRepository, IUFRepository ufRepository) : base(baseRepository)
+        public PacienteService(IPacienteRepository baseRepository, ILogRepository logRepository, IFilialRepository filialRepository, IPacienteAnexoRepository anexoRepository, IUFRepository ufRepository, IPacienteAcompanhamentoRepository paRepository, IPacientePrescricaoRepository ppRepository, IPacienteRecomendacaoRepository prRepository) : base(baseRepository)
         {
             _baseRepository = baseRepository;
             _logRepository = logRepository;
             _filialRepository = filialRepository;
             _anexoRepository = anexoRepository;
             _ufRepository = ufRepository;
+            _paRepository = paRepository;
+            _ppRepository = ppRepository;
+            _prRepository = prRepository;
         }
 
         public PACIENTE CheckExist(PACIENTE conta, Int32? idAss)
@@ -81,6 +87,11 @@ namespace ModelServices.EntitiesServices
         public PACIENTE_ANEXO GetAnexoById(Int32 id)
         {
             return _anexoRepository.GetItemById(id);
+        }
+
+        public PACIENTE_ACOMPANHAMENTO GetAcompanhamentoById(Int32 id)
+        {
+            return _paRepository.GetItemById(id);
         }
 
         public List<PACIENTE> ExecuteFilter(Int32? filialId, String nome, String cpf, String telefone, String celular, String cidade, DateTime dataNasc, String email, Int32? idAss)
@@ -186,5 +197,92 @@ namespace ModelServices.EntitiesServices
                 }
             }
         }
+
+        public PACIENTE_PRESCRICAO GetPrescricaoById(Int32 id)
+        {
+            return _ppRepository.GetItemById(id);
+        }
+
+        public Int32 EditPrescricao(PACIENTE_PRESCRICAO item)
+        {
+            using (DbContextTransaction transaction = Db.Database.BeginTransaction(IsolationLevel.ReadCommitted))
+            {
+                try
+                {
+                    PACIENTE_PRESCRICAO obj = _ppRepository.GetById(item.PRES_CD_ID);
+                    _ppRepository.Detach(obj);
+                    _ppRepository.Update(item);
+                    transaction.Commit();
+                    return 0;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw ex;
+                }
+            }
+        }
+
+        public Int32 CreatePrescricao(PACIENTE_PRESCRICAO item)
+        {
+            using (DbContextTransaction transaction = Db.Database.BeginTransaction(IsolationLevel.ReadCommitted))
+            {
+                try
+                {
+                    _ppRepository.Add(item);
+                    transaction.Commit();
+                    return 0;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw ex;
+                }
+            }
+        }
+
+        public PACIENTE_RECOMENDACAO GetRecomendacaoById(Int32 id)
+        {
+            return _prRepository.GetItemById(id);
+        }
+
+        public Int32 EditRecomendacao(PACIENTE_RECOMENDACAO item)
+        {
+            using (DbContextTransaction transaction = Db.Database.BeginTransaction(IsolationLevel.ReadCommitted))
+            {
+                try
+                {
+                    PACIENTE_RECOMENDACAO obj = _prRepository.GetById(item.RECO_CD_ID);
+                    _prRepository.Detach(obj);
+                    _prRepository.Update(item);
+                    transaction.Commit();
+                    return 0;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw ex;
+                }
+            }
+        }
+
+        public Int32 CreateRecomendacao(PACIENTE_RECOMENDACAO item)
+        {
+            using (DbContextTransaction transaction = Db.Database.BeginTransaction(IsolationLevel.ReadCommitted))
+            {
+                try
+                {
+                    _prRepository.Add(item);
+                    transaction.Commit();
+                    return 0;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw ex;
+                }
+            }
+        }
+
     }
 }

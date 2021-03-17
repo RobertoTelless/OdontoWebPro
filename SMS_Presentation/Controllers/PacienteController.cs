@@ -1592,8 +1592,449 @@ namespace Odonto.Controllers
         //    return RedirectToAction("VoltarAnexoCliente");
         //}
 
+        [HttpGet]
+        public ActionResult EditarPrescricao(Int32 id)
+        {
+            // Verifica se tem usuario logado
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            USUARIO usuario = new USUARIO();
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
 
+                // Verfifica permissão
+                if (usuario.PERFIL.PERF_SG_SIGLA == "USU")
+                {
+                    Session["MensPaciente"] = 2;
+                    return RedirectToAction("VoltarAnexoPaciente", "Paciente");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
 
+            // Prepara view
+            PACIENTE_PRESCRICAO item = baseApp.GetPrescricaoById(id);
+            PacientePrescricaoViewModel vm = Mapper.Map<PACIENTE_PRESCRICAO, PacientePrescricaoViewModel>(item);
+            return View(vm);
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditarPrescricao(PacientePrescricaoViewModel vm)
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    // Executa a operação
+                    USUARIO usuario = (USUARIO)Session["UserCredentials"];
+                    PACIENTE_PRESCRICAO item = Mapper.Map<PacientePrescricaoViewModel, PACIENTE_PRESCRICAO>(vm);
+                    Int32 volta = baseApp.EditPrescricao(item);
+
+                    // Verifica retorno
+                    return RedirectToAction("VoltarAnexoPaciente");
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = ex.Message;
+                    return View(vm);
+                }
+            }
+            else
+            {
+                return View(vm);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult ExcluirPrescricao(Int32 id)
+        {
+            // Verifica se tem usuario logado
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            USUARIO usuario = new USUARIO();
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
+
+                // Verfifica permissão
+                if (usuario.PERFIL.PERF_SG_SIGLA == "USU")
+                {
+                    Session["MensPaciente"] = 2;
+                    return RedirectToAction("VoltarAnexoPaciente", "Paciente");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            PACIENTE_PRESCRICAO item = baseApp.GetPrescricaoById(id);
+            item.PRES_IN_ATIVO = 0;
+            Int32 volta = baseApp.EditPrescricao(item);
+            return RedirectToAction("VoltarAnexoPaciente");
+        }
+
+        [HttpGet]
+        public ActionResult ReativarPrescricao(Int32 id)
+        {
+            // Verifica se tem usuario logado
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            USUARIO usuario = new USUARIO();
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
+
+                // Verfifica permissão
+                if (usuario.PERFIL.PERF_SG_SIGLA == "USU")
+                {
+                    Session["MensPaciente"] = 2;
+                    return RedirectToAction("VoltarAnexoPaciente", "Paciente");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            PACIENTE_PRESCRICAO item = baseApp.GetPrescricaoById(id);
+            item.PRES_IN_ATIVO = 1;
+            Int32 volta = baseApp.EditPrescricao(item);
+            return RedirectToAction("VoltarAnexoPaciente");
+        }
+
+        [HttpGet]
+        public ActionResult IncluirPrescricao()
+        {
+            // Verifica se tem usuario logado
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            USUARIO usuario = new USUARIO();
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
+
+                // Verfifica permissão
+                if (usuario.PERFIL.PERF_SG_SIGLA == "USU")
+                {
+                    Session["MensPaciente"] = 2;
+                    return RedirectToAction("VoltarAnexoPaciente", "Paciente");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+
+            // Prepara view
+            PACIENTE_PRESCRICAO item = new PACIENTE_PRESCRICAO();
+            PacientePrescricaoViewModel vm = Mapper.Map<PACIENTE_PRESCRICAO, PacientePrescricaoViewModel>(item);
+            vm.PACI_CD_ID = (Int32)Session["IdVolta"]; ;
+            vm.PRES_IN_ATIVO = 1;
+            vm.PRES_DT_DATA = DateTime.Today.Date;
+            return View(vm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult IncluirPrescricao(PacientePrescricaoViewModel vm)
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    // Executa a operação
+                    USUARIO usuario = (USUARIO)Session["UserCredentials"];
+                    PACIENTE_PRESCRICAO item = Mapper.Map<PacientePrescricaoViewModel, PACIENTE_PRESCRICAO>(vm);
+                    Int32 volta = baseApp.CreatePrescricao(item);
+
+                    // Verifica retorno
+                    return RedirectToAction("VoltarAnexoPaciente");
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = ex.Message;
+                    return View(vm);
+                }
+            }
+            else
+            {
+                return View(vm);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult EditarRecomendacao(Int32 id)
+        {
+            // Verifica se tem usuario logado
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            USUARIO usuario = new USUARIO();
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
+
+                // Verfifica permissão
+                if (usuario.PERFIL.PERF_SG_SIGLA == "USU")
+                {
+                    Session["MensPaciente"] = 2;
+                    return RedirectToAction("VoltarAnexoPaciente", "Paciente");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+
+            // Prepara view
+            PACIENTE_RECOMENDACAO item = baseApp.GetRecomendacaoById(id);
+            PacienteRecomendacaoViewModel vm = Mapper.Map<PACIENTE_RECOMENDACAO, PacienteRecomendacaoViewModel>(item);
+            return View(vm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditarRecomendacao(PacienteRecomendacaoViewModel vm)
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    // Executa a operação
+                    USUARIO usuario = (USUARIO)Session["UserCredentials"];
+                    PACIENTE_RECOMENDACAO item = Mapper.Map<PacienteRecomendacaoViewModel, PACIENTE_RECOMENDACAO>(vm);
+                    Int32 volta = baseApp.EditRecomendacao(item);
+
+                    // Verifica retorno
+                    return RedirectToAction("VoltarAnexoPaciente");
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = ex.Message;
+                    return View(vm);
+                }
+            }
+            else
+            {
+                return View(vm);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult ExcluirRecomendacao(Int32 id)
+        {
+            // Verifica se tem usuario logado
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            USUARIO usuario = new USUARIO();
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
+
+                // Verfifica permissão
+                if (usuario.PERFIL.PERF_SG_SIGLA == "USU")
+                {
+                    Session["MensPaciente"] = 2;
+                    return RedirectToAction("VoltarAnexoPaciente", "Paciente");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            PACIENTE_RECOMENDACAO item = baseApp.GetRecomendacaoById(id);
+            item.RECO_IN_ATIVO = 0;
+            Int32 volta = baseApp.EditRecomendacao(item);
+            return RedirectToAction("VoltarAnexoPaciente");
+        }
+
+        [HttpGet]
+        public ActionResult ReativarRecomendacao(Int32 id)
+        {
+            // Verifica se tem usuario logado
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            USUARIO usuario = new USUARIO();
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
+
+                // Verfifica permissão
+                if (usuario.PERFIL.PERF_SG_SIGLA == "USU")
+                {
+                    Session["MensPaciente"] = 2;
+                    return RedirectToAction("VoltarAnexoPaciente", "Paciente");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            PACIENTE_RECOMENDACAO item = baseApp.GetRecomendacaoById(id);
+            item.RECO_IN_ATIVO = 1;
+            Int32 volta = baseApp.EditRecomendacao(item);
+            return RedirectToAction("VoltarAnexoPaciente");
+        }
+
+        [HttpGet]
+        public ActionResult IncluirRecomendacao()
+        {
+            // Verifica se tem usuario logado
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            USUARIO usuario = new USUARIO();
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
+
+                // Verfifica permissão
+                if (usuario.PERFIL.PERF_SG_SIGLA == "USU")
+                {
+                    Session["MensPaciente"] = 2;
+                    return RedirectToAction("VoltarAnexoPaciente", "Paciente");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+
+            // Prepara view
+            PACIENTE_RECOMENDACAO item = new PACIENTE_RECOMENDACAO();
+            PacienteRecomendacaoViewModel vm = Mapper.Map<PACIENTE_RECOMENDACAO, PacienteRecomendacaoViewModel>(item);
+            vm.PACI_CD_ID = (Int32)Session["IdVolta"]; ;
+            vm.RECO_IN_ATIVO = 1;
+            vm.RECO_DT_DATA = DateTime.Today.Date;
+            return View(vm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult IncluirRecomendacao(PacienteRecomendacaoViewModel vm)
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    // Executa a operação
+                    USUARIO usuario = (USUARIO)Session["UserCredentials"];
+                    PACIENTE_RECOMENDACAO item = Mapper.Map<PacienteRecomendacaoViewModel, PACIENTE_RECOMENDACAO>(vm);
+                    Int32 volta = baseApp.CreateRecomendacao(item);
+
+                    // Verifica retorno
+                    return RedirectToAction("VoltarAnexoPaciente");
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = ex.Message;
+                    return View(vm);
+                }
+            }
+            else
+            {
+                return View(vm);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult IncluirAcompanhamento()
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 id = (Int32)Session["IdVolta"];
+            PACIENTE item = baseApp.GetItemById(id);
+            USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
+            PACIENTE_ACOMPANHAMENTO coment = new PACIENTE_ACOMPANHAMENTO();
+            PacienteAcompanhamentoViewModel vm = Mapper.Map<PACIENTE_ACOMPANHAMENTO, PacienteAcompanhamentoViewModel>(coment);
+            vm.PAAC_DT_DATA = DateTime.Today;
+            vm.PAAC_IN_ATIVO = 1;
+            vm.PACI_CD_ID = item.PACI_CD_ID;
+            vm.USUARIO = usuarioLogado;
+            vm.USUA_CD_ID = usuarioLogado.USUA_CD_ID;
+            return View(vm);
+        }
+
+        [HttpPost]
+        public ActionResult IncluirAcompanhamento(PacienteAcompanhamentoViewModel vm)
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idNot = (Int32)Session["IdVolta"];
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    // Executa a operação
+                    PACIENTE_ACOMPANHAMENTO item = Mapper.Map<PacienteAcompanhamentoViewModel, PACIENTE_ACOMPANHAMENTO>(vm);
+                    USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
+                    PACIENTE not = baseApp.GetItemById(idNot);
+
+                    item.USUARIO = null;
+                    not.PACIENTE_ACOMPANHAMENTO.Add(item);
+                    objetoAntes = not;
+                    Int32 volta = baseApp.ValidateEdit(not, objetoAntes);
+
+                    // Verifica retorno
+
+                    // Sucesso
+                    return RedirectToAction("VoltarAnexoPaciente");
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = ex.Message;
+                    return View(vm);
+                }
+            }
+            else
+            {
+                return View(vm);
+            }
+        }
     }
 }

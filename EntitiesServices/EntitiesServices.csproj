@@ -261,6 +261,9 @@
     <Compile Include="Interfaces\Repositories\INoticiaRepository.cs" />
     <Compile Include="Interfaces\Repositories\INoticiaTagRepository.cs" />
     <Compile Include="Interfaces\Repositories\IDenteRegiaoRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IPacienteAcompanhamentoRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IPacienteRecomendacaoRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IPacientePrescricaoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IPacienteRepository.cs" />
     <Compile Include="Interfaces\Repositories\IPacienteAnexoRepository.cs" />
     <Compile Include="Interfaces\Repositories\ITipoProcedimentoAnexoRepository.cs" />

@@ -43,6 +43,9 @@ namespace MvcMapping.Mappers
             CreateMap<TIPO_PROCEDIMENTO_ANEXO, TipoProcedimentoAnexoViewModel>();
             CreateMap<TIPO_PROCEDIMENTO, TipoProcedimentoViewModel>();
             CreateMap<PACIENTE, PacienteViewModel>();
+            CreateMap<PACIENTE_ACOMPANHAMENTO, PacienteAcompanhamentoViewModel>();
+            CreateMap<PACIENTE_PRESCRICAO, PacientePrescricaoViewModel>();
+            CreateMap<PACIENTE_RECOMENDACAO, PacienteRecomendacaoViewModel>();
 
         }
     }

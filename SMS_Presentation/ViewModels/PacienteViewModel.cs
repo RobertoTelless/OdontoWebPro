@@ -51,6 +51,7 @@ namespace OdontoWeb.ViewModels
         [Required(ErrorMessage = "Campo DATA DE NASCIMENTO obrigatorio")]
         [DataType(DataType.Date, ErrorMessage = "DATA DE NASCIMENTO Deve ser uma data válida")]
         public Nullable<System.DateTime> PACI_DT_NASCIMENTO { get; set; }
+        public string PACI_TX_OBSERVACOES { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ANAMNESE> ANAMNESE { get; set; }
