@@ -22,7 +22,6 @@ namespace EntitiesServices.Model
         public string PRAN_AQ_ARQUIVO { get; set; }
         public Nullable<int> PRAN_IN_ATIVO { get; set; }
     
-        public virtual PRESCRICAO PRESCRICAO { get; set; }
         public virtual PACIENTE_PRESCRICAO PACIENTE_PRESCRICAO { get; set; }
     }
 }

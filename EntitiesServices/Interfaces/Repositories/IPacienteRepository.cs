@@ -14,6 +14,6 @@ namespace ModelServices.Interfaces.Repositories
         PACIENTE GetItemById(Int32 id);
         List<PACIENTE> GetAllItens(Int32? idAss);
         List<PACIENTE> GetAllItensAdm(Int32? idAss);
-        List<PACIENTE> ExecuteFilter(Int32? filialId, String nome, String cpf, String telefone, String celular, String cidade, DateTime dataNasc, String email, Int32? idAss);
+        List<PACIENTE> ExecuteFilter(Int32? catId, Int32? filialId, String nome, String cpf, String telefone, String celular, String cidade, DateTime dataNasc, String email, Int32? idAss);
     }
 }

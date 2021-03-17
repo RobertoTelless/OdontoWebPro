@@ -21,10 +21,11 @@ namespace ApplicationServices.Interfaces
         PACIENTE GetByNome(String nome, Int32? idAss);
         PACIENTE CheckExist(PACIENTE conta, Int32? idAss);
         List<FILIAL> GetAllFiliais(Int32 idAss);
+        List<CATEGORIA_PACIENTE> GetAllTipos(Int32 idAss);
         List<UF> GetAllUF();
         UF GetUFBySigla(String sigla);
         PACIENTE_ANEXO GetAnexoById(Int32 id);
-        Int32 ExecuteFilter(Int32? filialId, String nome, String cpf, String telefone, String celular, String cidade, DateTime dataNasc, String email, Int32? idAss, out List<PACIENTE> objeto);
+        Int32 ExecuteFilter(Int32? catId, Int32? filialId, String nome, String cpf, String telefone, String celular, String cidade, DateTime dataNasc, String email, Int32? idAss, out List<PACIENTE> objeto);
 
         PACIENTE_ACOMPANHAMENTO GetAcompanhamentoById(Int32 id);
 

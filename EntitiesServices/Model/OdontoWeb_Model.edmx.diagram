@@ -4,209 +4,203 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0a1927723dc24f8a89e96ec0a0573bd2" Name="Diagram1">
-        <EntityTypeShape EntityType="OdontoWeb_Model.AGENDA" Width="1.5" PointX="5.25" PointY="36.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.AGENDA_ANEXO" Width="1.5" PointX="7.5" PointY="28.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.ASSINANTE" Width="1.5" PointX="0.75" PointY="38.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.CARGO" Width="1.5" PointX="3" PointY="29.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.CATEGORIA_AGENDA" Width="1.5" PointX="3" PointY="32.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.CATEGORIA_NOTIFICACAO" Width="1.5" PointX="11.25" PointY="33" IsExpanded="true" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.CODIGO_REGIME_TRIBUTARIO" Width="1.5" PointX="3" PointY="35.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.CONFIGURACAO" Width="1.5" PointX="3" PointY="38.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.FILIAL" Width="1.5" PointX="5.25" PointY="43.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.LOG" Width="1.5" PointX="10.5" PointY="36.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.MATRIZ" Width="1.5" PointX="8.25" PointY="43.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.NOTICIA" Width="1.5" PointX="3" PointY="43.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.NOTICIA_COMENTARIO" Width="1.5" PointX="10.5" PointY="40.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.NOTICIA_TAG" Width="1.5" PointX="5.25" PointY="51" IsExpanded="true" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.NOTIFICACAO" Width="1.5" PointX="13.5" PointY="35.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.NOTIFICACAO_ANEXO" Width="1.5" PointX="15.75" PointY="36.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.PAIS" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.PERFIL" Width="1.5" PointX="6" PointY="33.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.REGIME_TRIBUTARIO" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.SEXO" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.SITUACAO" Width="1.5" PointX="3" PointY="48.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.TAREFA" Width="1.5" PointX="10.5" PointY="44.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.TAREFA_ACOMPANHAMENTO" Width="1.5" PointX="12.75" PointY="42" IsExpanded="true" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.TAREFA_ANEXO" Width="1.5" PointX="12.75" PointY="49.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.TAREFA_NOTIFICACAO" Width="1.5" PointX="15.75" PointY="40.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.TEMPLATE" Width="1.5" PointX="3" PointY="51.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.TIPO_CONTRIBUINTE" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.TIPO_PESSOA" Width="1.5" PointX="3" PointY="55.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.TIPO_TAG" Width="1.5" PointX="3" PointY="58.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.TIPO_TAREFA" Width="1.5" PointX="3" PointY="61.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.UF" Width="1.5" PointX="6" PointY="54.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.UNIDADE" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.USUARIO" Width="1.5" PointX="8.25" PointY="31.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.USUARIO_ANEXO" Width="1.5" PointX="10.5" PointY="55" IsExpanded="true" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_AGENDA_ANEXO_AGENDA" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_AGENDA_ASSINANTE" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_AGENDA_CATEGORIA_AGENDA" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_AGENDA_USUARIO" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_AGENDA_USUARIO1" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_CARGO_ASSINANTE" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_CATEGORIA_AGENDA_ASSINANTE" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_CODIGO_REGIME_TRIBUTARIO_ASSINANTE" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_CONFIGURACAO_ASSINANTE" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_LOG_ASSINANTE" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_LOG_ASSINANTE1" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_MATRIZ_ASSINANTE" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_NOTICIA_ASSINANTE" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_NOTIFICACAO_ASSINANTE" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_SITUACAO_ASSINANTE" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_TEMPLATE_ASSINANTE" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_TIPO_PESSOA_ASSINANTE" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_TIPO_TAG_ASSINANTE" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_TIPO_TAREFA_ASSINANTE" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_USUARIO_ASSINANTE" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_USUARIO_CARGO" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_NOTIFICACAO_CATEGORIA_NOTIFICACAO" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_FILIAL_CODIGO_REGIME_TRIBUTARIO" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_MATRIZ_CODIGO_REGIME_TRIBUTARIO" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_FILIAL_MATRIZ" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_FILIAL_TIPO_PESSOA" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_FILIAL_UF" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_USUARIO_FILIAL" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_LOG_USUARIO" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_MATRIZ_TIPO_PESSOA" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_MATRIZ_UF" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_NOTICIA_COMENTARIO_NOTICIA" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_NOTICIA_TAG_NOTICIA" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_NOTICIA_COMENTARIO_USUARIO" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_NOTICIA_TAG_TIPO_TAG" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_NOTIFICACAO_ANEXO_NOTIFICACAO" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_NOTIFICACAO_USUARIO" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_USUARIO_PERFIL" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_TAREFA_ACOMPANHAMENTO_TAREFA" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_TAREFA_ANEXO_TAREFA" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_TAREFA_NOTIFICACAO_TAREFA" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_TAREFA_TIPO_TAREFA" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_TAREFA_USUARIO" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_TAREFA_USUARIO1" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_TAREFA_USUARIO2" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_TAREFA_USUARIO3" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_TAREFA_ACOMPANHAMENTO_USUARIO" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_TAREFA_NOTIFICACAO_USUARIO" ManuallyRouted="false" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_USUARIO_ANEXO_USUARIO" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.CATEGORIA_PRODUTO" Width="1.5" PointX="3" PointY="25.5" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.CATEGORIA_TELEFONE" Width="1.5" PointX="3" PointY="65.625" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.CATEGORIA_USUARIO" Width="1.5" PointX="3" PointY="21.5" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.MOVIMENTO_ESTOQUE_PRODUTO" Width="1.5" PointX="16.5" PointY="32.125" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.PERCENTUAL_REMUNERACAO" Width="1.5" PointX="13.5" PointY="31.5" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.PRODUTO" Width="1.5" PointX="7" PointY="20.75" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.PRODUTO_ANEXO" Width="1.5" PointX="9.25" PointY="22.25" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.PRODUTO_ESTOQUE_FILIAL" Width="1.5" PointX="13.25" PointY="27.625" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.TELEFONE" Width="1.5" PointX="8.25" PointY="52.75" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.USUARIO_CONTRACHEQUE" Width="1.5" PointX="10.5" PointY="62.375" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.USUARIO_PREMIO" Width="1.5" PointX="10.5" PointY="29.875" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.USUARIO_REMUNERACAO" Width="1.5" PointX="10.5" PointY="58.375" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_CATEGORIA_NOTIFICACAO_ASSINANTE" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_CATEGORIA_PRODUTO_ASSINANTE" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_CATEGORIA_TELEFONE_ASSINANTE" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_CATEGORIA_USUARIO_ASSINANTE" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_FILIAL_ASSINANTE" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_PRODUTO_ASSINANTE" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_REGIME_TRIBUTARIO_ASSINANTE" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_TAREFA_ASSINANTE" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_TELEFONE_ASSINANTE" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_TIPO_CONTRIBUINTE_ASSINANTE" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_UNIDADE_ASSINANTE" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_PRODUTO_CATEGORIA_PRODUTO" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_TELEFONE_CATEGORIA_TELEFONE" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_PERCENTUAL_REMUNERACAO_CATEGORIA_USUARIO" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_USUARIO_CATEGORIA_USUARIO" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_MOVIMENTO_ESTOQUE_PRODUTO_FILIAL" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_PERCENTUAL_REMUNERACAO_FILIAL" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_PRODUTO_ESTOQUE_FILIAL_FILIAL" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_MOVIMENTO_ESTOQUE_PRODUTO_PRODUTO" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_MOVIMENTO_ESTOQUE_PRODUTO_USUARIO" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_PERCENTUAL_REMUNERACAO_USUARIO" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_PRODUTO_ANEXO_PRODUTO" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_PRODUTO_ESTOQUE_FILIAL_PRODUTO" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_PRODUTO_UNIDADE" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_USUARIO_UF" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_USUARIO_UF1" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_USUARIO_CONTRACHEQUE_USUARIO" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_USUARIO_PREMIO_USUARIO" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_USUARIO_REMUNERACAO_USUARIO" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_USUARIO_SITUACAO" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.CATEGORIA_FORNECEDOR" Width="1.5" PointX="3" PointY="17.75" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.FORNECEDOR" Width="1.5" PointX="18.5" PointY="39.25" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.PRODUTO_FORNECEDOR" Width="1.5" PointX="20.75" PointY="32.5" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_CATEGORIA_FORNECEDOR_ASSINANTE" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_FORNECEDOR_ASSINANTE" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_FORNECEDOR_CATEGORIA_FORNECEDOR" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_FORNECEDOR_FILIAL" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_FORNECEDOR_MATRIZ" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_FORNECEDOR_TIPO_PESSOA" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_FORNECEDOR_UF" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_PRODUTO_FORNECEDOR_FORNECEDOR" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_PRODUTO_FORNECEDOR_PRODUTO" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.CENTRO_CUSTO" Width="1.5" PointX="8.25" PointY="57.625" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.GRUPO" Width="1.5" PointX="3" PointY="69" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.SUBGRUPO" Width="1.5" PointX="5.25" PointY="58.875" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_CENTRO_CUSTO_ASSINANTE" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_GRUPO_ASSINANTE" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_SUBGRUPO_ASSINANTE" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_CENTRO_CUSTO_GRUPO" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_CENTRO_CUSTO_SUBGRUPO" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_SUBGRUPO_GRUPO" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.BANCO" Width="1.5" PointX="13.5" PointY="45.875" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.CONTA_BANCO" Width="1.5" PointX="15.75" PointY="43.75" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.CONTA_BANCO_CONTATO" Width="1.5" PointX="18" PointY="48.125" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.CONTA_BANCO_LANCAMENTO" Width="1.5" PointX="18" PointY="51.5" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.TIPO_CONTA" Width="1.5" PointX="13.5" PointY="53.5" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_BANCO_ASSINANTE" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_CONTA_BANCO_ASSINANTE" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_BANCO_FILIAL" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_CONTA_BANCO_BANCO" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_CONTA_BANCO_CONTATO_CONTA_BANCO" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_CONTA_BANCO_FILIAL" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_CONTA_BANCO_LANCAMENTO_CONTA_BANCO" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_CONTA_BANCO_TIPO_CONTA" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.ANAMNESE" Width="1.5" PointX="21.5" PointY="61.25" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.ANAMNESE_IMAGEM" Width="1.5" PointX="23.75" PointY="60.5" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.ANAMNESE_NOVA_PERGUNTA" Width="1.5" PointX="23.75" PointY="64.25" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.ORCAMENTO" Width="1.5" PointX="21.5" PointY="52.5" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.ORCAMENTO_ANEXO" Width="1.5" PointX="23.75" PointY="56.375" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.ORCAMENTO_ITEM" Width="1.5" PointX="23.75" PointY="52.375" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.PACIE_NTE_ACOMPANHAMENTO" Width="1.5" PointX="19.5" PointY="36" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.PACIENTE" Width="1.5" PointX="19.25" PointY="55.75" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.PACIENTE_ANEXO" Width="1.5" PointX="21.5" PointY="70.375" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.PRESCRICAO" Width="1.5" PointX="21.5" PointY="67.125" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.PRESCRICAO_ANEXO" Width="1.5" PointX="23.75" PointY="67.125" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.RECOMENDACAO" Width="1.5" PointX="21.5" PointY="49.375" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.REGIAO_DENTE" Width="1.5" PointX="21.5" PointY="56.75" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.TIPO_PROCEDIMENTO" Width="1.5" PointX="16.5" PointY="55.75" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.TIPO_PROCEDIMENTO_ANEXO" Width="1.5" PointX="18.75" PointY="64.125" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_ANAMNESE_IMAGEM_ANAMNESE" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_ANAMNESE_NOVA_PERGUNTA_ANAMNESE" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_ANAMNESE_PACIENTE" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_PACIENTE_ASSINANTE" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_TIPO_PROCEDIMENTO_ASSINANTE" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_PACIENTE_FILIAL" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_TIPO_PROCEDIMENTO_FILIAL" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_ORCAMENTO_ANEXO_ORCAMENTO" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_ORCAMENTO_ITEM_ORCAMENTO" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_ORCAMENTO_PACIENTE" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_ORCAMENTO_ITEM_REGIAO_DENTE" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_ORCAMENTO_ITEM_TIPO_PROCEDIMENTO" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_PACIE_NTE_ACOMPANHAMENTO_PACIENTE" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_PACIE_NTE_ACOMPANHAMENTO_USUARIO" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_PACIENTE_ANEXO_PACIENTE" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_PACIENTE_UF" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_PRESCRICAO_PACIENTE" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_RECOMENDACAO_PACIENTE" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_PRESCRICAO_ANEXO_PRESCRICAO" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_TIPO_PROCEDIMENTO_ANEXO_TIPO_PROCEDIMENTO" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.PACIENTE_ACOMPANHAMENTO" Width="1.5" PointX="24.5" PointY="47.25" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.PACIENTE_PRESCRICAO" Width="1.5" PointX="21.5" PointY="73.75" />
-        <EntityTypeShape EntityType="OdontoWeb_Model.PACIENTE_RECOMENDACAO" Width="1.5" PointX="21.5" PointY="45.75" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_PACIE_NTE_ACOMPANHAMENTO_PACIENTE1" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_PRESCRICAO_PACIENTE1" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_RECOMENDACAO_PACIENTE1" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_PACIE_NTE_ACOMPANHAMENTO_USUARIO1" />
-        <AssociationConnector Association="OdontoWeb_Model.FK_PRESCRICAO_ANEXO_PRESCRICAO1" />
+      <Diagram DiagramId="061dd8cee4ba4a94bd0b40728114de4d" Name="Diagram1">
+        <EntityTypeShape EntityType="Odonto_DBModel.AGENDA" Width="1.5" PointX="5.25" PointY="83.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.AGENDA_ANEXO" Width="1.5" PointX="7.5" PointY="81.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.ANAMNESE" Width="1.5" PointX="13.5" PointY="80.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.ANAMNESE_IMAGEM" Width="1.5" PointX="15.75" PointY="79.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.ANAMNESE_NOVA_PERGUNTA" Width="1.5" PointX="15.75" PointY="83.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.ASSINANTE" Width="1.5" PointX="0.75" PointY="88" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.BANCO" Width="1.5" PointX="6" PointY="91.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.CARGO" Width="1.5" PointX="3" PointY="71.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.CATEGORIA_AGENDA" Width="1.5" PointX="3" PointY="74.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.CATEGORIA_FORNECEDOR" Width="1.5" PointX="3" PointY="77.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.CATEGORIA_NOTIFICACAO" Width="1.5" PointX="3" PointY="80.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.CATEGORIA_PACIENTE" Width="1.5" PointX="3" PointY="83.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.CATEGORIA_PRODUTO" Width="1.5" PointX="3" PointY="86.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.CATEGORIA_TELEFONE" Width="1.5" PointX="3" PointY="89" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.CATEGORIA_USUARIO" Width="1.5" PointX="3" PointY="92" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.CENTRO_CUSTO" Width="1.5" PointX="8.25" PointY="103.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.CODIGO_REGIME_TRIBUTARIO" Width="1.5" PointX="3" PointY="99.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.CONFIGURACAO" Width="1.5" PointX="3" PointY="102.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.CONTA_BANCO" Width="1.5" PointX="16.5" PointY="105.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.CONTA_BANCO_CONTATO" Width="1.5" PointX="18.75" PointY="106.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.CONTA_BANCO_LANCAMENTO" Width="1.5" PointX="18.75" PointY="109.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.FILIAL" Width="1.5" PointX="8.25" PointY="107.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.FORNECEDOR" Width="1.5" PointX="5.25" PointY="98.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.GRUPO" Width="1.5" PointX="3" PointY="107.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.LOG" Width="1.5" PointX="16.5" PointY="97" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.MATRIZ" Width="1.5" PointX="11.25" PointY="103.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.MOVIMENTO_ESTOQUE_PRODUTO" Width="1.5" PointX="13.5" PointY="102" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.NOTICIA" Width="1.5" PointX="16.25" PointY="74.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.NOTICIA_COMENTARIO" Width="1.5" PointX="18.5" PointY="92.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.NOTICIA_TAG" Width="1.5" PointX="5.25" PointY="126.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.NOTIFICACAO" Width="1.5" PointX="18.5" PointY="86.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.NOTIFICACAO_ANEXO" Width="1.5" PointX="20.75" PointY="87.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.ORCAMENTO" Width="1.5" PointX="13.5" PointY="86" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.ORCAMENTO_ANEXO" Width="1.5" PointX="15.75" PointY="86.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.ORCAMENTO_ITEM" Width="1.5" PointX="18.75" PointY="83.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.PACIENTE" Width="1.5" PointX="11.25" PointY="85.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.PACIENTE_ACOMPANHAMENTO" Width="1.5" PointX="19.5" PointY="96.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.PACIENTE_ANEXO" Width="1.5" PointX="13.5" PointY="90.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.PACIENTE_PRESCRICAO" Width="1.5" PointX="13.5" PointY="93.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.PACIENTE_RECOMENDACAO" Width="1.5" PointX="13.5" PointY="96.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.PAIS" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.PERCENTUAL_REMUNERACAO" Width="1.5" PointX="16.5" PointY="101" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.PERFIL" Width="1.5" PointX="6" PointY="78.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.PRESCRICAO_ANEXO" Width="1.5" PointX="15.75" PointY="93.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.PRODUTO" Width="1.5" PointX="5.25" PointY="107.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.PRODUTO_ANEXO" Width="1.5" PointX="7.5" PointY="117.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.PRODUTO_ESTOQUE_FILIAL" Width="1.5" PointX="13.5" PointY="113.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.PRODUTO_FORNECEDOR" Width="1.5" PointX="10.5" PointY="111.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.REGIAO_DENTE" Width="1.5" PointX="16.5" PointY="70.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.REGIME_TRIBUTARIO" Width="1.5" PointX="3" PointY="110.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.SEXO" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.SITUACAO" Width="1.5" PointX="3" PointY="113.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.SUBGRUPO" Width="1.5" PointX="11.25" PointY="98.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.TAREFA" Width="1.5" PointX="13.5" PointY="106.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.TAREFA_ACOMPANHAMENTO" Width="1.5" PointX="20.75" PointY="92.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.TAREFA_ANEXO" Width="1.5" PointX="15.75" PointY="113.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.TAREFA_NOTIFICACAO" Width="1.5" PointX="21.75" PointY="97.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.TELEFONE" Width="1.5" PointX="11.25" PointY="94.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.TEMPLATE" Width="1.5" PointX="3" PointY="116.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.TIPO_CONTA" Width="1.5" PointX="14.25" PointY="117.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.TIPO_CONTRIBUINTE" Width="1.5" PointX="3" PointY="120.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.TIPO_PESSOA" Width="1.5" PointX="3" PointY="123.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.TIPO_PROCEDIMENTO" Width="1.5" PointX="19.5" PointY="100.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.TIPO_PROCEDIMENTO_ANEXO" Width="1.5" PointX="21.75" PointY="101" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.TIPO_TAG" Width="1.5" PointX="3" PointY="126.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.TIPO_TAREFA" Width="1.5" PointX="3" PointY="130.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.UF" Width="1.5" PointX="9" PointY="77.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.UNIDADE" Width="1.5" PointX="3" PointY="133" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.USUARIO" Width="1.5" PointX="8.25" PointY="85" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.USUARIO_ANEXO" Width="1.5" PointX="10.5" PointY="117.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.USUARIO_CONTRACHEQUE" Width="1.5" PointX="10.5" PointY="121.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.USUARIO_PREMIO" Width="1.5" PointX="10.5" PointY="124.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Odonto_DBModel.USUARIO_REMUNERACAO" Width="1.5" PointX="10.5" PointY="127.5" IsExpanded="true" />
+        <AssociationConnector Association="Odonto_DBModel.FK_AGENDA_ANEXO_AGENDA" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_AGENDA_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_AGENDA_CATEGORIA_AGENDA" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_AGENDA_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_AGENDA_USUARIO1" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_ANAMNESE_IMAGEM_ANAMNESE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_ANAMNESE_NOVA_PERGUNTA_ANAMNESE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_ANAMNESE_PACIENTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_BANCO_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_CARGO_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_CATEGORIA_AGENDA_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_CATEGORIA_FORNECEDOR_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_CATEGORIA_NOTIFICACAO_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_CATEGORIA_PACIENTE_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_CATEGORIA_PRODUTO_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_CATEGORIA_TELEFONE_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_CATEGORIA_USUARIO_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_CENTRO_CUSTO_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_CODIGO_REGIME_TRIBUTARIO_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_CONFIGURACAO_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_CONTA_BANCO_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_FILIAL_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_FORNECEDOR_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_GRUPO_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_LOG_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_LOG_ASSINANTE1" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_MATRIZ_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_NOTIFICACAO_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_PACIENTE_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_PRODUTO_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_REGIME_TRIBUTARIO_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_SITUACAO_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_SUBGRUPO_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_TAREFA_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_TELEFONE_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_TEMPLATE_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_TIPO_CONTRIBUINTE_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_TIPO_PESSOA_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_TIPO_PROCEDIMENTO_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_TIPO_TAG_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_TIPO_TAREFA_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_UNIDADE_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_USUARIO_ASSINANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_BANCO_FILIAL" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_CONTA_BANCO_BANCO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_USUARIO_CARGO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_FORNECEDOR_CATEGORIA_FORNECEDOR" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_NOTIFICACAO_CATEGORIA_NOTIFICACAO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_PACIENTE_CATEGORIA_PACIENTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_PRODUTO_CATEGORIA_PRODUTO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_TELEFONE_CATEGORIA_TELEFONE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_PERCENTUAL_REMUNERACAO_CATEGORIA_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_USUARIO_CATEGORIA_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_CENTRO_CUSTO_GRUPO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_CENTRO_CUSTO_SUBGRUPO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_FILIAL_CODIGO_REGIME_TRIBUTARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_MATRIZ_CODIGO_REGIME_TRIBUTARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_CONTA_BANCO_CONTATO_CONTA_BANCO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_CONTA_BANCO_FILIAL" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_CONTA_BANCO_LANCAMENTO_CONTA_BANCO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_CONTA_BANCO_TIPO_CONTA" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_FILIAL_MATRIZ" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_FILIAL_TIPO_PESSOA" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_FILIAL_UF" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_FORNECEDOR_FILIAL" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_MOVIMENTO_ESTOQUE_PRODUTO_FILIAL" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_PACIENTE_FILIAL" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_PERCENTUAL_REMUNERACAO_FILIAL" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_PRODUTO_ESTOQUE_FILIAL_FILIAL" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_TIPO_PROCEDIMENTO_FILIAL" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_USUARIO_FILIAL" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_FORNECEDOR_MATRIZ" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_FORNECEDOR_TIPO_PESSOA" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_FORNECEDOR_UF" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_PRODUTO_FORNECEDOR_FORNECEDOR" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_SUBGRUPO_GRUPO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_LOG_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_MATRIZ_TIPO_PESSOA" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_MATRIZ_UF" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_MOVIMENTO_ESTOQUE_PRODUTO_PRODUTO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_MOVIMENTO_ESTOQUE_PRODUTO_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_NOTICIA_COMENTARIO_NOTICIA" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_NOTICIA_TAG_NOTICIA" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_NOTICIA_COMENTARIO_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_NOTICIA_TAG_TIPO_TAG" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_NOTIFICACAO_ANEXO_NOTIFICACAO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_NOTIFICACAO_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_ORCAMENTO_ANEXO_ORCAMENTO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_ORCAMENTO_ITEM_ORCAMENTO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_ORCAMENTO_PACIENTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_ORCAMENTO_ITEM_REGIAO_DENTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_ORCAMENTO_ITEM_TIPO_PROCEDIMENTO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_PACIE_NTE_ACOMPANHAMENTO_PACIENTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_PACIENTE_ANEXO_PACIENTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_PACIENTE_UF" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_PRESCRICAO_PACIENTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_RECOMENDACAO_PACIENTE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_PACIE_NTE_ACOMPANHAMENTO_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_PRESCRICAO_ANEXO_PRESCRICAO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_PERCENTUAL_REMUNERACAO_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_USUARIO_PERFIL" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_PRODUTO_ANEXO_PRODUTO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_PRODUTO_ESTOQUE_FILIAL_PRODUTO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_PRODUTO_FORNECEDOR_PRODUTO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_PRODUTO_UNIDADE" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_USUARIO_SITUACAO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_TAREFA_ACOMPANHAMENTO_TAREFA" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_TAREFA_ANEXO_TAREFA" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_TAREFA_NOTIFICACAO_TAREFA" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_TAREFA_TIPO_TAREFA" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_TAREFA_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_TAREFA_USUARIO1" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_TAREFA_USUARIO2" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_TAREFA_USUARIO3" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_TAREFA_ACOMPANHAMENTO_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_TAREFA_NOTIFICACAO_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_TIPO_PROCEDIMENTO_ANEXO_TIPO_PROCEDIMENTO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_USUARIO_UF" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_USUARIO_UF1" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_USUARIO_ANEXO_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_USUARIO_CONTRACHEQUE_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_USUARIO_PREMIO_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="Odonto_DBModel.FK_USUARIO_REMUNERACAO_USUARIO" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

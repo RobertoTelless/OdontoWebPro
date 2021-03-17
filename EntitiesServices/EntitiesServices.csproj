@@ -243,6 +243,7 @@
     <Compile Include="Interfaces\Repositories\IAssinanteRepository.cs" />
     <Compile Include="Interfaces\Repositories\IBancoRepository.cs" />
     <Compile Include="Interfaces\Repositories\ICargoRepository.cs" />
+    <Compile Include="Interfaces\Repositories\ICategoriaPacienteRepository.cs" />
     <Compile Include="Interfaces\Repositories\ICategoriaUsuarioRepository.cs" />
     <Compile Include="Interfaces\Repositories\ICategoriaTelefoneRepository.cs" />
     <Compile Include="Interfaces\Repositories\ICategoriaProdutoRepository.cs" />
@@ -327,6 +328,9 @@
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\CATEGORIA_NOTIFICACAO.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CATEGORIA_PACIENTE.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\CATEGORIA_PRODUTO.cs">
@@ -428,9 +432,6 @@
     <Compile Include="Model\PACIENTE_RECOMENDACAO.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\PACIE_NTE_ACOMPANHAMENTO.cs">
-      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\PAIS.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
@@ -438,9 +439,6 @@
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\PERFIL.cs">
-      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\PRESCRICAO.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\PRESCRICAO_ANEXO.cs">
@@ -456,9 +454,6 @@
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\PRODUTO_FORNECEDOR.cs">
-      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\RECOMENDACAO.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\REGIAO_DENTE.cs">
@@ -560,6 +555,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
     <Content Include="Model\OdontoWeb_Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>OdontoWeb_Model.edmx</DependentUpon>
@@ -570,9 +569,6 @@
       <DependentUpon>OdontoWeb_Model.edmx</DependentUpon>
       <LastGenOutput>OdontoWeb_Model.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

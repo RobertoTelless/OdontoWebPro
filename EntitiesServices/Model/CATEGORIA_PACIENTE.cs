@@ -12,23 +12,21 @@ namespace EntitiesServices.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class PRESCRICAO
+    public partial class CATEGORIA_PACIENTE
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PRESCRICAO()
+        public CATEGORIA_PACIENTE()
         {
-            this.PRESCRICAO_ANEXO = new HashSet<PRESCRICAO_ANEXO>();
+            this.PACIENTE = new HashSet<PACIENTE>();
         }
     
-        public int PRES_CD_ID { get; set; }
-        public Nullable<int> PACI_CD_ID { get; set; }
-        public Nullable<System.DateTime> PRES_DT_DATA { get; set; }
-        public string PRES_NM_NOME { get; set; }
-        public string PRES_TX_TEXTO { get; set; }
-        public Nullable<int> PRES_IN_ATIVO { get; set; }
+        public int CAPA_CD_ID { get; set; }
+        public int ASSI_CD_ID { get; set; }
+        public string CAPA_NM_NOME { get; set; }
+        public int CAPA_IN_ATIVO { get; set; }
     
-        public virtual PACIENTE PACIENTE { get; set; }
+        public virtual ASSINANTE ASSINANTE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PRESCRICAO_ANEXO> PRESCRICAO_ANEXO { get; set; }
+        public virtual ICollection<PACIENTE> PACIENTE { get; set; }
     }
 }

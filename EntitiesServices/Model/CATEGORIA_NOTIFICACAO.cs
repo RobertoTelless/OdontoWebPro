@@ -25,8 +25,8 @@ namespace EntitiesServices.Model
         public string CANO_NM_NOME { get; set; }
         public int CANO_IN_ATIVO { get; set; }
     
+        public virtual ASSINANTE ASSINANTE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NOTIFICACAO> NOTIFICACAO { get; set; }
-        public virtual ASSINANTE ASSINANTE { get; set; }
     }
 }

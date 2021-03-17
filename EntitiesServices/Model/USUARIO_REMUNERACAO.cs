@@ -18,18 +18,18 @@ namespace EntitiesServices.Model
         public int USUA_CD_ID { get; set; }
         public Nullable<System.DateTime> USRE_DT_REFERENCIA { get; set; }
         public Nullable<decimal> USRE_VL_VALOR_FIXO { get; set; }
+        public Nullable<decimal> USRE_PC_TAREFAS { get; set; }
         public Nullable<decimal> USRE_VL_TAREFAS { get; set; }
+        public Nullable<decimal> USRE_PC_PRODUCAO { get; set; }
         public Nullable<decimal> USRE_VL_PRODUCAO { get; set; }
         public Nullable<decimal> USRE_VL_PREMIO { get; set; }
+        public Nullable<decimal> USRE_PC_AVAL_EQUIPE { get; set; }
         public Nullable<decimal> USRE_VL_AVAL_EQUIPE { get; set; }
+        public Nullable<decimal> USRE_PC_AVAL_PACIENTES { get; set; }
         public Nullable<decimal> USRE_VL_AVAL_PACIENTES { get; set; }
+        public Nullable<decimal> USRE_PC_CONVERSAO { get; set; }
         public Nullable<decimal> USRE_VL_CONVERSAO { get; set; }
         public Nullable<int> USRE_IN_ATIVO { get; set; }
-        public Nullable<decimal> USRE_PC_TAREFAS { get; set; }
-        public Nullable<decimal> USRE_PC_PRODUCAO { get; set; }
-        public Nullable<decimal> USRE_PC_AVAL_EQUIPE { get; set; }
-        public Nullable<decimal> USRE_PC_AVAL_PACIENTES { get; set; }
-        public Nullable<decimal> USRE_PC_CONVERSAO { get; set; }
         public Nullable<decimal> USRE_VL_TOTAL { get; set; }
     
         public virtual USUARIO USUARIO { get; set; }

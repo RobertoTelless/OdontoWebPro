@@ -23,6 +23,7 @@ namespace EntitiesServices.Model
         }
     
         public int TARE_CD_ID { get; set; }
+        public Nullable<int> ASSI_CD_ID { get; set; }
         public int USUA_CD_ID { get; set; }
         public Nullable<int> TITR_CD_ID { get; set; }
         public System.DateTime TARE_DT_CADASTRO { get; set; }
@@ -39,8 +40,8 @@ namespace EntitiesServices.Model
         public Nullable<int> TARE_CD_USUA_1 { get; set; }
         public Nullable<int> TARE_CD_USUA_2 { get; set; }
         public Nullable<int> TARE_CD_USUA_3 { get; set; }
-        public Nullable<int> ASSI_CD_ID { get; set; }
     
+        public virtual ASSINANTE ASSINANTE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TAREFA_ACOMPANHAMENTO> TAREFA_ACOMPANHAMENTO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -52,6 +53,5 @@ namespace EntitiesServices.Model
         public virtual USUARIO USUARIO1 { get; set; }
         public virtual USUARIO USUARIO2 { get; set; }
         public virtual USUARIO USUARIO3 { get; set; }
-        public virtual ASSINANTE ASSINANTE { get; set; }
     }
 }

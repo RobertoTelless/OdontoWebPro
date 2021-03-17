@@ -98,6 +98,7 @@ namespace Odonto.Controllers
             ViewBag.Listas = listaMaster;
             ViewBag.Title = "Pacientes";
             ViewBag.Filiais = new SelectList(baseApp.GetAllFiliais(idAss), "FILI_CD_ID", "FILI_NM_NOME");
+            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(idAss), "CAPA_CD_ID", "CAPA_NM_NOME");
             ViewBag.UF = new SelectList(baseApp.GetAllUF(), "UF_CD_ID", "UF_SG_SIGLA");
             ViewBag.Perfil = usuario.PERFIL.PERF_SG_SIGLA;
 
@@ -208,7 +209,7 @@ namespace Odonto.Controllers
                 Int32 idAss = (Int32)Session["IdAssinante"];
                 List<PACIENTE> listaObj = new List<PACIENTE>();
                 Session["FiltroPaciente"] = item;
-                Int32 volta = baseApp.ExecuteFilter(item.FILI_CD_ID, item.PACI_NM_NOME, item.PACI_NR_CPF, item.PACI_NR_TELEFONE, item.PACI_NR_CELULAR, item.PACI_NM_CIDADE, item.PACI_DT_NASCIMENTO.Value, item.PACI_NM_EMAIL, idAss, out listaObj);
+                Int32 volta = baseApp.ExecuteFilter(item.CAPA_CD_ID, item.FILI_CD_ID, item.PACI_NM_NOME, item.PACI_NR_CPF, item.PACI_NR_TELEFONE, item.PACI_NR_CELULAR, item.PACI_NM_CIDADE, item.PACI_DT_NASCIMENTO.Value, item.PACI_NM_EMAIL, idAss, out listaObj);
 
                 // Verifica retorno
                 if (volta == 1)
@@ -268,6 +269,7 @@ namespace Odonto.Controllers
             Int32 idAss = (Int32)Session["IdAssinante"];
             ViewBag.UF = new SelectList(baseApp.GetAllUF(), "UF_CD_ID", "UF_SG_SIGLA");
             ViewBag.Filiais = new SelectList(baseApp.GetAllFiliais(idAss), "FILI_CD_ID", "FILI_NM_NOME");
+            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(idAss), "CAPA_CD_ID", "CAPA_NM_NOME");
             ViewBag.Perfil = usuario.PERFIL.PERF_SG_SIGLA;
             List<SelectListItem> sexo = new List<SelectListItem>();
             sexo.Add(new SelectListItem() { Text = "Masculino", Value = "1" });
@@ -291,6 +293,7 @@ namespace Odonto.Controllers
             var result = new Hashtable();
             ViewBag.UF = new SelectList(baseApp.GetAllUF(), "UF_CD_ID", "UF_SG_SIGLA");
             ViewBag.Filiais = new SelectList(baseApp.GetAllFiliais(idAss), "FILI_CD_ID", "FILI_NM_NOME");
+            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(idAss), "CAPA_CD_ID", "CAPA_NM_NOME");
             List<SelectListItem> sexo = new List<SelectListItem>();
             sexo.Add(new SelectListItem() { Text = "Masculino", Value = "1" });
             sexo.Add(new SelectListItem() { Text = "Feminino", Value = "2" });
@@ -404,6 +407,7 @@ namespace Odonto.Controllers
             Int32 idAss = (Int32)Session["IdAssinante"];
             ViewBag.UF = new SelectList(baseApp.GetAllUF(), "UF_CD_ID", "UF_SG_SIGLA");
             ViewBag.Filiais = new SelectList(baseApp.GetAllFiliais(idAss), "FILI_CD_ID", "FILI_NM_NOME");
+            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(idAss), "CAPA_CD_ID", "CAPA_NM_NOME");
             List<SelectListItem> sexo = new List<SelectListItem>();
             sexo.Add(new SelectListItem() { Text = "Masculino", Value = "1" });
             sexo.Add(new SelectListItem() { Text = "Feminino", Value = "2" });
@@ -439,6 +443,7 @@ namespace Odonto.Controllers
             Int32 idAss = (Int32)Session["IdAssinante"];
             ViewBag.UF = new SelectList(baseApp.GetAllUF(), "UF_CD_ID", "UF_SG_SIGLA");
             ViewBag.Filiais = new SelectList(baseApp.GetAllFiliais(idAss), "FILI_CD_ID", "FILI_NM_NOME");
+            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(idAss), "CAPA_CD_ID", "CAPA_NM_NOME");
             List<SelectListItem> sexo = new List<SelectListItem>();
             sexo.Add(new SelectListItem() { Text = "Masculino", Value = "1" });
             sexo.Add(new SelectListItem() { Text = "Feminino", Value = "2" });

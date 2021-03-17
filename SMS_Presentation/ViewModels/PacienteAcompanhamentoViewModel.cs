@@ -23,4 +23,5 @@ namespace OdontoWeb.ViewModels
 
         public virtual PACIENTE PACIENTE { get; set; }
         public virtual USUARIO USUARIO { get; set; }
+    }
 }

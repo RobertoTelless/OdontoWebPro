@@ -63,6 +63,12 @@ namespace ApplicationServices.Services
             return lista;
         }
 
+        public List<CATEGORIA_PACIENTE> GetAllTipos(Int32 idAss)
+        {
+            List<CATEGORIA_PACIENTE> lista = _baseService.GetAllTipos(idAss);
+            return lista;
+        }
+
         public List<UF> GetAllUF()
         {
             List<UF> lista = _baseService.GetAllUF();
@@ -81,7 +87,7 @@ namespace ApplicationServices.Services
             return lista;
         }
 
-        public Int32 ExecuteFilter(Int32? filialId, String nome, String cpf, String telefone, String celular, String cidade, DateTime dataNasc, String email, Int32? idAss, out List<PACIENTE> objeto)
+        public Int32 ExecuteFilter(Int32? catId, Int32? filialId, String nome, String cpf, String telefone, String celular, String cidade, DateTime dataNasc, String email, Int32? idAss, out List<PACIENTE> objeto)
         {
             try
             {
@@ -89,7 +95,7 @@ namespace ApplicationServices.Services
                 Int32 volta = 0;
 
                 // Processa filtro
-                objeto = _baseService.ExecuteFilter(filialId, nome, cpf, telefone, celular, cidade, dataNasc, email, idAss);
+                objeto = _baseService.ExecuteFilter(catId, filialId, nome, cpf, telefone, celular, cidade, dataNasc, email, idAss);
                 if (objeto.Count == 0)
                 {
                     volta = 1;

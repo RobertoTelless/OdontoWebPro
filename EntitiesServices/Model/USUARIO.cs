@@ -20,8 +20,11 @@ namespace EntitiesServices.Model
             this.AGENDA = new HashSet<AGENDA>();
             this.AGENDA1 = new HashSet<AGENDA>();
             this.LOG = new HashSet<LOG>();
+            this.MOVIMENTO_ESTOQUE_PRODUTO = new HashSet<MOVIMENTO_ESTOQUE_PRODUTO>();
             this.NOTICIA_COMENTARIO = new HashSet<NOTICIA_COMENTARIO>();
             this.NOTIFICACAO = new HashSet<NOTIFICACAO>();
+            this.PACIENTE_ACOMPANHAMENTO = new HashSet<PACIENTE_ACOMPANHAMENTO>();
+            this.PERCENTUAL_REMUNERACAO = new HashSet<PERCENTUAL_REMUNERACAO>();
             this.TAREFA = new HashSet<TAREFA>();
             this.TAREFA1 = new HashSet<TAREFA>();
             this.TAREFA2 = new HashSet<TAREFA>();
@@ -29,13 +32,9 @@ namespace EntitiesServices.Model
             this.TAREFA_ACOMPANHAMENTO = new HashSet<TAREFA_ACOMPANHAMENTO>();
             this.TAREFA_NOTIFICACAO = new HashSet<TAREFA_NOTIFICACAO>();
             this.USUARIO_ANEXO = new HashSet<USUARIO_ANEXO>();
-            this.MOVIMENTO_ESTOQUE_PRODUTO = new HashSet<MOVIMENTO_ESTOQUE_PRODUTO>();
-            this.PERCENTUAL_REMUNERACAO = new HashSet<PERCENTUAL_REMUNERACAO>();
             this.USUARIO_CONTRACHEQUE = new HashSet<USUARIO_CONTRACHEQUE>();
             this.USUARIO_PREMIO = new HashSet<USUARIO_PREMIO>();
             this.USUARIO_REMUNERACAO = new HashSet<USUARIO_REMUNERACAO>();
-            this.PACIE_NTE_ACOMPANHAMENTO = new HashSet<PACIE_NTE_ACOMPANHAMENTO>();
-            this.PACIENTE_ACOMPANHAMENTO = new HashSet<PACIENTE_ACOMPANHAMENTO>();
         }
     
         public int USUA_CD_ID { get; set; }
@@ -43,6 +42,8 @@ namespace EntitiesServices.Model
         public int PERF_CD_ID { get; set; }
         public Nullable<int> CARG_CD_ID { get; set; }
         public Nullable<int> FILI_CD_ID { get; set; }
+        public Nullable<int> CAUS_CD_ID { get; set; }
+        public Nullable<int> SITU_CD_ID { get; set; }
         public string USUA_NM_NOME { get; set; }
         public string USUA_NM_MATRICULA { get; set; }
         public string USUA_NM_LOGIN { get; set; }
@@ -70,7 +71,6 @@ namespace EntitiesServices.Model
         public Nullable<int> USUA_IN_APROVADOR { get; set; }
         public Nullable<int> USUA_IN_LOGADO { get; set; }
         public Nullable<System.DateTime> USUA_DT_LOGADO { get; set; }
-        public Nullable<int> CAUS_CD_ID { get; set; }
         public string USUA_NR_CPF { get; set; }
         public string USUA_NR_CTPS { get; set; }
         public string USUA_NR_CTPS_SERIE { get; set; }
@@ -91,7 +91,6 @@ namespace EntitiesServices.Model
         public string USUA_NR_CNPJ { get; set; }
         public Nullable<int> USUA_IN_CATEGORIA { get; set; }
         public Nullable<decimal> USUA_VL_SALARIO { get; set; }
-        public Nullable<int> SITU_CD_ID { get; set; }
         public Nullable<System.DateTime> USUA_DT_NASCIMENTO { get; set; }
         public string USUA_NR_RG { get; set; }
         public string USUA_SG_UF { get; set; }
@@ -102,14 +101,22 @@ namespace EntitiesServices.Model
         public virtual ICollection<AGENDA> AGENDA1 { get; set; }
         public virtual ASSINANTE ASSINANTE { get; set; }
         public virtual CARGO CARGO { get; set; }
+        public virtual CATEGORIA_USUARIO CATEGORIA_USUARIO { get; set; }
         public virtual FILIAL FILIAL { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LOG> LOG { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MOVIMENTO_ESTOQUE_PRODUTO> MOVIMENTO_ESTOQUE_PRODUTO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NOTICIA_COMENTARIO> NOTICIA_COMENTARIO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NOTIFICACAO> NOTIFICACAO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PACIENTE_ACOMPANHAMENTO> PACIENTE_ACOMPANHAMENTO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PERCENTUAL_REMUNERACAO> PERCENTUAL_REMUNERACAO { get; set; }
         public virtual PERFIL PERFIL { get; set; }
+        public virtual SITUACAO SITUACAO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TAREFA> TAREFA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -122,25 +129,15 @@ namespace EntitiesServices.Model
         public virtual ICollection<TAREFA_ACOMPANHAMENTO> TAREFA_ACOMPANHAMENTO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TAREFA_NOTIFICACAO> TAREFA_NOTIFICACAO { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<USUARIO_ANEXO> USUARIO_ANEXO { get; set; }
-        public virtual CATEGORIA_USUARIO CATEGORIA_USUARIO { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MOVIMENTO_ESTOQUE_PRODUTO> MOVIMENTO_ESTOQUE_PRODUTO { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PERCENTUAL_REMUNERACAO> PERCENTUAL_REMUNERACAO { get; set; }
         public virtual UF UF { get; set; }
         public virtual UF UF1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<USUARIO_ANEXO> USUARIO_ANEXO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<USUARIO_CONTRACHEQUE> USUARIO_CONTRACHEQUE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<USUARIO_PREMIO> USUARIO_PREMIO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<USUARIO_REMUNERACAO> USUARIO_REMUNERACAO { get; set; }
-        public virtual SITUACAO SITUACAO { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PACIE_NTE_ACOMPANHAMENTO> PACIE_NTE_ACOMPANHAMENTO { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PACIENTE_ACOMPANHAMENTO> PACIENTE_ACOMPANHAMENTO { get; set; }
     }
 }

@@ -27,78 +27,76 @@ namespace EntitiesServices.Model
     
         public virtual DbSet<AGENDA> AGENDA { get; set; }
         public virtual DbSet<AGENDA_ANEXO> AGENDA_ANEXO { get; set; }
+        public virtual DbSet<ANAMNESE> ANAMNESE { get; set; }
+        public virtual DbSet<ANAMNESE_IMAGEM> ANAMNESE_IMAGEM { get; set; }
+        public virtual DbSet<ANAMNESE_NOVA_PERGUNTA> ANAMNESE_NOVA_PERGUNTA { get; set; }
         public virtual DbSet<ASSINANTE> ASSINANTE { get; set; }
+        public virtual DbSet<BANCO> BANCO { get; set; }
         public virtual DbSet<CARGO> CARGO { get; set; }
         public virtual DbSet<CATEGORIA_AGENDA> CATEGORIA_AGENDA { get; set; }
+        public virtual DbSet<CATEGORIA_FORNECEDOR> CATEGORIA_FORNECEDOR { get; set; }
         public virtual DbSet<CATEGORIA_NOTIFICACAO> CATEGORIA_NOTIFICACAO { get; set; }
+        public virtual DbSet<CATEGORIA_PACIENTE> CATEGORIA_PACIENTE { get; set; }
+        public virtual DbSet<CATEGORIA_PRODUTO> CATEGORIA_PRODUTO { get; set; }
+        public virtual DbSet<CATEGORIA_TELEFONE> CATEGORIA_TELEFONE { get; set; }
+        public virtual DbSet<CATEGORIA_USUARIO> CATEGORIA_USUARIO { get; set; }
+        public virtual DbSet<CENTRO_CUSTO> CENTRO_CUSTO { get; set; }
         public virtual DbSet<CODIGO_REGIME_TRIBUTARIO> CODIGO_REGIME_TRIBUTARIO { get; set; }
         public virtual DbSet<CONFIGURACAO> CONFIGURACAO { get; set; }
+        public virtual DbSet<CONTA_BANCO> CONTA_BANCO { get; set; }
+        public virtual DbSet<CONTA_BANCO_CONTATO> CONTA_BANCO_CONTATO { get; set; }
+        public virtual DbSet<CONTA_BANCO_LANCAMENTO> CONTA_BANCO_LANCAMENTO { get; set; }
         public virtual DbSet<FILIAL> FILIAL { get; set; }
+        public virtual DbSet<FORNECEDOR> FORNECEDOR { get; set; }
+        public virtual DbSet<GRUPO> GRUPO { get; set; }
         public virtual DbSet<LOG> LOG { get; set; }
         public virtual DbSet<MATRIZ> MATRIZ { get; set; }
+        public virtual DbSet<MOVIMENTO_ESTOQUE_PRODUTO> MOVIMENTO_ESTOQUE_PRODUTO { get; set; }
         public virtual DbSet<NOTICIA> NOTICIA { get; set; }
         public virtual DbSet<NOTICIA_COMENTARIO> NOTICIA_COMENTARIO { get; set; }
         public virtual DbSet<NOTICIA_TAG> NOTICIA_TAG { get; set; }
         public virtual DbSet<NOTIFICACAO> NOTIFICACAO { get; set; }
         public virtual DbSet<NOTIFICACAO_ANEXO> NOTIFICACAO_ANEXO { get; set; }
+        public virtual DbSet<ORCAMENTO> ORCAMENTO { get; set; }
+        public virtual DbSet<ORCAMENTO_ANEXO> ORCAMENTO_ANEXO { get; set; }
+        public virtual DbSet<ORCAMENTO_ITEM> ORCAMENTO_ITEM { get; set; }
+        public virtual DbSet<PACIENTE> PACIENTE { get; set; }
+        public virtual DbSet<PACIENTE_ACOMPANHAMENTO> PACIENTE_ACOMPANHAMENTO { get; set; }
+        public virtual DbSet<PACIENTE_ANEXO> PACIENTE_ANEXO { get; set; }
+        public virtual DbSet<PACIENTE_PRESCRICAO> PACIENTE_PRESCRICAO { get; set; }
+        public virtual DbSet<PACIENTE_RECOMENDACAO> PACIENTE_RECOMENDACAO { get; set; }
         public virtual DbSet<PAIS> PAIS { get; set; }
+        public virtual DbSet<PERCENTUAL_REMUNERACAO> PERCENTUAL_REMUNERACAO { get; set; }
         public virtual DbSet<PERFIL> PERFIL { get; set; }
+        public virtual DbSet<PRESCRICAO_ANEXO> PRESCRICAO_ANEXO { get; set; }
+        public virtual DbSet<PRODUTO> PRODUTO { get; set; }
+        public virtual DbSet<PRODUTO_ANEXO> PRODUTO_ANEXO { get; set; }
+        public virtual DbSet<PRODUTO_ESTOQUE_FILIAL> PRODUTO_ESTOQUE_FILIAL { get; set; }
+        public virtual DbSet<PRODUTO_FORNECEDOR> PRODUTO_FORNECEDOR { get; set; }
+        public virtual DbSet<REGIAO_DENTE> REGIAO_DENTE { get; set; }
         public virtual DbSet<REGIME_TRIBUTARIO> REGIME_TRIBUTARIO { get; set; }
         public virtual DbSet<SEXO> SEXO { get; set; }
         public virtual DbSet<SITUACAO> SITUACAO { get; set; }
+        public virtual DbSet<SUBGRUPO> SUBGRUPO { get; set; }
         public virtual DbSet<TAREFA> TAREFA { get; set; }
         public virtual DbSet<TAREFA_ACOMPANHAMENTO> TAREFA_ACOMPANHAMENTO { get; set; }
         public virtual DbSet<TAREFA_ANEXO> TAREFA_ANEXO { get; set; }
         public virtual DbSet<TAREFA_NOTIFICACAO> TAREFA_NOTIFICACAO { get; set; }
+        public virtual DbSet<TELEFONE> TELEFONE { get; set; }
         public virtual DbSet<TEMPLATE> TEMPLATE { get; set; }
+        public virtual DbSet<TIPO_CONTA> TIPO_CONTA { get; set; }
         public virtual DbSet<TIPO_CONTRIBUINTE> TIPO_CONTRIBUINTE { get; set; }
         public virtual DbSet<TIPO_PESSOA> TIPO_PESSOA { get; set; }
+        public virtual DbSet<TIPO_PROCEDIMENTO> TIPO_PROCEDIMENTO { get; set; }
+        public virtual DbSet<TIPO_PROCEDIMENTO_ANEXO> TIPO_PROCEDIMENTO_ANEXO { get; set; }
         public virtual DbSet<TIPO_TAG> TIPO_TAG { get; set; }
         public virtual DbSet<TIPO_TAREFA> TIPO_TAREFA { get; set; }
         public virtual DbSet<UF> UF { get; set; }
         public virtual DbSet<UNIDADE> UNIDADE { get; set; }
         public virtual DbSet<USUARIO> USUARIO { get; set; }
         public virtual DbSet<USUARIO_ANEXO> USUARIO_ANEXO { get; set; }
-        public virtual DbSet<CATEGORIA_PRODUTO> CATEGORIA_PRODUTO { get; set; }
-        public virtual DbSet<CATEGORIA_TELEFONE> CATEGORIA_TELEFONE { get; set; }
-        public virtual DbSet<CATEGORIA_USUARIO> CATEGORIA_USUARIO { get; set; }
-        public virtual DbSet<MOVIMENTO_ESTOQUE_PRODUTO> MOVIMENTO_ESTOQUE_PRODUTO { get; set; }
-        public virtual DbSet<PERCENTUAL_REMUNERACAO> PERCENTUAL_REMUNERACAO { get; set; }
-        public virtual DbSet<PRODUTO> PRODUTO { get; set; }
-        public virtual DbSet<PRODUTO_ANEXO> PRODUTO_ANEXO { get; set; }
-        public virtual DbSet<PRODUTO_ESTOQUE_FILIAL> PRODUTO_ESTOQUE_FILIAL { get; set; }
-        public virtual DbSet<TELEFONE> TELEFONE { get; set; }
         public virtual DbSet<USUARIO_CONTRACHEQUE> USUARIO_CONTRACHEQUE { get; set; }
         public virtual DbSet<USUARIO_PREMIO> USUARIO_PREMIO { get; set; }
         public virtual DbSet<USUARIO_REMUNERACAO> USUARIO_REMUNERACAO { get; set; }
-        public virtual DbSet<CATEGORIA_FORNECEDOR> CATEGORIA_FORNECEDOR { get; set; }
-        public virtual DbSet<FORNECEDOR> FORNECEDOR { get; set; }
-        public virtual DbSet<PRODUTO_FORNECEDOR> PRODUTO_FORNECEDOR { get; set; }
-        public virtual DbSet<CENTRO_CUSTO> CENTRO_CUSTO { get; set; }
-        public virtual DbSet<GRUPO> GRUPO { get; set; }
-        public virtual DbSet<SUBGRUPO> SUBGRUPO { get; set; }
-        public virtual DbSet<BANCO> BANCO { get; set; }
-        public virtual DbSet<CONTA_BANCO> CONTA_BANCO { get; set; }
-        public virtual DbSet<CONTA_BANCO_CONTATO> CONTA_BANCO_CONTATO { get; set; }
-        public virtual DbSet<CONTA_BANCO_LANCAMENTO> CONTA_BANCO_LANCAMENTO { get; set; }
-        public virtual DbSet<TIPO_CONTA> TIPO_CONTA { get; set; }
-        public virtual DbSet<ANAMNESE> ANAMNESE { get; set; }
-        public virtual DbSet<ANAMNESE_IMAGEM> ANAMNESE_IMAGEM { get; set; }
-        public virtual DbSet<ANAMNESE_NOVA_PERGUNTA> ANAMNESE_NOVA_PERGUNTA { get; set; }
-        public virtual DbSet<ORCAMENTO> ORCAMENTO { get; set; }
-        public virtual DbSet<ORCAMENTO_ANEXO> ORCAMENTO_ANEXO { get; set; }
-        public virtual DbSet<ORCAMENTO_ITEM> ORCAMENTO_ITEM { get; set; }
-        public virtual DbSet<PACIE_NTE_ACOMPANHAMENTO> PACIE_NTE_ACOMPANHAMENTO { get; set; }
-        public virtual DbSet<PACIENTE> PACIENTE { get; set; }
-        public virtual DbSet<PACIENTE_ANEXO> PACIENTE_ANEXO { get; set; }
-        public virtual DbSet<PRESCRICAO> PRESCRICAO { get; set; }
-        public virtual DbSet<PRESCRICAO_ANEXO> PRESCRICAO_ANEXO { get; set; }
-        public virtual DbSet<RECOMENDACAO> RECOMENDACAO { get; set; }
-        public virtual DbSet<REGIAO_DENTE> REGIAO_DENTE { get; set; }
-        public virtual DbSet<TIPO_PROCEDIMENTO> TIPO_PROCEDIMENTO { get; set; }
-        public virtual DbSet<TIPO_PROCEDIMENTO_ANEXO> TIPO_PROCEDIMENTO_ANEXO { get; set; }
-        public virtual DbSet<PACIENTE_ACOMPANHAMENTO> PACIENTE_ACOMPANHAMENTO { get; set; }
-        public virtual DbSet<PACIENTE_PRESCRICAO> PACIENTE_PRESCRICAO { get; set; }
-        public virtual DbSet<PACIENTE_RECOMENDACAO> PACIENTE_RECOMENDACAO { get; set; }
     }
 }

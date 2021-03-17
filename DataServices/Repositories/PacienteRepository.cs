@@ -28,10 +28,10 @@ namespace DataServices.Repositories
             query = query.Where(p => p.ASSI_CD_ID == idAss);
             query = query.Include(p => p.ANAMNESE);
             query = query.Include(p => p.ORCAMENTO);
-            query = query.Include(p => p.PRESCRICAO);
-            query = query.Include(p => p.RECOMENDACAO);
+            query = query.Include(p => p.PACIENTE_PRESCRICAO);
+            query = query.Include(p => p.PACIENTE_RECOMENDACAO);
             query = query.Include(p => p.PACIENTE_ANEXO);
-            query = query.Include(p => p.PACIE_NTE_ACOMPANHAMENTO);
+            query = query.Include(p => p.PACIENTE_ACOMPANHAMENTO);
             return query.FirstOrDefault();
         }
 
@@ -41,10 +41,10 @@ namespace DataServices.Repositories
             query = query.Where(p => p.PACI_CD_ID == id);
             query = query.Include(p => p.ANAMNESE);
             query = query.Include(p => p.ORCAMENTO);
-            query = query.Include(p => p.PRESCRICAO);
-            query = query.Include(p => p.RECOMENDACAO);
+            query = query.Include(p => p.PACIENTE_PRESCRICAO);
+            query = query.Include(p => p.PACIENTE_RECOMENDACAO);
             query = query.Include(p => p.PACIENTE_ANEXO);
-            query = query.Include(p => p.PACIE_NTE_ACOMPANHAMENTO);
+            query = query.Include(p => p.PACIENTE_ACOMPANHAMENTO);
             return query.FirstOrDefault();
         }
 
@@ -62,10 +62,14 @@ namespace DataServices.Repositories
             return query.ToList();
         }
 
-        public List<PACIENTE> ExecuteFilter(Int32? filialId, String nome, String cpf, String telefone, String celular, String cidade, DateTime dataNasc, String email, Int32? idAss)
+        public List<PACIENTE> ExecuteFilter(Int32? catId, Int32? filialId, String nome, String cpf, String telefone, String celular, String cidade, DateTime dataNasc, String email, Int32? idAss)
         {
             List<PACIENTE> lista = new List<PACIENTE>();
             IQueryable<PACIENTE> query = Db.PACIENTE;
+            if (catId != null)
+            {
+                query = query.Where(p => p.CAPA_CD_ID == catId);
+            }
             if (filialId != null)
             {
                 query = query.Where(p => p.FILI_CD_ID == filialId);

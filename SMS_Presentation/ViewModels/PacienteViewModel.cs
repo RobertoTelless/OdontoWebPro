@@ -14,6 +14,8 @@ namespace OdontoWeb.ViewModels
         public Nullable<int> ASSI_CD_ID { get; set; }
         [Required(ErrorMessage = "Campo FILIAL obrigatorio")]
         public Nullable<int> FILI_CD_ID { get; set; }
+        [Required(ErrorMessage = "Campo CATEGORIA obrigatorio")]
+        public Nullable<int> CAPA_CD_ID { get; set; }
         public string PACI_AQ_FOTO { get; set; }
         [Required(ErrorMessage = "Campo NOME obrigatorio")]
         [StringLength(50, MinimumLength = 1, ErrorMessage = "O NOME deve ter no minimo 1 caractere e no máximo 50 caracteres.")]
@@ -56,18 +58,19 @@ namespace OdontoWeb.ViewModels
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ANAMNESE> ANAMNESE { get; set; }
         public virtual ASSINANTE ASSINANTE { get; set; }
+        public virtual CATEGORIA_PACIENTE CATEGORIA_PACIENTE { get; set; }
         public virtual FILIAL FILIAL { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ORCAMENTO> ORCAMENTO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PACIE_NTE_ACOMPANHAMENTO> PACIE_NTE_ACOMPANHAMENTO { get; set; }
+        public virtual ICollection<PACIENTE_ACOMPANHAMENTO> PACIENTE_ACOMPANHAMENTO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PACIENTE_ANEXO> PACIENTE_ANEXO { get; set; }
         public virtual UF UF { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PRESCRICAO> PRESCRICAO { get; set; }
+        public virtual ICollection<PACIENTE_PRESCRICAO> PACIENTE_PRESCRICAO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RECOMENDACAO> RECOMENDACAO { get; set; }
+        public virtual ICollection<PACIENTE_RECOMENDACAO> PACIENTE_RECOMENDACAO { get; set; }
 
     }
 }

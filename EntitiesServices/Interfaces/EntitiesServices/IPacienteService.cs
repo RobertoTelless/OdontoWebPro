@@ -21,9 +21,10 @@ namespace ModelServices.Interfaces.EntitiesServices
         PACIENTE GetByNome(String nome, Int32? idAss);
         List<PACIENTE> GetAllItens(Int32? idAss);
         List<PACIENTE> GetAllItensAdm(Int32? idAss);
-        List<PACIENTE> ExecuteFilter(Int32? filialId, String nome, String cpf, String telefone, String celular, String cidade, DateTime dataNasc, String email, Int32? idAss);
+        List<PACIENTE> ExecuteFilter(Int32? catId, Int32? filialId, String nome, String cpf, String telefone, String celular, String cidade, DateTime dataNasc, String email, Int32? idAss);
 
         List<FILIAL> GetAllFiliais(Int32 idAss);
+        List<CATEGORIA_PACIENTE> GetAllTipos(Int32 idAss);
         List<UF> GetAllUF();
         PACIENTE_ANEXO GetAnexoById(Int32 id);
         UF GetUFBySigla(String sigla);

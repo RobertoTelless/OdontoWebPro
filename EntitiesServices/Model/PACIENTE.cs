@@ -19,11 +19,8 @@ namespace EntitiesServices.Model
         {
             this.ANAMNESE = new HashSet<ANAMNESE>();
             this.ORCAMENTO = new HashSet<ORCAMENTO>();
-            this.PACIE_NTE_ACOMPANHAMENTO = new HashSet<PACIE_NTE_ACOMPANHAMENTO>();
-            this.PACIENTE_ANEXO = new HashSet<PACIENTE_ANEXO>();
-            this.PRESCRICAO = new HashSet<PRESCRICAO>();
-            this.RECOMENDACAO = new HashSet<RECOMENDACAO>();
             this.PACIENTE_ACOMPANHAMENTO = new HashSet<PACIENTE_ACOMPANHAMENTO>();
+            this.PACIENTE_ANEXO = new HashSet<PACIENTE_ANEXO>();
             this.PACIENTE_PRESCRICAO = new HashSet<PACIENTE_PRESCRICAO>();
             this.PACIENTE_RECOMENDACAO = new HashSet<PACIENTE_RECOMENDACAO>();
         }
@@ -31,6 +28,8 @@ namespace EntitiesServices.Model
         public int PACI_CD_ID { get; set; }
         public Nullable<int> ASSI_CD_ID { get; set; }
         public Nullable<int> FILI_CD_ID { get; set; }
+        public Nullable<int> CAPA_CD_ID { get; set; }
+        public string PACI_AQ_FOTO { get; set; }
         public string PACI_NM_NOME { get; set; }
         public string PACI_NR_CPF { get; set; }
         public string PACI_NR_RG { get; set; }
@@ -49,26 +48,20 @@ namespace EntitiesServices.Model
         public Nullable<int> PACI_IN_ATIVO { get; set; }
         public Nullable<System.DateTime> PACI_DT_CADASTRO { get; set; }
         public Nullable<System.DateTime> PACI_DT_NASCIMENTO { get; set; }
-        public string PACI_AQ_FOTO { get; set; }
         public string PACI_TX_OBSERVACOES { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ANAMNESE> ANAMNESE { get; set; }
         public virtual ASSINANTE ASSINANTE { get; set; }
+        public virtual CATEGORIA_PACIENTE CATEGORIA_PACIENTE { get; set; }
         public virtual FILIAL FILIAL { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ORCAMENTO> ORCAMENTO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PACIE_NTE_ACOMPANHAMENTO> PACIE_NTE_ACOMPANHAMENTO { get; set; }
+        public virtual ICollection<PACIENTE_ACOMPANHAMENTO> PACIENTE_ACOMPANHAMENTO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PACIENTE_ANEXO> PACIENTE_ANEXO { get; set; }
         public virtual UF UF { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PRESCRICAO> PRESCRICAO { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RECOMENDACAO> RECOMENDACAO { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PACIENTE_ACOMPANHAMENTO> PACIENTE_ACOMPANHAMENTO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PACIENTE_PRESCRICAO> PACIENTE_PRESCRICAO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

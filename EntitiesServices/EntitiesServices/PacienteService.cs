@@ -26,9 +26,10 @@ namespace ModelServices.EntitiesServices
         private readonly IPacienteAcompanhamentoRepository _paRepository;
         private readonly IPacientePrescricaoRepository _ppRepository;
         private readonly IPacienteRecomendacaoRepository _prRepository;
+        private readonly ICategoriaPacienteRepository _catRepository;
         protected Odonto_DBEntities Db = new Odonto_DBEntities();
 
-        public PacienteService(IPacienteRepository baseRepository, ILogRepository logRepository, IFilialRepository filialRepository, IPacienteAnexoRepository anexoRepository, IUFRepository ufRepository, IPacienteAcompanhamentoRepository paRepository, IPacientePrescricaoRepository ppRepository, IPacienteRecomendacaoRepository prRepository) : base(baseRepository)
+        public PacienteService(IPacienteRepository baseRepository, ILogRepository logRepository, IFilialRepository filialRepository, IPacienteAnexoRepository anexoRepository, IUFRepository ufRepository, IPacienteAcompanhamentoRepository paRepository, IPacientePrescricaoRepository ppRepository, IPacienteRecomendacaoRepository prRepository, ICategoriaPacienteRepository catRepository) : base(baseRepository)
         {
             _baseRepository = baseRepository;
             _logRepository = logRepository;
@@ -38,6 +39,7 @@ namespace ModelServices.EntitiesServices
             _paRepository = paRepository;
             _ppRepository = ppRepository;
             _prRepository = prRepository;
+            _catRepository = catRepository;
         }
 
         public PACIENTE CheckExist(PACIENTE conta, Int32? idAss)
@@ -79,6 +81,11 @@ namespace ModelServices.EntitiesServices
             return _filialRepository.GetAllItens(idAss);
         }
 
+        public List<CATEGORIA_PACIENTE> GetAllTipos(Int32 idAss)
+        {
+            return _catRepository.GetAllItens(idAss);
+        }
+
         public List<UF> GetAllUF()
         {
             return _ufRepository.GetAllItens();
@@ -94,9 +101,9 @@ namespace ModelServices.EntitiesServices
             return _paRepository.GetItemById(id);
         }
 
-        public List<PACIENTE> ExecuteFilter(Int32? filialId, String nome, String cpf, String telefone, String celular, String cidade, DateTime dataNasc, String email, Int32? idAss)
+        public List<PACIENTE> ExecuteFilter(Int32? catId, Int32? filialId, String nome, String cpf, String telefone, String celular, String cidade, DateTime dataNasc, String email, Int32? idAss)
         {
-            List<PACIENTE> lista = _baseRepository.ExecuteFilter(filialId, nome, cpf, telefone, celular, cidade, dataNasc, email, idAss);
+            List<PACIENTE> lista = _baseRepository.ExecuteFilter(catId, filialId, nome, cpf, telefone, celular, cidade, dataNasc, email, idAss);
             return lista;
         }
 

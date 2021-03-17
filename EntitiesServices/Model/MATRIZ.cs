@@ -52,9 +52,9 @@ namespace EntitiesServices.Model
         public virtual CODIGO_REGIME_TRIBUTARIO CODIGO_REGIME_TRIBUTARIO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FILIAL> FILIAL { get; set; }
-        public virtual TIPO_PESSOA TIPO_PESSOA { get; set; }
-        public virtual UF UF { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FORNECEDOR> FORNECEDOR { get; set; }
+        public virtual TIPO_PESSOA TIPO_PESSOA { get; set; }
+        public virtual UF UF { get; set; }
     }
 }

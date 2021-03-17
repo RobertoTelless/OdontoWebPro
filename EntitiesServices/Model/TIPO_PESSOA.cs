@@ -18,8 +18,8 @@ namespace EntitiesServices.Model
         public TIPO_PESSOA()
         {
             this.FILIAL = new HashSet<FILIAL>();
-            this.MATRIZ = new HashSet<MATRIZ>();
             this.FORNECEDOR = new HashSet<FORNECEDOR>();
+            this.MATRIZ = new HashSet<MATRIZ>();
         }
     
         public int TIPE_CD_ID { get; set; }
@@ -31,8 +31,8 @@ namespace EntitiesServices.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FILIAL> FILIAL { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MATRIZ> MATRIZ { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FORNECEDOR> FORNECEDOR { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MATRIZ> MATRIZ { get; set; }
     }
 }

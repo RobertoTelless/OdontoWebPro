@@ -172,6 +172,7 @@
     <Compile Include="Repositories\AssinanteRepository.cs" />
     <Compile Include="Repositories\BancoRepository.cs" />
     <Compile Include="Repositories\CargoRepository.cs" />
+    <Compile Include="Repositories\CategoriaPacienteRepository.cs" />
     <Compile Include="Repositories\CategoriaUsuarioRepository.cs" />
     <Compile Include="Repositories\CategoriaTelefoneRepository.cs" />
     <Compile Include="Repositories\CategoriaProdutoRepository.cs" />
