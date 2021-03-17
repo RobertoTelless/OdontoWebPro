@@ -189,6 +189,8 @@
     <Compile Include="Repositories\NoticiaComentarioRepository.cs" />
     <Compile Include="Repositories\NoticiaRepository.cs" />
     <Compile Include="Repositories\NoticiaTagRepository.cs" />
+    <Compile Include="Repositories\PacienteRepository.cs" />
+    <Compile Include="Repositories\PacienteAnexoRepository.cs" />
     <Compile Include="Repositories\TipoProcedimentoRepository.cs" />
     <Compile Include="Repositories\TipoProcedimentoAnexoRepository.cs" />
     <Compile Include="Repositories\NotificacaoAnexoRepository.cs" />

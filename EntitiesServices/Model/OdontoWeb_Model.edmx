@@ -505,17 +505,6 @@
           <Property Name="ORIT_VL_OVERRIDE" Type="decimal" Precision="18" Scale="2" />
           <Property Name="ORIT_IN_ATIVO" Type="int" />
         </EntityType>
-        <EntityType Name="PACIE NTE_ACOMPANHAMENTO">
-          <Key>
-            <PropertyRef Name="PAAC_CD_ID" />
-          </Key>
-          <Property Name="PAAC_CD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PACI_CD_ID" Type="int" />
-          <Property Name="USUA_CD_ID" Type="int" />
-          <Property Name="PAAC_DT_DATA" Type="datetime" />
-          <Property Name="PAAC_TX_ACOMPANHENTO" Type="text" />
-          <Property Name="PAAC_IN_ATIVO" Type="int" />
-        </EntityType>
         <EntityType Name="PACIENTE">
           <Key>
             <PropertyRef Name="PACI_CD_ID" />
@@ -523,6 +512,7 @@
           <Property Name="PACI_CD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ASSI_CD_ID" Type="int" />
           <Property Name="FILI_CD_ID" Type="int" />
+          <Property Name="PACI_AQ_FOTO" Type="varchar" MaxLength="250" />
           <Property Name="PACI_NM_NOME" Type="varchar" MaxLength="100" />
           <Property Name="PACI_NR_CPF" Type="varchar" MaxLength="20" />
           <Property Name="PACI_NR_RG" Type="varchar" MaxLength="20" />
@@ -542,6 +532,17 @@
           <Property Name="PACI_DT_CADASTRO" Type="date" />
           <Property Name="PACI_DT_NASCIMENTO" Type="date" />
         </EntityType>
+        <EntityType Name="PACIENTE_ACOMPANHAMENTO">
+          <Key>
+            <PropertyRef Name="PAAC_CD_ID" />
+          </Key>
+          <Property Name="PAAC_CD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PACI_CD_ID" Type="int" />
+          <Property Name="USUA_CD_ID" Type="int" />
+          <Property Name="PAAC_DT_DATA" Type="datetime" />
+          <Property Name="PAAC_TX_ACOMPANHENTO" Type="text" />
+          <Property Name="PAAC_IN_ATIVO" Type="int" />
+        </EntityType>
         <EntityType Name="PACIENTE_ANEXO">
           <Key>
             <PropertyRef Name="PAAN_CD_ID" />
@@ -553,6 +554,28 @@
           <Property Name="PAAN_IN_TIPO" Type="int" />
           <Property Name="PAAN_AQ_ARQUIVO" Type="varchar" MaxLength="250" />
           <Property Name="PAAN_IN_ATIVO" Type="int" />
+        </EntityType>
+        <EntityType Name="PACIENTE_PRESCRICAO">
+          <Key>
+            <PropertyRef Name="PRES_CD_ID" />
+          </Key>
+          <Property Name="PRES_CD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PACI_CD_ID" Type="int" />
+          <Property Name="PRES_DT_DATA" Type="datetime" />
+          <Property Name="PRES_NM_NOME" Type="varchar" MaxLength="50" />
+          <Property Name="PRES_TX_TEXTO" Type="text" />
+          <Property Name="PRES_IN_ATIVO" Type="int" />
+        </EntityType>
+        <EntityType Name="PACIENTE_RECOMENDACAO">
+          <Key>
+            <PropertyRef Name="RECO_CD_ID" />
+          </Key>
+          <Property Name="RECO_CD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PACI_CD_ID" Type="int" />
+          <Property Name="RECO_DT_DATA" Type="datetime" />
+          <Property Name="RECO_NM_NOME" Type="varchar" MaxLength="50" />
+          <Property Name="RECO_DS_DESCRICAO" Type="text" />
+          <Property Name="RECO_IN_ATIVO" Type="int" />
         </EntityType>
         <EntityType Name="PAIS">
           <Key>
@@ -583,17 +606,6 @@
           <Property Name="PERF_CD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PERF_SG_SIGLA" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="PERF_NM_NOME" Type="varchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="PRESCRICAO">
-          <Key>
-            <PropertyRef Name="PRES_CD_ID" />
-          </Key>
-          <Property Name="PRES_CD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PACI_CD_ID" Type="int" />
-          <Property Name="PRES_DT_DATA" Type="datetime" />
-          <Property Name="PRES_NM_NOME" Type="varchar" MaxLength="50" />
-          <Property Name="PRES_TX_TEXTO" Type="text" />
-          <Property Name="PRES_IN_ATIVO" Type="int" />
         </EntityType>
         <EntityType Name="PRESCRICAO_ANEXO">
           <Key>
@@ -661,17 +673,6 @@
           <Property Name="PROD_CD_ID" Type="int" Nullable="false" />
           <Property Name="FORN_CD_ID" Type="int" Nullable="false" />
           <Property Name="PRFO_IN_ATIVO" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="RECOMENDACAO">
-          <Key>
-            <PropertyRef Name="RECO_CD_ID" />
-          </Key>
-          <Property Name="RECO_CD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PACI_CD_ID" Type="int" />
-          <Property Name="RECO_DT_DATA" Type="datetime" />
-          <Property Name="RECO_NM_NOME" Type="varchar" MaxLength="50" />
-          <Property Name="RECO_DS_DESCRICAO" Type="text" />
-          <Property Name="RECO_IN_ATIVO" Type="int" />
         </EntityType>
         <EntityType Name="REGIAO_DENTE">
           <Key>
@@ -1774,24 +1775,24 @@
         </Association>
         <Association Name="FK_PACIE NTE_ACOMPANHAMENTO_PACIENTE">
           <End Role="PACIENTE" Type="Self.PACIENTE" Multiplicity="0..1" />
-          <End Role="PACIE NTE_ACOMPANHAMENTO" Type="Self.PACIE NTE_ACOMPANHAMENTO" Multiplicity="*" />
+          <End Role="PACIENTE_ACOMPANHAMENTO" Type="Self.PACIENTE_ACOMPANHAMENTO" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PACIENTE">
               <PropertyRef Name="PACI_CD_ID" />
             </Principal>
-            <Dependent Role="PACIE NTE_ACOMPANHAMENTO">
+            <Dependent Role="PACIENTE_ACOMPANHAMENTO">
               <PropertyRef Name="PACI_CD_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PACIE NTE_ACOMPANHAMENTO_USUARIO">
           <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
-          <End Role="PACIE NTE_ACOMPANHAMENTO" Type="Self.PACIE NTE_ACOMPANHAMENTO" Multiplicity="*" />
+          <End Role="PACIENTE_ACOMPANHAMENTO" Type="Self.PACIENTE_ACOMPANHAMENTO" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="USUARIO">
               <PropertyRef Name="USUA_CD_ID" />
             </Principal>
-            <Dependent Role="PACIE NTE_ACOMPANHAMENTO">
+            <Dependent Role="PACIENTE_ACOMPANHAMENTO">
               <PropertyRef Name="USUA_CD_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -1881,10 +1882,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PRESCRICAO_ANEXO_PRESCRICAO">
-          <End Role="PRESCRICAO" Type="Self.PRESCRICAO" Multiplicity="0..1" />
+          <End Role="PACIENTE_PRESCRICAO" Type="Self.PACIENTE_PRESCRICAO" Multiplicity="0..1" />
           <End Role="PRESCRICAO_ANEXO" Type="Self.PRESCRICAO_ANEXO" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="PRESCRICAO">
+            <Principal Role="PACIENTE_PRESCRICAO">
               <PropertyRef Name="PRES_CD_ID" />
             </Principal>
             <Dependent Role="PRESCRICAO_ANEXO">
@@ -1894,12 +1895,12 @@
         </Association>
         <Association Name="FK_PRESCRICAO_PACIENTE">
           <End Role="PACIENTE" Type="Self.PACIENTE" Multiplicity="0..1" />
-          <End Role="PRESCRICAO" Type="Self.PRESCRICAO" Multiplicity="*" />
+          <End Role="PACIENTE_PRESCRICAO" Type="Self.PACIENTE_PRESCRICAO" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PACIENTE">
               <PropertyRef Name="PACI_CD_ID" />
             </Principal>
-            <Dependent Role="PRESCRICAO">
+            <Dependent Role="PACIENTE_PRESCRICAO">
               <PropertyRef Name="PACI_CD_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -2002,12 +2003,12 @@
         </Association>
         <Association Name="FK_RECOMENDACAO_PACIENTE">
           <End Role="PACIENTE" Type="Self.PACIENTE" Multiplicity="0..1" />
-          <End Role="RECOMENDACAO" Type="Self.RECOMENDACAO" Multiplicity="*" />
+          <End Role="PACIENTE_RECOMENDACAO" Type="Self.PACIENTE_RECOMENDACAO" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PACIENTE">
               <PropertyRef Name="PACI_CD_ID" />
             </Principal>
-            <Dependent Role="RECOMENDACAO">
+            <Dependent Role="PACIENTE_RECOMENDACAO">
               <PropertyRef Name="PACI_CD_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -2503,19 +2504,19 @@
           <EntitySet Name="ORCAMENTO" EntityType="Self.ORCAMENTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ORCAMENTO_ANEXO" EntityType="Self.ORCAMENTO_ANEXO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ORCAMENTO_ITEM" EntityType="Self.ORCAMENTO_ITEM" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PACIE NTE_ACOMPANHAMENTO" EntityType="Self.PACIE NTE_ACOMPANHAMENTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PACIENTE" EntityType="Self.PACIENTE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PACIENTE_ACOMPANHAMENTO" EntityType="Self.PACIENTE_ACOMPANHAMENTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PACIENTE_ANEXO" EntityType="Self.PACIENTE_ANEXO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PACIENTE_PRESCRICAO" EntityType="Self.PACIENTE_PRESCRICAO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PACIENTE_RECOMENDACAO" EntityType="Self.PACIENTE_RECOMENDACAO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PAIS" EntityType="Self.PAIS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PERCENTUAL_REMUNERACAO" EntityType="Self.PERCENTUAL_REMUNERACAO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PERFIL" EntityType="Self.PERFIL" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PRESCRICAO" EntityType="Self.PRESCRICAO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRESCRICAO_ANEXO" EntityType="Self.PRESCRICAO_ANEXO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRODUTO" EntityType="Self.PRODUTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRODUTO_ANEXO" EntityType="Self.PRODUTO_ANEXO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRODUTO_ESTOQUE_FILIAL" EntityType="Self.PRODUTO_ESTOQUE_FILIAL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRODUTO_FORNECEDOR" EntityType="Self.PRODUTO_FORNECEDOR" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="RECOMENDACAO" EntityType="Self.RECOMENDACAO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="REGIAO_DENTE" EntityType="Self.REGIAO_DENTE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="REGIME_TRIBUTARIO" EntityType="Self.REGIME_TRIBUTARIO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEXO" EntityType="Self.SEXO" Schema="dbo" store:Type="Tables" />
@@ -2795,11 +2796,11 @@
           </AssociationSet>
           <AssociationSet Name="FK_PACIE NTE_ACOMPANHAMENTO_PACIENTE" Association="Self.FK_PACIE NTE_ACOMPANHAMENTO_PACIENTE">
             <End Role="PACIENTE" EntitySet="PACIENTE" />
-            <End Role="PACIE NTE_ACOMPANHAMENTO" EntitySet="PACIE NTE_ACOMPANHAMENTO" />
+            <End Role="PACIENTE_ACOMPANHAMENTO" EntitySet="PACIENTE_ACOMPANHAMENTO" />
           </AssociationSet>
           <AssociationSet Name="FK_PACIE NTE_ACOMPANHAMENTO_USUARIO" Association="Self.FK_PACIE NTE_ACOMPANHAMENTO_USUARIO">
             <End Role="USUARIO" EntitySet="USUARIO" />
-            <End Role="PACIE NTE_ACOMPANHAMENTO" EntitySet="PACIE NTE_ACOMPANHAMENTO" />
+            <End Role="PACIENTE_ACOMPANHAMENTO" EntitySet="PACIENTE_ACOMPANHAMENTO" />
           </AssociationSet>
           <AssociationSet Name="FK_PACIENTE_ANEXO_PACIENTE" Association="Self.FK_PACIENTE_ANEXO_PACIENTE">
             <End Role="PACIENTE" EntitySet="PACIENTE" />
@@ -2830,12 +2831,12 @@
             <End Role="PERCENTUAL_REMUNERACAO" EntitySet="PERCENTUAL_REMUNERACAO" />
           </AssociationSet>
           <AssociationSet Name="FK_PRESCRICAO_ANEXO_PRESCRICAO" Association="Self.FK_PRESCRICAO_ANEXO_PRESCRICAO">
-            <End Role="PRESCRICAO" EntitySet="PRESCRICAO" />
+            <End Role="PACIENTE_PRESCRICAO" EntitySet="PACIENTE_PRESCRICAO" />
             <End Role="PRESCRICAO_ANEXO" EntitySet="PRESCRICAO_ANEXO" />
           </AssociationSet>
           <AssociationSet Name="FK_PRESCRICAO_PACIENTE" Association="Self.FK_PRESCRICAO_PACIENTE">
             <End Role="PACIENTE" EntitySet="PACIENTE" />
-            <End Role="PRESCRICAO" EntitySet="PRESCRICAO" />
+            <End Role="PACIENTE_PRESCRICAO" EntitySet="PACIENTE_PRESCRICAO" />
           </AssociationSet>
           <AssociationSet Name="FK_PRODUTO_ANEXO_PRODUTO" Association="Self.FK_PRODUTO_ANEXO_PRODUTO">
             <End Role="PRODUTO" EntitySet="PRODUTO" />
@@ -2871,7 +2872,7 @@
           </AssociationSet>
           <AssociationSet Name="FK_RECOMENDACAO_PACIENTE" Association="Self.FK_RECOMENDACAO_PACIENTE">
             <End Role="PACIENTE" EntitySet="PACIENTE" />
-            <End Role="RECOMENDACAO" EntitySet="RECOMENDACAO" />
+            <End Role="PACIENTE_RECOMENDACAO" EntitySet="PACIENTE_RECOMENDACAO" />
           </AssociationSet>
           <AssociationSet Name="FK_REGIME_TRIBUTARIO_ASSINANTE" Association="Self.FK_REGIME_TRIBUTARIO_ASSINANTE">
             <End Role="ASSINANTE" EntitySet="ASSINANTE" />
@@ -3658,6 +3659,7 @@
           <Property Name="USUA_NR_RG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="USUA_SG_UF" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="PACIE_NTE_ACOMPANHAMENTO" Relationship="OdontoWeb_Model.FK_PACIE_NTE_ACOMPANHAMENTO_USUARIO" FromRole="USUARIO" ToRole="PACIE_NTE_ACOMPANHAMENTO" />
+          <NavigationProperty Name="PACIENTE_ACOMPANHAMENTO" Relationship="OdontoWeb_Model.FK_PACIE_NTE_ACOMPANHAMENTO_USUARIO1" FromRole="USUARIO" ToRole="PACIENTE_ACOMPANHAMENTO" />
         </EntityType>
         <EntityType Name="USUARIO_ANEXO">
           <Key>
@@ -4821,6 +4823,29 @@
             <End Role="TIPO_PROCEDIMENTO" EntitySet="TIPO_PROCEDIMENTO" />
             <End Role="TIPO_PROCEDIMENTO_ANEXO" EntitySet="TIPO_PROCEDIMENTO_ANEXO" />
           </AssociationSet>
+          <EntitySet Name="PACIENTE_ACOMPANHAMENTO" EntityType="OdontoWeb_Model.PACIENTE_ACOMPANHAMENTO" />
+          <EntitySet Name="PACIENTE_PRESCRICAO" EntityType="OdontoWeb_Model.PACIENTE_PRESCRICAO" />
+          <EntitySet Name="PACIENTE_RECOMENDACAO" EntityType="OdontoWeb_Model.PACIENTE_RECOMENDACAO" />
+          <AssociationSet Name="FK_PACIE_NTE_ACOMPANHAMENTO_PACIENTE1" Association="OdontoWeb_Model.FK_PACIE_NTE_ACOMPANHAMENTO_PACIENTE1">
+            <End Role="PACIENTE" EntitySet="PACIENTE" />
+            <End Role="PACIENTE_ACOMPANHAMENTO" EntitySet="PACIENTE_ACOMPANHAMENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRESCRICAO_PACIENTE1" Association="OdontoWeb_Model.FK_PRESCRICAO_PACIENTE1">
+            <End Role="PACIENTE" EntitySet="PACIENTE" />
+            <End Role="PACIENTE_PRESCRICAO" EntitySet="PACIENTE_PRESCRICAO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RECOMENDACAO_PACIENTE1" Association="OdontoWeb_Model.FK_RECOMENDACAO_PACIENTE1">
+            <End Role="PACIENTE" EntitySet="PACIENTE" />
+            <End Role="PACIENTE_RECOMENDACAO" EntitySet="PACIENTE_RECOMENDACAO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PACIE_NTE_ACOMPANHAMENTO_USUARIO1" Association="OdontoWeb_Model.FK_PACIE_NTE_ACOMPANHAMENTO_USUARIO1">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="PACIENTE_ACOMPANHAMENTO" EntitySet="PACIENTE_ACOMPANHAMENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRESCRICAO_ANEXO_PRESCRICAO1" Association="OdontoWeb_Model.FK_PRESCRICAO_ANEXO_PRESCRICAO1">
+            <End Role="PACIENTE_PRESCRICAO" EntitySet="PACIENTE_PRESCRICAO" />
+            <End Role="PRESCRICAO_ANEXO" EntitySet="PRESCRICAO_ANEXO" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="CATEGORIA_PRODUTO">
           <Key>
@@ -5978,6 +6003,10 @@
           <NavigationProperty Name="UF" Relationship="OdontoWeb_Model.FK_PACIENTE_UF" FromRole="PACIENTE" ToRole="UF" />
           <NavigationProperty Name="PRESCRICAO" Relationship="OdontoWeb_Model.FK_PRESCRICAO_PACIENTE" FromRole="PACIENTE" ToRole="PRESCRICAO" />
           <NavigationProperty Name="RECOMENDACAO" Relationship="OdontoWeb_Model.FK_RECOMENDACAO_PACIENTE" FromRole="PACIENTE" ToRole="RECOMENDACAO" />
+          <Property Name="PACI_AQ_FOTO" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PACIENTE_ACOMPANHAMENTO" Relationship="OdontoWeb_Model.FK_PACIE_NTE_ACOMPANHAMENTO_PACIENTE1" FromRole="PACIENTE" ToRole="PACIENTE_ACOMPANHAMENTO" />
+          <NavigationProperty Name="PACIENTE_PRESCRICAO" Relationship="OdontoWeb_Model.FK_PRESCRICAO_PACIENTE1" FromRole="PACIENTE" ToRole="PACIENTE_PRESCRICAO" />
+          <NavigationProperty Name="PACIENTE_RECOMENDACAO" Relationship="OdontoWeb_Model.FK_RECOMENDACAO_PACIENTE1" FromRole="PACIENTE" ToRole="PACIENTE_RECOMENDACAO" />
         </EntityType>
         <EntityType Name="PACIENTE_ANEXO">
           <Key>
@@ -6017,6 +6046,7 @@
           <Property Name="PRAN_AQ_ARQUIVO" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="PRAN_IN_ATIVO" Type="Int32" />
           <NavigationProperty Name="PRESCRICAO" Relationship="OdontoWeb_Model.FK_PRESCRICAO_ANEXO_PRESCRICAO" FromRole="PRESCRICAO_ANEXO" ToRole="PRESCRICAO" />
+          <NavigationProperty Name="PACIENTE_PRESCRICAO" Relationship="OdontoWeb_Model.FK_PRESCRICAO_ANEXO_PRESCRICAO1" FromRole="PRESCRICAO_ANEXO" ToRole="PACIENTE_PRESCRICAO" />
         </EntityType>
         <EntityType Name="RECOMENDACAO">
           <Key>
@@ -6308,6 +6338,104 @@
             </Principal>
             <Dependent Role="TIPO_PROCEDIMENTO_ANEXO">
               <PropertyRef Name="TIPR_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PACIENTE_ACOMPANHAMENTO">
+          <Key>
+            <PropertyRef Name="PAAC_CD_ID" />
+          </Key>
+          <Property Name="PAAC_CD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PACI_CD_ID" Type="Int32" />
+          <Property Name="USUA_CD_ID" Type="Int32" />
+          <Property Name="PAAC_DT_DATA" Type="DateTime" Precision="3" />
+          <Property Name="PAAC_TX_ACOMPANHENTO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PAAC_IN_ATIVO" Type="Int32" />
+          <NavigationProperty Name="PACIENTE" Relationship="OdontoWeb_Model.FK_PACIE_NTE_ACOMPANHAMENTO_PACIENTE1" FromRole="PACIENTE_ACOMPANHAMENTO" ToRole="PACIENTE" />
+          <NavigationProperty Name="USUARIO" Relationship="OdontoWeb_Model.FK_PACIE_NTE_ACOMPANHAMENTO_USUARIO1" FromRole="PACIENTE_ACOMPANHAMENTO" ToRole="USUARIO" />
+        </EntityType>
+        <EntityType Name="PACIENTE_PRESCRICAO">
+          <Key>
+            <PropertyRef Name="PRES_CD_ID" />
+          </Key>
+          <Property Name="PRES_CD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PACI_CD_ID" Type="Int32" />
+          <Property Name="PRES_DT_DATA" Type="DateTime" Precision="3" />
+          <Property Name="PRES_NM_NOME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PRES_TX_TEXTO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PRES_IN_ATIVO" Type="Int32" />
+          <NavigationProperty Name="PACIENTE" Relationship="OdontoWeb_Model.FK_PRESCRICAO_PACIENTE1" FromRole="PACIENTE_PRESCRICAO" ToRole="PACIENTE" />
+          <NavigationProperty Name="PRESCRICAO_ANEXO" Relationship="OdontoWeb_Model.FK_PRESCRICAO_ANEXO_PRESCRICAO1" FromRole="PACIENTE_PRESCRICAO" ToRole="PRESCRICAO_ANEXO" />
+        </EntityType>
+        <EntityType Name="PACIENTE_RECOMENDACAO">
+          <Key>
+            <PropertyRef Name="RECO_CD_ID" />
+          </Key>
+          <Property Name="RECO_CD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PACI_CD_ID" Type="Int32" />
+          <Property Name="RECO_DT_DATA" Type="DateTime" Precision="3" />
+          <Property Name="RECO_NM_NOME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RECO_DS_DESCRICAO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RECO_IN_ATIVO" Type="Int32" />
+          <NavigationProperty Name="PACIENTE" Relationship="OdontoWeb_Model.FK_RECOMENDACAO_PACIENTE1" FromRole="PACIENTE_RECOMENDACAO" ToRole="PACIENTE" />
+        </EntityType>
+        <Association Name="FK_PACIE_NTE_ACOMPANHAMENTO_PACIENTE1">
+          <End Type="OdontoWeb_Model.PACIENTE" Role="PACIENTE" Multiplicity="0..1" />
+          <End Type="OdontoWeb_Model.PACIENTE_ACOMPANHAMENTO" Role="PACIENTE_ACOMPANHAMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PACIENTE">
+              <PropertyRef Name="PACI_CD_ID" />
+            </Principal>
+            <Dependent Role="PACIENTE_ACOMPANHAMENTO">
+              <PropertyRef Name="PACI_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRESCRICAO_PACIENTE1">
+          <End Type="OdontoWeb_Model.PACIENTE" Role="PACIENTE" Multiplicity="0..1" />
+          <End Type="OdontoWeb_Model.PACIENTE_PRESCRICAO" Role="PACIENTE_PRESCRICAO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PACIENTE">
+              <PropertyRef Name="PACI_CD_ID" />
+            </Principal>
+            <Dependent Role="PACIENTE_PRESCRICAO">
+              <PropertyRef Name="PACI_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RECOMENDACAO_PACIENTE1">
+          <End Type="OdontoWeb_Model.PACIENTE" Role="PACIENTE" Multiplicity="0..1" />
+          <End Type="OdontoWeb_Model.PACIENTE_RECOMENDACAO" Role="PACIENTE_RECOMENDACAO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PACIENTE">
+              <PropertyRef Name="PACI_CD_ID" />
+            </Principal>
+            <Dependent Role="PACIENTE_RECOMENDACAO">
+              <PropertyRef Name="PACI_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PACIE_NTE_ACOMPANHAMENTO_USUARIO1">
+          <End Type="OdontoWeb_Model.USUARIO" Role="USUARIO" Multiplicity="0..1" />
+          <End Type="OdontoWeb_Model.PACIENTE_ACOMPANHAMENTO" Role="PACIENTE_ACOMPANHAMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="USUA_CD_ID" />
+            </Principal>
+            <Dependent Role="PACIENTE_ACOMPANHAMENTO">
+              <PropertyRef Name="USUA_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRESCRICAO_ANEXO_PRESCRICAO1">
+          <End Type="OdontoWeb_Model.PACIENTE_PRESCRICAO" Role="PACIENTE_PRESCRICAO" Multiplicity="0..1" />
+          <End Type="OdontoWeb_Model.PRESCRICAO_ANEXO" Role="PRESCRICAO_ANEXO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PACIENTE_PRESCRICAO">
+              <PropertyRef Name="PRES_CD_ID" />
+            </Principal>
+            <Dependent Role="PRESCRICAO_ANEXO">
+              <PropertyRef Name="PRES_CD_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -7273,21 +7401,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PACIE_NTE_ACOMPANHAMENTO">
-            <EntityTypeMapping TypeName="OdontoWeb_Model.PACIE_NTE_ACOMPANHAMENTO">
-              <MappingFragment StoreEntitySet="PACIE NTE_ACOMPANHAMENTO">
-                <ScalarProperty Name="PAAC_IN_ATIVO" ColumnName="PAAC_IN_ATIVO" />
-                <ScalarProperty Name="PAAC_TX_ACOMPANHENTO" ColumnName="PAAC_TX_ACOMPANHENTO" />
-                <ScalarProperty Name="PAAC_DT_DATA" ColumnName="PAAC_DT_DATA" />
-                <ScalarProperty Name="USUA_CD_ID" ColumnName="USUA_CD_ID" />
-                <ScalarProperty Name="PACI_CD_ID" ColumnName="PACI_CD_ID" />
-                <ScalarProperty Name="PAAC_CD_ID" ColumnName="PAAC_CD_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="PACIENTE">
             <EntityTypeMapping TypeName="OdontoWeb_Model.PACIENTE">
               <MappingFragment StoreEntitySet="PACIENTE">
+                <ScalarProperty Name="PACI_AQ_FOTO" ColumnName="PACI_AQ_FOTO" />
                 <ScalarProperty Name="PACI_DT_NASCIMENTO" ColumnName="PACI_DT_NASCIMENTO" />
                 <ScalarProperty Name="PACI_DT_CADASTRO" ColumnName="PACI_DT_CADASTRO" />
                 <ScalarProperty Name="PACI_IN_ATIVO" ColumnName="PACI_IN_ATIVO" />
@@ -7325,18 +7442,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PRESCRICAO">
-            <EntityTypeMapping TypeName="OdontoWeb_Model.PRESCRICAO">
-              <MappingFragment StoreEntitySet="PRESCRICAO">
-                <ScalarProperty Name="PRES_IN_ATIVO" ColumnName="PRES_IN_ATIVO" />
-                <ScalarProperty Name="PRES_TX_TEXTO" ColumnName="PRES_TX_TEXTO" />
-                <ScalarProperty Name="PRES_NM_NOME" ColumnName="PRES_NM_NOME" />
-                <ScalarProperty Name="PRES_DT_DATA" ColumnName="PRES_DT_DATA" />
-                <ScalarProperty Name="PACI_CD_ID" ColumnName="PACI_CD_ID" />
-                <ScalarProperty Name="PRES_CD_ID" ColumnName="PRES_CD_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="PRESCRICAO_ANEXO">
             <EntityTypeMapping TypeName="OdontoWeb_Model.PRESCRICAO_ANEXO">
               <MappingFragment StoreEntitySet="PRESCRICAO_ANEXO">
@@ -7347,18 +7452,6 @@
                 <ScalarProperty Name="PRAN_NM_TITULO" ColumnName="PRAN_NM_TITULO" />
                 <ScalarProperty Name="PRES_CD_ID" ColumnName="PRES_CD_ID" />
                 <ScalarProperty Name="PRAN_CD_ID" ColumnName="PRAN_CD_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RECOMENDACAO">
-            <EntityTypeMapping TypeName="OdontoWeb_Model.RECOMENDACAO">
-              <MappingFragment StoreEntitySet="RECOMENDACAO">
-                <ScalarProperty Name="RECO_IN_ATIVO" ColumnName="RECO_IN_ATIVO" />
-                <ScalarProperty Name="RECO_DS_DESCRICAO" ColumnName="RECO_DS_DESCRICAO" />
-                <ScalarProperty Name="RECO_NM_NOME" ColumnName="RECO_NM_NOME" />
-                <ScalarProperty Name="RECO_DT_DATA" ColumnName="RECO_DT_DATA" />
-                <ScalarProperty Name="PACI_CD_ID" ColumnName="PACI_CD_ID" />
-                <ScalarProperty Name="RECO_CD_ID" ColumnName="RECO_CD_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -7397,6 +7490,42 @@
                 <ScalarProperty Name="TPAN_NM_TITULO" ColumnName="TPAN_NM_TITULO" />
                 <ScalarProperty Name="TIPR_CD_ID" ColumnName="TIPR_CD_ID" />
                 <ScalarProperty Name="TPAN_CD_ID" ColumnName="TPAN_CD_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PACIENTE_ACOMPANHAMENTO">
+            <EntityTypeMapping TypeName="OdontoWeb_Model.PACIENTE_ACOMPANHAMENTO">
+              <MappingFragment StoreEntitySet="PACIENTE_ACOMPANHAMENTO">
+                <ScalarProperty Name="PAAC_IN_ATIVO" ColumnName="PAAC_IN_ATIVO" />
+                <ScalarProperty Name="PAAC_TX_ACOMPANHENTO" ColumnName="PAAC_TX_ACOMPANHENTO" />
+                <ScalarProperty Name="PAAC_DT_DATA" ColumnName="PAAC_DT_DATA" />
+                <ScalarProperty Name="USUA_CD_ID" ColumnName="USUA_CD_ID" />
+                <ScalarProperty Name="PACI_CD_ID" ColumnName="PACI_CD_ID" />
+                <ScalarProperty Name="PAAC_CD_ID" ColumnName="PAAC_CD_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PACIENTE_PRESCRICAO">
+            <EntityTypeMapping TypeName="OdontoWeb_Model.PACIENTE_PRESCRICAO">
+              <MappingFragment StoreEntitySet="PACIENTE_PRESCRICAO">
+                <ScalarProperty Name="PRES_IN_ATIVO" ColumnName="PRES_IN_ATIVO" />
+                <ScalarProperty Name="PRES_TX_TEXTO" ColumnName="PRES_TX_TEXTO" />
+                <ScalarProperty Name="PRES_NM_NOME" ColumnName="PRES_NM_NOME" />
+                <ScalarProperty Name="PRES_DT_DATA" ColumnName="PRES_DT_DATA" />
+                <ScalarProperty Name="PACI_CD_ID" ColumnName="PACI_CD_ID" />
+                <ScalarProperty Name="PRES_CD_ID" ColumnName="PRES_CD_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PACIENTE_RECOMENDACAO">
+            <EntityTypeMapping TypeName="OdontoWeb_Model.PACIENTE_RECOMENDACAO">
+              <MappingFragment StoreEntitySet="PACIENTE_RECOMENDACAO">
+                <ScalarProperty Name="RECO_IN_ATIVO" ColumnName="RECO_IN_ATIVO" />
+                <ScalarProperty Name="RECO_DS_DESCRICAO" ColumnName="RECO_DS_DESCRICAO" />
+                <ScalarProperty Name="RECO_NM_NOME" ColumnName="RECO_NM_NOME" />
+                <ScalarProperty Name="RECO_DT_DATA" ColumnName="RECO_DT_DATA" />
+                <ScalarProperty Name="PACI_CD_ID" ColumnName="PACI_CD_ID" />
+                <ScalarProperty Name="RECO_CD_ID" ColumnName="RECO_CD_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

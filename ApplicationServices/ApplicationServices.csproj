@@ -186,6 +186,7 @@
     <Compile Include="Interfaces\ILogAppService.cs" />
     <Compile Include="Interfaces\IMatrizAppService.cs" />
     <Compile Include="Interfaces\INoticiaAppService.cs" />
+    <Compile Include="Interfaces\IPacienteAppService.cs" />
     <Compile Include="Interfaces\ITipoProcedimentoAppService.cs" />
     <Compile Include="Interfaces\IProdutoAppService.cs" />
     <Compile Include="Interfaces\IMovimentoEstoqueProdutoAppService.cs" />
@@ -218,6 +219,7 @@
     <Compile Include="Services\MatrizAppService.cs" />
     <Compile Include="Services\NoticiaAppService.cs" />
     <Compile Include="Services\MovimentoEstoqueProdutoAppService.cs" />
+    <Compile Include="Services\PacienteAppService.cs" />
     <Compile Include="Services\TipoProcedimentoAppService.cs" />
     <Compile Include="Services\ProdutoAppService.cs" />
     <Compile Include="Services\SubgrupoAppService.cs" />

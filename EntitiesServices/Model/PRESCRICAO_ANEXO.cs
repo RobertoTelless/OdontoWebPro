@@ -23,5 +23,6 @@ namespace EntitiesServices.Model
         public Nullable<int> PRAN_IN_ATIVO { get; set; }
     
         public virtual PRESCRICAO PRESCRICAO { get; set; }
+        public virtual PACIENTE_PRESCRICAO PACIENTE_PRESCRICAO { get; set; }
     }
 }

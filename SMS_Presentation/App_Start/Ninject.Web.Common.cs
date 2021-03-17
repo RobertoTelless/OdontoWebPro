@@ -97,6 +97,7 @@ namespace Presentation.Start
             kernel.Bind<ITipoContaAppService>().To<TipoContaAppService>();
             kernel.Bind<IDenteRegiaoAppService>().To<DenteRegiaoAppService>();
             kernel.Bind<ITipoProcedimentoAppService>().To<TipoProcedimentoAppService>();
+            kernel.Bind<IPacienteAppService>().To<PacienteAppService>();
 
             kernel.Bind(typeof(IServiceBase<>)).To(typeof(ServiceBase<>));
             kernel.Bind<IUsuarioService>().To<UsuarioService>();
@@ -128,6 +129,7 @@ namespace Presentation.Start
             kernel.Bind<ITipoContaService>().To<TipoContaService>();
             kernel.Bind<IDenteRegiaoService>().To<DenteRegiaoService>();
             kernel.Bind<ITipoProcedimentoService>().To<TipoProcedimentoService>();
+            kernel.Bind<IPacienteService>().To<PacienteService>();
 
             kernel.Bind(typeof(IRepositoryBase<>)).To(typeof(RepositoryBase<>));
             kernel.Bind<IConfiguracaoRepository>().To<ConfiguracaoRepository>();
@@ -181,6 +183,8 @@ namespace Presentation.Start
             kernel.Bind<IDenteRegiaoRepository>().To<DenteRegiaoRepository>();
             kernel.Bind<ITipoProcedimentoRepository>().To<TipoProcedimentoRepository>();
             kernel.Bind<ITipoProcedimentoAnexoRepository>().To<TipoProcedimentoAnexoRepository>();
+            kernel.Bind<IPacienteRepository>().To<PacienteRepository>();
+            kernel.Bind<IPacienteAnexoRepository>().To<PacienteAnexoRepository>();
 
         }
     }

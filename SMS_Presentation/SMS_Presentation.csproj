@@ -344,6 +344,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NoticiaController.cs" />
     <Compile Include="Controllers\NotificacaoController.cs" />
+    <Compile Include="Controllers\PacienteController.cs" />
     <Compile Include="Controllers\ProdutoController.cs" />
     <Compile Include="Controllers\RemuneracaoController.cs" />
     <Compile Include="Controllers\TabelasAuxiliaresController.cs" />
@@ -370,6 +371,7 @@
     <Compile Include="ViewModels\ContaBancariaContatoViewModel.cs" />
     <Compile Include="ViewModels\ContaBancariaLancamentoViewModel.cs" />
     <Compile Include="ViewModels\ContaBancariaViewModel.cs" />
+    <Compile Include="ViewModels\PacienteViewModel.cs" />
     <Compile Include="ViewModels\FilialViewModel.cs" />
     <Compile Include="ViewModels\GrupoViewModel.cs" />
     <Compile Include="ViewModels\LogViewModel.cs" />
@@ -2711,6 +2713,12 @@
     <Content Include="Views\TipoProcedimento\IncluirTipoProcedimento.cshtml" />
     <Content Include="Views\TipoProcedimento\EditarTipoProcedimento.cshtml" />
     <Content Include="Views\TipoProcedimento\VerAnexoTipoProcedimento.cshtml" />
+    <Content Include="Views\Paciente\MontarTelaPaciente.cshtml" />
+    <Content Include="Views\Paciente\IncluirPaciente.cshtml" />
+    <Content Include="Views\Paciente\EditarPaciente.cshtml" />
+    <Content Include="Views\Paciente\VerAnexoPaciente.cshtml" />
+    <Content Include="Views\Paciente\VerCardsPaciente.cshtml" />
+    <Content Include="Views\Paciente\VerPaciente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

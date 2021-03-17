@@ -42,6 +42,7 @@ namespace MvcMapping.Mappers
             CreateMap<REGIAO_DENTE, DenteRegiaoViewModel>();
             CreateMap<TIPO_PROCEDIMENTO_ANEXO, TipoProcedimentoAnexoViewModel>();
             CreateMap<TIPO_PROCEDIMENTO, TipoProcedimentoViewModel>();
+            CreateMap<PACIENTE, PacienteViewModel>();
 
         }
     }

@@ -185,6 +185,7 @@
     <Compile Include="EntitiesServices\LogService.cs" />
     <Compile Include="EntitiesServices\MatrizService.cs" />
     <Compile Include="EntitiesServices\NoticiaService.cs" />
+    <Compile Include="EntitiesServices\PacienteService.cs" />
     <Compile Include="EntitiesServices\TipoProcedimentoService.cs" />
     <Compile Include="EntitiesServices\ProdutoService.cs" />
     <Compile Include="EntitiesServices\MovimentoEstoqueProdutoService.cs" />
@@ -215,6 +216,7 @@
     <Compile Include="Interfaces\EntitiesServices\IGrupoService.cs" />
     <Compile Include="Interfaces\EntitiesServices\ILogService.cs" />
     <Compile Include="Interfaces\EntitiesServices\IMovimentoEstoqueProdutoService.cs" />
+    <Compile Include="Interfaces\EntitiesServices\IPacienteService.cs" />
     <Compile Include="Interfaces\EntitiesServices\ITipoProcedimentoService.cs" />
     <Compile Include="Interfaces\EntitiesServices\IProdutoService.cs" />
     <Compile Include="Interfaces\EntitiesServices\IMatrizService.cs" />
@@ -259,6 +261,8 @@
     <Compile Include="Interfaces\Repositories\INoticiaRepository.cs" />
     <Compile Include="Interfaces\Repositories\INoticiaTagRepository.cs" />
     <Compile Include="Interfaces\Repositories\IDenteRegiaoRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IPacienteRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IPacienteAnexoRepository.cs" />
     <Compile Include="Interfaces\Repositories\ITipoProcedimentoAnexoRepository.cs" />
     <Compile Include="Interfaces\Repositories\INotificacaoAnexoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IMovimentoEstoqueProdutoRepository.cs" />
@@ -409,7 +413,16 @@
     <Compile Include="Model\PACIENTE.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\PACIENTE_ACOMPANHAMENTO.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\PACIENTE_ANEXO.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PACIENTE_PRESCRICAO.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PACIENTE_RECOMENDACAO.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\PACIE_NTE_ACOMPANHAMENTO.cs">

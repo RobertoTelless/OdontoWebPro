@@ -97,5 +97,8 @@ namespace EntitiesServices.Model
         public virtual DbSet<REGIAO_DENTE> REGIAO_DENTE { get; set; }
         public virtual DbSet<TIPO_PROCEDIMENTO> TIPO_PROCEDIMENTO { get; set; }
         public virtual DbSet<TIPO_PROCEDIMENTO_ANEXO> TIPO_PROCEDIMENTO_ANEXO { get; set; }
+        public virtual DbSet<PACIENTE_ACOMPANHAMENTO> PACIENTE_ACOMPANHAMENTO { get; set; }
+        public virtual DbSet<PACIENTE_PRESCRICAO> PACIENTE_PRESCRICAO { get; set; }
+        public virtual DbSet<PACIENTE_RECOMENDACAO> PACIENTE_RECOMENDACAO { get; set; }
     }
 }

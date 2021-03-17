@@ -199,6 +199,14 @@
         <AssociationConnector Association="OdontoWeb_Model.FK_RECOMENDACAO_PACIENTE" />
         <AssociationConnector Association="OdontoWeb_Model.FK_PRESCRICAO_ANEXO_PRESCRICAO" />
         <AssociationConnector Association="OdontoWeb_Model.FK_TIPO_PROCEDIMENTO_ANEXO_TIPO_PROCEDIMENTO" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.PACIENTE_ACOMPANHAMENTO" Width="1.5" PointX="24.5" PointY="47.25" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.PACIENTE_PRESCRICAO" Width="1.5" PointX="21.5" PointY="73.75" />
+        <EntityTypeShape EntityType="OdontoWeb_Model.PACIENTE_RECOMENDACAO" Width="1.5" PointX="21.5" PointY="45.75" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_PACIE_NTE_ACOMPANHAMENTO_PACIENTE1" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_PRESCRICAO_PACIENTE1" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_RECOMENDACAO_PACIENTE1" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_PACIE_NTE_ACOMPANHAMENTO_USUARIO1" />
+        <AssociationConnector Association="OdontoWeb_Model.FK_PRESCRICAO_ANEXO_PRESCRICAO1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

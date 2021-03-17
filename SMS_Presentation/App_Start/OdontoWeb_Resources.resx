@@ -249,6 +249,18 @@
   <data name="M0046" xml:space="preserve">
     <value>Impossível excluir esse Tipo de Procedimento. Existem registros vinculados a ele</value>
   </data>
+  <data name="M0047" xml:space="preserve">
+    <value>Impossível excluir esse paciente. Existem registros vinculados a ele.</value>
+  </data>
+  <data name="M0048" xml:space="preserve">
+    <value>Paciente já cadastrado para esta filial</value>
+  </data>
+  <data name="M0049" xml:space="preserve">
+    <value>Nenhum arquivo selecionado</value>
+  </data>
+  <data name="M0050" xml:space="preserve">
+    <value>Nome do arquivo não pode ter mais de 100 caracteres</value>
+  </data>
   <data name="M0073" xml:space="preserve">
     <value>A Senha não pode ficar em branco</value>
   </data>

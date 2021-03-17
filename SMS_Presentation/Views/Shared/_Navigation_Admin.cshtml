@@ -34,6 +34,13 @@
             </li>
 
             <li class="@Html.IsSelected(controller: "BaseAdmin")">
+                <a href="@Url.Action("CarregarBase", "BaseAdmin")"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Operação</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "BaseAdmin", cssClass: "in")">
+                    <li class="@Html.IsSelected(action: "MontarTelaPaciente")"><a href="@Url.Action("MontarTelaPaciente", "Paciente")">Pacientes</a></li>
+                </ul>
+            </li>
+
+            <li class="@Html.IsSelected(controller: "BaseAdmin")">
                 <a href="@Url.Action("CarregarBase", "BaseAdmin")"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Consultas</span> <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "BaseAdmin", cssClass: "in")">
                     <li class="@Html.IsSelected(action: "MontarTelaEquipeCards")"><a href="@Url.Action("MontarTelaEquipeCards", "Equipe")">Equipe</a></li>
@@ -73,7 +80,7 @@
                                 }
                             </ul>                    
                         </li>
-                        <li class="@Html.IsSelected(action: "CarregarBase")"><a href="@Url.Action("CarregarBase", "BaseAdmin")"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Cadastros Auxiliares</span> <span class="fa arrow"></span></a>
+                        <li class="@Html.IsSelected(action: "CarregarBase")"><a href="@Url.Action("CarregarBase", "BaseAdmin")"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Cadastros Técnicos</span> <span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level collapse @Html.IsSelected(controller: "BaseAdmin", cssClass: "in")">
                                 <li class="@Html.IsSelected(action: "MontarTelaTipoProcedimento")"><a href="@Url.Action("MontarTelaTipoProcedimento", "TipoProcedimento")">Procedimentos</a></li>
                                 <li class="@Html.IsSelected(action: "MontarTelaDenteRegiao")"><a href="@Url.Action("MontarTelaDenteRegiao", "DenteRegiao")">Dentes & Regiões</a></li>

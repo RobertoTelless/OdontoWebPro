@@ -35,6 +35,7 @@ namespace EntitiesServices.Model
             this.USUARIO_PREMIO = new HashSet<USUARIO_PREMIO>();
             this.USUARIO_REMUNERACAO = new HashSet<USUARIO_REMUNERACAO>();
             this.PACIE_NTE_ACOMPANHAMENTO = new HashSet<PACIE_NTE_ACOMPANHAMENTO>();
+            this.PACIENTE_ACOMPANHAMENTO = new HashSet<PACIENTE_ACOMPANHAMENTO>();
         }
     
         public int USUA_CD_ID { get; set; }
@@ -139,5 +140,7 @@ namespace EntitiesServices.Model
         public virtual SITUACAO SITUACAO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PACIE_NTE_ACOMPANHAMENTO> PACIE_NTE_ACOMPANHAMENTO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PACIENTE_ACOMPANHAMENTO> PACIENTE_ACOMPANHAMENTO { get; set; }
     }
 }
