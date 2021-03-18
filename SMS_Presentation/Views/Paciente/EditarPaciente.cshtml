@@ -313,61 +313,67 @@
                             @*Endereços*@
                             <div id="tab-3" class="tab-pane">
                                 <div class="panel-body">
-                                    <div class="row">
-                                        <div class="form-group" style="margin: 0 -15px 0 -15px;" id="containerCep">
-                                            <div class="col-lg-2 col-md-2 col-xs-12">
-                                                CEP
-                                                @Html.HiddenFor(m => m.ASSI_CD_ID)
-                                                @Html.HiddenFor(m => m.PACI_AQ_FOTO)
-                                                @Html.HiddenFor(m => m.PACI_CD_ID)
-                                                @Html.HiddenFor(m => m.PACI_DT_CADASTRO)
-                                                @Html.HiddenFor(m => m.PACI_DT_NASCIMENTO)
-                                                @Html.HiddenFor(m => m.PACI_IN_ATIVO)
-                                                @Html.HiddenFor(m => m.PACI_IN_SEXO)
-                                                @Html.HiddenFor(m => m.PACI_NM_EMAIL)
-                                                @Html.HiddenFor(m => m.PACI_NM_NOME)
-                                                @Html.HiddenFor(m => m.PACI_NR_CELULAR)
-                                                @Html.HiddenFor(m => m.PACI_NR_CPF)
-                                                @Html.HiddenFor(m => m.PACI_NR_PRONTUARIO)
-                                                @Html.HiddenFor(m => m.PACI_NR_RG)
-                                                @Html.HiddenFor(m => m.PACI_NR_TELEFONE)
-                                                @Html.HiddenFor(m => m.PACI_NR_WHATSAPP)
-                                                @Html.HiddenFor(m => m.PACI_TX_OBSERVACOES)
-                                                @Html.HiddenFor(m => m.PACI_VL_SALDO_FINANCEIRO)
-                                                @Html.HiddenFor(m => m.CAPA_CD_ID)
-                                                @Html.HiddenFor(m => m.FILI_CD_ID)
-                                                @Html.TextBoxFor(m => m.PACI_NR_CEP, new { @class = "form-control", autofocus = true, @id = "cep" })
-                                                @Html.ValidationMessageFor(m => m.PACI_NR_CEP, "", new { @style = "color:red" })
-                                            </div>
-                                            <div class="col-lg-2 col-md-2 col-xs-12">
-                                                <span class="btn btn-warning btn-sm" style="margin-bottom: -45px;" id="btnBuscaCep" onclick="PesquisaCep($('#cep').val(), $(this), 1)">Buscar CEP</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group" style="margin: 30px -15px 0 -15px;" id="containerEnd">
-                                            <div class="col-lg-4 col-md-4 col-xs-12">
-                                                Endereço
-                                                @Html.TextBoxFor(m => m.PACI_NM_ENDERECO, new { @class = "form-control", autofocus = true, @id = "endereco" })
-                                                @Html.ValidationMessageFor(m => m.PACI_NM_ENDERECO, "", new { @style = "color:red" })
-                                            </div>
-                                            <div class="col-lg-3 col-md-3 col-xs-12">
-                                                Bairro
-                                                @Html.TextBoxFor(m => m.PACI_NM_BAIRRO, new { @class = "form-control", autofocus = true, @id = "bairro" })
-                                                @Html.ValidationMessageFor(m => m.PACI_NM_BAIRRO, "", new { @style = "color:red" })
-                                            </div>
-                                            <div class="col-lg-3 col-md-3 col-xs-12">
-                                                Cidade
-                                                @Html.TextBoxFor(m => m.PACI_NM_CIDADE, new { @class = "form-control", autofocus = true, @id = "cidade" })
-                                                @Html.ValidationMessageFor(m => m.PACI_NM_CIDADE, "", new { @style = "color:red" })
-                                            </div>
-                                            <div class="col-lg-2 col-md-2 col-xs-12">
-                                                UF
-                                                @Html.DropDownListFor(m => m.UF_CD_ID, (SelectList)ViewBag.UF, "Selecionar", new { @class = "form-control", autofocus = true, @id = "uf" })
-                                                @Html.ValidationMessageFor(m => m.UF_CD_ID, "", new { @style = "color:red" })
+                                    @using (Html.BeginForm("EditarPaciente", "Paciente", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", @id = "pwd-container1" }))
+                                    {
+                                        <div class="row">
+                                            <div class="form-group" style="margin: 0 -15px 0 -15px;" id="containerCep">
+                                                <div class="col-lg-2 col-md-2 col-xs-12">
+                                                    CEP
+                                                    @Html.HiddenFor(m => m.ASSI_CD_ID)
+                                                    @Html.HiddenFor(m => m.PACI_AQ_FOTO)
+                                                    @Html.HiddenFor(m => m.PACI_CD_ID)
+                                                    @Html.HiddenFor(m => m.PACI_DT_CADASTRO)
+                                                    @Html.HiddenFor(m => m.PACI_DT_NASCIMENTO)
+                                                    @Html.HiddenFor(m => m.PACI_IN_ATIVO)
+                                                    @Html.HiddenFor(m => m.PACI_IN_SEXO)
+                                                    @Html.HiddenFor(m => m.PACI_NM_EMAIL)
+                                                    @Html.HiddenFor(m => m.PACI_NM_NOME)
+                                                    @Html.HiddenFor(m => m.PACI_NR_CELULAR)
+                                                    @Html.HiddenFor(m => m.PACI_NR_CPF)
+                                                    @Html.HiddenFor(m => m.PACI_NR_PRONTUARIO)
+                                                    @Html.HiddenFor(m => m.PACI_NR_RG)
+                                                    @Html.HiddenFor(m => m.PACI_NR_TELEFONE)
+                                                    @Html.HiddenFor(m => m.PACI_NR_WHATSAPP)
+                                                    @Html.HiddenFor(m => m.PACI_TX_OBSERVACOES)
+                                                    @Html.HiddenFor(m => m.PACI_VL_SALDO_FINANCEIRO)
+                                                    @Html.HiddenFor(m => m.CAPA_CD_ID)
+                                                    @Html.HiddenFor(m => m.FILI_CD_ID)
+                                                    @Html.TextBoxFor(m => m.PACI_NR_CEP, new { @class = "form-control", autofocus = true, @id = "cep" })
+                                                    @Html.ValidationMessageFor(m => m.PACI_NR_CEP, "", new { @style = "color:red" })
+                                                </div>
+                                                <div class="col-lg-2 col-md-2 col-xs-12">
+                                                    <span class="btn btn-warning btn-sm" style="margin-bottom: -45px;" id="btnBuscaCep" onclick="PesquisaCep($('#cep').val(), $(this), 1)">Buscar CEP</span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                        <div class="row">
+                                            <div class="form-group" style="margin: 30px -15px 0 -15px;" id="containerEnd">
+                                                <div class="col-lg-4 col-md-4 col-xs-12">
+                                                    Endereço
+                                                    @Html.TextBoxFor(m => m.PACI_NM_ENDERECO, new { @class = "form-control", autofocus = true, @id = "endereco" })
+                                                    @Html.ValidationMessageFor(m => m.PACI_NM_ENDERECO, "", new { @style = "color:red" })
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-xs-12">
+                                                    Bairro
+                                                    @Html.TextBoxFor(m => m.PACI_NM_BAIRRO, new { @class = "form-control", autofocus = true, @id = "bairro" })
+                                                    @Html.ValidationMessageFor(m => m.PACI_NM_BAIRRO, "", new { @style = "color:red" })
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-xs-12">
+                                                    Cidade
+                                                    @Html.TextBoxFor(m => m.PACI_NM_CIDADE, new { @class = "form-control", autofocus = true, @id = "cidade" })
+                                                    @Html.ValidationMessageFor(m => m.PACI_NM_CIDADE, "", new { @style = "color:red" })
+                                                </div>
+                                                <div class="col-lg-2 col-md-2 col-xs-12">
+                                                    UF
+                                                    @Html.DropDownListFor(m => m.UF_CD_ID, (SelectList)ViewBag.UF, "Selecionar", new { @class = "form-control", autofocus = true, @id = "uf" })
+                                                    @Html.ValidationMessageFor(m => m.UF_CD_ID, "", new { @style = "color:red" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.ButtonActionSubmit(text: "Confirma Edição de Paciente", htmlAttributes: new { id = "basictoast" })
+                                        </div>
+                                    }
                                 </div>
                             </div>
 
