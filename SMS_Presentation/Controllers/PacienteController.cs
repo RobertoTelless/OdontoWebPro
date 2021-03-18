@@ -368,6 +368,7 @@ namespace Odonto.Controllers
             // Prepara view
             Int32 idAss = (Int32)Session["IdAssinante"];
             ViewBag.Perfil = usuario.PERFIL.PERF_SG_SIGLA;
+            ViewBag.Incluir = 0;
 
             // Mensagem
             PACIENTE item = baseApp.GetItemById(id);
@@ -1750,10 +1751,12 @@ namespace Odonto.Controllers
             }
 
             // Prepara view
+            PACIENTE pac = baseApp.GetItemById((Int32)Session["IdVolta"]);
             PACIENTE_PRESCRICAO item = new PACIENTE_PRESCRICAO();
             PacientePrescricaoViewModel vm = Mapper.Map<PACIENTE_PRESCRICAO, PacientePrescricaoViewModel>(item);
             vm.PACI_CD_ID = (Int32)Session["IdVolta"]; ;
             vm.PRES_IN_ATIVO = 1;
+            vm.PRES_NM_NOME = "Prescrição para " + pac.PACI_NM_NOME;
             vm.PRES_DT_DATA = DateTime.Today.Date;
             return View(vm);
         }
@@ -1943,10 +1946,12 @@ namespace Odonto.Controllers
             }
 
             // Prepara view
+            PACIENTE pac = baseApp.GetItemById((Int32)Session["IdVolta"]);
             PACIENTE_RECOMENDACAO item = new PACIENTE_RECOMENDACAO();
             PacienteRecomendacaoViewModel vm = Mapper.Map<PACIENTE_RECOMENDACAO, PacienteRecomendacaoViewModel>(item);
             vm.PACI_CD_ID = (Int32)Session["IdVolta"]; ;
             vm.RECO_IN_ATIVO = 1;
+            vm.RECO_NM_NOME = "Recomendação para " + pac.PACI_NM_NOME;
             vm.RECO_DT_DATA = DateTime.Today.Date;
             return View(vm);
         }
