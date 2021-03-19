@@ -188,6 +188,7 @@ namespace Presentation.Start
             kernel.Bind<IPacienteAcompanhamentoRepository>().To<PacienteAcompanhamentoRepository>();
             kernel.Bind<IPacientePrescricaoRepository>().To<PacientePrescricaoRepository>();
             kernel.Bind<IPacienteRecomendacaoRepository>().To<PacienteRecomendacaoRepository>();
+            kernel.Bind<ICategoriaPacienteRepository>().To<CategoriaPacienteRepository>();
 
         }
     }

@@ -95,7 +95,7 @@ namespace Odonto.Controllers
                 Session["ListaPaciente"] = listaMaster;
             }
 
-            ViewBag.Listas = listaMaster;
+            ViewBag.Listas = (List<PACIENTE>)Session["ListaPaciente"];
             ViewBag.Title = "Pacientes";
             ViewBag.Filiais = new SelectList(baseApp.GetAllFiliais(idAss), "FILI_CD_ID", "FILI_NM_NOME");
             ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(idAss), "CAPA_CD_ID", "CAPA_NM_NOME");
@@ -153,10 +153,11 @@ namespace Odonto.Controllers
                 Session["ListaPaciente"] = listaMaster;
             }
 
-            ViewBag.Listas = listaMaster;
+            ViewBag.Listas = (List<PACIENTE>)Session["ListaPaciente"];
             ViewBag.Title = "Pacientes";
             ViewBag.Filiais = new SelectList(baseApp.GetAllFiliais(idAss), "FILI_CD_ID", "FILI_NM_NOME");
             ViewBag.UF = new SelectList(baseApp.GetAllUF(), "UF_CD_ID", "UF_SG_SIGLA");
+            ViewBag.Tipos = new SelectList(baseApp.GetAllTipos(idAss), "CAPA_CD_ID", "CAPA_NM_NOME");
             ViewBag.Perfil = usuario.PERFIL.PERF_SG_SIGLA;
 
             // Indicadores
@@ -274,7 +275,7 @@ namespace Odonto.Controllers
             List<SelectListItem> sexo = new List<SelectListItem>();
             sexo.Add(new SelectListItem() { Text = "Masculino", Value = "1" });
             sexo.Add(new SelectListItem() { Text = "Feminino", Value = "2" });
-            ViewBag.Sexos = new SelectList(sexo, "Value", "Text");
+            ViewBag.Sexo = new SelectList(sexo, "Value", "Text");
 
             // Prepara view
             PACIENTE item = new PACIENTE();
@@ -412,7 +413,7 @@ namespace Odonto.Controllers
             List<SelectListItem> sexo = new List<SelectListItem>();
             sexo.Add(new SelectListItem() { Text = "Masculino", Value = "1" });
             sexo.Add(new SelectListItem() { Text = "Feminino", Value = "2" });
-            ViewBag.Sexos = new SelectList(sexo, "Value", "Text");
+            ViewBag.Sexo = new SelectList(sexo, "Value", "Text");
             ViewBag.Perfil = usuario.PERFIL.PERF_SG_SIGLA;
 
             // Mensagem
