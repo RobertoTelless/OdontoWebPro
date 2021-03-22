@@ -57,7 +57,12 @@ namespace OdontoWeb.ViewModels
         public Nullable<int> UF_CD_ID { get; set; }
         [StringLength(10, ErrorMessage = "A SITUAÇÂO deve ter máximo 50 caracteres.")]
         public string FORN_NM_SITUACAO { get; set; }
+        [StringLength(20, ErrorMessage = "A INSCRIÇÂO MUNICIPAL deve ter máximo 20 caracteres.")]
         public string FORN_NR_INSCRICAO_MUNICIPAL { get; set; }
+        [StringLength(20, ErrorMessage = "O CELULAR deve ter máximo 20 caracteres.")]
+        public string FORN_NR_CELULAR { get; set; }
+        [StringLength(20, ErrorMessage = "O WHATSAPP deve ter máximo 20 caracteres.")]
+        public string FORN_NR_WHATSAPP { get; set; }
 
         public virtual ASSINANTE ASSINANTE { get; set; }
         public virtual CATEGORIA_FORNECEDOR CATEGORIA_FORNECEDOR { get; set; }
@@ -73,5 +78,9 @@ namespace OdontoWeb.ViewModels
         public virtual ICollection<FORNECEDOR_CONTATO> FORNECEDOR_CONTATO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FORNECEDOR_QUADRO_SOCIETARIO> FORNECEDOR_QUADRO_SOCIETARIO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ITEM_PEDIDO_COMPRA> ITEM_PEDIDO_COMPRA { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PEDIDO_COMPRA> PEDIDO_COMPRA { get; set; }
     }
 }

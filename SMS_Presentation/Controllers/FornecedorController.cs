@@ -1907,5 +1907,36 @@ namespace Odonto.Controllers
 
             return RedirectToAction("VoltarAnexoFornecedor");
         }
+
+        [HttpGet]
+        public ActionResult VerFornecedor(Int32 id)
+        {
+            USUARIO usuario = new USUARIO();
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
+            }
+            else
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+
+            // Prepara view
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            ViewBag.Perfil = usuario.PERFIL.PERF_SG_SIGLA;
+            ViewBag.Incluir = 0;
+
+            // Mensagem
+            FORNECEDOR item = fornApp.GetItemById(id);
+            objetoFornAntes = item;
+            Session["Fornecedor"] = item;
+            Session["IdVolta"] = id;
+            FornecedorViewModel vm = Mapper.Map<FORNECEDOR, FornecedorViewModel>(item);
+            return View(vm);
+        }
     }
 }

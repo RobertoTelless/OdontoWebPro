@@ -4,26 +4,6 @@
     Layout = "~/Views/Shared/_Layout_Admin.cshtml";
 }
 <div class="wrapper wrapper-content animated fadeInRight">
-    <div class="modalContainer">
-        <div id="modal" class="modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        @*Titulo gerado dinamicamente*@
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        @*Gerado dinamicamente*@
-                    </div>
-                    <div class="modal-footer">
-                        <button onclick="limpaModal()" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="page-title">
         <h3 class="title">Fornecedores</h3>
         <br />
@@ -35,7 +15,7 @@
                 <a href="@Url.Action("MontarTelaFornecedor", "Fornecedor")">Fornecedores</a>
             </li>
             <li class="active">
-                <strong>Fornecedor - Edição</strong>
+                <strong>Fornecedor - Consulta</strong>
             </li>
         </ol>
         <br />
@@ -44,7 +24,7 @@
         <div class="col-lg-12 col-md-12 col-xs-12">
             <div class="col-lg-12 col-md-12 col-xs-12 ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Fornecedor - Edição</h5>
+                    <h5>Fornecedor - Consulta</h5>
                     <div class="ibox-tools">
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
@@ -113,24 +93,6 @@
                                             <div class="row" style="width: 100%;">
                                                 <div class="col-lg-2 col-md-2 col-xs-12">
                                                     <div style="text-align: center; margin-top: 25px; line-height: 10px;">
-                                                        @Html.HiddenFor(m => m.ASSI_CD_ID)
-                                                        @Html.HiddenFor(m => m.MATR_CD_ID)
-                                                        @Html.HiddenFor(m => m.FORN_NM_EMAIL)
-                                                        @Html.HiddenFor(m => m.FORN_AQ_FOTO)
-                                                        @Html.HiddenFor(m => m.FORN_CD_ID)
-                                                        @Html.HiddenFor(m => m.FORN_DT_CADASTRO)
-                                                        @Html.HiddenFor(m => m.FORN_IN_ATIVO)
-                                                        @Html.HiddenFor(m => m.FORN_NM_BAIRRO)
-                                                        @Html.HiddenFor(m => m.FORN_NM_CIDADE)
-                                                        @Html.HiddenFor(m => m.FORN_NM_ENDERECO)
-                                                        @Html.HiddenFor(m => m.FORN_NM_REDES_SOCIAIS)
-                                                        @Html.HiddenFor(m => m.FORN_NM_TELEFONES)
-                                                        @Html.HiddenFor(m => m.FORN_NR_CELULAR)
-                                                        @Html.HiddenFor(m => m.FORN_NR_WHATSAPP)
-                                                        @Html.HiddenFor(m => m.FORN_NR_CEP)
-                                                        @Html.HiddenFor(m => m.UF_CD_ID)
-                                                        @Html.HiddenFor(m => m.FORN_TX_OBSERVACOES)
-                                                        @Html.HiddenFor(m => m.TIPE_CD_ID)
                                                         @if (!String.IsNullOrEmpty(Model.FORN_AQ_FOTO))
                                                         {
                                                             <img src="@Url.Content(Model.FORN_AQ_FOTO)" style="width: auto; height: auto; max-height: 110px; max-width: 90px;">
@@ -150,23 +112,19 @@
                                                     <div class="row">
                                                         <div class="col-lg-3 col-md-3 col-xs-12">
                                                             Nome*
-                                                            @Html.TextBoxFor(m => m.FORN_NM_NOME, new { @class = "form-control", autofocus = true })
-                                                            @Html.ValidationMessageFor(m => m.FORN_NM_NOME, "", new { @style = "color:red" })
+                                                            @Html.TextBoxFor(m => m.FORN_NM_NOME, new { @class = "form-control", autofocus = true, @readonly = "readonly" })
                                                         </div>
                                                         <div class="col-lg-3 col-md-3 col-xs-12">
                                                             Tipo de Pessoa*
                                                             @Html.TextBoxFor(m => m.TIPO_PESSOA.TIPE_NM_NOME, new { @class = "form-control", autofocus = true, @readonly = "readonly" })
-                                                            @Html.ValidationMessageFor(m => m.TIPE_CD_ID, "", new { @style = "color:red" })
                                                         </div>
                                                         <div class="col-lg-3 col-md-3 col-xs-12">
                                                             Categoria*
-                                                            @Html.DropDownListFor(m => m.CAFO_CD_ID, (SelectList)ViewBag.Cats, "Selecionar", new { @class = "form-control", autofocus = true })
-                                                            @Html.ValidationMessageFor(m => m.CAFO_CD_ID, "", new { @style = "color:red" })
+                                                            @Html.TextBoxFor(m => m.CATEGORIA_FORNECEDOR.CAFO_NM_NOME, new { @class = "form-control", autofocus = true, @readonly = "readonly" })
                                                         </div>
                                                         <div class=" col-lg-3 col-md-3 col-xs-12">
                                                             Filial*
-                                                            @Html.DropDownListFor(m => m.FILI_CD_ID, (SelectList)ViewBag.Filiais, "Selecionar", new { @class = "form-control", autofocus = true })
-                                                            @Html.ValidationMessageFor(m => m.FILI_CD_ID, "", new { @style = "color:red" })
+                                                            @Html.TextBoxFor(m => m.FILIAL.FILI_NM_NOME, new { @class = "form-control", autofocus = true, @readonly = "readonly" })
                                                         </div>
                                                     </div>
                                                     <br />
@@ -176,30 +134,25 @@
                                                             <div class="col-lg-4 col-md-4 col-xs-12">
                                                                 CPF
                                                                 @Html.TextBoxFor(m => m.FORN_NR_CPF, new { @class = "form-control", @id = "cpf", autofocus = true, @readonly = "readonly" })
-                                                                @Html.ValidationMessageFor(m => m.FORN_NR_CPF, "", new { @style = "color:red" })
                                                             </div>
                                                         }
                                                         <div class="col-lg-3 col-md-3 col-xs-12">
                                                             Razão Social
                                                             @Html.TextBoxFor(m => m.FORN_NM_RAZAO, new { @class = "form-control", autofocus = true, @readonly = "readonly" })
-                                                            @Html.ValidationMessageFor(m => m.FORN_NM_RAZAO, "", new { @style = "color:red" })
                                                         </div>
                                                         @if (Model.TIPE_CD_ID == 2)
                                                         {
                                                             <div class="col-lg-3 col-md-3 col-xs-12">
                                                                 CNPJ
                                                                 @Html.TextBoxFor(m => m.FORN_NR_CNPJ, new { @class = "form-control", @id = "cnpj", autofocus = true, @readonly = "readonly" })
-                                                                @Html.ValidationMessageFor(m => m.FORN_NR_CPF, "", new { @style = "color:red" })
                                                             </div>
                                                             <div class="col-lg-3 col-md-3 col-xs-12">
                                                                 Inscrição Estadual
                                                                 @Html.TextBoxFor(m => m.FORN_NR_INSCRICAO_ESTADUAL, new { @class = "form-control", autofocus = true, @readonly = "readonly" })
-                                                                @Html.ValidationMessageFor(m => m.FORN_NR_INSCRICAO_ESTADUAL, "", new { @style = "color:red" })
                                                             </div>
                                                             <div class="col-lg-3 col-md-3 col-xs-12">
                                                                 Situação
                                                                 @Html.TextBoxFor(m => m.FORN_NM_SITUACAO, new { @class = "form-control", autofocus = true, @readonly = "readonly" })
-                                                                @Html.ValidationMessageFor(m => m.FORN_NM_SITUACAO, "", new { @style = "color:red" })
                                                             </div>
                                                         }
                                                     </div>
@@ -234,9 +187,6 @@
                                                     </div>
                                                 }
                                             </div>
-                                            <div class="form-group">
-                                                @Html.ButtonActionSubmit(text: "Confirma edição de Fornecedor", htmlAttributes: new { id = "basictoast" })
-                                            </div>
                                         }
                                     </div>
                                 </div>
@@ -266,49 +216,26 @@
                                             </div>
                                             <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
                                                 <div class="col-lg-3 col-md-3 col-xs-12">
-                                                    @Html.HiddenFor(m => m.ASSI_CD_ID)
-                                                    @Html.HiddenFor(m => m.MATR_CD_ID)
-                                                    @Html.HiddenFor(m => m.FORN_NM_EMAIL)
-                                                    @Html.HiddenFor(m => m.FORN_AQ_FOTO)
-                                                    @Html.HiddenFor(m => m.FORN_CD_ID)
-                                                    @Html.HiddenFor(m => m.FORN_DT_CADASTRO)
-                                                    @Html.HiddenFor(m => m.FORN_IN_ATIVO)
-                                                    @Html.HiddenFor(m => m.FORN_NM_BAIRRO)
-                                                    @Html.HiddenFor(m => m.FORN_NM_CIDADE)
-                                                    @Html.HiddenFor(m => m.FORN_NM_ENDERECO)
-                                                    @Html.HiddenFor(m => m.FORN_NM_REDES_SOCIAIS)
-                                                    @Html.HiddenFor(m => m.FORN_NM_TELEFONES)
-                                                    @Html.HiddenFor(m => m.FORN_NR_CELULAR)
-                                                    @Html.HiddenFor(m => m.FORN_NR_WHATSAPP)
-                                                    @Html.HiddenFor(m => m.FORN_NR_CEP)
-                                                    @Html.HiddenFor(m => m.UF_CD_ID)
-                                                    @Html.HiddenFor(m => m.FORN_TX_OBSERVACOES)
-                                                    @Html.HiddenFor(m => m.TIPE_CD_ID)
                                                     Categoria*
-                                                    @Html.DropDownListFor(m => m.CAFO_CD_ID, (SelectList)ViewBag.Cats, "Selecionar", new { @class = "form-control", autofocus = true })
-                                                    @Html.ValidationMessageFor(m => m.CAFO_CD_ID, "", new { @style = "color:red" })
+                                                    @Html.TextBoxFor(m => m.CATEGORIA_FORNECEDOR.CAFO_NM_NOME, new { @class = "form-control", autofocus = true, @readonly = "readonly" })
                                                 </div>
                                                 <div class="col-lg-3 col-md-3 col-xs-12">
                                                     Tipo de Pessoa*
                                                     @Html.TextBoxFor(m => m.TIPO_PESSOA.TIPE_NM_NOME, new { @class = "form-control", autofocus = true, @readonly = "readonly" })
-                                                    @Html.ValidationMessageFor(m => m.TIPE_CD_ID, "", new { @style = "color:red" })
                                                 </div>
                                                 <div class="col-lg-3 col-md-3 col-xs-12">
                                                     Filial*
-                                                    @Html.DropDownListFor(m => m.FILI_CD_ID, (SelectList)ViewBag.Filiais, "Selecionar", new { @class = "form-control", autofocus = true })
-                                                    @Html.ValidationMessageFor(m => m.FILI_CD_ID, "", new { @style = "color:red" })
+                                                    @Html.TextBoxFor(m => m.FILIAL.FILI_NM_NOME, new { @class = "form-control", autofocus = true, @readonly = "readonly" })
                                                 </div>
                                             </div>
                                             <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
                                                 <div class="col-lg-6 col-md-6 col-xs-12">
                                                     Nome*
-                                                    @Html.TextBoxFor(m => m.FORN_NM_NOME, new { @class = "form-control", autofocus = true })
-                                                    @Html.ValidationMessageFor(m => m.FORN_NM_NOME, "", new { @style = "color:red" })
+                                                    @Html.TextBoxFor(m => m.FORN_NM_NOME, new { @class = "form-control", autofocus = true, @readonly = "readonly" })
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-xs-12" id="razao">
                                                     Razão Social
                                                     @Html.TextBoxFor(m => m.FORN_NM_RAZAO, new { @class = "form-control", autofocus = true, @readonly = "readonly" })
-                                                    @Html.ValidationMessageFor(m => m.FORN_NM_RAZAO, "", new { @style = "color:red" })
                                                 </div>
                                             </div>
                                             @if (Model.TIPE_CD_ID == 1)
@@ -316,8 +243,7 @@
                                                 <div class="form-group" style=" margin-left: -15px; margin-right: -15px;" id="PF">
                                                     <div class="col-lg-3 col-md-3 col-xs-12">
                                                         CPF
-                                                        @Html.TextBoxFor(m => m.FORN_NR_CPF, new { @class = "form-control", @id = "cpf", autofocus = true })
-                                                        @Html.ValidationMessageFor(m => m.FORN_NR_CPF, "", new { @style = "color:red" })
+                                                        @Html.TextBoxFor(m => m.FORN_NR_CPF, new { @class = "form-control", @id = "cpf", autofocus = true, @readonly = "readonly" })
                                                     </div>
                                                 </div>
                                             }
@@ -327,12 +253,10 @@
                                                     <div class="col-lg-3 col-md-3 col-xs-12">
                                                         CNPJ
                                                         @Html.TextBoxFor(m => m.FORN_NR_CNPJ, new { @class = "form-control", @id = "cnpj", autofocus = true, @readonly = "readonly" })
-                                                        @Html.ValidationMessageFor(m => m.FORN_NR_CPF, "", new { @style = "color:red" })
                                                     </div>
                                                     <div class="col-lg-3 col-md-3 col-xs-12">
                                                         Inscrição Estadual
                                                         @Html.TextBoxFor(m => m.FORN_NR_INSCRICAO_ESTADUAL, new { @class = "form-control", autofocus = true, @readonly = "readonly" })
-                                                        @Html.ValidationMessageFor(m => m.FORN_NR_INSCRICAO_ESTADUAL, "", new { @style = "color:red" })
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -361,9 +285,6 @@
                                                 </div>
                                             }
                                         </div>
-                                            <div class="form-group">
-                                                @Html.ButtonActionSubmit(text: "Confirma edição de Fornecedor", htmlAttributes: new { id = "basictoast" })
-                                            </div>
                                         }
                                     </div>
                                 </div>
@@ -376,15 +297,6 @@
                                         <div class="col-lg-10 col-md-10 col-xs-12">
                                             <div class="form-group">
                                                 <h4>Logotipo/Foto do Fornecedor</h4>
-                                                @using (Html.BeginForm("UploadFotoFornecedor", "Fornecedor", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { enctype = "multipart/form-data", @id = "pwd-container3" }))
-                                                {
-                                                    <br />
-                                                    <input type="file" accept=".jpg, .png, .jpeg, .gif|images/*" name="file" id="file" class="btn btn-sm btn-warning" />
-                                                    <br />
-                                                    <div class="form-group">
-                                                        <input type="submit" value="Incluir Logotipo/Foto do Fornecedor" class="btn btn-sm btn-success" />
-                                                    </div>
-                                                }
                                             </div>
                                         </div>
                                         <div class="col-lg-2 col-md-2 col-xs-12">
@@ -457,11 +369,6 @@
                                                                 </tbody>
                                                             </table>
                                                         }
-                                                        <input type="file" name="file" id="file" class="btn btn-sm btn-warning" />
-                                                        <br />
-                                                        <div class="form-group">
-                                                            <input type="submit" value="Incluir Anexo do Fornecedor" class="btn btn-sm btn-success" />
-                                                        </div>
                                                     </div>
                                                 }
                                             </div>
@@ -482,61 +389,30 @@
                                                     <div class="col-lg-3 col-md-3 col-xs-12">
                                                         <h4>Endereço Principal</h4>
                                                         <br />
-                                                        @Html.HiddenFor(m => m.ASSI_CD_ID)
-                                                        @Html.HiddenFor(m => m.CAFO_CD_ID)
-                                                        @Html.HiddenFor(m => m.FORN_NR_INSCRICAO_ESTADUAL)
-                                                        @Html.HiddenFor(m => m.FILI_CD_ID)
-                                                        @Html.HiddenFor(m => m.FORN_AQ_FOTO)
-                                                        @Html.HiddenFor(m => m.FORN_CD_ID)
-                                                        @Html.HiddenFor(m => m.FORN_DT_CADASTRO)
-                                                        @Html.HiddenFor(m => m.FORN_IN_ATIVO)
-                                                        @Html.HiddenFor(m => m.FORN_NM_EMAIL)
-                                                        @Html.HiddenFor(m => m.FORN_NM_NOME)
-                                                        @Html.HiddenFor(m => m.FORN_NM_RAZAO)
-                                                        @Html.HiddenFor(m => m.FORN_NM_REDES_SOCIAIS)
-                                                        @Html.HiddenFor(m => m.FORN_NM_TELEFONES)
-                                                        @Html.HiddenFor(m => m.FORN_NR_CELULAR)
-                                                        @Html.HiddenFor(m => m.FORN_NR_WHATSAPP)
-                                                        @Html.HiddenFor(m => m.FORN_NR_CNPJ)
-                                                        @Html.HiddenFor(m => m.FORN_NR_CPF)
-                                                        @Html.HiddenFor(m => m.FORN_TX_OBSERVACOES)
-                                                        @Html.HiddenFor(m => m.MATR_CD_ID)
-                                                        @Html.HiddenFor(m => m.TIPE_CD_ID)
                                                         CEP
                                                         <div class="input-group">
-                                                            @Html.TextBoxFor(m => m.FORN_NR_CEP, new { @class = "form-control", autofocus = true, @id = "cep" })
-                                                            @Html.ValidationMessageFor(m => m.FORN_NR_CEP, "", new { @style = "color:red" })
-                                                            <span class="input-group-btn">
-                                                                <span class="btn btn-warning btn-sm" id="btnBuscaCep" onclick="PesquisaCep($('#cep').val(), $(this), 1)">Buscar CEP</span>
-                                                            </span>
+                                                            @Html.TextBoxFor(m => m.FORN_NR_CEP, new { @class = "form-control", autofocus = true, @id = "cep", @readonly = "readonly" })
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
                                                     <div class="col-lg-4 col-md-4 col-xs-12">
                                                         Endereço
-                                                        @Html.TextBoxFor(m => m.FORN_NM_ENDERECO, new { @class = "form-control", autofocus = true, @id = "endereco" })
-                                                        @Html.ValidationMessageFor(m => m.FORN_NM_ENDERECO, "", new { @style = "color:red" })
+                                                        @Html.TextBoxFor(m => m.FORN_NM_ENDERECO, new { @class = "form-control", autofocus = true, @id = "endereco", @readonly = "readonly" })
                                                     </div>
                                                     <div class="col-lg-3 col-md-3 col-xs-12">
                                                         Bairro
-                                                        @Html.TextBoxFor(m => m.FORN_NM_BAIRRO, new { @class = "form-control", autofocus = true, @id = "bairro" })
-                                                        @Html.ValidationMessageFor(m => m.FORN_NM_BAIRRO, "", new { @style = "color:red" })
+                                                        @Html.TextBoxFor(m => m.FORN_NM_BAIRRO, new { @class = "form-control", autofocus = true, @id = "bairro", @readonly = "readonly" })
                                                     </div>
                                                     <div class="col-lg-3 col-md-3 col-xs-12">
                                                         Cidade
-                                                        @Html.TextBoxFor(m => m.FORN_NM_CIDADE, new { @class = "form-control", autofocus = true, @id = "cidade" })
-                                                        @Html.ValidationMessageFor(m => m.FORN_NM_CIDADE, "", new { @style = "color:red" })
+                                                        @Html.TextBoxFor(m => m.FORN_NM_CIDADE, new { @class = "form-control", autofocus = true, @id = "cidade", @readonly = "readonly" })
                                                     </div>
                                                     <div class="col-lg-2 col-md-2 col-xs-12">
                                                         UF
-                                                        @Html.DropDownListFor(m => m.UF_CD_ID, (SelectList)ViewBag.UF, "Selecionar", new { @class = "form-control", autofocus = true, @id = "uf" })
-                                                        @Html.ValidationMessageFor(m => m.UF_CD_ID, "", new { @style = "color:red" })
+                                                        @Html.DropDownListFor(m => m.UF_CD_ID, (SelectList)ViewBag.UF, "Selecionar", new { @class = "form-control", autofocus = true, @id = "uf", @readonly = "readonly" })
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group">
-                                                @Html.ButtonActionSubmit(text: "Confirma Edição de Fornecedor", htmlAttributes: new { id = "basictoast" })
                                             </div>
                                         }
 
@@ -556,59 +432,28 @@
                                                         <br />
                                                         CEP
                                                         <div class="input-group">
-                                                            @Html.HiddenFor(m => m.ASSI_CD_ID)
-                                                            @Html.HiddenFor(m => m.CAFO_CD_ID)
-                                                            @Html.HiddenFor(m => m.FORN_NR_INSCRICAO_ESTADUAL)
-                                                            @Html.HiddenFor(m => m.FILI_CD_ID)
-                                                            @Html.HiddenFor(m => m.FORN_AQ_FOTO)
-                                                            @Html.HiddenFor(m => m.FORN_CD_ID)
-                                                            @Html.HiddenFor(m => m.FORN_DT_CADASTRO)
-                                                            @Html.HiddenFor(m => m.FORN_IN_ATIVO)
-                                                            @Html.HiddenFor(m => m.FORN_NM_EMAIL)
-                                                            @Html.HiddenFor(m => m.FORN_NM_NOME)
-                                                            @Html.HiddenFor(m => m.FORN_NM_RAZAO)
-                                                            @Html.HiddenFor(m => m.FORN_NM_REDES_SOCIAIS)
-                                                            @Html.HiddenFor(m => m.FORN_NM_TELEFONES)
-                                                            @Html.HiddenFor(m => m.FORN_NR_CELULAR)
-                                                            @Html.HiddenFor(m => m.FORN_NR_WHATSAPP)
-                                                            @Html.HiddenFor(m => m.FORN_NR_CNPJ)
-                                                            @Html.HiddenFor(m => m.FORN_NR_CPF)
-                                                            @Html.HiddenFor(m => m.FORN_TX_OBSERVACOES)
-                                                            @Html.HiddenFor(m => m.MATR_CD_ID)
-                                                            @Html.HiddenFor(m => m.TIPE_CD_ID)
-                                                            @Html.TextBoxFor(m => m.FORN_NR_CEP, new { @class = "form-control", @id = "cep", autofocus = true })
-                                                            @Html.ValidationMessageFor(m => m.FORN_NR_CEP, "", new { @style = "color:red" })
-                                                            <span class="input-group-btn">
-                                                                <span class="btn btn-warning btn-sm" id="btnBuscaCep" onclick="PesquisaCep($('#cep').val(), $(this), 1)">Buscar CEP</span>
-                                                            </span>
+                                                            @Html.TextBoxFor(m => m.FORN_NR_CEP, new { @class = "form-control", @id = "cep", autofocus = true, @readonly = "readonly" })
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
                                                     <div class="col-lg-4 col-md-4 col-xs-12">
                                                         Endereço
-                                                        @Html.TextBoxFor(m => m.FORN_NM_ENDERECO, new { @class = "form-control", autofocus = true, @id = "endereco" })
-                                                        @Html.ValidationMessageFor(m => m.FORN_NM_ENDERECO, "", new { @style = "color:red" })
+                                                        @Html.TextBoxFor(m => m.FORN_NM_ENDERECO, new { @class = "form-control", autofocus = true, @id = "endereco", @readonly = "readonly" })
                                                     </div>
                                                     <div class="col-lg-3 col-md-3 col-xs-12">
                                                         Bairro
-                                                        @Html.TextBoxFor(m => m.FORN_NM_BAIRRO, new { @class = "form-control", autofocus = true, @id = "bairro" })
-                                                        @Html.ValidationMessageFor(m => m.FORN_NM_BAIRRO, "", new { @style = "color:red" })
+                                                        @Html.TextBoxFor(m => m.FORN_NM_BAIRRO, new { @class = "form-control", autofocus = true, @id = "bairro", @readonly = "readonly" })
                                                     </div>
                                                     <div class="col-lg-3 col-md-3 col-xs-12">
                                                         Cidade
-                                                        @Html.TextBoxFor(m => m.FORN_NM_CIDADE, new { @class = "form-control", autofocus = true, @id = "cidade" })
-                                                        @Html.ValidationMessageFor(m => m.FORN_NM_CIDADE, "", new { @style = "color:red" })
+                                                        @Html.TextBoxFor(m => m.FORN_NM_CIDADE, new { @class = "form-control", autofocus = true, @id = "cidade", @readonly = "readonly" })
                                                     </div>
                                                     <div class="col-lg-2 col-md-2 col-xs-12">
                                                         UF
-                                                        @Html.DropDownListFor(m => m.UF_CD_ID, (SelectList)ViewBag.UF, "Selecionar", new { @class = "form-control", autofocus = true, @id = "uf" })
-                                                        @Html.ValidationMessageFor(m => m.UF_CD_ID, "", new { @style = "color:red" })
+                                                        @Html.DropDownListFor(m => m.UF_CD_ID, (SelectList)ViewBag.UF, "Selecionar", new { @class = "form-control", autofocus = true, @id = "uf", @readonly = "readonly" })
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group">
-                                                @Html.ButtonActionSubmit(text: "Confirma Edição de Fornecedor", htmlAttributes: new { id = "basictoast" })
                                             </div>
                                         }
 
@@ -624,56 +469,28 @@
                                         <div class="row">
                                             <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
                                                 <div class="col-lg-4 col-md-4 col-xs-12">
-                                                    @Html.HiddenFor(m => m.ASSI_CD_ID)
-                                                    @Html.HiddenFor(m => m.CAFO_CD_ID)
-                                                    @Html.HiddenFor(m => m.FORN_NR_INSCRICAO_ESTADUAL)
-                                                    @Html.HiddenFor(m => m.FILI_CD_ID)
-                                                    @Html.HiddenFor(m => m.FORN_AQ_FOTO)
-                                                    @Html.HiddenFor(m => m.FORN_CD_ID)
-                                                    @Html.HiddenFor(m => m.FORN_DT_CADASTRO)
-                                                    @Html.HiddenFor(m => m.FORN_IN_ATIVO)
-                                                    @Html.HiddenFor(m => m.FORN_NM_BAIRRO)
-                                                    @Html.HiddenFor(m => m.FORN_NM_CIDADE)
-                                                    @Html.HiddenFor(m => m.FORN_NM_ENDERECO)
-                                                    @Html.HiddenFor(m => m.FORN_NM_NOME)
-                                                    @Html.HiddenFor(m => m.FORN_NM_RAZAO)
-                                                    @Html.HiddenFor(m => m.FORN_NR_CEP)
-                                                    @Html.HiddenFor(m => m.FORN_NR_CNPJ)
-                                                    @Html.HiddenFor(m => m.FORN_NR_CPF)
-                                                    @Html.HiddenFor(m => m.UF_CD_ID)
-                                                    @Html.HiddenFor(m => m.FORN_TX_OBSERVACOES)
-                                                    @Html.HiddenFor(m => m.MATR_CD_ID)
-                                                    @Html.HiddenFor(m => m.TIPE_CD_ID)
                                                     E-Mail*
-                                                    @Html.TextBoxFor(m => m.FORN_NM_EMAIL, new { @class = "form-control", autofocus = true })
-                                                    @Html.ValidationMessageFor(m => m.FORN_NM_EMAIL, "", new { @style = "color:red" })
+                                                    @Html.TextBoxFor(m => m.FORN_NM_EMAIL, new { @class = "form-control", autofocus = true , @readonly = "readonly"})
                                                 </div>
                                                 <div class="col-lg-4 col-md-4 col-xs-12">
                                                     Redes Sociais
                                                     @Html.TextBoxFor(m => m.FORN_NM_REDES_SOCIAIS, new { @class = "form-control", autofocus = true })
-                                                    @Html.ValidationMessageFor(m => m.FORN_NM_REDES_SOCIAIS, "", new { @style = "color:red" })
                                                 </div>
                                             </div>
                                             <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
                                                 <div class="col-lg-2 col-md-2 col-xs-12">
                                                     Telefone
-                                                    @Html.TextBoxFor(m => m.FORN_NM_TELEFONES, new { @class = "form-control", autofocus = true, @id = "tel" })
-                                                    @Html.ValidationMessageFor(m => m.FORN_NM_TELEFONES, "", new { @style = "color:red" })
+                                                    @Html.TextBoxFor(m => m.FORN_NM_TELEFONES, new { @class = "form-control", autofocus = true, @id = "tel", @readonly = "readonly" })
                                                 </div>
                                                 <div class="col-lg-2 col-md-2 col-xs-12">
                                                     Celular
-                                                    @Html.TextBoxFor(m => m.FORN_NR_CELULAR, new { @class = "form-control", autofocus = true, @id = "cel" })
-                                                    @Html.ValidationMessageFor(m => m.FORN_NR_CELULAR, "", new { @style = "color:red" })
+                                                    @Html.TextBoxFor(m => m.FORN_NR_CELULAR, new { @class = "form-control", autofocus = true, @id = "cel", @readonly = "readonly" })
                                                 </div>
                                                 <div class="col-lg-2 col-md-2 col-xs-12">
                                                     WhatsApp
-                                                    @Html.TextBoxFor(m => m.FORN_NR_WHATSAPP, new { @class = "form-control", autofocus = true, @id = "wh" })
-                                                    @Html.ValidationMessageFor(m => m.FORN_NR_WHATSAPP, "", new { @style = "color:red" })
+                                                    @Html.TextBoxFor(m => m.FORN_NR_WHATSAPP, new { @class = "form-control", autofocus = true, @id = "wh", @readonly = "readonly" })
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
-                                            @Html.ButtonActionSubmit(text: "Confirma Edição de Fornecedor", htmlAttributes: new { id = "basictoast" })
                                         </div>
                                     }
                                     <div class="row">
@@ -692,7 +509,6 @@
                                                                 <th>E-Mail</th>
                                                                 <th>Telefone</th>
                                                                 <th>Ativo</th>
-                                                                <th class="td-one-action">Ações</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -711,17 +527,6 @@
                                                                     {
                                                                         <td>Não</td>
                                                                     }
-                                                                    <td class="td-one-action">
-                                                                        @Html.TableLinkDetails(cond.FOCO_CD_ID, "EditarContatoFornecedor", "fa-edit", "Editar/Consultar Contato")
-                                                                        @if (cond.FOCO_IN_ATIVO == 1)
-                                                                        {
-                                                                            <span style="color: #337ab7; cursor:pointer;" alt="Desativar" class="tbl-link fa-lg fa fa-trash-o" onclick="ShowModalExcluir('/Fornecedor/ExcluirContatoFornecedor/@cond.FOCO_CD_ID)" title="Excluir"></span>
-                                                                        }
-                                                                        else
-                                                                        {
-                                                                            <span style="color: #337ab7; cursor:pointer;" alt="Desativar" class="tbl-link fa-lg fa fa-refresh" onclick="ShowModalReativar('/Fornecedor/ReativarContatoFornecedor/@cond.FOCO_CD_ID)" title="Reativar"></span>
-                                                                        }
-                                                                    </td>
                                                                 </tr>
                                                             }
                                                         </tbody>
@@ -729,9 +534,6 @@
                                                 }
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        @Html.ButtonLinkIndex(text: "Incluir Novo Contato", action: "IncluirContatoFornecedor", controller: "Fornecedor")
                                     </div>
                                 </div>
                             </div>
@@ -744,38 +546,10 @@
                                         <div class="row">
                                             <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
                                                 <div class="col-lg-12 col-md-12 col-xs-12">
-                                                    @Html.HiddenFor(m => m.ASSI_CD_ID)
-                                                    @Html.HiddenFor(m => m.CAFO_CD_ID)
-                                                    @Html.HiddenFor(m => m.FILI_CD_ID)
-                                                    @Html.HiddenFor(m => m.FORN_AQ_FOTO)
-                                                    @Html.HiddenFor(m => m.FORN_CD_ID)
-                                                    @Html.HiddenFor(m => m.FORN_DT_CADASTRO)
-                                                    @Html.HiddenFor(m => m.FORN_IN_ATIVO)
-                                                    @Html.HiddenFor(m => m.FORN_NM_BAIRRO)
-                                                    @Html.HiddenFor(m => m.FORN_NM_CIDADE)
-                                                    @Html.HiddenFor(m => m.FORN_NM_EMAIL)
-                                                    @Html.HiddenFor(m => m.FORN_NM_ENDERECO)
-                                                    @Html.HiddenFor(m => m.FORN_NM_NOME)
-                                                    @Html.HiddenFor(m => m.FORN_NM_RAZAO)
-                                                    @Html.HiddenFor(m => m.FORN_NM_REDES_SOCIAIS)
-                                                    @Html.HiddenFor(m => m.FORN_NM_TELEFONES)
-                                                    @Html.HiddenFor(m => m.FORN_NR_CELULAR)
-                                                    @Html.HiddenFor(m => m.FORN_NR_WHATSAPP)
-                                                    @Html.HiddenFor(m => m.FORN_NR_CEP)
-                                                    @Html.HiddenFor(m => m.FORN_NR_CNPJ)
-                                                    @Html.HiddenFor(m => m.FORN_NR_CPF)
-                                                    @Html.HiddenFor(m => m.UF_CD_ID)
-                                                    @Html.HiddenFor(m => m.MATR_CD_ID)
-                                                    @Html.HiddenFor(m => m.TIPE_CD_ID)
-                                                    @Html.HiddenFor(m => m.FORN_NR_INSCRICAO_ESTADUAL)
                                                     Observações
-                                                    @Html.TextAreaFor(m => m.FORN_TX_OBSERVACOES, new { @class = "form-control", style = "width: 100%; height: 400px;", autofocus = true })
-                                                    @Html.ValidationMessageFor(m => m.FORN_TX_OBSERVACOES, "", new { @style = "color:red" })
+                                                    @Html.TextAreaFor(m => m.FORN_TX_OBSERVACOES, new { @class = "form-control", style = "width: 100%; height: 400px;", autofocus = true, @readonly = "readonly" })
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            @Html.ButtonActionSubmit(text: "Confirma Edição de Fornecedor", htmlAttributes: new { id = "basictoast" })
                                         </div>
                                     }
                                 </div>
@@ -887,8 +661,6 @@
                                                                         <td>@cond.PRODUTO.PROD_NM_MARCA</td>
                                                                         <td>@cond.PRODUTO.PROD_NR_BARCODE</td>
                                                                         <td>@cond.PRODUTO.PROD_NM_MODELO</td>
-
-
                                                                     </tr>
                                                                 }
                                                             </tbody>

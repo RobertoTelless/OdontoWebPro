@@ -51,6 +51,8 @@ namespace EntitiesServices.Model
         public Nullable<int> UF_CD_ID { get; set; }
         public string FORN_NM_SITUACAO { get; set; }
         public string FORN_NR_INSCRICAO_MUNICIPAL { get; set; }
+        public string FORN_NR_CELULAR { get; set; }
+        public string FORN_NR_WHATSAPP { get; set; }
     
         public virtual ASSINANTE ASSINANTE { get; set; }
         public virtual CATEGORIA_FORNECEDOR CATEGORIA_FORNECEDOR { get; set; }

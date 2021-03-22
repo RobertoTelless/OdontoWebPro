@@ -353,6 +353,8 @@
           <Property Name="FORN_NR_INSCRICAO_ESTADUAL" Type="varchar" MaxLength="50" />
           <Property Name="FORN_NR_INSCRICAO_MUNICIPAL" Type="varchar" MaxLength="50" />
           <Property Name="FORN_NM_SITUACAO" Type="varchar" MaxLength="50" />
+          <Property Name="FORN_NR_CELULAR" Type="varchar" MaxLength="50" />
+          <Property Name="FORN_NR_WHATSAPP" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="FORNECEDOR_ANEXO">
           <Key>
@@ -3984,6 +3986,8 @@
           <Property Name="FORN_NR_INSCRICAO_MUNICIPAL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ITEM_PEDIDO_COMPRA" Relationship="Odonto_DBModel.FK_ITEM_PEDIDO_COMPRA_FORNECEDOR" FromRole="FORNECEDOR" ToRole="ITEM_PEDIDO_COMPRA" />
           <NavigationProperty Name="PEDIDO_COMPRA" Relationship="Odonto_DBModel.FK_PEDIDO_COMPRA_FORNECEDOR" FromRole="FORNECEDOR" ToRole="PEDIDO_COMPRA" />
+          <Property Name="FORN_NR_CELULAR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FORN_NR_WHATSAPP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="GRUPO">
           <Key>
@@ -7686,6 +7690,8 @@
           <EntitySetMapping Name="FORNECEDOR">
             <EntityTypeMapping TypeName="Odonto_DBModel.FORNECEDOR">
               <MappingFragment StoreEntitySet="FORNECEDOR">
+                <ScalarProperty Name="FORN_NR_WHATSAPP" ColumnName="FORN_NR_WHATSAPP" />
+                <ScalarProperty Name="FORN_NR_CELULAR" ColumnName="FORN_NR_CELULAR" />
                 <ScalarProperty Name="FORN_NR_INSCRICAO_MUNICIPAL" ColumnName="FORN_NR_INSCRICAO_MUNICIPAL" />
                 <ScalarProperty Name="FORN_CD_ID" ColumnName="FORN_CD_ID" />
                 <ScalarProperty Name="ASSI_CD_ID" ColumnName="ASSI_CD_ID" />
