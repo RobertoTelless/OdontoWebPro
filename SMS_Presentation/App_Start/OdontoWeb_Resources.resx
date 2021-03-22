@@ -261,6 +261,9 @@
   <data name="M0050" xml:space="preserve">
     <value>Nome do arquivo não pode ter mais de 100 caracteres</value>
   </data>
+  <data name="M0051" xml:space="preserve">
+    <value>Impossível excluir esse fornecedor. Existem registros vinculados a ele.</value>
+  </data>
   <data name="M0073" xml:space="preserve">
     <value>A Senha não pode ficar em branco</value>
   </data>

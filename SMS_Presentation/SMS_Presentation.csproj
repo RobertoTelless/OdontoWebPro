@@ -341,6 +341,7 @@
     <Compile Include="Controllers\DenteRegiaoController.cs" />
     <Compile Include="Controllers\EquipeController.cs" />
     <Compile Include="Controllers\FilialController.cs" />
+    <Compile Include="Controllers\FornecedorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NoticiaController.cs" />
     <Compile Include="Controllers\NotificacaoController.cs" />
@@ -3095,6 +3096,13 @@
     <Content Include="Views\Paciente\EditarRecomendacao.cshtml" />
     <Content Include="Views\Paciente\IncluirRecomendacao.cshtml" />
     <Content Include="Views\Paciente\IncluirAcompanhamento.cshtml" />
+    <Content Include="Views\Fornecedor\MontarTelaFornecedor.cshtml" />
+    <Content Include="Views\Fornecedor\IncluirFornecedor.cshtml" />
+    <Content Include="Views\Fornecedor\EditarFornecedor.cshtml" />
+    <Content Include="Views\Fornecedor\VerCardsFornecedor.cshtml" />
+    <Content Include="Views\Fornecedor\VerAnexoFornecedor.cshtml" />
+    <Content Include="Views\Fornecedor\EditarContatoFornecedor.cshtml" />
+    <Content Include="Views\Fornecedor\IncluirContatoFornecedor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3104,6 +3112,7 @@
     <Folder Include="Imagens\1\Filial\3\Anexos\" />
     <Folder Include="Imagens\1\Filial\4\Anexos\" />
     <Folder Include="Imagens\1\Filial\4\Logos\" />
+    <Folder Include="Imagens\1\Fornecedores\" />
     <Folder Include="Imagens\1\Notificacao\1\Anexos\" />
     <Folder Include="Imagens\1\Notificacao\4\Anexos\" />
     <Folder Include="Imagens\1\Notificacao\5\Anexos\" />

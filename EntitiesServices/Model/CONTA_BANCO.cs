@@ -19,6 +19,7 @@ namespace EntitiesServices.Model
         {
             this.CONTA_BANCO_CONTATO = new HashSet<CONTA_BANCO_CONTATO>();
             this.CONTA_BANCO_LANCAMENTO = new HashSet<CONTA_BANCO_LANCAMENTO>();
+            this.FORMA_PAGAMENTO = new HashSet<FORMA_PAGAMENTO>();
         }
     
         public int COBA_CD_ID { get; set; }
@@ -55,5 +56,7 @@ namespace EntitiesServices.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CONTA_BANCO_LANCAMENTO> CONTA_BANCO_LANCAMENTO { get; set; }
         public virtual TIPO_CONTA TIPO_CONTA { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FORMA_PAGAMENTO> FORMA_PAGAMENTO { get; set; }
     }
 }

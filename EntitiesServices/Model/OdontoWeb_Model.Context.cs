@@ -104,5 +104,9 @@ namespace EntitiesServices.Model
         public virtual DbSet<MENSAGEM> MENSAGEM { get; set; }
         public virtual DbSet<PRODUTO_ORIGEM> PRODUTO_ORIGEM { get; set; }
         public virtual DbSet<PRODUTO_TABELA_PRECO> PRODUTO_TABELA_PRECO { get; set; }
+        public virtual DbSet<FORMA_PAGAMENTO> FORMA_PAGAMENTO { get; set; }
+        public virtual DbSet<ITEM_PEDIDO_COMPRA> ITEM_PEDIDO_COMPRA { get; set; }
+        public virtual DbSet<PEDIDO_COMPRA> PEDIDO_COMPRA { get; set; }
+        public virtual DbSet<PEDIDO_COMPRA_ANEXO> PEDIDO_COMPRA_ANEXO { get; set; }
     }
 }

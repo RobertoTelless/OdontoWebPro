@@ -493,6 +493,15 @@ namespace SMS_Presentation.App_Start {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Impossível excluir esse fornecedor. Existem registros vinculados a ele..
+        /// </summary>
+        internal static string M0051 {
+            get {
+                return ResourceManager.GetString("M0051", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a A Senha não pode ficar em branco.
         /// </summary>
         internal static string M0073 {

@@ -53,6 +53,8 @@ namespace EntitiesServices.Model
             this.TIPO_TAREFA = new HashSet<TIPO_TAREFA>();
             this.UNIDADE = new HashSet<UNIDADE>();
             this.USUARIO = new HashSet<USUARIO>();
+            this.FORMA_PAGAMENTO = new HashSet<FORMA_PAGAMENTO>();
+            this.PEDIDO_COMPRA = new HashSet<PEDIDO_COMPRA>();
         }
     
         public int ASSI_CD_ID { get; set; }
@@ -135,5 +137,9 @@ namespace EntitiesServices.Model
         public virtual ICollection<UNIDADE> UNIDADE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<USUARIO> USUARIO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FORMA_PAGAMENTO> FORMA_PAGAMENTO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PEDIDO_COMPRA> PEDIDO_COMPRA { get; set; }
     }
 }

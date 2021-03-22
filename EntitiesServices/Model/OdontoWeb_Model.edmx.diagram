@@ -212,6 +212,24 @@
         <AssociationConnector Association="Odonto_DBModel.FK_FORNECEDOR_CONTATO_FORNECEDOR" />
         <AssociationConnector Association="Odonto_DBModel.FK_FORNECEDOR_QUADRO_SOCIETARIO_FORNECEDOR" />
         <AssociationConnector Association="Odonto_DBModel.FK_PRODUTO_TABELA_PRECO_PRODUTO" />
+        <EntityTypeShape EntityType="Odonto_DBModel.FORMA_PAGAMENTO" Width="1.5" PointX="21.75" PointY="104.375" />
+        <EntityTypeShape EntityType="Odonto_DBModel.ITEM_PEDIDO_COMPRA" Width="1.5" PointX="26.25" PointY="114.25" />
+        <EntityTypeShape EntityType="Odonto_DBModel.PEDIDO_COMPRA" Width="1.5" PointX="24" PointY="97.375" />
+        <EntityTypeShape EntityType="Odonto_DBModel.PEDIDO_COMPRA_ANEXO" Width="1.5" PointX="26.25" PointY="99.625" />
+        <AssociationConnector Association="Odonto_DBModel.FK_FORMA_PAGAMENTO_ASSINANTE" />
+        <AssociationConnector Association="Odonto_DBModel.FK_PEDIDO_COMPRA_ASSINANTE" />
+        <AssociationConnector Association="Odonto_DBModel.FK_PEDIDO_COMPRA_CENTRO_CUSTO" />
+        <AssociationConnector Association="Odonto_DBModel.FK_FORMA_PAGAMENTO_CONTA_BANCO" />
+        <AssociationConnector Association="Odonto_DBModel.FK_PEDIDO_COMPRA_FILIAL" />
+        <AssociationConnector Association="Odonto_DBModel.FK_PEDIDO_COMPRA_FORMA_PAGAMENTO" />
+        <AssociationConnector Association="Odonto_DBModel.FK_ITEM_PEDIDO_COMPRA_FORNECEDOR" />
+        <AssociationConnector Association="Odonto_DBModel.FK_PEDIDO_COMPRA_FORNECEDOR" />
+        <AssociationConnector Association="Odonto_DBModel.FK_ITEM_PEDIDO_COMPRA_PEDIDO_COMPRA" />
+        <AssociationConnector Association="Odonto_DBModel.FK_ITEM_PEDIDO_COMPRA_PRODUTO" />
+        <AssociationConnector Association="Odonto_DBModel.FK_ITEM_PEDIDO_COMPRA_UNIDADE" />
+        <AssociationConnector Association="Odonto_DBModel.FK_PEDIDO_COMPRA_MATRIZ" />
+        <AssociationConnector Association="Odonto_DBModel.FK_PEDIDO_COMPRA_ANEXO_PEDIDO_COMPRA" />
+        <AssociationConnector Association="Odonto_DBModel.FK_PEDIDO_COMPRA_USUARIO" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
