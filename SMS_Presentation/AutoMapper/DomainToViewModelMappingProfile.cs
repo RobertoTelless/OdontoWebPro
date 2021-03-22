@@ -46,6 +46,8 @@ namespace MvcMapping.Mappers
             CreateMap<PACIENTE_ACOMPANHAMENTO, PacienteAcompanhamentoViewModel>();
             CreateMap<PACIENTE_PRESCRICAO, PacientePrescricaoViewModel>();
             CreateMap<PACIENTE_RECOMENDACAO, PacienteRecomendacaoViewModel>();
+            CreateMap<FORNECEDOR, FornecedorViewModel>();
+            CreateMap<FORNECEDOR_CONTATO, FornecedorContatoViewModel>();
 
         }
     }

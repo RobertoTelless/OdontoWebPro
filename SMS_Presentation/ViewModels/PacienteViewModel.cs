@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using EntitiesServices.Attributes;
 using EntitiesServices.Model;
 
 namespace OdontoWeb.ViewModels
@@ -22,6 +23,7 @@ namespace OdontoWeb.ViewModels
         public string PACI_NM_NOME { get; set; }
         [Required(ErrorMessage = "Campo CPF obrigatorio")]
         [StringLength(20, ErrorMessage = "O CPF deve ter no máximo 20 caracteres.")]
+        [CustomValidationCPF(ErrorMessage = "CPF inválido")]
         public string PACI_NR_CPF { get; set; }
         [StringLength(20, ErrorMessage = "O RG deve ter no máximo 20 caracteres.")]
         public string PACI_NR_RG { get; set; }
@@ -37,6 +39,7 @@ namespace OdontoWeb.ViewModels
         [StringLength(20, ErrorMessage = "O WHATSAPP deve ter no máximo 20 caracteres.")]
         public string PACI_NR_WHATSAPP { get; set; }
         [StringLength(100, ErrorMessage = "O E-MAIL deve ter no máximo 100 caracteres.")]
+        [RegularExpression("^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$", ErrorMessage = "Deve ser um e-mail válido")]
         public string PACI_NM_EMAIL { get; set; }
         [StringLength(50, ErrorMessage = "O ENDEREÇO deve ter no máximo 50 caracteres.")]
         public string PACI_NM_ENDERECO { get; set; }
