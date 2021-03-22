@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Odonto_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Odonto_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AGENDA">
           <Key>
             <PropertyRef Name="AGEN_CD_ID" />
@@ -335,6 +335,43 @@
           <Property Name="UF_CD_ID" Type="int" />
           <Property Name="FORN_NM_SITUACAO" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="FORNECEDOR_ANEXO">
+          <Key>
+            <PropertyRef Name="FOAN_CD_ID" />
+          </Key>
+          <Property Name="FOAN_CD_ID" Type="int" Nullable="false" />
+          <Property Name="FORN_CD_ID" Type="int" />
+          <Property Name="FOAN_NM_TITULO" Type="varchar" MaxLength="50" />
+          <Property Name="FOAN_DT_ANEXO" Type="date" />
+          <Property Name="FOAN_IN_TIPO" Type="int" />
+          <Property Name="FOAN_AQ_ARQUIVO" Type="varchar" MaxLength="250" />
+          <Property Name="FOAN_IN_ATIVO" Type="int" />
+        </EntityType>
+        <EntityType Name="FORNECEDOR_CONTATO">
+          <Key>
+            <PropertyRef Name="FOCO_CD_ID" />
+          </Key>
+          <Property Name="FOCO_CD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FORN_CD_ID" Type="int" Nullable="false" />
+          <Property Name="FOCO_NM_NOME" Type="varchar" MaxLength="50" />
+          <Property Name="FOCO_NM_CARGO" Type="varchar" MaxLength="50" />
+          <Property Name="FOCO_NM_EMAIL" Type="varchar" MaxLength="100" />
+          <Property Name="FOCO_NR_TELEFONES" Type="varchar" MaxLength="50" />
+          <Property Name="FOCO_IN_ATIVO" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FORNECEDOR_QUADRO_SOCIETARIO">
+          <Key>
+            <PropertyRef Name="FOQS_CD_ID" />
+          </Key>
+          <Property Name="FOQS_CD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FORN_CD_ID" Type="int" Nullable="false" />
+          <Property Name="FOQS_NM_QUALIFICACAO" Type="varchar" MaxLength="100" />
+          <Property Name="FOQS_NM_PAIS_ORIGEM" Type="varchar" MaxLength="50" />
+          <Property Name="FOQS_NOME_REP_LEGAL" Type="varchar" MaxLength="50" />
+          <Property Name="FOQS_QUALIFICACAO_REP_LEGAL" Type="varchar" MaxLength="100" />
+          <Property Name="FOQS_NM_NOME" Type="varchar" MaxLength="100" />
+          <Property Name="FOQS_IN_ATIVO" Type="int" />
+        </EntityType>
         <EntityType Name="GRUPO">
           <Key>
             <PropertyRef Name="GRUP_CD_ID" />
@@ -389,6 +426,19 @@
           <Property Name="MATR_AQ_LOGOTIPO" Type="varchar" MaxLength="200" />
           <Property Name="MATR_NR_RG" Type="varchar" MaxLength="50" />
           <Property Name="MATR_NR_CPF" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="MENSAGEM">
+          <Key>
+            <PropertyRef Name="MENS_CD_ID" />
+          </Key>
+          <Property Name="MENS_CD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ASSI_CD_ID" Type="int" Nullable="false" />
+          <Property Name="USUA_CD_ID" Type="int" Nullable="false" />
+          <Property Name="MENS_DT_DATA" Type="datetime" />
+          <Property Name="MENS_TX_TEXTO" Type="varchar" MaxLength="5000" />
+          <Property Name="MENS_CD_AUTOR" Type="int" />
+          <Property Name="MENS_IN_ATIVO" Type="int" />
+          <Property Name="MENS_DT_VALIDADE" Type="date" />
         </EntityType>
         <EntityType Name="MOVIMENTO_ESTOQUE_PRODUTO">
           <Key>
@@ -684,6 +734,29 @@
           <Property Name="PROD_CD_ID" Type="int" Nullable="false" />
           <Property Name="FORN_CD_ID" Type="int" Nullable="false" />
           <Property Name="PRFO_IN_ATIVO" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRODUTO_ORIGEM">
+          <Key>
+            <PropertyRef Name="PROR_CD_ID" />
+          </Key>
+          <Property Name="PROR_CD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PROR_NM_NOME" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="PROR_IN_ATIVO" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRODUTO_TABELA_PRECO">
+          <Key>
+            <PropertyRef Name="PRTP_CD_ID" />
+          </Key>
+          <Property Name="PRTP_CD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PROD_CD_ID" Type="int" Nullable="false" />
+          <Property Name="FILI_CD_ID" Type="int" />
+          <Property Name="PRTP_VL_PRECO" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PRTP_VL_PRECO_PROMOCAO" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PRTP_VL_DESCONTO_MAXIMO" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PRTP_DT_DATA_REAJUSTE" Type="date" />
+          <Property Name="PRTP_IN_ATIVO" Type="int" Nullable="false" />
+          <Property Name="PRTP_NR_MARKUP" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PRTP_VL_CUSTO" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="REGIAO_DENTE">
           <Key>
@@ -1436,6 +1509,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_FORNECEDOR_ANEXO_FORNECEDOR">
+          <End Role="FORNECEDOR" Type="Self.FORNECEDOR" Multiplicity="0..1" />
+          <End Role="FORNECEDOR_ANEXO" Type="Self.FORNECEDOR_ANEXO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FORNECEDOR">
+              <PropertyRef Name="FORN_CD_ID" />
+            </Principal>
+            <Dependent Role="FORNECEDOR_ANEXO">
+              <PropertyRef Name="FORN_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_FORNECEDOR_ASSINANTE">
           <End Role="ASSINANTE" Type="Self.ASSINANTE" Multiplicity="1" />
           <End Role="FORNECEDOR" Type="Self.FORNECEDOR" Multiplicity="*" />
@@ -1460,6 +1545,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_FORNECEDOR_CONTATO_FORNECEDOR">
+          <End Role="FORNECEDOR" Type="Self.FORNECEDOR" Multiplicity="1" />
+          <End Role="FORNECEDOR_CONTATO" Type="Self.FORNECEDOR_CONTATO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FORNECEDOR">
+              <PropertyRef Name="FORN_CD_ID" />
+            </Principal>
+            <Dependent Role="FORNECEDOR_CONTATO">
+              <PropertyRef Name="FORN_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_FORNECEDOR_FILIAL">
           <End Role="FILIAL" Type="Self.FILIAL" Multiplicity="0..1" />
           <End Role="FORNECEDOR" Type="Self.FORNECEDOR" Multiplicity="*" />
@@ -1481,6 +1578,18 @@
             </Principal>
             <Dependent Role="FORNECEDOR">
               <PropertyRef Name="MATR_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FORNECEDOR_QUADRO_SOCIETARIO_FORNECEDOR">
+          <End Role="FORNECEDOR" Type="Self.FORNECEDOR" Multiplicity="1" />
+          <End Role="FORNECEDOR_QUADRO_SOCIETARIO" Type="Self.FORNECEDOR_QUADRO_SOCIETARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FORNECEDOR">
+              <PropertyRef Name="FORN_CD_ID" />
+            </Principal>
+            <Dependent Role="FORNECEDOR_QUADRO_SOCIETARIO">
+              <PropertyRef Name="FORN_CD_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2024,6 +2133,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PRODUTO_TABELA_PRECO_FILIAL">
+          <End Role="FILIAL" Type="Self.FILIAL" Multiplicity="0..1" />
+          <End Role="PRODUTO_TABELA_PRECO" Type="Self.PRODUTO_TABELA_PRECO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FILIAL">
+              <PropertyRef Name="FILI_CD_ID" />
+            </Principal>
+            <Dependent Role="PRODUTO_TABELA_PRECO">
+              <PropertyRef Name="FILI_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUTO_TABELA_PRECO_PRODUTO">
+          <End Role="PRODUTO" Type="Self.PRODUTO" Multiplicity="1" />
+          <End Role="PRODUTO_TABELA_PRECO" Type="Self.PRODUTO_TABELA_PRECO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUTO">
+              <PropertyRef Name="PROD_CD_ID" />
+            </Principal>
+            <Dependent Role="PRODUTO_TABELA_PRECO">
+              <PropertyRef Name="PROD_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PRODUTO_UNIDADE">
           <End Role="UNIDADE" Type="Self.UNIDADE" Multiplicity="0..1" />
           <End Role="PRODUTO" Type="Self.PRODUTO" Multiplicity="*" />
@@ -2528,9 +2661,13 @@
           <EntitySet Name="CONTA_BANCO_LANCAMENTO" EntityType="Self.CONTA_BANCO_LANCAMENTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FILIAL" EntityType="Self.FILIAL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FORNECEDOR" EntityType="Self.FORNECEDOR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FORNECEDOR_ANEXO" EntityType="Self.FORNECEDOR_ANEXO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FORNECEDOR_CONTATO" EntityType="Self.FORNECEDOR_CONTATO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FORNECEDOR_QUADRO_SOCIETARIO" EntityType="Self.FORNECEDOR_QUADRO_SOCIETARIO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GRUPO" EntityType="Self.GRUPO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LOG" EntityType="Self.LOG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MATRIZ" EntityType="Self.MATRIZ" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MENSAGEM" EntityType="Self.MENSAGEM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MOVIMENTO_ESTOQUE_PRODUTO" EntityType="Self.MOVIMENTO_ESTOQUE_PRODUTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NOTICIA" EntityType="Self.NOTICIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NOTICIA_COMENTARIO" EntityType="Self.NOTICIA_COMENTARIO" Schema="dbo" store:Type="Tables" />
@@ -2553,6 +2690,8 @@
           <EntitySet Name="PRODUTO_ANEXO" EntityType="Self.PRODUTO_ANEXO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRODUTO_ESTOQUE_FILIAL" EntityType="Self.PRODUTO_ESTOQUE_FILIAL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRODUTO_FORNECEDOR" EntityType="Self.PRODUTO_FORNECEDOR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUTO_ORIGEM" EntityType="Self.PRODUTO_ORIGEM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUTO_TABELA_PRECO" EntityType="Self.PRODUTO_TABELA_PRECO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="REGIAO_DENTE" EntityType="Self.REGIAO_DENTE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="REGIME_TRIBUTARIO" EntityType="Self.REGIME_TRIBUTARIO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEXO" EntityType="Self.SEXO" Schema="dbo" store:Type="Tables" />
@@ -2714,6 +2853,10 @@
             <End Role="UF" EntitySet="UF" />
             <End Role="FILIAL" EntitySet="FILIAL" />
           </AssociationSet>
+          <AssociationSet Name="FK_FORNECEDOR_ANEXO_FORNECEDOR" Association="Self.FK_FORNECEDOR_ANEXO_FORNECEDOR">
+            <End Role="FORNECEDOR" EntitySet="FORNECEDOR" />
+            <End Role="FORNECEDOR_ANEXO" EntitySet="FORNECEDOR_ANEXO" />
+          </AssociationSet>
           <AssociationSet Name="FK_FORNECEDOR_ASSINANTE" Association="Self.FK_FORNECEDOR_ASSINANTE">
             <End Role="ASSINANTE" EntitySet="ASSINANTE" />
             <End Role="FORNECEDOR" EntitySet="FORNECEDOR" />
@@ -2722,6 +2865,10 @@
             <End Role="CATEGORIA_FORNECEDOR" EntitySet="CATEGORIA_FORNECEDOR" />
             <End Role="FORNECEDOR" EntitySet="FORNECEDOR" />
           </AssociationSet>
+          <AssociationSet Name="FK_FORNECEDOR_CONTATO_FORNECEDOR" Association="Self.FK_FORNECEDOR_CONTATO_FORNECEDOR">
+            <End Role="FORNECEDOR" EntitySet="FORNECEDOR" />
+            <End Role="FORNECEDOR_CONTATO" EntitySet="FORNECEDOR_CONTATO" />
+          </AssociationSet>
           <AssociationSet Name="FK_FORNECEDOR_FILIAL" Association="Self.FK_FORNECEDOR_FILIAL">
             <End Role="FILIAL" EntitySet="FILIAL" />
             <End Role="FORNECEDOR" EntitySet="FORNECEDOR" />
@@ -2729,6 +2876,10 @@
           <AssociationSet Name="FK_FORNECEDOR_MATRIZ" Association="Self.FK_FORNECEDOR_MATRIZ">
             <End Role="MATRIZ" EntitySet="MATRIZ" />
             <End Role="FORNECEDOR" EntitySet="FORNECEDOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FORNECEDOR_QUADRO_SOCIETARIO_FORNECEDOR" Association="Self.FK_FORNECEDOR_QUADRO_SOCIETARIO_FORNECEDOR">
+            <End Role="FORNECEDOR" EntitySet="FORNECEDOR" />
+            <End Role="FORNECEDOR_QUADRO_SOCIETARIO" EntitySet="FORNECEDOR_QUADRO_SOCIETARIO" />
           </AssociationSet>
           <AssociationSet Name="FK_FORNECEDOR_TIPO_PESSOA" Association="Self.FK_FORNECEDOR_TIPO_PESSOA">
             <End Role="TIPO_PESSOA" EntitySet="TIPO_PESSOA" />
@@ -2910,6 +3061,14 @@
             <End Role="PRODUTO" EntitySet="PRODUTO" />
             <End Role="PRODUTO_FORNECEDOR" EntitySet="PRODUTO_FORNECEDOR" />
           </AssociationSet>
+          <AssociationSet Name="FK_PRODUTO_TABELA_PRECO_FILIAL" Association="Self.FK_PRODUTO_TABELA_PRECO_FILIAL">
+            <End Role="FILIAL" EntitySet="FILIAL" />
+            <End Role="PRODUTO_TABELA_PRECO" EntitySet="PRODUTO_TABELA_PRECO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUTO_TABELA_PRECO_PRODUTO" Association="Self.FK_PRODUTO_TABELA_PRECO_PRODUTO">
+            <End Role="PRODUTO" EntitySet="PRODUTO" />
+            <End Role="PRODUTO_TABELA_PRECO" EntitySet="PRODUTO_TABELA_PRECO" />
+          </AssociationSet>
           <AssociationSet Name="FK_PRODUTO_UNIDADE" Association="Self.FK_PRODUTO_UNIDADE">
             <End Role="UNIDADE" EntitySet="UNIDADE" />
             <End Role="PRODUTO" EntitySet="PRODUTO" />
@@ -3071,8 +3230,7 @@
             <End Role="USUARIO" EntitySet="USUARIO" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Odonto_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -3471,6 +3629,7 @@
           <NavigationProperty Name="PRODUTO_ESTOQUE_FILIAL" Relationship="Self.FK_PRODUTO_ESTOQUE_FILIAL_FILIAL" FromRole="FILIAL" ToRole="PRODUTO_ESTOQUE_FILIAL" />
           <NavigationProperty Name="TIPO_PROCEDIMENTO" Relationship="Self.FK_TIPO_PROCEDIMENTO_FILIAL" FromRole="FILIAL" ToRole="TIPO_PROCEDIMENTO" />
           <NavigationProperty Name="USUARIO" Relationship="Self.FK_USUARIO_FILIAL" FromRole="FILIAL" ToRole="USUARIO" />
+          <NavigationProperty Name="PRODUTO_TABELA_PRECO" Relationship="Odonto_DBModel.FK_PRODUTO_TABELA_PRECO_FILIAL" FromRole="FILIAL" ToRole="PRODUTO_TABELA_PRECO" />
         </EntityType>
         <EntityType Name="FORNECEDOR">
           <Key>
@@ -3508,6 +3667,9 @@
           <NavigationProperty Name="TIPO_PESSOA" Relationship="Self.FK_FORNECEDOR_TIPO_PESSOA" FromRole="FORNECEDOR" ToRole="TIPO_PESSOA" />
           <NavigationProperty Name="UF" Relationship="Self.FK_FORNECEDOR_UF" FromRole="FORNECEDOR" ToRole="UF" />
           <NavigationProperty Name="PRODUTO_FORNECEDOR" Relationship="Self.FK_PRODUTO_FORNECEDOR_FORNECEDOR" FromRole="FORNECEDOR" ToRole="PRODUTO_FORNECEDOR" />
+          <NavigationProperty Name="FORNECEDOR_ANEXO" Relationship="Odonto_DBModel.FK_FORNECEDOR_ANEXO_FORNECEDOR" FromRole="FORNECEDOR" ToRole="FORNECEDOR_ANEXO" />
+          <NavigationProperty Name="FORNECEDOR_CONTATO" Relationship="Odonto_DBModel.FK_FORNECEDOR_CONTATO_FORNECEDOR" FromRole="FORNECEDOR" ToRole="FORNECEDOR_CONTATO" />
+          <NavigationProperty Name="FORNECEDOR_QUADRO_SOCIETARIO" Relationship="Odonto_DBModel.FK_FORNECEDOR_QUADRO_SOCIETARIO_FORNECEDOR" FromRole="FORNECEDOR" ToRole="FORNECEDOR_QUADRO_SOCIETARIO" />
         </EntityType>
         <EntityType Name="GRUPO">
           <Key>
@@ -3887,6 +4049,7 @@
           <NavigationProperty Name="PRODUTO_ESTOQUE_FILIAL" Relationship="Self.FK_PRODUTO_ESTOQUE_FILIAL_PRODUTO" FromRole="PRODUTO" ToRole="PRODUTO_ESTOQUE_FILIAL" />
           <NavigationProperty Name="PRODUTO_FORNECEDOR" Relationship="Self.FK_PRODUTO_FORNECEDOR_PRODUTO" FromRole="PRODUTO" ToRole="PRODUTO_FORNECEDOR" />
           <NavigationProperty Name="UNIDADE" Relationship="Self.FK_PRODUTO_UNIDADE" FromRole="PRODUTO" ToRole="UNIDADE" />
+          <NavigationProperty Name="PRODUTO_TABELA_PRECO" Relationship="Odonto_DBModel.FK_PRODUTO_TABELA_PRECO_PRODUTO" FromRole="PRODUTO" ToRole="PRODUTO_TABELA_PRECO" />
         </EntityType>
         <EntityType Name="PRODUTO_ANEXO">
           <Key>
@@ -6387,7 +6550,171 @@
             <End Role="USUARIO" EntitySet="USUARIO" />
             <End Role="USUARIO_REMUNERACAO" EntitySet="USUARIO_REMUNERACAO" />
           </AssociationSet>
+          <EntitySet Name="FORNECEDOR_ANEXO" EntityType="Odonto_DBModel.FORNECEDOR_ANEXO" />
+          <EntitySet Name="FORNECEDOR_CONTATO" EntityType="Odonto_DBModel.FORNECEDOR_CONTATO" />
+          <EntitySet Name="FORNECEDOR_QUADRO_SOCIETARIO" EntityType="Odonto_DBModel.FORNECEDOR_QUADRO_SOCIETARIO" />
+          <EntitySet Name="MENSAGEM" EntityType="Odonto_DBModel.MENSAGEM" />
+          <EntitySet Name="PRODUTO_ORIGEM" EntityType="Odonto_DBModel.PRODUTO_ORIGEM" />
+          <EntitySet Name="PRODUTO_TABELA_PRECO" EntityType="Odonto_DBModel.PRODUTO_TABELA_PRECO" />
+          <AssociationSet Name="FK_PRODUTO_TABELA_PRECO_FILIAL" Association="Odonto_DBModel.FK_PRODUTO_TABELA_PRECO_FILIAL">
+            <End Role="FILIAL" EntitySet="FILIAL" />
+            <End Role="PRODUTO_TABELA_PRECO" EntitySet="PRODUTO_TABELA_PRECO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FORNECEDOR_ANEXO_FORNECEDOR" Association="Odonto_DBModel.FK_FORNECEDOR_ANEXO_FORNECEDOR">
+            <End Role="FORNECEDOR" EntitySet="FORNECEDOR" />
+            <End Role="FORNECEDOR_ANEXO" EntitySet="FORNECEDOR_ANEXO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FORNECEDOR_CONTATO_FORNECEDOR" Association="Odonto_DBModel.FK_FORNECEDOR_CONTATO_FORNECEDOR">
+            <End Role="FORNECEDOR" EntitySet="FORNECEDOR" />
+            <End Role="FORNECEDOR_CONTATO" EntitySet="FORNECEDOR_CONTATO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FORNECEDOR_QUADRO_SOCIETARIO_FORNECEDOR" Association="Odonto_DBModel.FK_FORNECEDOR_QUADRO_SOCIETARIO_FORNECEDOR">
+            <End Role="FORNECEDOR" EntitySet="FORNECEDOR" />
+            <End Role="FORNECEDOR_QUADRO_SOCIETARIO" EntitySet="FORNECEDOR_QUADRO_SOCIETARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUTO_TABELA_PRECO_PRODUTO" Association="Odonto_DBModel.FK_PRODUTO_TABELA_PRECO_PRODUTO">
+            <End Role="PRODUTO" EntitySet="PRODUTO" />
+            <End Role="PRODUTO_TABELA_PRECO" EntitySet="PRODUTO_TABELA_PRECO" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="FORNECEDOR_ANEXO">
+          <Key>
+            <PropertyRef Name="FOAN_CD_ID" />
+          </Key>
+          <Property Name="FOAN_CD_ID" Type="Int32" Nullable="false" />
+          <Property Name="FORN_CD_ID" Type="Int32" />
+          <Property Name="FOAN_NM_TITULO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FOAN_DT_ANEXO" Type="DateTime" Precision="0" />
+          <Property Name="FOAN_IN_TIPO" Type="Int32" />
+          <Property Name="FOAN_AQ_ARQUIVO" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="FOAN_IN_ATIVO" Type="Int32" />
+          <NavigationProperty Name="FORNECEDOR" Relationship="Odonto_DBModel.FK_FORNECEDOR_ANEXO_FORNECEDOR" FromRole="FORNECEDOR_ANEXO" ToRole="FORNECEDOR" />
+        </EntityType>
+        <EntityType Name="FORNECEDOR_CONTATO">
+          <Key>
+            <PropertyRef Name="FOCO_CD_ID" />
+          </Key>
+          <Property Name="FOCO_CD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FORN_CD_ID" Type="Int32" Nullable="false" />
+          <Property Name="FOCO_NM_NOME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FOCO_NM_CARGO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FOCO_NM_EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FOCO_NR_TELEFONES" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FOCO_IN_ATIVO" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FORNECEDOR" Relationship="Odonto_DBModel.FK_FORNECEDOR_CONTATO_FORNECEDOR" FromRole="FORNECEDOR_CONTATO" ToRole="FORNECEDOR" />
+        </EntityType>
+        <EntityType Name="FORNECEDOR_QUADRO_SOCIETARIO">
+          <Key>
+            <PropertyRef Name="FOQS_CD_ID" />
+          </Key>
+          <Property Name="FOQS_CD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FORN_CD_ID" Type="Int32" Nullable="false" />
+          <Property Name="FOQS_NM_QUALIFICACAO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FOQS_NM_PAIS_ORIGEM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FOQS_NOME_REP_LEGAL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FOQS_QUALIFICACAO_REP_LEGAL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FOQS_NM_NOME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FOQS_IN_ATIVO" Type="Int32" />
+          <NavigationProperty Name="FORNECEDOR" Relationship="Odonto_DBModel.FK_FORNECEDOR_QUADRO_SOCIETARIO_FORNECEDOR" FromRole="FORNECEDOR_QUADRO_SOCIETARIO" ToRole="FORNECEDOR" />
+        </EntityType>
+        <EntityType Name="MENSAGEM">
+          <Key>
+            <PropertyRef Name="MENS_CD_ID" />
+          </Key>
+          <Property Name="MENS_CD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ASSI_CD_ID" Type="Int32" Nullable="false" />
+          <Property Name="USUA_CD_ID" Type="Int32" Nullable="false" />
+          <Property Name="MENS_DT_DATA" Type="DateTime" Precision="3" />
+          <Property Name="MENS_TX_TEXTO" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="MENS_CD_AUTOR" Type="Int32" />
+          <Property Name="MENS_IN_ATIVO" Type="Int32" />
+          <Property Name="MENS_DT_VALIDADE" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="PRODUTO_ORIGEM">
+          <Key>
+            <PropertyRef Name="PROR_CD_ID" />
+          </Key>
+          <Property Name="PROR_CD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PROR_NM_NOME" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="PROR_IN_ATIVO" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRODUTO_TABELA_PRECO">
+          <Key>
+            <PropertyRef Name="PRTP_CD_ID" />
+          </Key>
+          <Property Name="PRTP_CD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PROD_CD_ID" Type="Int32" Nullable="false" />
+          <Property Name="FILI_CD_ID" Type="Int32" />
+          <Property Name="PRTP_VL_PRECO" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PRTP_VL_PRECO_PROMOCAO" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PRTP_VL_DESCONTO_MAXIMO" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PRTP_DT_DATA_REAJUSTE" Type="DateTime" Precision="0" />
+          <Property Name="PRTP_IN_ATIVO" Type="Int32" Nullable="false" />
+          <Property Name="PRTP_NR_MARKUP" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PRTP_VL_CUSTO" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="FILIAL" Relationship="Odonto_DBModel.FK_PRODUTO_TABELA_PRECO_FILIAL" FromRole="PRODUTO_TABELA_PRECO" ToRole="FILIAL" />
+          <NavigationProperty Name="PRODUTO" Relationship="Odonto_DBModel.FK_PRODUTO_TABELA_PRECO_PRODUTO" FromRole="PRODUTO_TABELA_PRECO" ToRole="PRODUTO" />
+        </EntityType>
+        <Association Name="FK_PRODUTO_TABELA_PRECO_FILIAL">
+          <End Type="Odonto_DBModel.FILIAL" Role="FILIAL" Multiplicity="0..1" />
+          <End Type="Odonto_DBModel.PRODUTO_TABELA_PRECO" Role="PRODUTO_TABELA_PRECO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FILIAL">
+              <PropertyRef Name="FILI_CD_ID" />
+            </Principal>
+            <Dependent Role="PRODUTO_TABELA_PRECO">
+              <PropertyRef Name="FILI_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FORNECEDOR_ANEXO_FORNECEDOR">
+          <End Type="Odonto_DBModel.FORNECEDOR" Role="FORNECEDOR" Multiplicity="0..1" />
+          <End Type="Odonto_DBModel.FORNECEDOR_ANEXO" Role="FORNECEDOR_ANEXO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FORNECEDOR">
+              <PropertyRef Name="FORN_CD_ID" />
+            </Principal>
+            <Dependent Role="FORNECEDOR_ANEXO">
+              <PropertyRef Name="FORN_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FORNECEDOR_CONTATO_FORNECEDOR">
+          <End Type="Odonto_DBModel.FORNECEDOR" Role="FORNECEDOR" Multiplicity="1" />
+          <End Type="Odonto_DBModel.FORNECEDOR_CONTATO" Role="FORNECEDOR_CONTATO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FORNECEDOR">
+              <PropertyRef Name="FORN_CD_ID" />
+            </Principal>
+            <Dependent Role="FORNECEDOR_CONTATO">
+              <PropertyRef Name="FORN_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FORNECEDOR_QUADRO_SOCIETARIO_FORNECEDOR">
+          <End Type="Odonto_DBModel.FORNECEDOR" Role="FORNECEDOR" Multiplicity="1" />
+          <End Type="Odonto_DBModel.FORNECEDOR_QUADRO_SOCIETARIO" Role="FORNECEDOR_QUADRO_SOCIETARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FORNECEDOR">
+              <PropertyRef Name="FORN_CD_ID" />
+            </Principal>
+            <Dependent Role="FORNECEDOR_QUADRO_SOCIETARIO">
+              <PropertyRef Name="FORN_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUTO_TABELA_PRECO_PRODUTO">
+          <End Type="Odonto_DBModel.PRODUTO" Role="PRODUTO" Multiplicity="1" />
+          <End Type="Odonto_DBModel.PRODUTO_TABELA_PRECO" Role="PRODUTO_TABELA_PRECO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUTO">
+              <PropertyRef Name="PROD_CD_ID" />
+            </Principal>
+            <Dependent Role="PRODUTO_TABELA_PRECO">
+              <PropertyRef Name="PROD_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -7487,6 +7814,85 @@
                 <ScalarProperty Name="USRE_VL_CONVERSAO" ColumnName="USRE_VL_CONVERSAO" />
                 <ScalarProperty Name="USRE_IN_ATIVO" ColumnName="USRE_IN_ATIVO" />
                 <ScalarProperty Name="USRE_VL_TOTAL" ColumnName="USRE_VL_TOTAL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FORNECEDOR_ANEXO">
+            <EntityTypeMapping TypeName="Odonto_DBModel.FORNECEDOR_ANEXO">
+              <MappingFragment StoreEntitySet="FORNECEDOR_ANEXO">
+                <ScalarProperty Name="FOAN_IN_ATIVO" ColumnName="FOAN_IN_ATIVO" />
+                <ScalarProperty Name="FOAN_AQ_ARQUIVO" ColumnName="FOAN_AQ_ARQUIVO" />
+                <ScalarProperty Name="FOAN_IN_TIPO" ColumnName="FOAN_IN_TIPO" />
+                <ScalarProperty Name="FOAN_DT_ANEXO" ColumnName="FOAN_DT_ANEXO" />
+                <ScalarProperty Name="FOAN_NM_TITULO" ColumnName="FOAN_NM_TITULO" />
+                <ScalarProperty Name="FORN_CD_ID" ColumnName="FORN_CD_ID" />
+                <ScalarProperty Name="FOAN_CD_ID" ColumnName="FOAN_CD_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FORNECEDOR_CONTATO">
+            <EntityTypeMapping TypeName="Odonto_DBModel.FORNECEDOR_CONTATO">
+              <MappingFragment StoreEntitySet="FORNECEDOR_CONTATO">
+                <ScalarProperty Name="FOCO_IN_ATIVO" ColumnName="FOCO_IN_ATIVO" />
+                <ScalarProperty Name="FOCO_NR_TELEFONES" ColumnName="FOCO_NR_TELEFONES" />
+                <ScalarProperty Name="FOCO_NM_EMAIL" ColumnName="FOCO_NM_EMAIL" />
+                <ScalarProperty Name="FOCO_NM_CARGO" ColumnName="FOCO_NM_CARGO" />
+                <ScalarProperty Name="FOCO_NM_NOME" ColumnName="FOCO_NM_NOME" />
+                <ScalarProperty Name="FORN_CD_ID" ColumnName="FORN_CD_ID" />
+                <ScalarProperty Name="FOCO_CD_ID" ColumnName="FOCO_CD_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FORNECEDOR_QUADRO_SOCIETARIO">
+            <EntityTypeMapping TypeName="Odonto_DBModel.FORNECEDOR_QUADRO_SOCIETARIO">
+              <MappingFragment StoreEntitySet="FORNECEDOR_QUADRO_SOCIETARIO">
+                <ScalarProperty Name="FOQS_IN_ATIVO" ColumnName="FOQS_IN_ATIVO" />
+                <ScalarProperty Name="FOQS_NM_NOME" ColumnName="FOQS_NM_NOME" />
+                <ScalarProperty Name="FOQS_QUALIFICACAO_REP_LEGAL" ColumnName="FOQS_QUALIFICACAO_REP_LEGAL" />
+                <ScalarProperty Name="FOQS_NOME_REP_LEGAL" ColumnName="FOQS_NOME_REP_LEGAL" />
+                <ScalarProperty Name="FOQS_NM_PAIS_ORIGEM" ColumnName="FOQS_NM_PAIS_ORIGEM" />
+                <ScalarProperty Name="FOQS_NM_QUALIFICACAO" ColumnName="FOQS_NM_QUALIFICACAO" />
+                <ScalarProperty Name="FORN_CD_ID" ColumnName="FORN_CD_ID" />
+                <ScalarProperty Name="FOQS_CD_ID" ColumnName="FOQS_CD_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MENSAGEM">
+            <EntityTypeMapping TypeName="Odonto_DBModel.MENSAGEM">
+              <MappingFragment StoreEntitySet="MENSAGEM">
+                <ScalarProperty Name="MENS_DT_VALIDADE" ColumnName="MENS_DT_VALIDADE" />
+                <ScalarProperty Name="MENS_IN_ATIVO" ColumnName="MENS_IN_ATIVO" />
+                <ScalarProperty Name="MENS_CD_AUTOR" ColumnName="MENS_CD_AUTOR" />
+                <ScalarProperty Name="MENS_TX_TEXTO" ColumnName="MENS_TX_TEXTO" />
+                <ScalarProperty Name="MENS_DT_DATA" ColumnName="MENS_DT_DATA" />
+                <ScalarProperty Name="USUA_CD_ID" ColumnName="USUA_CD_ID" />
+                <ScalarProperty Name="ASSI_CD_ID" ColumnName="ASSI_CD_ID" />
+                <ScalarProperty Name="MENS_CD_ID" ColumnName="MENS_CD_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUTO_ORIGEM">
+            <EntityTypeMapping TypeName="Odonto_DBModel.PRODUTO_ORIGEM">
+              <MappingFragment StoreEntitySet="PRODUTO_ORIGEM">
+                <ScalarProperty Name="PROR_IN_ATIVO" ColumnName="PROR_IN_ATIVO" />
+                <ScalarProperty Name="PROR_NM_NOME" ColumnName="PROR_NM_NOME" />
+                <ScalarProperty Name="PROR_CD_ID" ColumnName="PROR_CD_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUTO_TABELA_PRECO">
+            <EntityTypeMapping TypeName="Odonto_DBModel.PRODUTO_TABELA_PRECO">
+              <MappingFragment StoreEntitySet="PRODUTO_TABELA_PRECO">
+                <ScalarProperty Name="PRTP_VL_CUSTO" ColumnName="PRTP_VL_CUSTO" />
+                <ScalarProperty Name="PRTP_NR_MARKUP" ColumnName="PRTP_NR_MARKUP" />
+                <ScalarProperty Name="PRTP_IN_ATIVO" ColumnName="PRTP_IN_ATIVO" />
+                <ScalarProperty Name="PRTP_DT_DATA_REAJUSTE" ColumnName="PRTP_DT_DATA_REAJUSTE" />
+                <ScalarProperty Name="PRTP_VL_DESCONTO_MAXIMO" ColumnName="PRTP_VL_DESCONTO_MAXIMO" />
+                <ScalarProperty Name="PRTP_VL_PRECO_PROMOCAO" ColumnName="PRTP_VL_PRECO_PROMOCAO" />
+                <ScalarProperty Name="PRTP_VL_PRECO" ColumnName="PRTP_VL_PRECO" />
+                <ScalarProperty Name="FILI_CD_ID" ColumnName="FILI_CD_ID" />
+                <ScalarProperty Name="PROD_CD_ID" ColumnName="PROD_CD_ID" />
+                <ScalarProperty Name="PRTP_CD_ID" ColumnName="PRTP_CD_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

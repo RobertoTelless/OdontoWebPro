@@ -201,6 +201,17 @@
         <AssociationConnector Association="Odonto_DBModel.FK_USUARIO_CONTRACHEQUE_USUARIO" ManuallyRouted="false" />
         <AssociationConnector Association="Odonto_DBModel.FK_USUARIO_PREMIO_USUARIO" ManuallyRouted="false" />
         <AssociationConnector Association="Odonto_DBModel.FK_USUARIO_REMUNERACAO_USUARIO" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Odonto_DBModel.FORNECEDOR_ANEXO" Width="1.5" PointX="7.875" PointY="128.125" />
+        <EntityTypeShape EntityType="Odonto_DBModel.FORNECEDOR_CONTATO" Width="1.5" PointX="7.875" PointY="124.875" />
+        <EntityTypeShape EntityType="Odonto_DBModel.FORNECEDOR_QUADRO_SOCIETARIO" Width="1.5" PointX="7.875" PointY="121.375" />
+        <EntityTypeShape EntityType="Odonto_DBModel.MENSAGEM" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="Odonto_DBModel.PRODUTO_ORIGEM" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="Odonto_DBModel.PRODUTO_TABELA_PRECO" Width="1.5" PointX="16.875" PointY="117.5" />
+        <AssociationConnector Association="Odonto_DBModel.FK_PRODUTO_TABELA_PRECO_FILIAL" />
+        <AssociationConnector Association="Odonto_DBModel.FK_FORNECEDOR_ANEXO_FORNECEDOR" />
+        <AssociationConnector Association="Odonto_DBModel.FK_FORNECEDOR_CONTATO_FORNECEDOR" />
+        <AssociationConnector Association="Odonto_DBModel.FK_FORNECEDOR_QUADRO_SOCIETARIO_FORNECEDOR" />
+        <AssociationConnector Association="Odonto_DBModel.FK_PRODUTO_TABELA_PRECO_PRODUTO" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

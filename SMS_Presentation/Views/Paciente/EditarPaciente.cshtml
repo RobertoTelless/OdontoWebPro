@@ -493,6 +493,59 @@
                             @*Anamnese*@
                             <div id="tab-7" class="tab-pane">
                                 <div class="panel-body">
+
+                                    @using (Html.BeginForm("EditarAnamnese", "Paciente", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", @id = "pwd-container1" }))
+                                    {
+                                        <div class="row">
+                                            <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+
+
+
+
+
+                                                <div class="col-lg-3 col-md-3 col-xs-12">
+                                                    E-Mail*
+                                                    @Html.TextBoxFor(m => m.PACI_NM_EMAIL, new { @class = "form-control", autofocus = true, id = "email" })
+                                                    @Html.ValidationMessageFor(m => m.PACI_NM_EMAIL, "", new { @style = "color:red" })
+                                                </div>
+                                                <div class="col-lg-2 col-md-2 col-xs-12">
+                                                    Telefone
+                                                    @Html.TextBoxFor(m => m.PACI_NR_TELEFONE, new { @class = "form-control", autofocus = true, id = "tel" })
+                                                    @Html.ValidationMessageFor(m => m.PACI_NR_TELEFONE, "", new { @style = "color:red" })
+                                                </div>
+                                                <div class="col-lg-2 col-md-2 col-xs-12">
+                                                    Celular
+                                                    @Html.TextBoxFor(m => m.PACI_NR_CELULAR, new { @class = "form-control", autofocus = true, id = "cel" })
+                                                    @Html.ValidationMessageFor(m => m.PACI_NR_CELULAR, "", new { @style = "color:red" })
+                                                </div>
+                                                <div class="col-lg-2 col-md-2 col-xs-12">
+                                                    WhatsApp
+                                                    @Html.TextBoxFor(m => m.PACI_NR_WHATSAPP, new { @class = "form-control", autofocus = true, id = "wh" })
+                                                    @Html.ValidationMessageFor(m => m.PACI_NR_WHATSAPP, "", new { @style = "color:red" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.ButtonActionSubmit(text: "Confirma Edição de Paciente", htmlAttributes: new { id = "basictoast" })
+                                        </div>
+                                    }
+                                    <hr />
+                                    <div class="row">
+                                        <div class="form-group">
+
+
+
+
+
+
+
+
+
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.ButtonActionSubmit(text: "Confirma Edição de Paciente", htmlAttributes: new { id = "basictoast" })
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
