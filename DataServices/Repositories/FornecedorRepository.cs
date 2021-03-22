@@ -14,18 +14,16 @@ namespace DataServices.Repositories
 {
     public class FornecedorRepository : RepositoryBase<FORNECEDOR>, IFornecedorRepository
     {
-        public FORNECEDOR CheckExist(FORNECEDOR conta)
+        public FORNECEDOR CheckExist(FORNECEDOR conta, Int32 idAss)
         {
-            Int32? idAss = SessionMocks.IdAssinante;
             IQueryable<FORNECEDOR> query = Db.FORNECEDOR;
             query = query.Where(p => p.FORN_NM_NOME == conta.FORN_NM_NOME);
             query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.FirstOrDefault();
         }
 
-        public FORNECEDOR GetByEmail(String email)
+        public FORNECEDOR GetByEmail(String email, Int32 idAss)
         {
-            Int32? idAss = SessionMocks.IdAssinante;
             IQueryable<FORNECEDOR> query = Db.FORNECEDOR.Where(p => p.FORN_IN_ATIVO == 1);
             query = query.Where(p => p.FORN_NM_EMAIL == email);
             query = query.Where(p => p.ASSI_CD_ID == idAss);
@@ -45,9 +43,8 @@ namespace DataServices.Repositories
             return query.FirstOrDefault();
         }
 
-        public List<FORNECEDOR> GetAllItens()
+        public List<FORNECEDOR> GetAllItens(Int32 idAss)
         {
-            Int32? idAss = SessionMocks.IdAssinante;
             IQueryable<FORNECEDOR> query = Db.FORNECEDOR.Where(p => p.FORN_IN_ATIVO == 1);
             query = query.Where(p => p.ASSI_CD_ID == idAss);
             query = query.Include(p => p.ASSINANTE);
@@ -56,9 +53,8 @@ namespace DataServices.Repositories
             return query.ToList();
         }
 
-        public List<FORNECEDOR> GetAllItensAdm()
+        public List<FORNECEDOR> GetAllItensAdm(Int32 idAss)
         {
-            Int32? idAss = SessionMocks.IdAssinante;
             IQueryable<FORNECEDOR> query = Db.FORNECEDOR;
             query = query.Where(p => p.ASSI_CD_ID == idAss);
             query = query.Include(p => p.ASSINANTE);
@@ -67,9 +63,8 @@ namespace DataServices.Repositories
             return query.ToList();
         }
 
-        public List<FORNECEDOR> ExecuteFilter(Int32? catId, String nome, String cpf, String cnpj, String email, String cidade, Int32? uf, String rede, Int32? ativo)
+        public List<FORNECEDOR> ExecuteFilter(Int32? catId, String nome, String cpf, String cnpj, String email, String cidade, Int32? uf, String rede, Int32? ativo, Int32? idAss)
         {
-            Int32? idAss = SessionMocks.IdAssinante;
             List<FORNECEDOR> lista = new List<FORNECEDOR>();
             IQueryable<FORNECEDOR> query = Db.FORNECEDOR;
             query = query.Where(p => p.FORN_IN_ATIVO == ativo);
@@ -83,12 +78,10 @@ namespace DataServices.Repositories
             }
             if (!String.IsNullOrEmpty(cpf))
             {
-                //cpf = ValidarNumerosDocumentos.RemoveNaoNumericos(cpf);
                 query = query.Where(p => p.FORN_NR_CPF == cpf);
             }
             if (!String.IsNullOrEmpty(cnpj))
             {
-                //cnpj = ValidarNumerosDocumentos.RemoveNaoNumericos(cnpj);
                 query = query.Where(p => p.FORN_NR_CNPJ == cnpj);
             }
             if (!String.IsNullOrEmpty(email))

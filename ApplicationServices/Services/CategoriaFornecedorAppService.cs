@@ -21,15 +21,15 @@ namespace ApplicationServices.Services
             _baseService = baseService;
         }
 
-        public List<CATEGORIA_FORNECEDOR> GetAllItens()
+        public List<CATEGORIA_FORNECEDOR> GetAllItens(Int32 idAss)
         {
-            List<CATEGORIA_FORNECEDOR> lista = _baseService.GetAllItens();
+            List<CATEGORIA_FORNECEDOR> lista = _baseService.GetAllItens(idAss);
             return lista;
         }
 
-        public List<CATEGORIA_FORNECEDOR> GetAllItensAdm()
+        public List<CATEGORIA_FORNECEDOR> GetAllItensAdm(Int32 idAss)
         {
-            List<CATEGORIA_FORNECEDOR> lista = _baseService.GetAllItensAdm();
+            List<CATEGORIA_FORNECEDOR> lista = _baseService.GetAllItensAdm(idAss);
             return lista;
         }
 
@@ -44,19 +44,19 @@ namespace ApplicationServices.Services
             try
             {
                 // Completa objeto
-                item.ASSI_CD_ID = SessionMocks.IdAssinante;
+                item.ASSI_CD_ID = usuario.ASSI_CD_ID;
                 item.CAFO_IN_ATIVO = 1;
 
-                //// Monta Log
-                //LOG log = new LOG
-                //{
-                //    LOG_DT_DATA = DateTime.Now,
-                //    ASSI_CD_ID = SessionMocks.IdAssinante,
-                //    USUA_CD_ID = usuario.USUA_CD_ID,
-                //    LOG_NM_OPERACAO = "AddCAFO",
-                //    LOG_IN_ATIVO = 1,
-                //    LOG_TX_REGISTRO = Serialization.SerializeJSON<CATEGORIA_FORNECEDOR>(item)
-                //};
+                // Monta Log
+                LOG log = new LOG
+                {
+                    LOG_DT_DATA = DateTime.Now,
+                    ASSI_CD_ID = usuario.ASSI_CD_ID,
+                    USUA_CD_ID = usuario.USUA_CD_ID,
+                    LOG_NM_OPERACAO = "AddCAFO",
+                    LOG_IN_ATIVO = 1,
+                    LOG_TX_REGISTRO = Serialization.SerializeJSON<CATEGORIA_FORNECEDOR>(item)
+                };
 
                 // Persiste
                 Int32 volta = _baseService.Create(item);
@@ -76,7 +76,7 @@ namespace ApplicationServices.Services
                 LOG log = new LOG
                 {
                     LOG_DT_DATA = DateTime.Now,
-                    ASSI_CD_ID = SessionMocks.IdAssinante,
+                    ASSI_CD_ID = usuario.ASSI_CD_ID,
                     USUA_CD_ID = usuario.USUA_CD_ID,
                     LOG_NM_OPERACAO = "EditCAFO",
                     LOG_IN_ATIVO = 1,
@@ -106,16 +106,16 @@ namespace ApplicationServices.Services
                 // Acerta campos
                 item.CAFO_IN_ATIVO = 0;
 
-                //// Monta Log
-                //LOG log = new LOG
-                //{
-                //    LOG_DT_DATA = DateTime.Now,
-                //    ASSI_CD_ID = SessionMocks.IdAssinante,
-                //    USUA_CD_ID = usuario.USUA_CD_ID,
-                //    LOG_IN_ATIVO = 1,
-                //    LOG_NM_OPERACAO = "DelCAFO",
-                //    LOG_TX_REGISTRO = Serialization.SerializeJSON<CATEGORIA_FORNECEDOR>(item)
-                //};
+                // Monta Log
+                LOG log = new LOG
+                {
+                    LOG_DT_DATA = DateTime.Now,
+                    ASSI_CD_ID = usuario.ASSI_CD_ID,
+                    USUA_CD_ID = usuario.USUA_CD_ID,
+                    LOG_IN_ATIVO = 1,
+                    LOG_NM_OPERACAO = "DelCAFO",
+                    LOG_TX_REGISTRO = Serialization.SerializeJSON<CATEGORIA_FORNECEDOR>(item)
+                };
 
                 // Persiste
                 return _baseService.Edit(item);
@@ -136,15 +136,15 @@ namespace ApplicationServices.Services
                 item.CAFO_IN_ATIVO = 1;
 
                 // Monta Log
-                //LOG log = new LOG
-                //{
-                //    LOG_DT_DATA = DateTime.Now,
-                //    ASSI_CD_ID = SessionMocks.IdAssinante,
-                //    USUA_CD_ID = usuario.USUA_CD_ID,
-                //    LOG_IN_ATIVO = 1,
-                //    LOG_NM_OPERACAO = "ReatCAFO",
-                //    LOG_TX_REGISTRO = Serialization.SerializeJSON<CATEGORIA_FORNECEDOR>(item)
-                //};
+                LOG log = new LOG
+                {
+                    LOG_DT_DATA = DateTime.Now,
+                    ASSI_CD_ID = usuario.ASSI_CD_ID,
+                    USUA_CD_ID = usuario.USUA_CD_ID,
+                    LOG_IN_ATIVO = 1,
+                    LOG_NM_OPERACAO = "ReatCAFO",
+                    LOG_TX_REGISTRO = Serialization.SerializeJSON<CATEGORIA_FORNECEDOR>(item)
+                };
 
                 // Persiste
                 return _baseService.Edit(item);
