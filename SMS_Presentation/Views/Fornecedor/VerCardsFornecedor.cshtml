@@ -99,7 +99,7 @@
                                     @Html.DropDownListFor(m => m.UF_CD_ID, (SelectList)ViewBag.UF, "Selecionar", new { @class = "form-control" })                            
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-xs-12">
-                                    Redes Sociais
+                                    Redes Sociais/WebSite
                                     @Html.TextBoxFor(m => m.FORN_NM_REDES_SOCIAIS, new { @class = "form-control", autofocus = true })
                                 </div>
                             </div>
@@ -169,6 +169,7 @@
                                                         @cond.FORN_NM_BAIRRO @cond.FORN_NM_CIDADE @cond.UF.UF_SG_SIGLA<br>
                                                         @cond.FORN_NR_CEP<br>
                                                         <abbr title="Phone">P:</abbr> @cond.FORN_NM_TELEFONES
+                                                        <abbr title="Cel">P:</abbr> @cond.FORN_NR_CELULAR
                                                     </address>
                                                 </div>
                                                 <div class="clearfix"></div>

@@ -55,7 +55,7 @@
                         <div class="row">
                             <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">                
                                 <div class="col-lg-3 col-md-3 col-xs-12">
-                                    Titulo
+                                    Título
                                     @Html.TextBoxFor(m => m.FOAN_NM_TITULO, new { @class = "form-control", @readonly="readonly", autofocus = true })
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-xs-12">
@@ -65,7 +65,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.ButtonLinkIndex(text: "Cancelar", action: "VoltarAnexoFornecedor", controller: "Fornecedor")
+                            @Html.ButtonLinkIndex(text: "Voltar", action: "VoltarAnexoFornecedor", controller: "Fornecedor")
                         </div>
                         <div class="form-group">
                             @if (Model.FOAN_IN_TIPO == 1)

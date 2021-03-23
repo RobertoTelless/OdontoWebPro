@@ -116,7 +116,12 @@
                                                     @Html.TextBoxFor(m => m.FORN_NR_INSCRICAO_ESTADUAL, new { @class = "form-control", autofocus = true, id = "ie" })
                                                     @Html.ValidationMessageFor(m => m.FORN_NR_INSCRICAO_ESTADUAL, "", new { @style = "color:red" })
                                                 </div>
-                                                <div class="col-lg-2 col-md-2 col-xs-12">
+                                                <div class="col-lg-3 col-md-3 col-xs-12">
+                                                    Inscrição Municipal
+                                                    @Html.TextBoxFor(m => m.FORN_NR_INSCRICAO_MUNICIPAL, new { @class = "form-control", autofocus = true, id = "ie" })
+                                                    @Html.ValidationMessageFor(m => m.FORN_NR_INSCRICAO_MUNICIPAL, "", new { @style = "color:red" })
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-xs-12">
                                                     Situação
                                                     @Html.TextBoxFor(m => m.FORN_NM_SITUACAO, new { @class = "form-control", autofocus = true, id = "situacao", @readonly = "readonly" })
                                                     @Html.ValidationMessageFor(m => m.FORN_NM_SITUACAO, "", new { @style = "color:red" })
@@ -318,8 +323,8 @@
             $("#cnpj").mask("99.999.999/9999-99");
             $("#cep").mask("99999-999");
             $("#tel").mask("(99)9999-9999");
-            $("#cel").mask("(99)9999-99999");
-            $("#wh").mask("(99)9999-99999");
+            $("#cel").mask("(99)99999-9999");
+            $("#wh").mask("(99)99999-9999");
         });
     </script>
     <script type="text/javascript">

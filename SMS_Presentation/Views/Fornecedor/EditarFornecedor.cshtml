@@ -173,7 +173,7 @@
                                                     <div class="row">
                                                         @if (Model.TIPE_CD_ID == 1)
                                                         {
-                                                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                                            <div class="col-lg-2 col-md-2 col-xs-12">
                                                                 CPF
                                                                 @Html.TextBoxFor(m => m.FORN_NR_CPF, new { @class = "form-control", @id = "cpf", autofocus = true, @readonly = "readonly" })
                                                                 @Html.ValidationMessageFor(m => m.FORN_NR_CPF, "", new { @style = "color:red" })
@@ -186,15 +186,20 @@
                                                         </div>
                                                         @if (Model.TIPE_CD_ID == 2)
                                                         {
-                                                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                                            <div class="col-lg-2 col-md-2 col-xs-12">
                                                                 CNPJ
                                                                 @Html.TextBoxFor(m => m.FORN_NR_CNPJ, new { @class = "form-control", @id = "cnpj", autofocus = true, @readonly = "readonly" })
                                                                 @Html.ValidationMessageFor(m => m.FORN_NR_CPF, "", new { @style = "color:red" })
                                                             </div>
-                                                            <div class="col-lg-3 col-md-3 col-xs-12">
-                                                                Inscrição Estadual
+                                                            <div class="col-lg-2 col-md-2 col-xs-12">
+                                                                Insc.Estadual
                                                                 @Html.TextBoxFor(m => m.FORN_NR_INSCRICAO_ESTADUAL, new { @class = "form-control", autofocus = true, @readonly = "readonly" })
                                                                 @Html.ValidationMessageFor(m => m.FORN_NR_INSCRICAO_ESTADUAL, "", new { @style = "color:red" })
+                                                            </div>
+                                                            <div class="col-lg-2 col-md-2 col-xs-12">
+                                                                Insc.Municipal
+                                                                @Html.TextBoxFor(m => m.FORN_NR_INSCRICAO_MUNICIPAL, new { @class = "form-control", autofocus = true, @readonly = "readonly" })
+                                                                @Html.ValidationMessageFor(m => m.FORN_NR_INSCRICAO_MUNICIPAL, "", new { @style = "color:red" })
                                                             </div>
                                                             <div class="col-lg-3 col-md-3 col-xs-12">
                                                                 Situação
@@ -314,7 +319,7 @@
                                             @if (Model.TIPE_CD_ID == 1)
                                             {
                                                 <div class="form-group" style=" margin-left: -15px; margin-right: -15px;" id="PF">
-                                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                                    <div class="col-lg-2 col-md-2 col-xs-12">
                                                         CPF
                                                         @Html.TextBoxFor(m => m.FORN_NR_CPF, new { @class = "form-control", @id = "cpf", autofocus = true })
                                                         @Html.ValidationMessageFor(m => m.FORN_NR_CPF, "", new { @style = "color:red" })
@@ -324,15 +329,20 @@
                                             else
                                             {
                                                 <div class="form-group" style=" margin-left: -15px; margin-right: -15px;" id="PJ">
-                                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                                    <div class="col-lg-2 col-md-2 col-xs-12">
                                                         CNPJ
                                                         @Html.TextBoxFor(m => m.FORN_NR_CNPJ, new { @class = "form-control", @id = "cnpj", autofocus = true, @readonly = "readonly" })
                                                         @Html.ValidationMessageFor(m => m.FORN_NR_CPF, "", new { @style = "color:red" })
                                                     </div>
-                                                    <div class="col-lg-3 col-md-3 col-xs-12">
-                                                        Inscrição Estadual
+                                                    <div class="col-lg-2 col-md-2 col-xs-12">
+                                                        Insc.Estadual
                                                         @Html.TextBoxFor(m => m.FORN_NR_INSCRICAO_ESTADUAL, new { @class = "form-control", autofocus = true, @readonly = "readonly" })
                                                         @Html.ValidationMessageFor(m => m.FORN_NR_INSCRICAO_ESTADUAL, "", new { @style = "color:red" })
+                                                    </div>
+                                                    <div class="col-lg-2 col-md-2 col-xs-12">
+                                                        Insc.Municipal
+                                                        @Html.TextBoxFor(m => m.FORN_NR_INSCRICAO_MUNICIPAL, new { @class = "form-control", autofocus = true, @readonly = "readonly" })
+                                                        @Html.ValidationMessageFor(m => m.FORN_NR_INSCRICAO_MUNICIPAL, "", new { @style = "color:red" })
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -649,7 +659,7 @@
                                                     @Html.ValidationMessageFor(m => m.FORN_NM_EMAIL, "", new { @style = "color:red" })
                                                 </div>
                                                 <div class="col-lg-4 col-md-4 col-xs-12">
-                                                    Redes Sociais
+                                                    Redes Sociais/WebSite
                                                     @Html.TextBoxFor(m => m.FORN_NM_REDES_SOCIAIS, new { @class = "form-control", autofocus = true })
                                                     @Html.ValidationMessageFor(m => m.FORN_NM_REDES_SOCIAIS, "", new { @style = "color:red" })
                                                 </div>
@@ -690,7 +700,7 @@
                                                                 <th>Nome</th>
                                                                 <th>Cargo</th>
                                                                 <th>E-Mail</th>
-                                                                <th>Telefone</th>
+                                                                <th>Telefone/Celular</th>
                                                                 <th>Ativo</th>
                                                                 <th class="td-one-action">Ações</th>
                                                             </tr>
