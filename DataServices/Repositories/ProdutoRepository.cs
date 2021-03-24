@@ -62,17 +62,14 @@ namespace DataServices.Repositories
         //    IQueryable<PRODUTO> query = Db.PRODUTO.Where(p => p.PROD_IN_ATIVO == 1);
         //    query = query.Where(p => (p.PRODUTO_ESTOQUE_FILIAL.Where(m => m.FILI_CD_ID == m.FILI_CD_ID)) < p.PROD_QN_QUANTIDADE_MINIMA);
         //    query = query.Where(p => p.ASSI_CD_ID == idAss);
-        //    query = query.Where(p => p.PROD_IN_COMPOSTO == 0);
         //    return query.ToList();
         //}
 
-        //public List<PRODUTO> GetEstoqueZerado()
+        //public List<PRODUTO> GetEstoqueZerado(Int32 idAss)
         //{
-        //    Int32? idAss = SessionMocks.IdAssinante;
         //    IQueryable<PRODUTO> query = Db.PRODUTO.Where(p => p.PROD_IN_ATIVO == 1);
         //    query = query.Where(p => p.PROD_QN_ESTOQUE == 0);
         //    query = query.Where(p => p.ASSI_CD_ID == idAss);
-        //    query = query.Where(p => p.PROD_IN_COMPOSTO == 0);
         //    return query.ToList();
         //}
 
@@ -141,17 +138,16 @@ namespace DataServices.Repositories
         //    return lista;
         //}
 
-        //public List<PRODUTO_ESTOQUE_FILIAL> RecuperarQuantidadesFiliais(Int32? idFilial)
-        //{
-        //    Int32? idAss = SessionMocks.IdAssinante;
-        //    IQueryable<PRODUTO_ESTOQUE_FILIAL> query = Db.PRODUTO_ESTOQUE_FILIAL.Where(p => p.PREF_IN_ATIVO == 1);
-        //    query = query.Where(p => p.PRODUTO.ASSI_CD_ID == idAss);
-        //    if (idFilial != null)
-        //    {
-        //        query = query.Where(p => p.FILI_CD_ID == idFilial);
-        //    }
-        //    query = query.Include(p => p.PRODUTO);
-        //    return query.ToList();
-        //}
+        public List<PRODUTO_ESTOQUE_FILIAL> RecuperarQuantidadesFiliais(Int32? idFilial, Int32? idAss)
+        {
+            IQueryable<PRODUTO_ESTOQUE_FILIAL> query = Db.PRODUTO_ESTOQUE_FILIAL.Where(p => p.PREF_IN_ATIVO == 1);
+            query = query.Where(p => p.PRODUTO.ASSI_CD_ID == idAss);
+            if (idFilial != null)
+            {
+                query = query.Where(p => p.FILI_CD_ID == idFilial);
+            }
+            query = query.Include(p => p.PRODUTO);
+            return query.ToList();
+        }
     }
 }

@@ -360,13 +360,14 @@
           <Key>
             <PropertyRef Name="FOAN_CD_ID" />
           </Key>
-          <Property Name="FOAN_CD_ID" Type="int" Nullable="false" />
+          <Property Name="FOAN_CD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FORN_CD_ID" Type="int" />
           <Property Name="FOAN_NM_TITULO" Type="varchar" MaxLength="50" />
           <Property Name="FOAN_DT_ANEXO" Type="date" />
           <Property Name="FOAN_IN_TIPO" Type="int" />
           <Property Name="FOAN_AQ_ARQUIVO" Type="varchar" MaxLength="250" />
           <Property Name="FOAN_IN_ATIVO" Type="int" />
+          <Property Name="FOAN_IN_TESTE" Type="int" />
         </EntityType>
         <EntityType Name="FORNECEDOR_CONTATO">
           <Key>
@@ -6971,6 +6972,7 @@
           <Property Name="FOAN_AQ_ARQUIVO" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="FOAN_IN_ATIVO" Type="Int32" />
           <NavigationProperty Name="FORNECEDOR" Relationship="Odonto_DBModel.FK_FORNECEDOR_ANEXO_FORNECEDOR" FromRole="FORNECEDOR_ANEXO" ToRole="FORNECEDOR" />
+          <Property Name="FOAN_IN_TESTE" Type="Int32" />
         </EntityType>
         <EntityType Name="FORNECEDOR_CONTATO">
           <Key>
@@ -8467,6 +8469,7 @@
           <EntitySetMapping Name="FORNECEDOR_ANEXO">
             <EntityTypeMapping TypeName="Odonto_DBModel.FORNECEDOR_ANEXO">
               <MappingFragment StoreEntitySet="FORNECEDOR_ANEXO">
+                <ScalarProperty Name="FOAN_IN_TESTE" ColumnName="FOAN_IN_TESTE" />
                 <ScalarProperty Name="FOAN_IN_ATIVO" ColumnName="FOAN_IN_ATIVO" />
                 <ScalarProperty Name="FOAN_AQ_ARQUIVO" ColumnName="FOAN_AQ_ARQUIVO" />
                 <ScalarProperty Name="FOAN_IN_TIPO" ColumnName="FOAN_IN_TIPO" />

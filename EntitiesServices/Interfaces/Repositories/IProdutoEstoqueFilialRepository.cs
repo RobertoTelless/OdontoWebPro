@@ -7,8 +7,11 @@ using EntitiesServices.Model;
 
 namespace ModelServices.Interfaces.Repositories
 {
-    public interface IProdutoEstoqueFilialRepository : IRepositoryBase<PRODUTO_ANEXO>
+    public interface IProdutoEstoqueFilialRepository : IRepositoryBase<PRODUTO_ESTOQUE_FILIAL>
     {
+        PRODUTO_ESTOQUE_FILIAL GetByProdFilial(Int32 prod, Int32 fili);
+        PRODUTO_ESTOQUE_FILIAL CheckExist(PRODUTO_ESTOQUE_FILIAL item, Int32 idAss);
         PRODUTO_ESTOQUE_FILIAL GetItemById(Int32 id);
+        PRODUTO_ESTOQUE_FILIAL GetItemById(PRODUTO item);
     }
 }

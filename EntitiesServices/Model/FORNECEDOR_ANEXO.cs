@@ -21,6 +21,7 @@ namespace EntitiesServices.Model
         public Nullable<int> FOAN_IN_TIPO { get; set; }
         public string FOAN_AQ_ARQUIVO { get; set; }
         public Nullable<int> FOAN_IN_ATIVO { get; set; }
+        public Nullable<int> FOAN_IN_TESTE { get; set; }
     
         public virtual FORNECEDOR FORNECEDOR { get; set; }
     }

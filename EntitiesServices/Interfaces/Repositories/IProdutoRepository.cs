@@ -17,7 +17,7 @@ namespace ModelServices.Interfaces.Repositories
         //List<PRODUTO> GetPontoPedido(Int32? idAss);
         //List<PRODUTO> GetEstoqueZerado(Int32? idAss);
         List<PRODUTO> ExecuteFilter(Int32? catId, String barcode, String nome, String marca, String codigo, String modelo, String fabricante, Int32? idAss);
-        //List<PRODUTO_ESTOQUE_FILIAL> RecuperarQuantidadesFiliais(Int32? idFilial, Int32? idAss);
+        List<PRODUTO_ESTOQUE_FILIAL> RecuperarQuantidadesFiliais(Int32? idFilial, Int32? idAss);
         //List<PRODUTO_ESTOQUE_FILIAL> ExecuteFilterEstoque(Int32? filial, String nome, String marca, String codigo, Int32? idAss);
     }
 }

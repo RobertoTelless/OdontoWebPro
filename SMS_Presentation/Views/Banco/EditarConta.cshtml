@@ -58,7 +58,7 @@
             <div class="ibox">
                 <div class="ibox-content">
                     <h5>Lançamentos - Contas a Pagar</h5>
-                    <h1 class="no-margins">12</h1>
+                    <h1 class="no-margins">0</h1>
                     <div class="stat-percent font-bold text-navy">23% <i class="fa fa-bolt"></i></div>
                     <small>No Mês</small>
                 </div>
@@ -68,7 +68,7 @@
             <div class="ibox">
                 <div class="ibox-content">
                     <h5>Lançamentos - Contas a Receber</h5>
-                    <h1 class="no-margins">34</h1>
+                    <h1 class="no-margins">0</h1>
                     <div class="stat-percent font-bold text-navy">62% <i class="fa fa-bolt"></i></div>
                     <small>No Mês</small>
                 </div>
@@ -176,11 +176,11 @@
                                     Saldo Atual
                                     @if (Model.SaldoAtual > 0)
                                     {
-                                        @Html.TextBoxFor(m => m.SaldoAtual, "{0:n2}", new { @class = "form-control", autofocus = true, @readonly="readonly", @style="color:red; font-weight:bold" })
+                                        @Html.TextBoxFor(m => m.SaldoAtual, "{0:n2}", new { @class = "form-control", autofocus = true, @readonly="readonly", @style="color:blue; font-weight:bold" })
                                     }
                                     else
                                     {
-                                        @Html.TextBoxFor(m => m.SaldoAtual, "{0:n2}", new { @class = "form-control", autofocus = true, @readonly="readonly", @style="color:blue; font-weight:bold" })
+                                        @Html.TextBoxFor(m => m.SaldoAtual, "{0:n2}", new { @class = "form-control", autofocus = true, @readonly="readonly", @style="color:red; font-weight:bold" })
                                     }
                                 </div>
                             </div>

@@ -278,6 +278,10 @@
     <Compile Include="Interfaces\Repositories\IPacientePrescricaoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IPacienteRepository.cs" />
     <Compile Include="Interfaces\Repositories\IPacienteAnexoRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IProdutoEstoqueFilialRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IProdutoMovimentoEstoqueRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IProdutoOrigemRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IProdutoTabelaPrecoRepository.cs" />
     <Compile Include="Interfaces\Repositories\ITipoProcedimentoAnexoRepository.cs" />
     <Compile Include="Interfaces\Repositories\INotificacaoAnexoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IMovimentoEstoqueProdutoRepository.cs" />

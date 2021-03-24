@@ -3113,7 +3113,8 @@
     <Folder Include="Imagens\1\Filial\3\Anexos\" />
     <Folder Include="Imagens\1\Filial\4\Anexos\" />
     <Folder Include="Imagens\1\Filial\4\Logos\" />
-    <Folder Include="Imagens\1\Fornecedores\" />
+    <Folder Include="Imagens\1\Fornecedores\3\Anexos\" />
+    <Folder Include="Imagens\1\Fornecedores\3\Fotos\" />
     <Folder Include="Imagens\1\Notificacao\1\Anexos\" />
     <Folder Include="Imagens\1\Notificacao\4\Anexos\" />
     <Folder Include="Imagens\1\Notificacao\5\Anexos\" />

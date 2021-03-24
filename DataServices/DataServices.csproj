@@ -200,6 +200,10 @@
     <Compile Include="Repositories\PacientePrescricaoRepository.cs" />
     <Compile Include="Repositories\PacienteRepository.cs" />
     <Compile Include="Repositories\PacienteAnexoRepository.cs" />
+    <Compile Include="Repositories\ProdutoEstoqueFilialRepository.cs" />
+    <Compile Include="Repositories\ProdutoMovimentoEstoqueRepository.cs" />
+    <Compile Include="Repositories\ProdutoOrigemRepository.cs" />
+    <Compile Include="Repositories\ProdutoTabelaPrecoRepository.cs" />
     <Compile Include="Repositories\TipoProcedimentoRepository.cs" />
     <Compile Include="Repositories\TipoProcedimentoAnexoRepository.cs" />
     <Compile Include="Repositories\NotificacaoAnexoRepository.cs" />

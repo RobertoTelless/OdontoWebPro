@@ -324,6 +324,7 @@ namespace Odonto.Controllers
             }
             Session["ListaFornecedor"] = null;
             Session["F|iltroFornecedor"] = null;
+            Session["MensFornecedor"] = 0;
             if ((Int32)Session["VoltaFornecedor"] == 2)
             {
                 return RedirectToAction("VerCardsFornecedor");
@@ -339,6 +340,7 @@ namespace Odonto.Controllers
             }
             Int32 idAss = (Int32)Session["IdAssinante"];
             listaMasterForn = fornApp.GetAllItensAdm(idAss);
+            Session["MensFornecedor"] = 0;
             Session["FiltroFornecedor"] = null;
             Session["ListaFornecedor"] = listaMasterForn;
             if ((Int32)Session["VoltaFornecedor"] == 2)
@@ -373,6 +375,7 @@ namespace Odonto.Controllers
                 // Sucesso
                 listaMasterForn = listaObj;
                 Session["ListaFornecedor"] = listaObj;
+                Session["MensFornecedor"] = 0;
                 if ((Int32)Session["VoltaFornecedor"] == 2)
                 {
                     return RedirectToAction("VerCardsFornecedor");
@@ -396,6 +399,7 @@ namespace Odonto.Controllers
             {
                 return RedirectToAction("VerCardsFornecedor");
             }
+            Session["MensFornecedor"] = 0;
             return RedirectToAction("MontarTelaFornecedor");
         }
 
@@ -431,6 +435,7 @@ namespace Odonto.Controllers
             ViewBag.Filiais = new SelectList(filApp.GetAllItens(idAss), "FILI_CD_ID", "FILI_NM_NOME");
 
             Session["VoltaPop"] = 4;
+            Session["FornecedorToCp"] = false;
 
             // Prepara view
             FORNECEDOR item = new FORNECEDOR();
@@ -487,6 +492,7 @@ namespace Odonto.Controllers
                     Session["ListaFornecedor"] = null;
                     Session["IncluirForn"] = 1;
                     Session["Fornecedores"] = fornApp.GetAllItens(idAss);
+                    Session["MensFornecedor"] = 0;
                     if ((Int32)Session["VoltaFornecedor"] == 2)
                     {
                         return RedirectToAction("IncluirFornecedor");
@@ -610,6 +616,7 @@ namespace Odonto.Controllers
                     listaMasterForn = new List<FORNECEDOR>();
                     Session["ListaFornecedor"] = null;
                     Session["IncluirForn"] = 0;
+                    Session["MensFornecedor"] = 0;
                     if ((Int32)Session["VoltaFornecedor"] == 2)
                     {
                         return RedirectToAction("VerCardsFornecedor");
@@ -667,6 +674,7 @@ namespace Odonto.Controllers
             }
             listaMasterForn = new List<FORNECEDOR>();
             Session["ListaFornecedor"] = null;
+            Session["MensFornecedor"] = 0;
             return RedirectToAction("MontarTelaFornecedor");
         }
 
@@ -703,6 +711,7 @@ namespace Odonto.Controllers
             Int32 volta = fornApp.ValidateReativar(item, usuario);
             listaMasterForn = new List<FORNECEDOR>();
             Session["ListaFornecedor"] = null;
+            Session["MensFornecedor"] = 0;
             return RedirectToAction("MontarTelaFornecedor");
         }
 
