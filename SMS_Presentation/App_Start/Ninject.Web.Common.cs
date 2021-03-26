@@ -88,8 +88,6 @@ namespace Presentation.Start
             kernel.Bind<ITipoTagAppService>().To<TipoTagAppService>();
             kernel.Bind<ITelefoneAppService>().To<TelefoneAppService>();
             kernel.Bind<ICentroCustoAppService>().To<CentroCustoAppService>();
-            kernel.Bind<IProdutoAppService>().To<ProdutoAppService>();
-            kernel.Bind<IMovimentoEstoqueProdutoAppService>().To<MovimentoEstoqueProdutoAppService>();
             kernel.Bind<IGrupoAppService>().To<GrupoAppService>();
             kernel.Bind<ISubgrupoAppService>().To<SubgrupoAppService>();
             kernel.Bind<IBancoAppService>().To<BancoAppService>();
@@ -101,6 +99,10 @@ namespace Presentation.Start
             kernel.Bind<ICategoriaFornecedorAppService>().To<CategoriaFornecedorAppService>();
             kernel.Bind<IFornecedorAppService>().To<FornecedorAppService>();
             kernel.Bind<IFornecedorCnpjAppService>().To<FornecedorCnpjAppService>();
+            kernel.Bind<IProdutoAppService>().To<ProdutoAppService>();
+            kernel.Bind<IProdutoEstoqueFilialAppService>().To<ProdutoEstoqueFilialAppService>();
+            kernel.Bind<IMovimentoEstoqueProdutoAppService>().To<MovimentoEstoqueProdutoAppService>();
+            kernel.Bind<IProdutotabelaPrecoAppService>().To<ProdutoTabelaPrecoAppService>();
 
             kernel.Bind(typeof(IServiceBase<>)).To(typeof(ServiceBase<>));
             kernel.Bind<IUsuarioService>().To<UsuarioService>();
@@ -123,8 +125,6 @@ namespace Presentation.Start
             kernel.Bind<ITipoTagService>().To<TipoTagService>();
             kernel.Bind<ITelefoneService>().To<TelefoneService>();
             kernel.Bind<ICentroCustoService>().To<CentroCustoService>();
-            kernel.Bind<IProdutoService>().To<ProdutoService>();
-            kernel.Bind<IMovimentoEstoqueProdutoService>().To<MovimentoEstoqueProdutoService>();
             kernel.Bind<IGrupoService>().To<GrupoService>();
             kernel.Bind<ISubgrupoService>().To<SubgrupoService>();
             kernel.Bind<IBancoService>().To<BancoService>();
@@ -136,6 +136,10 @@ namespace Presentation.Start
             kernel.Bind<ICategoriaFornecedorService>().To<CategoriaFornecedorService>();
             kernel.Bind<IFornecedorService>().To<FornecedorService>();
             kernel.Bind<IFornecedorCnpjService>().To<FornecedorCnpjService>();
+            kernel.Bind<IMovimentoEstoqueProdutoService>().To<MovimentoEstoqueProdutoService>();
+            kernel.Bind<IProdutoService>().To<ProdutoService>();
+            kernel.Bind<IProdutoEstoqueFilialService>().To<ProdutoEstoqueFilialService>();
+            kernel.Bind<IProdutoTabelaPrecoService>().To<ProdutoTabelaPrecoService>();
 
             kernel.Bind(typeof(IRepositoryBase<>)).To(typeof(RepositoryBase<>));
             kernel.Bind<IConfiguracaoRepository>().To<ConfiguracaoRepository>();
@@ -200,6 +204,11 @@ namespace Presentation.Start
             kernel.Bind<IFornecedorCnpjRepository>().To<FornecedorCnpjRepository>();
             kernel.Bind<IFornecedorContatoRepository>().To<FornecedorContatoRepository>();
             kernel.Bind<IFornecedorRepository>().To<FornecedorRepository>();
+            kernel.Bind<ISubcategoriaProdutoRepository>().To<SubcategoriaProdutoRepository>();
+            kernel.Bind<IProdutoEstoqueFilialRepository>().To<ProdutoEstoqueFilialRepository>();
+            kernel.Bind<IProdutoMovimentoEstoqueRepository>().To<ProdutoMovimentoEstoqueRepository>();
+            kernel.Bind<IProdutoOrigemRepository>().To<ProdutoOrigemRepository>();
+            kernel.Bind<IProdutoTabelaPrecoRepository>().To<ProdutoTabelaPrecoRepository>();
 
         }
     }

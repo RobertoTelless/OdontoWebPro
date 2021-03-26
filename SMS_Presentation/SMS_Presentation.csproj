@@ -384,6 +384,8 @@
     <Compile Include="ViewModels\MatrizViewModel.cs" />
     <Compile Include="ViewModels\NoticiaComentarioViewModel.cs" />
     <Compile Include="ViewModels\NoticiaViewModel.cs" />
+    <Compile Include="ViewModels\ProdutoFornecedorViewModel.cs" />
+    <Compile Include="ViewModels\ProdutoViewModel.cs" />
     <Compile Include="ViewModels\TipoProcedimentoAnexoViewModel.cs" />
     <Compile Include="ViewModels\NotificacaoAnexoViewModel.cs" />
     <Compile Include="ViewModels\TipoProcedimentoViewModel.cs" />

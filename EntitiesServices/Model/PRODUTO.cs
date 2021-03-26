@@ -44,6 +44,21 @@ namespace EntitiesServices.Model
         public Nullable<int> PROD_IN_ATIVO { get; set; }
         public Nullable<System.DateTime> PROD_DT_CADASTRO { get; set; }
         public Nullable<int> SUPR_CD_ID { get; set; }
+        public string PROD_DS_INFORMACOES { get; set; }
+        public Nullable<int> PROD_QN_RESERVA_ESTOQUE { get; set; }
+        public string PROD_NM_LOCALIZACAO_ESTOQUE { get; set; }
+        public Nullable<decimal> PROD_QN_PESO_BRUTO { get; set; }
+        public Nullable<decimal> PROD_QN_PESO_LIQUIDO { get; set; }
+        public Nullable<int> PROD_IN_TIPO_EMBALAGEM { get; set; }
+        public Nullable<int> PROD_NR_LARGURA { get; set; }
+        public Nullable<int> PROD_NR_COMPRIMENTO { get; set; }
+        public Nullable<int> PROD_NR_ALTURA { get; set; }
+        public Nullable<int> PROD_NR_DIAMETRO { get; set; }
+        public string PROD_TX_OBSERVACOES { get; set; }
+        public string PROD_NM_REFERENCIA_FABRICANTE { get; set; }
+        public string PROD_QR_QRCODE { get; set; }
+        public Nullable<int> PROD_QN_CONTAGEM { get; set; }
+        public Nullable<int> PROD_QN_NOVA_CONTAGEM { get; set; }
     
         public virtual ASSINANTE ASSINANTE { get; set; }
         public virtual CATEGORIA_PRODUTO CATEGORIA_PRODUTO { get; set; }

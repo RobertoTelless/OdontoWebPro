@@ -785,6 +785,21 @@
           <Property Name="PROD_IN_AVISA_MINIMO" Type="int" />
           <Property Name="PROD_IN_ATIVO" Type="int" />
           <Property Name="PROD_DT_CADASTRO" Type="date" />
+          <Property Name="PROD_DS_INFORMACOES" Type="varchar" MaxLength="1000" />
+          <Property Name="PROD_QN_RESERVA_ESTOQUE" Type="int" />
+          <Property Name="PROD_NM_LOCALIZACAO_ESTOQUE" Type="varchar" MaxLength="50" />
+          <Property Name="PROD_QN_PESO_BRUTO" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PROD_QN_PESO_LIQUIDO" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PROD_IN_TIPO_EMBALAGEM" Type="int" />
+          <Property Name="PROD_NR_LARGURA" Type="int" />
+          <Property Name="PROD_NR_COMPRIMENTO" Type="int" />
+          <Property Name="PROD_NR_ALTURA" Type="int" />
+          <Property Name="PROD_NR_DIAMETRO" Type="int" />
+          <Property Name="PROD_TX_OBSERVACOES" Type="text" />
+          <Property Name="PROD_NM_REFERENCIA_FABRICANTE" Type="varchar" MaxLength="50" />
+          <Property Name="PROD_QR_QRCODE" Type="varchar" MaxLength="500" />
+          <Property Name="PROD_QN_CONTAGEM" Type="int" />
+          <Property Name="PROD_QN_NOVA_CONTAGEM" Type="int" />
         </EntityType>
         <EntityType Name="PRODUTO_ANEXO">
           <Key>
@@ -4458,6 +4473,21 @@
           <NavigationProperty Name="ITEM_PEDIDO_COMPRA" Relationship="Odonto_DBModel.FK_ITEM_PEDIDO_COMPRA_PRODUTO" FromRole="PRODUTO" ToRole="ITEM_PEDIDO_COMPRA" />
           <Property Name="SUPR_CD_ID" Type="Int32" />
           <NavigationProperty Name="SUBCATEGORIA_PRODUTO" Relationship="Odonto_DBModel.FK_PRODUTO_SUBCATEGORIA_PRODUTO" FromRole="PRODUTO" ToRole="SUBCATEGORIA_PRODUTO" />
+          <Property Name="PROD_DS_INFORMACOES" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="PROD_QN_RESERVA_ESTOQUE" Type="Int32" />
+          <Property Name="PROD_NM_LOCALIZACAO_ESTOQUE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PROD_QN_PESO_BRUTO" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PROD_QN_PESO_LIQUIDO" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PROD_IN_TIPO_EMBALAGEM" Type="Int32" />
+          <Property Name="PROD_NR_LARGURA" Type="Int32" />
+          <Property Name="PROD_NR_COMPRIMENTO" Type="Int32" />
+          <Property Name="PROD_NR_ALTURA" Type="Int32" />
+          <Property Name="PROD_NR_DIAMETRO" Type="Int32" />
+          <Property Name="PROD_TX_OBSERVACOES" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PROD_NM_REFERENCIA_FABRICANTE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PROD_QR_QRCODE" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PROD_QN_CONTAGEM" Type="Int32" />
+          <Property Name="PROD_QN_NOVA_CONTAGEM" Type="Int32" />
         </EntityType>
         <EntityType Name="PRODUTO_ANEXO">
           <Key>
@@ -8211,6 +8241,21 @@
           <EntitySetMapping Name="PRODUTO">
             <EntityTypeMapping TypeName="Odonto_DBModel.PRODUTO">
               <MappingFragment StoreEntitySet="PRODUTO">
+                <ScalarProperty Name="PROD_QN_NOVA_CONTAGEM" ColumnName="PROD_QN_NOVA_CONTAGEM" />
+                <ScalarProperty Name="PROD_QN_CONTAGEM" ColumnName="PROD_QN_CONTAGEM" />
+                <ScalarProperty Name="PROD_QR_QRCODE" ColumnName="PROD_QR_QRCODE" />
+                <ScalarProperty Name="PROD_NM_REFERENCIA_FABRICANTE" ColumnName="PROD_NM_REFERENCIA_FABRICANTE" />
+                <ScalarProperty Name="PROD_TX_OBSERVACOES" ColumnName="PROD_TX_OBSERVACOES" />
+                <ScalarProperty Name="PROD_NR_DIAMETRO" ColumnName="PROD_NR_DIAMETRO" />
+                <ScalarProperty Name="PROD_NR_ALTURA" ColumnName="PROD_NR_ALTURA" />
+                <ScalarProperty Name="PROD_NR_COMPRIMENTO" ColumnName="PROD_NR_COMPRIMENTO" />
+                <ScalarProperty Name="PROD_NR_LARGURA" ColumnName="PROD_NR_LARGURA" />
+                <ScalarProperty Name="PROD_IN_TIPO_EMBALAGEM" ColumnName="PROD_IN_TIPO_EMBALAGEM" />
+                <ScalarProperty Name="PROD_QN_PESO_LIQUIDO" ColumnName="PROD_QN_PESO_LIQUIDO" />
+                <ScalarProperty Name="PROD_QN_PESO_BRUTO" ColumnName="PROD_QN_PESO_BRUTO" />
+                <ScalarProperty Name="PROD_NM_LOCALIZACAO_ESTOQUE" ColumnName="PROD_NM_LOCALIZACAO_ESTOQUE" />
+                <ScalarProperty Name="PROD_QN_RESERVA_ESTOQUE" ColumnName="PROD_QN_RESERVA_ESTOQUE" />
+                <ScalarProperty Name="PROD_DS_INFORMACOES" ColumnName="PROD_DS_INFORMACOES" />
                 <ScalarProperty Name="SUPR_CD_ID" ColumnName="SUPR_CD_ID" />
                 <ScalarProperty Name="PROD_CD_ID" ColumnName="PROD_CD_ID" />
                 <ScalarProperty Name="ASSI_CD_ID" ColumnName="ASSI_CD_ID" />
