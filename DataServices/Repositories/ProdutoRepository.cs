@@ -16,6 +16,8 @@ namespace DataServices.Repositories
         {
             IQueryable<PRODUTO> query = Db.PRODUTO;
             query = query.Where(p => p.PROD_NM_NOME == conta.PROD_NM_NOME);
+            query = query.Where(p => p.PROD_CD_CODIGO == conta.PROD_CD_CODIGO);
+            query = query.Where(p => p.PROD_NR_BARCODE == conta.PROD_NR_BARCODE);
             query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.FirstOrDefault();
         }

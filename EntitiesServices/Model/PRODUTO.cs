@@ -59,6 +59,10 @@ namespace EntitiesServices.Model
         public string PROD_QR_QRCODE { get; set; }
         public Nullable<int> PROD_QN_CONTAGEM { get; set; }
         public Nullable<int> PROD_QN_NOVA_CONTAGEM { get; set; }
+        public Nullable<decimal> PRTP_VL_PRECO { get; set; }
+        public Nullable<decimal> PRO_VL_MARKUP_PADRAO { get; set; }
+        public Nullable<decimal> PRTP_VL_PRECO_PROMOCAO { get; set; }
+        public Nullable<decimal> PROD_VL_CUSTO { get; set; }
     
         public virtual ASSINANTE ASSINANTE { get; set; }
         public virtual CATEGORIA_PRODUTO CATEGORIA_PRODUTO { get; set; }

@@ -264,6 +264,24 @@
   <data name="M0051" xml:space="preserve">
     <value>Impossível excluir esse fornecedor. Existem registros vinculados a ele.</value>
   </data>
+  <data name="M0052" xml:space="preserve">
+    <value>Impossível excluir esse produto. Existem registros vinculados a ele.</value>
+  </data>
+  <data name="M0053" xml:space="preserve">
+    <value>Produto já cadastrado</value>
+  </data>
+  <data name="M0055" xml:space="preserve">
+    <value>Extensão inválida</value>
+  </data>
+  <data name="M0056" xml:space="preserve">
+    <value>Preço não informado</value>
+  </data>
+  <data name="M0057" xml:space="preserve">
+    <value>Markup não informado</value>
+  </data>
+  <data name="M0058" xml:space="preserve">
+    <value>Preço já cadastrado</value>
+  </data>
   <data name="M0073" xml:space="preserve">
     <value>A Senha não pode ficar em branco</value>
   </data>

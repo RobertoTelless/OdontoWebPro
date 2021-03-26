@@ -74,6 +74,14 @@ namespace OdontoWeb.ViewModels
         public Nullable<int> PROD_QN_CONTAGEM { get; set; }
         [RegularExpression(@"^[0-9]+([,.][0-9]+)?$", ErrorMessage = "Deve ser um valor numérico positivo")]
         public Nullable<int> PROD_QN_NOVA_CONTAGEM { get; set; }
+        [RegularExpression(@"^[0-9]+([,.][0-9]+)?$", ErrorMessage = "Deve ser um valor numérico positivo")]
+        public Nullable<decimal> PRTP_VL_PRECO { get; set; }
+        [RegularExpression(@"^[0-9]+([,.][0-9]+)?$", ErrorMessage = "Deve ser um valor numérico positivo")]
+        public Nullable<decimal> PRO_VL_MARKUP_PADRAO { get; set; }
+        [RegularExpression(@"^[0-9]+([,.][0-9]+)?$", ErrorMessage = "Deve ser um valor numérico positivo")]
+        public Nullable<decimal> PRTP_VL_PRECO_PROMOCAO { get; set; }
+        [RegularExpression(@"^[0-9]+([,.][0-9]+)?$", ErrorMessage = "Deve ser um valor numérico positivo")]
+        public Nullable<decimal> PROD_VL_CUSTO { get; set; }
 
         public bool AvisaMinima
         {

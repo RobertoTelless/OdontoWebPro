@@ -800,6 +800,10 @@
           <Property Name="PROD_QR_QRCODE" Type="varchar" MaxLength="500" />
           <Property Name="PROD_QN_CONTAGEM" Type="int" />
           <Property Name="PROD_QN_NOVA_CONTAGEM" Type="int" />
+          <Property Name="PRTP_VL_PRECO" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PRO_VL_MARKUP_PADRAO" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PRTP_VL_PRECO_PROMOCAO" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PROD_VL_CUSTO" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="PRODUTO_ANEXO">
           <Key>
@@ -4488,6 +4492,10 @@
           <Property Name="PROD_QR_QRCODE" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="PROD_QN_CONTAGEM" Type="Int32" />
           <Property Name="PROD_QN_NOVA_CONTAGEM" Type="Int32" />
+          <Property Name="PRTP_VL_PRECO" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PRO_VL_MARKUP_PADRAO" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PRTP_VL_PRECO_PROMOCAO" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PROD_VL_CUSTO" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="PRODUTO_ANEXO">
           <Key>
@@ -8241,6 +8249,10 @@
           <EntitySetMapping Name="PRODUTO">
             <EntityTypeMapping TypeName="Odonto_DBModel.PRODUTO">
               <MappingFragment StoreEntitySet="PRODUTO">
+                <ScalarProperty Name="PROD_VL_CUSTO" ColumnName="PROD_VL_CUSTO" />
+                <ScalarProperty Name="PRTP_VL_PRECO_PROMOCAO" ColumnName="PRTP_VL_PRECO_PROMOCAO" />
+                <ScalarProperty Name="PRO_VL_MARKUP_PADRAO" ColumnName="PRO_VL_MARKUP_PADRAO" />
+                <ScalarProperty Name="PRTP_VL_PRECO" ColumnName="PRTP_VL_PRECO" />
                 <ScalarProperty Name="PROD_QN_NOVA_CONTAGEM" ColumnName="PROD_QN_NOVA_CONTAGEM" />
                 <ScalarProperty Name="PROD_QN_CONTAGEM" ColumnName="PROD_QN_CONTAGEM" />
                 <ScalarProperty Name="PROD_QR_QRCODE" ColumnName="PROD_QR_QRCODE" />

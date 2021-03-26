@@ -749,6 +749,7 @@
     <Content Include="Imagens\1\Procedimentos\2\Anexos\proc2.jpeg" />
     <Content Include="Imagens\1\Produto\1\Foto\PapelA4.jpg" />
     <Content Include="Imagens\1\Produto\3\Foto\colgate.jpg" />
+    <Content Include="Imagens\1\Produto\3\Foto\PapelA4.jpg" />
     <Content Include="Imagens\1\Produto\4\Foto\Algodao.jpg" />
     <Content Include="Imagens\1\Usuarios\1\Anexos\dentista.jpg" />
     <Content Include="Imagens\1\Usuarios\1\Fotos\FotoOficial.jpg" />
@@ -3106,6 +3107,17 @@
     <Content Include="Views\Fornecedor\EditarContatoFornecedor.cshtml" />
     <Content Include="Views\Fornecedor\IncluirContatoFornecedor.cshtml" />
     <Content Include="Views\Fornecedor\VerFornecedor.cshtml" />
+    <Content Include="Views\Produto\MontarTelaProduto.cshtml" />
+    <Content Include="Views\Produto\IncluirProduto.cshtml" />
+    <Content Include="Views\Produto\EditarProduto.cshtml" />
+    <Content Include="Views\Produto\ConsultarProduto.cshtml" />
+    <Content Include="Views\Produto\VerCardsProduto.cshtml" />
+    <Content Include="Views\Produto\VerAnexoProduto.cshtml" />
+    <Content Include="Views\Produto\VerMovimentacaoEstoqueProduto.cshtml" />
+    <Content Include="Views\Produto\VerProdutosPontoPedido.cshtml" />
+    <Content Include="Views\Produto\VerProdutosEstoqueZerado.cshtml" />
+    <Content Include="Views\Produto\EditarProdutoFornecedor.cshtml" />
+    <Content Include="Views\Produto\IncluirProdutoFornecedor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3122,6 +3134,12 @@
     <Folder Include="Imagens\1\Notificacao\5\Anexos\" />
     <Folder Include="Imagens\1\Pacientes\1\Anexos\" />
     <Folder Include="Imagens\1\Pacientes\1\Imagens\" />
+    <Folder Include="Imagens\1\Produto\1\Anexos\" />
+    <Folder Include="Imagens\1\Produto\1\QR\" />
+    <Folder Include="Imagens\1\Produto\3\Anexos\" />
+    <Folder Include="Imagens\1\Produto\3\QR\" />
+    <Folder Include="Imagens\1\Produto\4\Anexos\" />
+    <Folder Include="Imagens\1\Produto\4\QR\" />
     <Folder Include="Imagens\1\Tarefas\1\Anexos\" />
     <Folder Include="Imagens\1\Tarefas\2\Anexos\" />
     <Folder Include="Imagens\1\Usuarios\2\Anexos\" />

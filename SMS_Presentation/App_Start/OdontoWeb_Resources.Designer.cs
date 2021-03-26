@@ -502,6 +502,60 @@ namespace SMS_Presentation.App_Start {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Impossível excluir esse produto. Existem registros vinculados a ele..
+        /// </summary>
+        internal static string M0052 {
+            get {
+                return ResourceManager.GetString("M0052", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Produto já cadastrado.
+        /// </summary>
+        internal static string M0053 {
+            get {
+                return ResourceManager.GetString("M0053", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Extensão inválida.
+        /// </summary>
+        internal static string M0055 {
+            get {
+                return ResourceManager.GetString("M0055", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Preço não informado.
+        /// </summary>
+        internal static string M0056 {
+            get {
+                return ResourceManager.GetString("M0056", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Markup não informado.
+        /// </summary>
+        internal static string M0057 {
+            get {
+                return ResourceManager.GetString("M0057", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Preço já cadastrado.
+        /// </summary>
+        internal static string M0058 {
+            get {
+                return ResourceManager.GetString("M0058", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a A Senha não pode ficar em branco.
         /// </summary>
         internal static string M0073 {
