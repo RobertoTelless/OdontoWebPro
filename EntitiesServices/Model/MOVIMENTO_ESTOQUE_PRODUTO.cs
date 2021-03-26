@@ -24,9 +24,11 @@ namespace EntitiesServices.Model
         public string MOEP_NM_ORIGEM { get; set; }
         public Nullable<int> MOEP_IN_ATIVO { get; set; }
         public string MOEP_DS_JUSTIFICATIVA { get; set; }
+        public Nullable<int> ASSI_CD_ID { get; set; }
     
         public virtual FILIAL FILIAL { get; set; }
         public virtual PRODUTO PRODUTO { get; set; }
         public virtual USUARIO USUARIO { get; set; }
+        public virtual ASSINANTE ASSINANTE { get; set; }
     }
 }

@@ -230,6 +230,11 @@
         <AssociationConnector Association="Odonto_DBModel.FK_PEDIDO_COMPRA_MATRIZ" />
         <AssociationConnector Association="Odonto_DBModel.FK_PEDIDO_COMPRA_ANEXO_PEDIDO_COMPRA" />
         <AssociationConnector Association="Odonto_DBModel.FK_PEDIDO_COMPRA_USUARIO" />
+        <EntityTypeShape EntityType="Odonto_DBModel.SUBCATEGORIA_PRODUTO" Width="1.5" PointX="5.25" PointY="94.75" />
+        <AssociationConnector Association="Odonto_DBModel.FK_SUBCATEGORIA_PRODUTO_ASSINANTE" />
+        <AssociationConnector Association="Odonto_DBModel.FK_SUBCATEGORIA_PRODUTO_CATEGORIA_PRODUTO" />
+        <AssociationConnector Association="Odonto_DBModel.FK_PRODUTO_SUBCATEGORIA_PRODUTO" />
+        <AssociationConnector Association="Odonto_DBModel.FK_MOVIMENTO_ESTOQUE_PRODUTO_ASSINANTE" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

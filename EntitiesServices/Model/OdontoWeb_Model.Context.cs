@@ -108,5 +108,6 @@ namespace EntitiesServices.Model
         public virtual DbSet<ITEM_PEDIDO_COMPRA> ITEM_PEDIDO_COMPRA { get; set; }
         public virtual DbSet<PEDIDO_COMPRA> PEDIDO_COMPRA { get; set; }
         public virtual DbSet<PEDIDO_COMPRA_ANEXO> PEDIDO_COMPRA_ANEXO { get; set; }
+        public virtual DbSet<SUBCATEGORIA_PRODUTO> SUBCATEGORIA_PRODUTO { get; set; }
     }
 }

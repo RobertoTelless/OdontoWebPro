@@ -20,6 +20,9 @@ namespace EntitiesServices.Model
         public Nullable<int> PREF_QN_ESTOQUE { get; set; }
         public Nullable<System.DateTime> PREF_DT_ULTIMO_MOVIMENTO { get; set; }
         public Nullable<int> PREF_IN_ATIVO { get; set; }
+        public string PREF_DS_JUSTIFICATIVA { get; set; }
+        public Nullable<decimal> PREF_NR_MARKUP { get; set; }
+        public Nullable<int> PREF_QN_QUANTIDADE_ALTERADA { get; set; }
     
         public virtual FILIAL FILIAL { get; set; }
         public virtual PRODUTO PRODUTO { get; set; }

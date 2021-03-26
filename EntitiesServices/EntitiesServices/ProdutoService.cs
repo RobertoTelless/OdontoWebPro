@@ -25,9 +25,12 @@ namespace ModelServices.EntitiesServices
         private readonly IProdutoFornecedorRepository _fornRepository;
         private readonly IUnidadeRepository _unidRepository;
         private readonly IMovimentoEstoqueProdutoRepository _movRepository;
+        private readonly IProdutoTabelaPrecoRepository _preRepository;
+        private readonly IProdutoOrigemRepository _oriRepository;
+        private readonly ISubcategoriaProdutoRepository _subRepository;
         protected Odonto_DBEntities Db = new Odonto_DBEntities();
 
-        public ProdutoService(IProdutoRepository baseRepository, ILogRepository logRepository, ICategoriaProdutoRepository tipoRepository, IProdutoAnexoRepository anexoRepository, IUnidadeRepository unidRepository, IMovimentoEstoqueProdutoRepository movRepository, IProdutoFornecedorRepository fornRepository) : base(baseRepository)
+        public ProdutoService(IProdutoRepository baseRepository, ILogRepository logRepository, ICategoriaProdutoRepository tipoRepository, IProdutoAnexoRepository anexoRepository, IUnidadeRepository unidRepository, IMovimentoEstoqueProdutoRepository movRepository, IProdutoFornecedorRepository fornRepository, IProdutoTabelaPrecoRepository preRepository, IProdutoOrigemRepository oriRepository, ISubcategoriaProdutoRepository subRepository) : base(baseRepository)
         {
             _baseRepository = baseRepository;
             _logRepository = logRepository;
@@ -36,11 +39,20 @@ namespace ModelServices.EntitiesServices
             _unidRepository = unidRepository;
             _movRepository = movRepository;
             _fornRepository = fornRepository;
+            _preRepository = preRepository;
+            _oriRepository = oriRepository;
+            _subRepository = subRepository;
         }
 
         public PRODUTO CheckExist(PRODUTO conta, Int32? idAss)
         {
             PRODUTO item = _baseRepository.CheckExist(conta, idAss);
+            return item;
+        }
+
+        public PRODUTO_TABELA_PRECO CheckExist(PRODUTO_TABELA_PRECO conta, Int32 idAss)
+        {
+            PRODUTO_TABELA_PRECO item = _preRepository.CheckExist(conta, idAss);
             return item;
         }
 
@@ -61,20 +73,25 @@ namespace ModelServices.EntitiesServices
             return _baseRepository.GetAllItens(idAss);
         }
 
-        //public List<PRODUTO_ESTOQUE_FILIAL> RecuperarQuantidadesFiliais(Int32? idFilial)
-        //{
-        //    return _baseRepository.RecuperarQuantidadesFiliais(idFilial);
-        //}
+        public List<PRODUTO_ORIGEM> GetAllOrigens(Int32 idAss)
+        {
+            return _oriRepository.GetAllItens(idAss);
+        }
 
-        //public List<PRODUTO> GetPontoPedido()
-        //{
-        //    return _baseRepository.GetPontoPedido();
-        //}
+        public List<PRODUTO_ESTOQUE_FILIAL> RecuperarQuantidadesFiliais(Int32? idFilial, Int32 idAss)
+        {
+            return _baseRepository.RecuperarQuantidadesFiliais(idFilial, idAss);
+        }
 
-        //public List<PRODUTO> GetEstoqueZerado()
-        //{
-        //    return _baseRepository.GetEstoqueZerado();
-        //}
+        public List<PRODUTO> GetPontoPedido(Int32? idAss)
+        {
+            return _baseRepository.GetPontoPedido(idAss);
+        }
+
+        public List<PRODUTO> GetEstoqueZerado(Int32? idAss)
+        {
+            return _baseRepository.GetEstoqueZerado(idAss);
+        }
 
         public List<PRODUTO> GetAllItensAdm(Int32? idAss)
         {
@@ -84,6 +101,11 @@ namespace ModelServices.EntitiesServices
         public List<CATEGORIA_PRODUTO> GetAllTipos(Int32 idAss)
         {
             return _tipoRepository.GetAllItens(idAss);
+        }
+
+        public List<SUBCATEGORIA_PRODUTO> GetAllSubs(Int32 idAss)
+        {
+            return _subRepository.GetAllItens(idAss);
         }
 
         public List<UNIDADE> GetAllUnidades(Int32 idAss)
@@ -101,17 +123,17 @@ namespace ModelServices.EntitiesServices
             return _fornRepository.GetItemById(id);
         }
 
-        //public List<PRODUTO> ExecuteFilter(Int32? catId, String nome, String marca, String codigo, String cod, Int32? idAss)
-        //{
-        //    return _baseRepository.ExecuteFilter(catId, nome, marca, codigo, cod, idAss);
+        public List<PRODUTO> ExecuteFilter(Int32? catId, Int32? subId, String barcode, String nome, String marca, String codigo, String modelo, String fabricante, Int32? idAss)
+        {
+            return _baseRepository.ExecuteFilter(catId, subId, barcode, nome, marca, codigo, modelo, fabricante, idAss);
 
-        //}
+        }
 
-        //public List<PRODUTO_ESTOQUE_FILIAL> ExecuteFilterEstoque(Int32? filial, String nome, String marca, String codigo)
-        //{
-        //    return _baseRepository.ExecuteFilterEstoque(filial, nome, marca, codigo);
+        public List<PRODUTO_ESTOQUE_FILIAL> ExecuteFilterEstoque(Int32? filial, String nome, String marca, String codigo, Int32? idAss)
+        {
+            return _baseRepository.ExecuteFilterEstoque(filial, nome, marca, codigo, idAss);
 
-        //}
+        }
 
         public Int32 Create(PRODUTO item, LOG log, MOVIMENTO_ESTOQUE_PRODUTO movto)
         {
@@ -238,6 +260,26 @@ namespace ModelServices.EntitiesServices
                 try
                 {
                     _fornRepository.Add(item);
+                    transaction.Commit();
+                    return 0;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw ex;
+                }
+            }
+        }
+
+        public Int32 EditTabelaPreco(PRODUTO_TABELA_PRECO item)
+        {
+            using (DbContextTransaction transaction = Db.Database.BeginTransaction(IsolationLevel.ReadCommitted))
+            {
+                try
+                {
+                    PRODUTO_TABELA_PRECO obj = _preRepository.GetById(item.PRTP_CD_ID);
+                    _preRepository.Detach(obj);
+                    _preRepository.Update(item);
                     transaction.Commit();
                     return 0;
                 }

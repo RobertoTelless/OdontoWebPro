@@ -55,6 +55,8 @@ namespace EntitiesServices.Model
             this.USUARIO = new HashSet<USUARIO>();
             this.FORMA_PAGAMENTO = new HashSet<FORMA_PAGAMENTO>();
             this.PEDIDO_COMPRA = new HashSet<PEDIDO_COMPRA>();
+            this.SUBCATEGORIA_PRODUTO = new HashSet<SUBCATEGORIA_PRODUTO>();
+            this.MOVIMENTO_ESTOQUE_PRODUTO = new HashSet<MOVIMENTO_ESTOQUE_PRODUTO>();
         }
     
         public int ASSI_CD_ID { get; set; }
@@ -141,5 +143,9 @@ namespace EntitiesServices.Model
         public virtual ICollection<FORMA_PAGAMENTO> FORMA_PAGAMENTO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PEDIDO_COMPRA> PEDIDO_COMPRA { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SUBCATEGORIA_PRODUTO> SUBCATEGORIA_PRODUTO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MOVIMENTO_ESTOQUE_PRODUTO> MOVIMENTO_ESTOQUE_PRODUTO { get; set; }
     }
 }

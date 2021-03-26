@@ -57,29 +57,32 @@ namespace DataServices.Repositories
             return query.ToList();
         }
 
-        //public List<PRODUTO> GetPontoPedido(Int32? idAss)
-        //{
-        //    IQueryable<PRODUTO> query = Db.PRODUTO.Where(p => p.PROD_IN_ATIVO == 1);
-        //    query = query.Where(p => (p.PRODUTO_ESTOQUE_FILIAL.Where(m => m.FILI_CD_ID == m.FILI_CD_ID)) < p.PROD_QN_QUANTIDADE_MINIMA);
-        //    query = query.Where(p => p.ASSI_CD_ID == idAss);
-        //    return query.ToList();
-        //}
+        public List<PRODUTO> GetPontoPedido(Int32? idAss)
+        {
+            IQueryable<PRODUTO> query = Db.PRODUTO.Where(p => p.PROD_IN_ATIVO == 1);
+            //query = query.Where(p => p.PROD_QN_ESTOQUE < p.PROD_QN_QUANTIDADE_MINIMA);
+            query = query.Where(p => p.ASSI_CD_ID == idAss);
+            return query.ToList();
+        }
 
-        //public List<PRODUTO> GetEstoqueZerado(Int32 idAss)
-        //{
-        //    IQueryable<PRODUTO> query = Db.PRODUTO.Where(p => p.PROD_IN_ATIVO == 1);
-        //    query = query.Where(p => p.PROD_QN_ESTOQUE == 0);
-        //    query = query.Where(p => p.ASSI_CD_ID == idAss);
-        //    return query.ToList();
-        //}
+        public List<PRODUTO> GetEstoqueZerado(Int32? idAss)
+        {
+            IQueryable<PRODUTO> query = Db.PRODUTO.Where(p => p.PROD_IN_ATIVO == 1);
+            query = query.Where(p => p.ASSI_CD_ID == idAss);
+            return query.ToList();
+        }
 
-        public List<PRODUTO> ExecuteFilter(Int32? catId, String barcode, String nome, String marca, String codigo, String modelo, String fabricante, Int32? idAss)
+        public List<PRODUTO> ExecuteFilter(Int32? catId, Int32? subId, String barcode, String nome, String marca, String codigo, String modelo, String fabricante, Int32? idAss)
         {
             List<PRODUTO> lista = new List<PRODUTO>();
             IQueryable<PRODUTO> query = Db.PRODUTO;
             if (catId != null)
             {
                 query = query.Where(p => p.CAPR_CD_ID == catId);
+            }
+            if (subId != null)
+            {
+                query = query.Where(p => p.SUPR_CD_ID == catId);
             }
             if (!String.IsNullOrEmpty(nome))
             {
@@ -107,36 +110,35 @@ namespace DataServices.Repositories
             return lista;
         }
 
-        //public List<PRODUTO_ESTOQUE_FILIAL> ExecuteFilterEstoque(Int32? filial, String nome, String marca, String codigo)
-        //{
-        //    Int32? idAss = SessionMocks.IdAssinante;
-        //    List<PRODUTO_ESTOQUE_FILIAL> lista = new List<PRODUTO_ESTOQUE_FILIAL>();
-        //    IQueryable<PRODUTO_ESTOQUE_FILIAL> query = Db.PRODUTO_ESTOQUE_FILIAL;
-        //    if (filial != null)
-        //    {
-        //        query = query.Where(p => p.FILI_CD_ID == filial);
-        //    }
-        //    if (!String.IsNullOrEmpty(nome))
-        //    {
-        //        query = query.Where(p => p.PRODUTO.PROD_NM_NOME.Contains(nome));
-        //    }
-        //    if (!String.IsNullOrEmpty(marca))
-        //    {
-        //        query = query.Where(p => p.PRODUTO.PROD_NM_MARCA.Contains(marca));
-        //    }
-        //    if (!String.IsNullOrEmpty(codigo))
-        //    {
-        //        query = query.Where(p => p.PRODUTO.PROD_NR_BARCODE == codigo);
-        //    }
-        //    if (query != null)
-        //    {
-        //        query = query.Where(p => p.PREF_IN_ATIVO == 1);
-        //        query = query.Where(p => p.PRODUTO.ASSI_CD_ID == idAss);
-        //        query = query.OrderBy(a => a.PRODUTO.PROD_NM_NOME);
-        //        lista = query.ToList<PRODUTO_ESTOQUE_FILIAL>();
-        //    }
-        //    return lista;
-        //}
+        public List<PRODUTO_ESTOQUE_FILIAL> ExecuteFilterEstoque(Int32? filial, String nome, String marca, String codigo, Int32? idAss)
+        {
+            List<PRODUTO_ESTOQUE_FILIAL> lista = new List<PRODUTO_ESTOQUE_FILIAL>();
+            IQueryable<PRODUTO_ESTOQUE_FILIAL> query = Db.PRODUTO_ESTOQUE_FILIAL;
+            if (filial != null)
+            {
+                query = query.Where(p => p.FILI_CD_ID == filial);
+            }
+            if (!String.IsNullOrEmpty(nome))
+            {
+                query = query.Where(p => p.PRODUTO.PROD_NM_NOME.Contains(nome));
+            }
+            if (!String.IsNullOrEmpty(marca))
+            {
+                query = query.Where(p => p.PRODUTO.PROD_NM_MARCA.Contains(marca));
+            }
+            if (!String.IsNullOrEmpty(codigo))
+            {
+                query = query.Where(p => p.PRODUTO.PROD_NR_BARCODE == codigo);
+            }
+            if (query != null)
+            {
+                query = query.Where(p => p.PREF_IN_ATIVO == 1);
+                query = query.Where(p => p.PRODUTO.ASSI_CD_ID == idAss);
+                query = query.OrderBy(a => a.PRODUTO.PROD_NM_NOME);
+                lista = query.ToList<PRODUTO_ESTOQUE_FILIAL>();
+            }
+            return lista;
+        }
 
         public List<PRODUTO_ESTOQUE_FILIAL> RecuperarQuantidadesFiliais(Int32? idFilial, Int32? idAss)
         {

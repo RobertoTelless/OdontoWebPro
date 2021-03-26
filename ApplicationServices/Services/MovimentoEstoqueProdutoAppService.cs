@@ -1,5 +1,4 @@
-using System;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,9 +21,21 @@ namespace ApplicationServices.Services
             _baseService = baseService;
         }
 
-        public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItens(Int32? idAss)
+        public MOVIMENTO_ESTOQUE_PRODUTO GetByProdId(Int32 prod, Int32 fili)
         {
-            List<MOVIMENTO_ESTOQUE_PRODUTO> lista = _baseService.GetAllItens(idAss);
+            MOVIMENTO_ESTOQUE_PRODUTO item = _baseService.GetByProdId(prod, fili);
+            return item;
+        }
+
+        public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItens()
+        {
+            List<MOVIMENTO_ESTOQUE_PRODUTO> lista = _baseService.GetAllItens();
+            return lista;
+        }
+
+        public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItensAdm()
+        {
+            List<MOVIMENTO_ESTOQUE_PRODUTO> lista = _baseService.GetAllItensAdm();
             return lista;
         }
 
@@ -34,31 +45,19 @@ namespace ApplicationServices.Services
             return item;
         }
 
-        public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItensEntrada(Int32? idAss)
+        public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItensEntrada()
         {
-            List<MOVIMENTO_ESTOQUE_PRODUTO> lista = _baseService.GetAllItensEntrada(idAss);
+            List<MOVIMENTO_ESTOQUE_PRODUTO> lista = _baseService.GetAllItensEntrada();
             return lista;
         }
 
-        public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItensUserDataMes(Int32 idUsu, DateTime data, Int32? idAss)
+        public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItensSaida()
         {
-            List<MOVIMENTO_ESTOQUE_PRODUTO> lista = _baseService.GetAllItensUserDataMes(idUsu, data, idAss);
+            List<MOVIMENTO_ESTOQUE_PRODUTO> lista = _baseService.GetAllItensSaida();
             return lista;
         }
 
-        public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItensUserDataDia(Int32 idUsu, DateTime data, Int32? idAss)
-        {
-            List<MOVIMENTO_ESTOQUE_PRODUTO> lista = _baseService.GetAllItensUserDataDia(idUsu, data, idAss);
-            return lista;
-        }
-
-        public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItensSaida(Int32? idAss)
-        {
-            List<MOVIMENTO_ESTOQUE_PRODUTO> lista = _baseService.GetAllItensSaida(idAss);
-            return lista;
-        }
-
-        public Int32 ExecuteFilter(Int32? catId, String nome, String barcode, Int32? filiId, DateTime? dtMov, Int32? idAss, out List<MOVIMENTO_ESTOQUE_PRODUTO> objeto)
+        public Int32 ExecuteFilter(Int32? catId, Int32? subCatId, String nome, String barcode, Int32? filiId, DateTime? dtMov, out List<MOVIMENTO_ESTOQUE_PRODUTO> objeto)
         {
             try
             {
@@ -66,11 +65,33 @@ namespace ApplicationServices.Services
                 Int32 volta = 0;
 
                 // Processa filtro
-                objeto = _baseService.ExecuteFilter(catId, nome, barcode, filiId, dtMov, idAss);
+                objeto = _baseService.ExecuteFilter(catId, subCatId, nome, barcode, filiId, dtMov);
                 if (objeto.Count == 0)
                 {
                     volta = 1;
                 }
+                SessionMocks.listaMovimentoProduto = objeto;
+                return volta;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public Int32 ExecuteFilterAvulso(Int32? operacao, Int32? tipoMovimento, DateTime? dtInicial, DateTime? dtFinal, Int32? filial, Int32? prod, out List<MOVIMENTO_ESTOQUE_PRODUTO> objeto)
+        {
+            try
+            {
+                objeto = new List<MOVIMENTO_ESTOQUE_PRODUTO>();
+                Int32 volta = 0;
+
+                objeto = _baseService.ExecuteFilterAvulso(operacao, tipoMovimento, dtInicial, dtFinal, filial, prod);
+                if (objeto.Count == 0)
+                {
+                    volta = 1;
+                }
+                SessionMocks.listaMovimentoProduto = objeto;
                 return volta;
             }
             catch (Exception ex)
@@ -83,13 +104,23 @@ namespace ApplicationServices.Services
         {
             try
             {
+                if (mov.FILIAL != null)
+                {
+                    mov.FILIAL = null;
+                }
+
+                if (mov.PRODUTO != null)
+                {
+                    mov.PRODUTO = null;
+                }
+
                 mov.MOEP_IN_ATIVO = 1;
 
                 LOG log = new LOG
                 {
                     LOG_DT_DATA = DateTime.Now,
                     USUA_CD_ID = usuario.USUA_CD_ID,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
+                    ASSI_CD_ID = SessionMocks.IdAssinante,
                     LOG_NM_OPERACAO = "AddMOEP",
                     LOG_IN_ATIVO = 1,
                     LOG_TX_REGISTRO = Serialization.SerializeJSON<MOVIMENTO_ESTOQUE_PRODUTO>(mov)
@@ -108,19 +139,140 @@ namespace ApplicationServices.Services
         {
             try
             {
+                if (mov.FILIAL != null)
+                {
+                    mov.FILIAL = null;
+                }
+
+                if (mov.PRODUTO != null)
+                {
+                    mov.PRODUTO = null;
+                }
+
                 mov.MOEP_IN_ATIVO = 1;
 
                 LOG log = new LOG
                 {
                     LOG_DT_DATA = DateTime.Now,
                     USUA_CD_ID = usuario.USUA_CD_ID,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
+                    ASSI_CD_ID = SessionMocks.IdAssinante,
                     LOG_NM_OPERACAO = "AddMOEP",
                     LOG_IN_ATIVO = 1,
                 };
 
                 Int32 volta = _baseService.Create(mov);
                 return volta;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public Int32 ValidateCreateLista(List<MOVIMENTO_ESTOQUE_PRODUTO> lista)
+        {
+            try
+            {
+                foreach (var item in lista)
+                {
+                    if (item.FILIAL != null)
+                    {
+                        item.FILIAL = null;
+                    }
+
+                    if (item.PRODUTO != null)
+                    {
+                        item.PRODUTO = null;
+                    }
+
+                    item.MOEP_IN_ATIVO = 1;
+
+                    Int32 volta = _baseService.Create(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+            return 0;
+        }
+
+        public Int32 ValidateDelete(MOVIMENTO_ESTOQUE_PRODUTO item, USUARIO usuario)
+        {
+            try
+            {
+                if (item.ASSINANTE != null)
+                {
+                    item.ASSINANTE = null;
+                }
+                if (item.FILIAL != null)
+                {
+                    item.FILIAL = null;
+                }
+                if (item.MATRIZ != null)
+                {
+                    item.MATRIZ = null;
+                }
+                if (item.PRODUTO != null)
+                {
+                    item.PRODUTO = null;
+                }
+
+                item.MOEP_IN_ATIVO = 0;
+
+                LOG log = new LOG
+                {
+                    LOG_DT_DATA = DateTime.Now,
+                    ASSI_CD_ID = SessionMocks.IdAssinante,
+                    USUA_CD_ID = usuario.USUA_CD_ID,
+                    LOG_IN_ATIVO = 1,
+                    LOG_NM_OPERACAO = "DelMovPROD",
+                    LOG_TX_REGISTRO = Serialization.SerializeJSON<MOVIMENTO_ESTOQUE_PRODUTO>(item)
+                };
+
+                return _baseService.Edit(item, log);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public Int32 ValidateReativar(MOVIMENTO_ESTOQUE_PRODUTO item, USUARIO usuario)
+        {
+            try
+            {
+                if (item.ASSINANTE != null)
+                {
+                    item.ASSINANTE = null;
+                }
+                if (item.FILIAL != null)
+                {
+                    item.FILIAL = null;
+                }
+                if (item.MATRIZ != null)
+                {
+                    item.MATRIZ = null;
+                }
+                if (item.PRODUTO != null)
+                {
+                    item.PRODUTO = null;
+                }
+
+                item.MOEP_IN_ATIVO = 1;
+
+                LOG log = new LOG
+                {
+                    LOG_DT_DATA = DateTime.Now,
+                    ASSI_CD_ID = SessionMocks.IdAssinante,
+                    USUA_CD_ID = usuario.USUA_CD_ID,
+                    LOG_IN_ATIVO = 1,
+                    LOG_NM_OPERACAO = "ReatMovPROD",
+                    LOG_TX_REGISTRO = Serialization.SerializeJSON<MOVIMENTO_ESTOQUE_PRODUTO>(item)
+                };
+
+                return _baseService.Edit(item, log);
             }
             catch (Exception ex)
             {

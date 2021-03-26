@@ -486,6 +486,7 @@
             <PropertyRef Name="MOEP_CD_ID" />
           </Key>
           <Property Name="MOEP_CD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ASSI_CD_ID" Type="int" />
           <Property Name="PROD_CD_ID" Type="int" Nullable="false" />
           <Property Name="FILI_CD_ID" Type="int" Nullable="false" />
           <Property Name="USUA_CD_ID" Type="int" Nullable="false" />
@@ -768,6 +769,7 @@
           <Property Name="PROD_CD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ASSI_CD_ID" Type="int" />
           <Property Name="CAPR_CD_ID" Type="int" Nullable="false" />
+          <Property Name="SUPR_CD_ID" Type="int" />
           <Property Name="UNID_CD_ID" Type="int" />
           <Property Name="PROD_CD_CODIGO" Type="varchar" MaxLength="50" />
           <Property Name="PROD_NR_BARCODE" Type="varchar" MaxLength="50" />
@@ -806,6 +808,9 @@
           <Property Name="PREF_QN_ESTOQUE" Type="int" />
           <Property Name="PREF_DT_ULTIMO_MOVIMENTO" Type="date" />
           <Property Name="PREF_IN_ATIVO" Type="int" />
+          <Property Name="PREF_DS_JUSTIFICATIVA" Type="varchar" MaxLength="1000" />
+          <Property Name="PREF_NR_MARKUP" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PREF_QN_QUANTIDADE_ALTERADA" Type="int" />
         </EntityType>
         <EntityType Name="PRODUTO_FORNECEDOR">
           <Key>
@@ -876,6 +881,16 @@
           <Property Name="SITU_NM_NOME" Type="varchar" MaxLength="50" />
           <Property Name="SITU_NM_ATIVO" Type="int" />
           <Property Name="ASSI_CD_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="SUBCATEGORIA_PRODUTO">
+          <Key>
+            <PropertyRef Name="SUPR_CD_ID" />
+          </Key>
+          <Property Name="SUPR_CD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ASSI_CD_ID" Type="int" Nullable="false" />
+          <Property Name="CAPR_CD_ID" Type="int" Nullable="false" />
+          <Property Name="SUPR_NM_NOME" Type="varchar" MaxLength="50" />
+          <Property Name="SUPR_IN_ATIVO" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="SUBGRUPO">
           <Key>
@@ -1866,6 +1881,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MOVIMENTO_ESTOQUE_PRODUTO_ASSINANTE">
+          <End Role="ASSINANTE" Type="Self.ASSINANTE" Multiplicity="0..1" />
+          <End Role="MOVIMENTO_ESTOQUE_PRODUTO" Type="Self.MOVIMENTO_ESTOQUE_PRODUTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ASSINANTE">
+              <PropertyRef Name="ASSI_CD_ID" />
+            </Principal>
+            <Dependent Role="MOVIMENTO_ESTOQUE_PRODUTO">
+              <PropertyRef Name="ASSI_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MOVIMENTO_ESTOQUE_PRODUTO_FILIAL">
           <End Role="FILIAL" Type="Self.FILIAL" Multiplicity="1" />
           <End Role="MOVIMENTO_ESTOQUE_PRODUTO" Type="Self.MOVIMENTO_ESTOQUE_PRODUTO" Multiplicity="*" />
@@ -2382,6 +2409,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PRODUTO_SUBCATEGORIA_PRODUTO">
+          <End Role="SUBCATEGORIA_PRODUTO" Type="Self.SUBCATEGORIA_PRODUTO" Multiplicity="0..1" />
+          <End Role="PRODUTO" Type="Self.PRODUTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUBCATEGORIA_PRODUTO">
+              <PropertyRef Name="SUPR_CD_ID" />
+            </Principal>
+            <Dependent Role="PRODUTO">
+              <PropertyRef Name="SUPR_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PRODUTO_TABELA_PRECO_FILIAL">
           <End Role="FILIAL" Type="Self.FILIAL" Multiplicity="0..1" />
           <End Role="PRODUTO_TABELA_PRECO" Type="Self.PRODUTO_TABELA_PRECO" Multiplicity="*" />
@@ -2451,6 +2490,30 @@
             </Principal>
             <Dependent Role="SITUACAO">
               <PropertyRef Name="ASSI_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SUBCATEGORIA_PRODUTO_ASSINANTE">
+          <End Role="ASSINANTE" Type="Self.ASSINANTE" Multiplicity="1" />
+          <End Role="SUBCATEGORIA_PRODUTO" Type="Self.SUBCATEGORIA_PRODUTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ASSINANTE">
+              <PropertyRef Name="ASSI_CD_ID" />
+            </Principal>
+            <Dependent Role="SUBCATEGORIA_PRODUTO">
+              <PropertyRef Name="ASSI_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SUBCATEGORIA_PRODUTO_CATEGORIA_PRODUTO">
+          <End Role="CATEGORIA_PRODUTO" Type="Self.CATEGORIA_PRODUTO" Multiplicity="1" />
+          <End Role="SUBCATEGORIA_PRODUTO" Type="Self.SUBCATEGORIA_PRODUTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIA_PRODUTO">
+              <PropertyRef Name="CAPR_CD_ID" />
+            </Principal>
+            <Dependent Role="SUBCATEGORIA_PRODUTO">
+              <PropertyRef Name="CAPR_CD_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2949,6 +3012,7 @@
           <EntitySet Name="REGIME_TRIBUTARIO" EntityType="Self.REGIME_TRIBUTARIO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEXO" EntityType="Self.SEXO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SITUACAO" EntityType="Self.SITUACAO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SUBCATEGORIA_PRODUTO" EntityType="Self.SUBCATEGORIA_PRODUTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SUBGRUPO" EntityType="Self.SUBGRUPO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TAREFA" EntityType="Self.TAREFA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TAREFA_ACOMPANHAMENTO" EntityType="Self.TAREFA_ACOMPANHAMENTO" Schema="dbo" store:Type="Tables" />
@@ -3198,6 +3262,10 @@
             <End Role="UF" EntitySet="UF" />
             <End Role="MATRIZ" EntitySet="MATRIZ" />
           </AssociationSet>
+          <AssociationSet Name="FK_MOVIMENTO_ESTOQUE_PRODUTO_ASSINANTE" Association="Self.FK_MOVIMENTO_ESTOQUE_PRODUTO_ASSINANTE">
+            <End Role="ASSINANTE" EntitySet="ASSINANTE" />
+            <End Role="MOVIMENTO_ESTOQUE_PRODUTO" EntitySet="MOVIMENTO_ESTOQUE_PRODUTO" />
+          </AssociationSet>
           <AssociationSet Name="FK_MOVIMENTO_ESTOQUE_PRODUTO_FILIAL" Association="Self.FK_MOVIMENTO_ESTOQUE_PRODUTO_FILIAL">
             <End Role="FILIAL" EntitySet="FILIAL" />
             <End Role="MOVIMENTO_ESTOQUE_PRODUTO" EntitySet="MOVIMENTO_ESTOQUE_PRODUTO" />
@@ -3370,6 +3438,10 @@
             <End Role="PRODUTO" EntitySet="PRODUTO" />
             <End Role="PRODUTO_FORNECEDOR" EntitySet="PRODUTO_FORNECEDOR" />
           </AssociationSet>
+          <AssociationSet Name="FK_PRODUTO_SUBCATEGORIA_PRODUTO" Association="Self.FK_PRODUTO_SUBCATEGORIA_PRODUTO">
+            <End Role="SUBCATEGORIA_PRODUTO" EntitySet="SUBCATEGORIA_PRODUTO" />
+            <End Role="PRODUTO" EntitySet="PRODUTO" />
+          </AssociationSet>
           <AssociationSet Name="FK_PRODUTO_TABELA_PRECO_FILIAL" Association="Self.FK_PRODUTO_TABELA_PRECO_FILIAL">
             <End Role="FILIAL" EntitySet="FILIAL" />
             <End Role="PRODUTO_TABELA_PRECO" EntitySet="PRODUTO_TABELA_PRECO" />
@@ -3393,6 +3465,14 @@
           <AssociationSet Name="FK_SITUACAO_ASSINANTE" Association="Self.FK_SITUACAO_ASSINANTE">
             <End Role="ASSINANTE" EntitySet="ASSINANTE" />
             <End Role="SITUACAO" EntitySet="SITUACAO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SUBCATEGORIA_PRODUTO_ASSINANTE" Association="Self.FK_SUBCATEGORIA_PRODUTO_ASSINANTE">
+            <End Role="ASSINANTE" EntitySet="ASSINANTE" />
+            <End Role="SUBCATEGORIA_PRODUTO" EntitySet="SUBCATEGORIA_PRODUTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SUBCATEGORIA_PRODUTO_CATEGORIA_PRODUTO" Association="Self.FK_SUBCATEGORIA_PRODUTO_CATEGORIA_PRODUTO">
+            <End Role="CATEGORIA_PRODUTO" EntitySet="CATEGORIA_PRODUTO" />
+            <End Role="SUBCATEGORIA_PRODUTO" EntitySet="SUBCATEGORIA_PRODUTO" />
           </AssociationSet>
           <AssociationSet Name="FK_SUBGRUPO_ASSINANTE" Association="Self.FK_SUBGRUPO_ASSINANTE">
             <End Role="ASSINANTE" EntitySet="ASSINANTE" />
@@ -3675,6 +3755,8 @@
           <NavigationProperty Name="USUARIO" Relationship="Self.FK_USUARIO_ASSINANTE" FromRole="ASSINANTE" ToRole="USUARIO" />
           <NavigationProperty Name="FORMA_PAGAMENTO" Relationship="Odonto_DBModel.FK_FORMA_PAGAMENTO_ASSINANTE" FromRole="ASSINANTE" ToRole="FORMA_PAGAMENTO" />
           <NavigationProperty Name="PEDIDO_COMPRA" Relationship="Odonto_DBModel.FK_PEDIDO_COMPRA_ASSINANTE" FromRole="ASSINANTE" ToRole="PEDIDO_COMPRA" />
+          <NavigationProperty Name="SUBCATEGORIA_PRODUTO" Relationship="Odonto_DBModel.FK_SUBCATEGORIA_PRODUTO_ASSINANTE" FromRole="ASSINANTE" ToRole="SUBCATEGORIA_PRODUTO" />
+          <NavigationProperty Name="MOVIMENTO_ESTOQUE_PRODUTO" Relationship="Odonto_DBModel.FK_MOVIMENTO_ESTOQUE_PRODUTO_ASSINANTE" FromRole="ASSINANTE" ToRole="MOVIMENTO_ESTOQUE_PRODUTO" />
         </EntityType>
         <EntityType Name="BANCO">
           <Key>
@@ -3756,6 +3838,7 @@
           <Property Name="ASSI_CD_ID" Type="Int32" />
           <NavigationProperty Name="ASSINANTE" Relationship="Self.FK_CATEGORIA_PRODUTO_ASSINANTE" FromRole="CATEGORIA_PRODUTO" ToRole="ASSINANTE" />
           <NavigationProperty Name="PRODUTO" Relationship="Self.FK_PRODUTO_CATEGORIA_PRODUTO" FromRole="CATEGORIA_PRODUTO" ToRole="PRODUTO" />
+          <NavigationProperty Name="SUBCATEGORIA_PRODUTO" Relationship="Odonto_DBModel.FK_SUBCATEGORIA_PRODUTO_CATEGORIA_PRODUTO" FromRole="CATEGORIA_PRODUTO" ToRole="SUBCATEGORIA_PRODUTO" />
         </EntityType>
         <EntityType Name="CATEGORIA_TELEFONE">
           <Key>
@@ -4075,6 +4158,8 @@
           <NavigationProperty Name="FILIAL" Relationship="Self.FK_MOVIMENTO_ESTOQUE_PRODUTO_FILIAL" FromRole="MOVIMENTO_ESTOQUE_PRODUTO" ToRole="FILIAL" />
           <NavigationProperty Name="PRODUTO" Relationship="Self.FK_MOVIMENTO_ESTOQUE_PRODUTO_PRODUTO" FromRole="MOVIMENTO_ESTOQUE_PRODUTO" ToRole="PRODUTO" />
           <NavigationProperty Name="USUARIO" Relationship="Self.FK_MOVIMENTO_ESTOQUE_PRODUTO_USUARIO" FromRole="MOVIMENTO_ESTOQUE_PRODUTO" ToRole="USUARIO" />
+          <Property Name="ASSI_CD_ID" Type="Int32" />
+          <NavigationProperty Name="ASSINANTE" Relationship="Odonto_DBModel.FK_MOVIMENTO_ESTOQUE_PRODUTO_ASSINANTE" FromRole="MOVIMENTO_ESTOQUE_PRODUTO" ToRole="ASSINANTE" />
         </EntityType>
         <EntityType Name="NOTICIA">
           <Key>
@@ -4371,6 +4456,8 @@
           <NavigationProperty Name="UNIDADE" Relationship="Self.FK_PRODUTO_UNIDADE" FromRole="PRODUTO" ToRole="UNIDADE" />
           <NavigationProperty Name="PRODUTO_TABELA_PRECO" Relationship="Odonto_DBModel.FK_PRODUTO_TABELA_PRECO_PRODUTO" FromRole="PRODUTO" ToRole="PRODUTO_TABELA_PRECO" />
           <NavigationProperty Name="ITEM_PEDIDO_COMPRA" Relationship="Odonto_DBModel.FK_ITEM_PEDIDO_COMPRA_PRODUTO" FromRole="PRODUTO" ToRole="ITEM_PEDIDO_COMPRA" />
+          <Property Name="SUPR_CD_ID" Type="Int32" />
+          <NavigationProperty Name="SUBCATEGORIA_PRODUTO" Relationship="Odonto_DBModel.FK_PRODUTO_SUBCATEGORIA_PRODUTO" FromRole="PRODUTO" ToRole="SUBCATEGORIA_PRODUTO" />
         </EntityType>
         <EntityType Name="PRODUTO_ANEXO">
           <Key>
@@ -4397,6 +4484,9 @@
           <Property Name="PREF_IN_ATIVO" Type="Int32" />
           <NavigationProperty Name="FILIAL" Relationship="Self.FK_PRODUTO_ESTOQUE_FILIAL_FILIAL" FromRole="PRODUTO_ESTOQUE_FILIAL" ToRole="FILIAL" />
           <NavigationProperty Name="PRODUTO" Relationship="Self.FK_PRODUTO_ESTOQUE_FILIAL_PRODUTO" FromRole="PRODUTO_ESTOQUE_FILIAL" ToRole="PRODUTO" />
+          <Property Name="PREF_DS_JUSTIFICATIVA" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="PREF_NR_MARKUP" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PREF_QN_QUANTIDADE_ALTERADA" Type="Int32" />
         </EntityType>
         <EntityType Name="PRODUTO_FORNECEDOR">
           <Key>
@@ -6959,6 +7049,23 @@
             <End Role="USUARIO" EntitySet="USUARIO" />
             <End Role="PEDIDO_COMPRA" EntitySet="PEDIDO_COMPRA" />
           </AssociationSet>
+          <EntitySet Name="SUBCATEGORIA_PRODUTO" EntityType="Odonto_DBModel.SUBCATEGORIA_PRODUTO" />
+          <AssociationSet Name="FK_SUBCATEGORIA_PRODUTO_ASSINANTE" Association="Odonto_DBModel.FK_SUBCATEGORIA_PRODUTO_ASSINANTE">
+            <End Role="ASSINANTE" EntitySet="ASSINANTE" />
+            <End Role="SUBCATEGORIA_PRODUTO" EntitySet="SUBCATEGORIA_PRODUTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SUBCATEGORIA_PRODUTO_CATEGORIA_PRODUTO" Association="Odonto_DBModel.FK_SUBCATEGORIA_PRODUTO_CATEGORIA_PRODUTO">
+            <End Role="CATEGORIA_PRODUTO" EntitySet="CATEGORIA_PRODUTO" />
+            <End Role="SUBCATEGORIA_PRODUTO" EntitySet="SUBCATEGORIA_PRODUTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUTO_SUBCATEGORIA_PRODUTO" Association="Odonto_DBModel.FK_PRODUTO_SUBCATEGORIA_PRODUTO">
+            <End Role="SUBCATEGORIA_PRODUTO" EntitySet="SUBCATEGORIA_PRODUTO" />
+            <End Role="PRODUTO" EntitySet="PRODUTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MOVIMENTO_ESTOQUE_PRODUTO_ASSINANTE" Association="Odonto_DBModel.FK_MOVIMENTO_ESTOQUE_PRODUTO_ASSINANTE">
+            <End Role="ASSINANTE" EntitySet="ASSINANTE" />
+            <End Role="MOVIMENTO_ESTOQUE_PRODUTO" EntitySet="MOVIMENTO_ESTOQUE_PRODUTO" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="FORNECEDOR_ANEXO">
           <Key>
@@ -7358,6 +7465,67 @@
             </Principal>
             <Dependent Role="PEDIDO_COMPRA">
               <PropertyRef Name="USUA_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SUBCATEGORIA_PRODUTO">
+          <Key>
+            <PropertyRef Name="SUPR_CD_ID" />
+          </Key>
+          <Property Name="SUPR_CD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ASSI_CD_ID" Type="Int32" Nullable="false" />
+          <Property Name="CAPR_CD_ID" Type="Int32" Nullable="false" />
+          <Property Name="SUPR_NM_NOME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SUPR_IN_ATIVO" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ASSINANTE" Relationship="Odonto_DBModel.FK_SUBCATEGORIA_PRODUTO_ASSINANTE" FromRole="SUBCATEGORIA_PRODUTO" ToRole="ASSINANTE" />
+          <NavigationProperty Name="CATEGORIA_PRODUTO" Relationship="Odonto_DBModel.FK_SUBCATEGORIA_PRODUTO_CATEGORIA_PRODUTO" FromRole="SUBCATEGORIA_PRODUTO" ToRole="CATEGORIA_PRODUTO" />
+          <NavigationProperty Name="PRODUTO" Relationship="Odonto_DBModel.FK_PRODUTO_SUBCATEGORIA_PRODUTO" FromRole="SUBCATEGORIA_PRODUTO" ToRole="PRODUTO" />
+        </EntityType>
+        <Association Name="FK_SUBCATEGORIA_PRODUTO_ASSINANTE">
+          <End Type="Odonto_DBModel.ASSINANTE" Role="ASSINANTE" Multiplicity="1" />
+          <End Type="Odonto_DBModel.SUBCATEGORIA_PRODUTO" Role="SUBCATEGORIA_PRODUTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ASSINANTE">
+              <PropertyRef Name="ASSI_CD_ID" />
+            </Principal>
+            <Dependent Role="SUBCATEGORIA_PRODUTO">
+              <PropertyRef Name="ASSI_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SUBCATEGORIA_PRODUTO_CATEGORIA_PRODUTO">
+          <End Type="Odonto_DBModel.CATEGORIA_PRODUTO" Role="CATEGORIA_PRODUTO" Multiplicity="1" />
+          <End Type="Odonto_DBModel.SUBCATEGORIA_PRODUTO" Role="SUBCATEGORIA_PRODUTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIA_PRODUTO">
+              <PropertyRef Name="CAPR_CD_ID" />
+            </Principal>
+            <Dependent Role="SUBCATEGORIA_PRODUTO">
+              <PropertyRef Name="CAPR_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUTO_SUBCATEGORIA_PRODUTO">
+          <End Type="Odonto_DBModel.SUBCATEGORIA_PRODUTO" Role="SUBCATEGORIA_PRODUTO" Multiplicity="0..1" />
+          <End Type="Odonto_DBModel.PRODUTO" Role="PRODUTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUBCATEGORIA_PRODUTO">
+              <PropertyRef Name="SUPR_CD_ID" />
+            </Principal>
+            <Dependent Role="PRODUTO">
+              <PropertyRef Name="SUPR_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MOVIMENTO_ESTOQUE_PRODUTO_ASSINANTE">
+          <End Type="Odonto_DBModel.ASSINANTE" Role="ASSINANTE" Multiplicity="0..1" />
+          <End Type="Odonto_DBModel.MOVIMENTO_ESTOQUE_PRODUTO" Role="MOVIMENTO_ESTOQUE_PRODUTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ASSINANTE">
+              <PropertyRef Name="ASSI_CD_ID" />
+            </Principal>
+            <Dependent Role="MOVIMENTO_ESTOQUE_PRODUTO">
+              <PropertyRef Name="ASSI_CD_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -7784,6 +7952,7 @@
           <EntitySetMapping Name="MOVIMENTO_ESTOQUE_PRODUTO">
             <EntityTypeMapping TypeName="Odonto_DBModel.MOVIMENTO_ESTOQUE_PRODUTO">
               <MappingFragment StoreEntitySet="MOVIMENTO_ESTOQUE_PRODUTO">
+                <ScalarProperty Name="ASSI_CD_ID" ColumnName="ASSI_CD_ID" />
                 <ScalarProperty Name="MOEP_CD_ID" ColumnName="MOEP_CD_ID" />
                 <ScalarProperty Name="PROD_CD_ID" ColumnName="PROD_CD_ID" />
                 <ScalarProperty Name="FILI_CD_ID" ColumnName="FILI_CD_ID" />
@@ -8042,6 +8211,7 @@
           <EntitySetMapping Name="PRODUTO">
             <EntityTypeMapping TypeName="Odonto_DBModel.PRODUTO">
               <MappingFragment StoreEntitySet="PRODUTO">
+                <ScalarProperty Name="SUPR_CD_ID" ColumnName="SUPR_CD_ID" />
                 <ScalarProperty Name="PROD_CD_ID" ColumnName="PROD_CD_ID" />
                 <ScalarProperty Name="ASSI_CD_ID" ColumnName="ASSI_CD_ID" />
                 <ScalarProperty Name="CAPR_CD_ID" ColumnName="CAPR_CD_ID" />
@@ -8079,6 +8249,9 @@
           <EntitySetMapping Name="PRODUTO_ESTOQUE_FILIAL">
             <EntityTypeMapping TypeName="Odonto_DBModel.PRODUTO_ESTOQUE_FILIAL">
               <MappingFragment StoreEntitySet="PRODUTO_ESTOQUE_FILIAL">
+                <ScalarProperty Name="PREF_QN_QUANTIDADE_ALTERADA" ColumnName="PREF_QN_QUANTIDADE_ALTERADA" />
+                <ScalarProperty Name="PREF_NR_MARKUP" ColumnName="PREF_NR_MARKUP" />
+                <ScalarProperty Name="PREF_DS_JUSTIFICATIVA" ColumnName="PREF_DS_JUSTIFICATIVA" />
                 <ScalarProperty Name="PREF_CD_ID" ColumnName="PREF_CD_ID" />
                 <ScalarProperty Name="PROD_CD_ID" ColumnName="PROD_CD_ID" />
                 <ScalarProperty Name="FILI_CD_ID" ColumnName="FILI_CD_ID" />
@@ -8624,6 +8797,17 @@
                 <ScalarProperty Name="PECA_DT_ANEXO" ColumnName="PECA_DT_ANEXO" />
                 <ScalarProperty Name="PECO_CD_ID" ColumnName="PECO_CD_ID" />
                 <ScalarProperty Name="PECA_CD_ID" ColumnName="PECA_CD_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SUBCATEGORIA_PRODUTO">
+            <EntityTypeMapping TypeName="Odonto_DBModel.SUBCATEGORIA_PRODUTO">
+              <MappingFragment StoreEntitySet="SUBCATEGORIA_PRODUTO">
+                <ScalarProperty Name="SUPR_IN_ATIVO" ColumnName="SUPR_IN_ATIVO" />
+                <ScalarProperty Name="SUPR_NM_NOME" ColumnName="SUPR_NM_NOME" />
+                <ScalarProperty Name="CAPR_CD_ID" ColumnName="CAPR_CD_ID" />
+                <ScalarProperty Name="ASSI_CD_ID" ColumnName="ASSI_CD_ID" />
+                <ScalarProperty Name="SUPR_CD_ID" ColumnName="SUPR_CD_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

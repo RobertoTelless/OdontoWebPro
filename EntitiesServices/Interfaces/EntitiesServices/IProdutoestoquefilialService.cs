@@ -13,6 +13,10 @@ namespace ModelServices.Interfaces.EntitiesServices
         Int32 Create(PRODUTO_ESTOQUE_FILIAL item);
         Int32 Edit(PRODUTO_ESTOQUE_FILIAL item);
         Int32 Delete(PRODUTO_ESTOQUE_FILIAL item);
+
+        PRODUTO_ESTOQUE_FILIAL GetByProdFilial(Int32 prod, Int32 fili);
+        PRODUTO_ESTOQUE_FILIAL CheckExist(PRODUTO_ESTOQUE_FILIAL item, Int32 idAss);
         PRODUTO_ESTOQUE_FILIAL GetItemById(Int32 id);
+        PRODUTO_ESTOQUE_FILIAL GetItemById(PRODUTO item);
     }
 }

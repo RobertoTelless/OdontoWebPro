@@ -16,44 +16,32 @@ using System.Data;
 
 namespace ModelServices.EntitiesServices
 {
-    public class ProdutoEstoqueFilialService : ServiceBase<PRODUTO_ESTOQUE_FILIAL>, IProdutoEstoqueFilialService
+    public class ProdutoTabelaPrecoService : ServiceBase<PRODUTO_TABELA_PRECO>, IProdutoTabelaPrecoService
     {
-        private readonly IProdutoEstoqueFilialRepository _baseRepository;
+        private readonly IProdutoTabelaPrecoRepository _baseRepository;
         private readonly ILogRepository _logRepository;
         protected Odonto_DBEntities Db = new Odonto_DBEntities();
 
-        public ProdutoEstoqueFilialService(IProdutoEstoqueFilialRepository baseRepository, ILogRepository logRepository) : base(baseRepository)
+        public ProdutoTabelaPrecoService(IProdutoTabelaPrecoRepository baseRepository, ILogRepository logRepository) : base(baseRepository)
         {
             _baseRepository = baseRepository;
             _logRepository = logRepository;
 
         }
 
-        public PRODUTO_ESTOQUE_FILIAL CheckExist(PRODUTO_ESTOQUE_FILIAL prod, Int32 idAss)
+        public PRODUTO_TABELA_PRECO CheckExist(PRODUTO_TABELA_PRECO item, Int32 idAss)
         {
-            PRODUTO_ESTOQUE_FILIAL item = _baseRepository.CheckExist(prod, idAss);
-            return item;
-        }
-
-        public PRODUTO_ESTOQUE_FILIAL GetItemById(Int32 id)
-        {
-            PRODUTO_ESTOQUE_FILIAL item = _baseRepository.GetItemById(id);
-            return item;
-        }
-
-        public PRODUTO_ESTOQUE_FILIAL GetItemById(PRODUTO item)
-        {
-            PRODUTO_ESTOQUE_FILIAL obj = _baseRepository.GetItemById(item);
+            PRODUTO_TABELA_PRECO obj = _baseRepository.CheckExist(item, idAss);
             return obj;
         }
 
-        public PRODUTO_ESTOQUE_FILIAL GetByProdFilial(Int32 prod, Int32 fili)
+        public PRODUTO_TABELA_PRECO GetItemById(Int32 id)
         {
-            PRODUTO_ESTOQUE_FILIAL item = _baseRepository.GetByProdFilial(prod, fili);
+            PRODUTO_TABELA_PRECO item = _baseRepository.GetItemById(id);
             return item;
         }
 
-        public Int32 Create(PRODUTO_ESTOQUE_FILIAL item)
+        public Int32 Create(PRODUTO_TABELA_PRECO item)
         {
             using (DbContextTransaction transaction = Db.Database.BeginTransaction(IsolationLevel.ReadCommitted))
             {
@@ -71,13 +59,13 @@ namespace ModelServices.EntitiesServices
             }
         }
 
-        public Int32 Edit(PRODUTO_ESTOQUE_FILIAL item)
+        public Int32 Edit(PRODUTO_TABELA_PRECO item)
         {
             using (DbContextTransaction transaction = Db.Database.BeginTransaction(IsolationLevel.ReadCommitted))
             {
                 try
                 {
-                    PRODUTO_ESTOQUE_FILIAL obj = _baseRepository.GetById(item.PREF_CD_ID);
+                    PRODUTO_TABELA_PRECO obj = _baseRepository.GetById(item.PRTP_CD_ID);
                     _baseRepository.Detach(obj);
                     _baseRepository.Update(item);
                     transaction.Commit();
@@ -91,7 +79,7 @@ namespace ModelServices.EntitiesServices
             }
         }
 
-        public Int32 Delete(PRODUTO_ESTOQUE_FILIAL item)
+        public Int32 Delete(PRODUTO_TABELA_PRECO item)
         {
             using (DbContextTransaction transaction = Db.Database.BeginTransaction(IsolationLevel.ReadCommitted))
             {

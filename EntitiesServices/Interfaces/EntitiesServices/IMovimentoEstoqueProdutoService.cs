@@ -12,6 +12,7 @@ namespace ModelServices.Interfaces.EntitiesServices
     {
         Int32 Create(MOVIMENTO_ESTOQUE_PRODUTO perfil, LOG log);
         Int32 Create(MOVIMENTO_ESTOQUE_PRODUTO perfil);
+
         List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItens(Int32? idAss);
         MOVIMENTO_ESTOQUE_PRODUTO GetItemById(Int32 id);
         List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItensEntrada(Int32? idAss);

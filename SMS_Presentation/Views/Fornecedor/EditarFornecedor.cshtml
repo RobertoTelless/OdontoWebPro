@@ -458,7 +458,7 @@
                                                                                 }
                                                                                 @if (cond.FOAN_IN_TIPO == 3)
                                                                                 {
-                                                                                    <a title="Visualizar" class="fa fa-camera fa-lg" href="~/PdfViewer/web/viewer.html?file=@(cond.FOAN_AQ_ARQUIVO.Replace("~", ""))&ReturnUrl=@Request.Url.AbsolutePath"></a>
+                                                                                    <a title="Visualizar" class="fa fa-camera fa-lg" href="~/PdfViewer/web/viewer.html?file=@(cond.FOAN_AQ_ARQUIVO.Replace("~", ""))&ReturnUrl=@Request.Url.AbsolutePath" target="_blank" ></a>                                                                               
                                                                                 }
                                                                                 @Html.TableLinkDetails(cond.FOAN_CD_ID, "DownloadFornecedor", "fa-download", "Download")
                                                                             </td>

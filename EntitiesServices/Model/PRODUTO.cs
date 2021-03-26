@@ -43,6 +43,7 @@ namespace EntitiesServices.Model
         public Nullable<int> PROD_IN_AVISA_MINIMO { get; set; }
         public Nullable<int> PROD_IN_ATIVO { get; set; }
         public Nullable<System.DateTime> PROD_DT_CADASTRO { get; set; }
+        public Nullable<int> SUPR_CD_ID { get; set; }
     
         public virtual ASSINANTE ASSINANTE { get; set; }
         public virtual CATEGORIA_PRODUTO CATEGORIA_PRODUTO { get; set; }
@@ -59,5 +60,6 @@ namespace EntitiesServices.Model
         public virtual ICollection<PRODUTO_TABELA_PRECO> PRODUTO_TABELA_PRECO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ITEM_PEDIDO_COMPRA> ITEM_PEDIDO_COMPRA { get; set; }
+        public virtual SUBCATEGORIA_PRODUTO SUBCATEGORIA_PRODUTO { get; set; }
     }
 }
