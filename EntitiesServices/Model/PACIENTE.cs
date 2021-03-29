@@ -23,6 +23,8 @@ namespace EntitiesServices.Model
             this.PACIENTE_ANEXO = new HashSet<PACIENTE_ANEXO>();
             this.PACIENTE_PRESCRICAO = new HashSet<PACIENTE_PRESCRICAO>();
             this.PACIENTE_RECOMENDACAO = new HashSet<PACIENTE_RECOMENDACAO>();
+            this.PACIENTE_ANAMESE_IMAGEM = new HashSet<PACIENTE_ANAMESE_IMAGEM>();
+            this.PACIENTE_ANAMNESE_PERGUNTA = new HashSet<PACIENTE_ANAMNESE_PERGUNTA>();
         }
     
         public int PACI_CD_ID { get; set; }
@@ -49,6 +51,18 @@ namespace EntitiesServices.Model
         public Nullable<System.DateTime> PACI_DT_CADASTRO { get; set; }
         public Nullable<System.DateTime> PACI_DT_NASCIMENTO { get; set; }
         public string PACI_TX_OBSERVACOES { get; set; }
+        public Nullable<int> PACI_IN_ALGUMA_DOENCA { get; set; }
+        public string PACI_DS_ALGUMA_DOENCA { get; set; }
+        public Nullable<int> PACI_IN_ALERGICO_MEDICAMENTO { get; set; }
+        public string PACI_DS_ALERGICO_MEDICAMENTO { get; set; }
+        public Nullable<int> PACI_IN_USO_MEDICAMENTO { get; set; }
+        public string PACI_DS_USO_MEDICAMENTO { get; set; }
+        public Nullable<int> PACI_IN_HOSPITALIZADO { get; set; }
+        public string PACI_DS_HOSPITALIZADO { get; set; }
+        public Nullable<int> PACI_IN_FUMA { get; set; }
+        public string PACI_DS_FUMA { get; set; }
+        public Nullable<int> PACI_IN_BEBE { get; set; }
+        public string PACI_DS_BEBE { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ANAMNESE> ANAMNESE { get; set; }
@@ -66,5 +80,9 @@ namespace EntitiesServices.Model
         public virtual ICollection<PACIENTE_PRESCRICAO> PACIENTE_PRESCRICAO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PACIENTE_RECOMENDACAO> PACIENTE_RECOMENDACAO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PACIENTE_ANAMESE_IMAGEM> PACIENTE_ANAMESE_IMAGEM { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PACIENTE_ANAMNESE_PERGUNTA> PACIENTE_ANAMNESE_PERGUNTA { get; set; }
     }
 }

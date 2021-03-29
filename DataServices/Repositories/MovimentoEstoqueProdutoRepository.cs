@@ -12,66 +12,65 @@ namespace DataServices.Repositories
 {
     public class MovimentoEstoqueProdutoRepository : RepositoryBase<MOVIMENTO_ESTOQUE_PRODUTO>, IMovimentoEstoqueProdutoRepository
     {
-        public MOVIMENTO_ESTOQUE_PRODUTO GetItemById(Int32? id)
+        public MOVIMENTO_ESTOQUE_PRODUTO GetByProdId(Int32 prod, Int32 fili)
+        {
+            IQueryable<MOVIMENTO_ESTOQUE_PRODUTO> query = Db.MOVIMENTO_ESTOQUE_PRODUTO;
+            query = query.Where(x => x.PROD_CD_ID == prod);
+            query = query.Where(x => x.FILI_CD_ID == fili);
+            return query.FirstOrDefault();
+        }
+
+        public MOVIMENTO_ESTOQUE_PRODUTO GetItemById(Int32 id)
         {
             IQueryable<MOVIMENTO_ESTOQUE_PRODUTO> query = Db.MOVIMENTO_ESTOQUE_PRODUTO;
             query = query.Where(p => p.MOEP_CD_ID == id);
             return query.FirstOrDefault();
         }
 
-        public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItens(Int32? idAss)
+        public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItens(Int32 idAss)
         {
             IQueryable<MOVIMENTO_ESTOQUE_PRODUTO> query = Db.MOVIMENTO_ESTOQUE_PRODUTO;
-            //query = query.Where(p => p.ASSI_CD_ID == idAss);
+            query = query.Where(p => p.ASSI_CD_ID == idAss);
             query = query.Where(p => p.MOEP_IN_ATIVO == 1);
             return query.ToList();
         }
 
-        public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItensEntrada(Int32? idAss)
+        public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItensAdm(Int32 idAss)
         {
             IQueryable<MOVIMENTO_ESTOQUE_PRODUTO> query = Db.MOVIMENTO_ESTOQUE_PRODUTO;
-            //query = query.Where(p => p.ASSI_CD_ID == idAss);
+            query = query.Where(p => p.ASSI_CD_ID == idAss);
+            return query.ToList();
+        }
+
+        public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItensEntrada(Int32 idAss)
+        {
+            IQueryable<MOVIMENTO_ESTOQUE_PRODUTO> query = Db.MOVIMENTO_ESTOQUE_PRODUTO;
+            query = query.Where(p => p.ASSI_CD_ID == idAss);
             query = query.Where(p => p.MOEP_IN_ATIVO == 1);
             query = query.Where(p => p.MOEP_IN_TIPO_MOVIMENTO == 1);
             return query.ToList();
         }
 
-        public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItensUserDataMes(Int32 idUsu, DateTime data, Int32? idAss)
+        public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItensSaida(Int32 idAss)
         {
             IQueryable<MOVIMENTO_ESTOQUE_PRODUTO> query = Db.MOVIMENTO_ESTOQUE_PRODUTO;
-            //query = query.Where(p => p.ASSI_CD_ID == idAss);
-            query = query.Where(p => p.MOEP_IN_ATIVO == 1);
-            query = query.Where(p => p.USUA_CD_ID == idUsu);
-            query = query.Where(p => DbFunctions.TruncateTime(p.MOEP_DT_MOVIMENTO).Value.Month == DbFunctions.TruncateTime(data).Value.Month);
-            return query.ToList();
-        }
-
-        public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItensUserDataDia(Int32 idUsu, DateTime data, Int32? idAss)
-        {
-            IQueryable<MOVIMENTO_ESTOQUE_PRODUTO> query = Db.MOVIMENTO_ESTOQUE_PRODUTO;
-            //query = query.Where(p => p.ASSI_CD_ID == idAss);
-            query = query.Where(p => p.MOEP_IN_ATIVO == 1);
-            query = query.Where(p => p.USUA_CD_ID == idUsu);
-            query = query.Where(p => p.MOEP_DT_MOVIMENTO == data);
-            return query.ToList();
-        }
-
-        public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItensSaida(Int32? idAss)
-        {
-            IQueryable<MOVIMENTO_ESTOQUE_PRODUTO> query = Db.MOVIMENTO_ESTOQUE_PRODUTO;
-            //query = query.Where(p => p.ASSI_CD_ID == idAss);
+            query = query.Where(p => p.ASSI_CD_ID == idAss);
             query = query.Where(p => p.MOEP_IN_ATIVO == 1);
             query = query.Where(p => p.MOEP_IN_TIPO_MOVIMENTO == 2);
             return query.ToList();
         }
 
-        public List<MOVIMENTO_ESTOQUE_PRODUTO> ExecuteFilter(Int32? catId, String nome, String barcode, Int32? filiId, DateTime? dtMov, Int32? idAss)
+        public List<MOVIMENTO_ESTOQUE_PRODUTO> ExecuteFilter(Int32? catId, Int32? subCatId, String nome, String barcode, Int32? filiId, DateTime? dtMov, Int32 idAss)
         {
             List<MOVIMENTO_ESTOQUE_PRODUTO> lista = new List<MOVIMENTO_ESTOQUE_PRODUTO>();
             IQueryable<MOVIMENTO_ESTOQUE_PRODUTO> query = Db.MOVIMENTO_ESTOQUE_PRODUTO;
             if (catId != null)
             {
                 query = query.Where(p => p.PRODUTO.CAPR_CD_ID == catId);
+            }
+            if (subCatId != null)
+            {
+                query = query.Where(p => p.PRODUTO.SUPR_CD_ID == subCatId);
             }
             if (!String.IsNullOrEmpty(nome))
             {
@@ -92,8 +91,52 @@ namespace DataServices.Repositories
 
             if (query != null)
             {
-                //query = query.Where(p => p.ASSI_CD_ID == idAss);
+                query = query.Where(p => p.ASSI_CD_ID == idAss);
                 query = query.OrderBy(p => p.PRODUTO.PROD_NM_NOME);
+                lista = query.ToList<MOVIMENTO_ESTOQUE_PRODUTO>();
+            }
+
+            return lista;
+        }
+
+        public List<MOVIMENTO_ESTOQUE_PRODUTO> ExecuteFilterAvulso(Int32? operacao, Int32? tipoMovimento, DateTime? dtInicial, DateTime? dtFinal, Int32? filial, Int32? prod, Int32 idAss)
+        {
+            List<MOVIMENTO_ESTOQUE_PRODUTO> lista = new List<MOVIMENTO_ESTOQUE_PRODUTO>();
+            IQueryable<MOVIMENTO_ESTOQUE_PRODUTO> query = Db.MOVIMENTO_ESTOQUE_PRODUTO;
+            if (operacao != null)
+            {
+                query = query.Where(x => x.MOEP_IN_TIPO_MOVIMENTO == operacao);
+            }
+
+            if (tipoMovimento != null)
+            {
+                query = query.Where(x => x.MOEP_IN_TIPO_MOVIMENTO == tipoMovimento);
+            }
+
+            if (dtInicial != null)
+            {
+                query = query.Where(x => DbFunctions.TruncateTime(x.MOEP_DT_MOVIMENTO) >= DbFunctions.TruncateTime(dtInicial));
+            }
+
+            if (dtFinal != null)
+            {
+                query = query.Where(x => DbFunctions.TruncateTime(x.MOEP_DT_MOVIMENTO) >= DbFunctions.TruncateTime(dtFinal));
+            }
+
+            if (filial != null)
+            {
+                query = query.Where(x => x.FILI_CD_ID == filial);
+            }
+
+            if (prod != null)
+            {
+                query = query.Where(x => x.PROD_CD_ID == prod);
+            }
+
+            if (query != null)
+            {
+                query = query.Where(x => x.ASSI_CD_ID == idAss);
+                query = query.OrderBy(x => x.MOEP_DT_MOVIMENTO);
                 lista = query.ToList<MOVIMENTO_ESTOQUE_PRODUTO>();
             }
 

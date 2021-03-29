@@ -192,6 +192,7 @@
     <Compile Include="Interfaces\IPacienteAppService.cs" />
     <Compile Include="Interfaces\IProdutoEstoqueFilialAppService.cs" />
     <Compile Include="Interfaces\IProdutoTabelaPrecoAppService.cs" />
+    <Compile Include="Interfaces\ITipoImagemAppService.cs" />
     <Compile Include="Interfaces\ITipoProcedimentoAppService.cs" />
     <Compile Include="Interfaces\IProdutoAppService.cs" />
     <Compile Include="Interfaces\IMovimentoEstoqueProdutoAppService.cs" />
@@ -230,6 +231,7 @@
     <Compile Include="Services\PacienteAppService.cs" />
     <Compile Include="Services\ProdutoEstoqueFilialAppService.cs" />
     <Compile Include="Services\ProdutoTabelaPrecoAppService.cs" />
+    <Compile Include="Services\TipoImagemAppService.cs" />
     <Compile Include="Services\TipoProcedimentoAppService.cs" />
     <Compile Include="Services\ProdutoAppService.cs" />
     <Compile Include="Services\SubgrupoAppService.cs" />

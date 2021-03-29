@@ -191,6 +191,7 @@
     <Compile Include="EntitiesServices\PacienteService.cs" />
     <Compile Include="EntitiesServices\ProdutoEstoqueFilialService.cs" />
     <Compile Include="EntitiesServices\ProdutoTabelaPrecoService.cs" />
+    <Compile Include="EntitiesServices\TipoImagemService.cs" />
     <Compile Include="EntitiesServices\TipoProcedimentoService.cs" />
     <Compile Include="EntitiesServices\ProdutoService.cs" />
     <Compile Include="EntitiesServices\MovimentoEstoqueProdutoService.cs" />
@@ -227,6 +228,7 @@
     <Compile Include="Interfaces\EntitiesServices\IPacienteService.cs" />
     <Compile Include="Interfaces\EntitiesServices\IProdutoestoquefilialService.cs" />
     <Compile Include="Interfaces\EntitiesServices\IProdutoTabelaPrecoService.cs" />
+    <Compile Include="Interfaces\EntitiesServices\ITipoImagemService.cs" />
     <Compile Include="Interfaces\EntitiesServices\ITipoProcedimentoService.cs" />
     <Compile Include="Interfaces\EntitiesServices\IProdutoService.cs" />
     <Compile Include="Interfaces\EntitiesServices\IMatrizService.cs" />
@@ -255,6 +257,8 @@
     <Compile Include="Interfaces\Repositories\ICargoRepository.cs" />
     <Compile Include="Interfaces\Repositories\ICategoriaFornecedorRepository.cs" />
     <Compile Include="Interfaces\Repositories\ICategoriaPacienteRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IPacientePerguntaRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IPacienteAnamneseImagemRepository.cs" />
     <Compile Include="Interfaces\Repositories\ISubcategoriaProdutoRepository.cs" />
     <Compile Include="Interfaces\Repositories\ICategoriaUsuarioRepository.cs" />
     <Compile Include="Interfaces\Repositories\ICategoriaTelefoneRepository.cs" />
@@ -287,6 +291,7 @@
     <Compile Include="Interfaces\Repositories\IProdutoMovimentoEstoqueRepository.cs" />
     <Compile Include="Interfaces\Repositories\IProdutoOrigemRepository.cs" />
     <Compile Include="Interfaces\Repositories\IProdutoTabelaPrecoRepository.cs" />
+    <Compile Include="Interfaces\Repositories\ITipoImagemRepository.cs" />
     <Compile Include="Interfaces\Repositories\ITipoProcedimentoAnexoRepository.cs" />
     <Compile Include="Interfaces\Repositories\INotificacaoAnexoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IMovimentoEstoqueProdutoRepository.cs" />
@@ -461,6 +466,12 @@
     <Compile Include="Model\PACIENTE_ACOMPANHAMENTO.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\PACIENTE_ANAMESE_IMAGEM.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PACIENTE_ANAMNESE_PERGUNTA.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\PACIENTE_ANEXO.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
@@ -546,6 +557,9 @@
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\TIPO_CONTRIBUINTE.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\TIPO_IMAGEM.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\TIPO_PESSOA.cs">

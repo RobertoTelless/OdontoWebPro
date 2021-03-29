@@ -109,5 +109,8 @@ namespace EntitiesServices.Model
         public virtual DbSet<PEDIDO_COMPRA> PEDIDO_COMPRA { get; set; }
         public virtual DbSet<PEDIDO_COMPRA_ANEXO> PEDIDO_COMPRA_ANEXO { get; set; }
         public virtual DbSet<SUBCATEGORIA_PRODUTO> SUBCATEGORIA_PRODUTO { get; set; }
+        public virtual DbSet<PACIENTE_ANAMESE_IMAGEM> PACIENTE_ANAMESE_IMAGEM { get; set; }
+        public virtual DbSet<PACIENTE_ANAMNESE_PERGUNTA> PACIENTE_ANAMNESE_PERGUNTA { get; set; }
+        public virtual DbSet<TIPO_IMAGEM> TIPO_IMAGEM { get; set; }
     }
 }

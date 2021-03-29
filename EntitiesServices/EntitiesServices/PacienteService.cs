@@ -27,9 +27,12 @@ namespace ModelServices.EntitiesServices
         private readonly IPacientePrescricaoRepository _ppRepository;
         private readonly IPacienteRecomendacaoRepository _prRepository;
         private readonly ICategoriaPacienteRepository _catRepository;
+        private readonly IPacientePerguntaRepository _pgRepository;
+        private readonly IPacienteAnamneseImagemRepository _imRepository;
+        private readonly ITipoImagemRepository _tiRepository;
         protected Odonto_DBEntities Db = new Odonto_DBEntities();
 
-        public PacienteService(IPacienteRepository baseRepository, ILogRepository logRepository, IFilialRepository filialRepository, IPacienteAnexoRepository anexoRepository, IUFRepository ufRepository, IPacienteAcompanhamentoRepository paRepository, IPacientePrescricaoRepository ppRepository, IPacienteRecomendacaoRepository prRepository, ICategoriaPacienteRepository catRepository) : base(baseRepository)
+        public PacienteService(IPacienteRepository baseRepository, ILogRepository logRepository, IFilialRepository filialRepository, IPacienteAnexoRepository anexoRepository, IUFRepository ufRepository, IPacienteAcompanhamentoRepository paRepository, IPacientePrescricaoRepository ppRepository, IPacienteRecomendacaoRepository prRepository, ICategoriaPacienteRepository catRepository, ITipoImagemRepository tiRepository, IPacientePerguntaRepository pgRepository, IPacienteAnamneseImagemRepository imRepository) : base(baseRepository)
         {
             _baseRepository = baseRepository;
             _logRepository = logRepository;
@@ -40,6 +43,9 @@ namespace ModelServices.EntitiesServices
             _ppRepository = ppRepository;
             _prRepository = prRepository;
             _catRepository = catRepository;
+            _tiRepository = tiRepository;
+            _pgRepository = pgRepository;
+            _imRepository = imRepository;
         }
 
         public PACIENTE CheckExist(PACIENTE conta, Int32? idAss)
@@ -84,6 +90,11 @@ namespace ModelServices.EntitiesServices
         public List<CATEGORIA_PACIENTE> GetAllTipos(Int32 idAss)
         {
             return _catRepository.GetAllItens(idAss);
+        }
+
+        public List<TIPO_IMAGEM> GetAllTipoImagem(Int32 idAss)
+        {
+            return _tiRepository.GetAllItens(idAss);
         }
 
         public List<UF> GetAllUF()
@@ -291,5 +302,90 @@ namespace ModelServices.EntitiesServices
             }
         }
 
+        public PACIENTE_ANAMNESE_PERGUNTA GetPerguntaById(Int32 id)
+        {
+            return _pgRepository.GetItemById(id);
+        }
+
+        public Int32 EditPergunta(PACIENTE_ANAMNESE_PERGUNTA item)
+        {
+            using (DbContextTransaction transaction = Db.Database.BeginTransaction(IsolationLevel.ReadCommitted))
+            {
+                try
+                {
+                    PACIENTE_ANAMNESE_PERGUNTA obj = _pgRepository.GetById(item.PCAN_CD_ID);
+                    _pgRepository.Detach(obj);
+                    _pgRepository.Update(item);
+                    transaction.Commit();
+                    return 0;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw ex;
+                }
+            }
+        }
+
+        public Int32 CreatePergunta(PACIENTE_ANAMNESE_PERGUNTA item)
+        {
+            using (DbContextTransaction transaction = Db.Database.BeginTransaction(IsolationLevel.ReadCommitted))
+            {
+                try
+                {
+                    _pgRepository.Add(item);
+                    transaction.Commit();
+                    return 0;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw ex;
+                }
+            }
+        }
+
+        public PACIENTE_ANAMESE_IMAGEM GetAnamneseImagemById(Int32 id)
+        {
+            return _imRepository.GetItemById(id);
+        }
+
+        public Int32 EditAnamneseImagem(PACIENTE_ANAMESE_IMAGEM item)
+        {
+            using (DbContextTransaction transaction = Db.Database.BeginTransaction(IsolationLevel.ReadCommitted))
+            {
+                try
+                {
+                    PACIENTE_ANAMESE_IMAGEM obj = _imRepository.GetById(item.PCAI_CD_ID);
+                    _imRepository.Detach(obj);
+                    _imRepository.Update(item);
+                    transaction.Commit();
+                    return 0;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw ex;
+                }
+            }
+        }
+
+        public Int32 CreateAnamneseImagem(PACIENTE_ANAMESE_IMAGEM item)
+        {
+            using (DbContextTransaction transaction = Db.Database.BeginTransaction(IsolationLevel.ReadCommitted))
+            {
+                try
+                {
+                    _imRepository.Add(item);
+                    transaction.Commit();
+                    return 0;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw ex;
+                }
+            }
+        }
     }
 }

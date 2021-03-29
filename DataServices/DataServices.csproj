@@ -174,6 +174,8 @@
     <Compile Include="Repositories\CargoRepository.cs" />
     <Compile Include="Repositories\CategoriaFornecedorRepository.cs" />
     <Compile Include="Repositories\CategoriaPacienteRepository.cs" />
+    <Compile Include="Repositories\PacientePerguntaRepository.cs" />
+    <Compile Include="Repositories\PacienteAnamneseImagemRepository.cs" />
     <Compile Include="Repositories\SubcategoriaProdutoRepository.cs" />
     <Compile Include="Repositories\CategoriaUsuarioRepository.cs" />
     <Compile Include="Repositories\CategoriaTelefoneRepository.cs" />
@@ -205,6 +207,7 @@
     <Compile Include="Repositories\ProdutoMovimentoEstoqueRepository.cs" />
     <Compile Include="Repositories\ProdutoOrigemRepository.cs" />
     <Compile Include="Repositories\ProdutoTabelaPrecoRepository.cs" />
+    <Compile Include="Repositories\TipoImagemRepository.cs" />
     <Compile Include="Repositories\TipoProcedimentoRepository.cs" />
     <Compile Include="Repositories\TipoProcedimentoAnexoRepository.cs" />
     <Compile Include="Repositories\NotificacaoAnexoRepository.cs" />

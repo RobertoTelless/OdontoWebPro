@@ -69,6 +69,12 @@ namespace ApplicationServices.Services
             return lista;
         }
 
+        public List<TIPO_IMAGEM> GetAllTipoImagem(Int32 idAss)
+        {
+            List<TIPO_IMAGEM> lista = _baseService.GetAllTipoImagem(idAss);
+            return lista;
+        }
+
         public List<UF> GetAllUF()
         {
             List<UF> lista = _baseService.GetAllUF();
@@ -314,6 +320,73 @@ namespace ApplicationServices.Services
             }
         }
 
+        public PACIENTE_ANAMNESE_PERGUNTA GetPerguntaById(Int32 id)
+        {
+            PACIENTE_ANAMNESE_PERGUNTA lista = _baseService.GetPerguntaById(id);
+            return lista;
+        }
+
+        public Int32 EditPergunta(PACIENTE_ANAMNESE_PERGUNTA item)
+        {
+            try
+            {
+                // Persiste
+                return _baseService.EditPergunta(item);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public Int32 CreatePergunta(PACIENTE_ANAMNESE_PERGUNTA item)
+        {
+            try
+            {
+                // Persiste
+                item.PCAN_IN_ATIVO = 1;
+                Int32 volta = _baseService.CreatePergunta(item);
+                return volta;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public PACIENTE_ANAMESE_IMAGEM GetAnamneseImagemById(Int32 id)
+        {
+            PACIENTE_ANAMESE_IMAGEM lista = _baseService.GetAnamneseImagemById(id);
+            return lista;
+        }
+
+        public Int32 EditAnamneseImagem(PACIENTE_ANAMESE_IMAGEM item)
+        {
+            try
+            {
+                // Persiste
+                return _baseService.EditAnamneseImagem(item);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public Int32 CreateAnamneseImagem(PACIENTE_ANAMESE_IMAGEM item)
+        {
+            try
+            {
+                // Persiste
+                item.PCAI_IN_ATIVO = 1;
+                Int32 volta = _baseService.CreateAnamneseImagem(item);
+                return volta;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
     }
 }

@@ -22,6 +22,7 @@ namespace ApplicationServices.Interfaces
         PACIENTE CheckExist(PACIENTE conta, Int32? idAss);
         List<FILIAL> GetAllFiliais(Int32 idAss);
         List<CATEGORIA_PACIENTE> GetAllTipos(Int32 idAss);
+        List<TIPO_IMAGEM> GetAllTipoImagem(Int32 idAss);
         List<UF> GetAllUF();
         UF GetUFBySigla(String sigla);
         PACIENTE_ANEXO GetAnexoById(Int32 id);
@@ -36,5 +37,13 @@ namespace ApplicationServices.Interfaces
         PACIENTE_RECOMENDACAO GetRecomendacaoById(Int32 id);
         Int32 EditRecomendacao(PACIENTE_RECOMENDACAO item);
         Int32 CreateRecomendacao(PACIENTE_RECOMENDACAO item);
+
+        PACIENTE_ANAMNESE_PERGUNTA GetPerguntaById(Int32 id);
+        Int32 EditPergunta(PACIENTE_ANAMNESE_PERGUNTA item);
+        Int32 CreatePergunta(PACIENTE_ANAMNESE_PERGUNTA item);
+
+        PACIENTE_ANAMESE_IMAGEM GetAnamneseImagemById(Int32 id);
+        Int32 EditAnamneseImagem(PACIENTE_ANAMESE_IMAGEM item);
+        Int32 CreateAnamneseImagem(PACIENTE_ANAMESE_IMAGEM item);
     }
 }

@@ -30,9 +30,21 @@ namespace ModelServices.EntitiesServices
             _filialRepository = filialRepository;
         }
 
-        public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItens(Int32? idAss)
+        public MOVIMENTO_ESTOQUE_PRODUTO GetByProdId(Int32 prod, Int32 fili)
+        {
+            MOVIMENTO_ESTOQUE_PRODUTO item = _baseRepository.GetByProdId(prod, fili);
+            return item;
+        }
+
+        public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItens(Int32 idAss)
         {
             List<MOVIMENTO_ESTOQUE_PRODUTO> lista = _baseRepository.GetAllItens(idAss);
+            return lista;
+        }
+
+        public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItensAdm(Int32 idAss)
+        {
+            List<MOVIMENTO_ESTOQUE_PRODUTO> lista = _baseRepository.GetAllItensAdm(idAss);
             return lista;
         }
 
@@ -42,33 +54,26 @@ namespace ModelServices.EntitiesServices
             return item;
         }
 
-        public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItensEntrada(Int32? idAss)
+        public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItensEntrada(Int32 idAss)
         {
             List<MOVIMENTO_ESTOQUE_PRODUTO> lista = _baseRepository.GetAllItensEntrada(idAss);
             return lista;
         }
 
-        public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItensSaida(Int32? idAss)
+        public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItensSaida(Int32 idAss)
         {
             List<MOVIMENTO_ESTOQUE_PRODUTO> lista = _baseRepository.GetAllItensSaida(idAss);
             return lista;
         }
 
-        public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItensUserDataMes(Int32 idUsu, DateTime data,  Int32? idAss)
+        public List<MOVIMENTO_ESTOQUE_PRODUTO> ExecuteFilter(Int32? catId, Int32? subCatId, String nome, String barcode, Int32? filiId, DateTime? dtMov, Int32 idAss)
         {
-            List<MOVIMENTO_ESTOQUE_PRODUTO> lista = _baseRepository.GetAllItensUserDataMes(idUsu, data, idAss);
-            return lista;
+            return _baseRepository.ExecuteFilter(catId, subCatId, nome, barcode, filiId, dtMov, idAss);
         }
 
-        public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItensUserDataDia(Int32 idUsu, DateTime data, Int32? idAss)
+        public List<MOVIMENTO_ESTOQUE_PRODUTO> ExecuteFilterAvulso(Int32? operacao, Int32? tipoMovimento, DateTime? dtInicial, DateTime? dtFinal, Int32? filial, Int32? prod, Int32 idAss)
         {
-            List<MOVIMENTO_ESTOQUE_PRODUTO> lista = _baseRepository.GetAllItensUserDataDia(idUsu, data, idAss);
-            return lista;
-        }
-
-        public List<MOVIMENTO_ESTOQUE_PRODUTO> ExecuteFilter(Int32? catId, String nome, String barcode, Int32? filiId, DateTime? dtMov, Int32? idAss)
-        {
-            return _baseRepository.ExecuteFilter(catId, nome, barcode, filiId, dtMov, idAss);
+            return _baseRepository.ExecuteFilterAvulso(operacao, tipoMovimento, dtInicial, dtFinal, filial, prod, idAss);
         }
 
         public Int32 Create(MOVIMENTO_ESTOQUE_PRODUTO item, LOG log)
@@ -97,6 +102,27 @@ namespace ModelServices.EntitiesServices
                 try
                 {
                     _baseRepository.Add(item);
+                    transaction.Commit();
+                    return 0;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw ex;
+                }
+            }
+        }
+
+        public Int32 Edit(MOVIMENTO_ESTOQUE_PRODUTO item, LOG log)
+        {
+            using (DbContextTransaction transaction = Db.Database.BeginTransaction(IsolationLevel.ReadCommitted))
+            {
+                try
+                {
+                    MOVIMENTO_ESTOQUE_PRODUTO obj = _baseRepository.GetById(item.MOEP_CD_ID);
+                    _baseRepository.Detach(obj);
+                    _logRepository.Add(log);
+                    _baseRepository.Update(item);
                     transaction.Commit();
                     return 0;
                 }
