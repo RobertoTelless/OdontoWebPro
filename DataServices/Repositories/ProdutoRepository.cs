@@ -12,17 +12,30 @@ namespace DataServices.Repositories
 {
     public class ProdutoRepository : RepositoryBase<PRODUTO>, IProdutoRepository
     {
-        public PRODUTO CheckExist(PRODUTO conta, Int32? idAss)
+        public PRODUTO CheckExist(PRODUTO conta, Int32 idAss)
         {
             IQueryable<PRODUTO> query = Db.PRODUTO;
             query = query.Where(p => p.PROD_NM_NOME == conta.PROD_NM_NOME);
-            query = query.Where(p => p.PROD_CD_CODIGO == conta.PROD_CD_CODIGO);
-            query = query.Where(p => p.PROD_NR_BARCODE == conta.PROD_NR_BARCODE);
             query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.FirstOrDefault();
         }
 
-        public PRODUTO GetByNome(String nome, Int32? idAss)
+        public PRODUTO CheckExist(String barcode, String codigo, Int32 idAss)
+        {
+            IQueryable<PRODUTO> query = Db.PRODUTO;
+            if (barcode != null)
+            {
+                query = query.Where(p => p.PROD_NR_BARCODE == barcode);
+            }
+            if (codigo != null)
+            {
+                query = query.Where(p => p.PROD_CD_CODIGO == codigo);
+            }
+            query = query.Where(p => p.ASSI_CD_ID == idAss);
+            return query.FirstOrDefault();
+        }
+
+        public PRODUTO GetByNome(String nome, Int32 idAss)
         {
             IQueryable<PRODUTO> query = Db.PRODUTO.Where(p => p.PROD_IN_ATIVO == 1);
             query = query.Where(p => p.PROD_NM_NOME == nome);
@@ -43,7 +56,7 @@ namespace DataServices.Repositories
             return query.FirstOrDefault();
         }
 
-        public List<PRODUTO> GetAllItens(Int32? idAss)
+        public List<PRODUTO> GetAllItens(Int32 idAss)
         {
             IQueryable<PRODUTO> query = Db.PRODUTO.Where(p => p.PROD_IN_ATIVO == 1);
             query = query.Where(p => p.ASSI_CD_ID == idAss);
@@ -51,7 +64,7 @@ namespace DataServices.Repositories
             return query.ToList();
         }
 
-        public List<PRODUTO> GetAllItensAdm(Int32? idAss)
+        public List<PRODUTO> GetAllItensAdm(Int32 idAss)
         {
             IQueryable<PRODUTO> query = Db.PRODUTO;
             query = query.Where(p => p.ASSI_CD_ID == idAss);
@@ -59,15 +72,14 @@ namespace DataServices.Repositories
             return query.ToList();
         }
 
-        public List<PRODUTO> GetPontoPedido(Int32? idAss)
+        public List<PRODUTO> GetPontoPedido(Int32 idAss)
         {
             IQueryable<PRODUTO> query = Db.PRODUTO.Where(p => p.PROD_IN_ATIVO == 1);
-            //query = query.Where(p => p.PROD_QN_ESTOQUE < p.PROD_QN_QUANTIDADE_MINIMA);
             query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.ToList();
         }
 
-        public List<PRODUTO> GetEstoqueZerado(Int32? idAss)
+        public List<PRODUTO> GetEstoqueZerado(Int32 idAss)
         {
             IQueryable<PRODUTO> query = Db.PRODUTO.Where(p => p.PROD_IN_ATIVO == 1);
             query = query.Where(p => p.ASSI_CD_ID == idAss);
@@ -84,7 +96,7 @@ namespace DataServices.Repositories
             }
             if (subId != null)
             {
-                query = query.Where(p => p.SUPR_CD_ID == catId);
+                query = query.Where(p => p.SUPR_CD_ID == subId);
             }
             if (!String.IsNullOrEmpty(nome))
             {
@@ -94,9 +106,17 @@ namespace DataServices.Repositories
             {
                 query = query.Where(p => p.PROD_NM_MARCA.Contains(marca));
             }
-            if (!String.IsNullOrEmpty(codigo))
+            if (!String.IsNullOrEmpty(modelo))
             {
-                query = query.Where(p => p.PROD_NR_BARCODE == codigo);
+                query = query.Where(p => p.PROD_NM_MODELO.Contains(modelo));
+            }
+            if (!String.IsNullOrEmpty(fabricante))
+            {
+                query = query.Where(p => p.PROD_NM_FABRICANTE.Contains(fabricante));
+            }
+            if (!String.IsNullOrEmpty(barcode))
+            {
+                query = query.Where(p => p.PROD_NR_BARCODE == barcode);
             }
             if (!String.IsNullOrEmpty(codigo))
             {
@@ -112,7 +132,7 @@ namespace DataServices.Repositories
             return lista;
         }
 
-        public List<PRODUTO_ESTOQUE_FILIAL> ExecuteFilterEstoque(Int32? filial, String nome, String marca, String codigo, Int32? idAss)
+        public List<PRODUTO_ESTOQUE_FILIAL> ExecuteFilterEstoque(Int32? filial, String nome, String marca, String codigo, Int32 idAss)
         {
             List<PRODUTO_ESTOQUE_FILIAL> lista = new List<PRODUTO_ESTOQUE_FILIAL>();
             IQueryable<PRODUTO_ESTOQUE_FILIAL> query = Db.PRODUTO_ESTOQUE_FILIAL;
@@ -142,7 +162,7 @@ namespace DataServices.Repositories
             return lista;
         }
 
-        public List<PRODUTO_ESTOQUE_FILIAL> RecuperarQuantidadesFiliais(Int32? idFilial, Int32? idAss)
+        public List<PRODUTO_ESTOQUE_FILIAL> RecuperarQuantidadesFiliais(Int32? idFilial, Int32 idAss)
         {
             IQueryable<PRODUTO_ESTOQUE_FILIAL> query = Db.PRODUTO_ESTOQUE_FILIAL.Where(p => p.PREF_IN_ATIVO == 1);
             query = query.Where(p => p.PRODUTO.ASSI_CD_ID == idAss);

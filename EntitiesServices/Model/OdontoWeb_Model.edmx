@@ -840,6 +840,7 @@
           <Property Name="PRO_VL_MARKUP_PADRAO" Type="decimal" Precision="18" Scale="2" />
           <Property Name="PRTP_VL_PRECO_PROMOCAO" Type="decimal" Precision="18" Scale="2" />
           <Property Name="PROD_VL_CUSTO" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PROD_DT_ULTIMA_MOVIMENTACAO" Type="date" />
         </EntityType>
         <EntityType Name="PRODUTO_ANEXO">
           <Key>
@@ -4623,6 +4624,7 @@
           <Property Name="PRO_VL_MARKUP_PADRAO" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="PRTP_VL_PRECO_PROMOCAO" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="PROD_VL_CUSTO" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PROD_DT_ULTIMA_MOVIMENTACAO" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="PRODUTO_ANEXO">
           <Key>
@@ -8493,6 +8495,7 @@
           <EntitySetMapping Name="PRODUTO">
             <EntityTypeMapping TypeName="Odonto_DBModel.PRODUTO">
               <MappingFragment StoreEntitySet="PRODUTO">
+                <ScalarProperty Name="PROD_DT_ULTIMA_MOVIMENTACAO" ColumnName="PROD_DT_ULTIMA_MOVIMENTACAO" />
                 <ScalarProperty Name="PROD_VL_CUSTO" ColumnName="PROD_VL_CUSTO" />
                 <ScalarProperty Name="PRTP_VL_PRECO_PROMOCAO" ColumnName="PRTP_VL_PRECO_PROMOCAO" />
                 <ScalarProperty Name="PRO_VL_MARKUP_PADRAO" ColumnName="PRO_VL_MARKUP_PADRAO" />

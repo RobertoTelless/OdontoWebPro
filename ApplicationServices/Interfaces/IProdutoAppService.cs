@@ -23,18 +23,20 @@ namespace ApplicationServices.Interfaces
         PRODUTO GetByNome(String nome, Int32 idAss);
         PRODUTO CheckExist(PRODUTO conta, Int32 idAss);
         PRODUTO CheckExist(String barcode, String codigo, Int32 idAss);
+        
         List<CATEGORIA_PRODUTO> GetAllTipos(Int32 idAss);
         List<SUBCATEGORIA_PRODUTO> GetAllSubs(Int32 idAss);
         List<UNIDADE> GetAllUnidades(Int32 idAss);
         PRODUTO_ANEXO GetAnexoById(Int32 id);
         Int32 ExecuteFilter(Int32? catId, Int32? subId, String barcode, String nome, String marca, String codigo, String modelo, String fabricante, Int32? idAss, out List<PRODUTO> objeto);
+        
         PRODUTO_FORNECEDOR GetFornecedorById(Int32 id);
         Int32 ValidateEditFornecedor(PRODUTO_FORNECEDOR item);
         Int32 ValidateCreateFornecedor(PRODUTO_FORNECEDOR item);
-        List<PRODUTO> GetPontoPedido();
-        List<PRODUTO> GetEstoqueZerado();
-        List<PRODUTO_ORIGEM> GetAllOrigens();
-        PRODUTO_TABELA_PRECO CheckExist(PRODUTO_TABELA_PRECO item, Int32 idAss);
+
+        List<PRODUTO> GetPontoPedido(Int32 idAss);
+        List<PRODUTO> GetEstoqueZerado(Int32 idAss);
+        List<PRODUTO_ORIGEM> GetAllOrigens(Int32 idAss);
 
         Int32 IncluirTabelaPreco(PRODUTO item, USUARIO usuario);
         Int32 ValidateEditTabelaPreco(PRODUTO_TABELA_PRECO item);
@@ -43,7 +45,7 @@ namespace ApplicationServices.Interfaces
         //List<PRODUTO> CalcularEstoqueZerado();
         //List<PRODUTO> CalcularEstoqueNegativo();
         //List<PRODUTO> CalcularMaisVendidos();
-        List<PRODUTO_ESTOQUE_FILIAL> RecuperarQuantidadesFiliais(Int32? idFilial);
+        List<PRODUTO_ESTOQUE_FILIAL> RecuperarQuantidadesFiliais(Int32? idFilial, Int32 idAss);
         Int32 ExecuteFilterEstoque(Int32? filial, String nome, String marca, String codigo, Int32 idAss, out List<PRODUTO_ESTOQUE_FILIAL> objeto);
 
     }

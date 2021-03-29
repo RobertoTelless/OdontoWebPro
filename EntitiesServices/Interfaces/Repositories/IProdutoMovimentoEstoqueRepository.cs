@@ -9,7 +9,7 @@ namespace ModelServices.Interfaces.Repositories
 {
     public interface IProdutoMovimentoEstoqueRepository : IRepositoryBase<MOVIMENTO_ESTOQUE_PRODUTO>
     {
-        List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItens(Int32 idAss);
+        List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItens();
         MOVIMENTO_ESTOQUE_PRODUTO GetItemById(Int32 id);
     }
 }

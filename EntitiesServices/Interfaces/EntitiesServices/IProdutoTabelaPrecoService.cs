@@ -15,5 +15,6 @@ namespace ModelServices.Interfaces.EntitiesServices
         Int32 Delete(PRODUTO_TABELA_PRECO item);
         PRODUTO_TABELA_PRECO CheckExist(PRODUTO_TABELA_PRECO item, Int32 idAss);
         PRODUTO_TABELA_PRECO GetItemById(Int32 id);
+
     }
 }

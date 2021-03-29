@@ -25,12 +25,13 @@ namespace ModelServices.EntitiesServices
         private readonly IProdutoFornecedorRepository _fornRepository;
         private readonly IUnidadeRepository _unidRepository;
         private readonly IMovimentoEstoqueProdutoRepository _movRepository;
-        private readonly IProdutoTabelaPrecoRepository _preRepository;
-        private readonly IProdutoOrigemRepository _oriRepository;
         private readonly ISubcategoriaProdutoRepository _subRepository;
+        private readonly IProdutoOrigemRepository _poRepository;
+        private readonly IProdutoTabelaPrecoRepository _tpRepository;
+
         protected Odonto_DBEntities Db = new Odonto_DBEntities();
 
-        public ProdutoService(IProdutoRepository baseRepository, ILogRepository logRepository, ICategoriaProdutoRepository tipoRepository, IProdutoAnexoRepository anexoRepository, IUnidadeRepository unidRepository, IMovimentoEstoqueProdutoRepository movRepository, IProdutoFornecedorRepository fornRepository, IProdutoTabelaPrecoRepository preRepository, IProdutoOrigemRepository oriRepository, ISubcategoriaProdutoRepository subRepository) : base(baseRepository)
+        public ProdutoService(IProdutoRepository baseRepository, ILogRepository logRepository, ICategoriaProdutoRepository tipoRepository, IProdutoAnexoRepository anexoRepository, IUnidadeRepository unidRepository, IMovimentoEstoqueProdutoRepository movRepository, IProdutoFornecedorRepository fornRepository,ISubcategoriaProdutoRepository subRepository, IProdutoOrigemRepository poRepository, IProdutoTabelaPrecoRepository tpRepository) : base(baseRepository)
         {
             _baseRepository = baseRepository;
             _logRepository = logRepository;
@@ -39,20 +40,20 @@ namespace ModelServices.EntitiesServices
             _unidRepository = unidRepository;
             _movRepository = movRepository;
             _fornRepository = fornRepository;
-            _preRepository = preRepository;
-            _oriRepository = oriRepository;
             _subRepository = subRepository;
+            _poRepository = poRepository;
+            _tpRepository = tpRepository;
         }
 
-        public PRODUTO CheckExist(PRODUTO conta, Int32? idAss)
+        public PRODUTO CheckExist(PRODUTO conta, Int32 idAss)
         {
             PRODUTO item = _baseRepository.CheckExist(conta, idAss);
             return item;
         }
 
-        public PRODUTO_TABELA_PRECO CheckExist(PRODUTO_TABELA_PRECO conta, Int32 idAss)
+        public PRODUTO CheckExist(String barcode, String codigo, Int32 idAss)
         {
-            PRODUTO_TABELA_PRECO item = _preRepository.CheckExist(conta, idAss);
+            PRODUTO item = _baseRepository.CheckExist(barcode, codigo, idAss);
             return item;
         }
 
@@ -62,20 +63,15 @@ namespace ModelServices.EntitiesServices
             return item;
         }
 
-        public PRODUTO GetByNome(String nome, Int32? idAss)
+        public PRODUTO GetByNome(String nome,Int32 idAss)
         {
             PRODUTO item = _baseRepository.GetByNome(nome, idAss);
             return item;
         }
 
-        public List<PRODUTO> GetAllItens(Int32? idAss)
+        public List<PRODUTO> GetAllItens(Int32 idAss)
         {
             return _baseRepository.GetAllItens(idAss);
-        }
-
-        public List<PRODUTO_ORIGEM> GetAllOrigens(Int32 idAss)
-        {
-            return _oriRepository.GetAllItens(idAss);
         }
 
         public List<PRODUTO_ESTOQUE_FILIAL> RecuperarQuantidadesFiliais(Int32? idFilial, Int32 idAss)
@@ -83,17 +79,17 @@ namespace ModelServices.EntitiesServices
             return _baseRepository.RecuperarQuantidadesFiliais(idFilial, idAss);
         }
 
-        public List<PRODUTO> GetPontoPedido(Int32? idAss)
+        public List<PRODUTO> GetPontoPedido(Int32 idAss)
         {
             return _baseRepository.GetPontoPedido(idAss);
         }
 
-        public List<PRODUTO> GetEstoqueZerado(Int32? idAss)
+        public List<PRODUTO> GetEstoqueZerado(Int32 idAss)
         {
             return _baseRepository.GetEstoqueZerado(idAss);
         }
 
-        public List<PRODUTO> GetAllItensAdm(Int32? idAss)
+        public List<PRODUTO> GetAllItensAdm(Int32 idAss)
         {
             return _baseRepository.GetAllItensAdm(idAss);
         }
@@ -101,6 +97,11 @@ namespace ModelServices.EntitiesServices
         public List<CATEGORIA_PRODUTO> GetAllTipos(Int32 idAss)
         {
             return _tipoRepository.GetAllItens(idAss);
+        }
+
+        public List<PRODUTO_ORIGEM> GetAllOrigens(Int32 idAss)
+        {
+            return _poRepository.GetAllItens(idAss);
         }
 
         public List<SUBCATEGORIA_PRODUTO> GetAllSubs(Int32 idAss)
@@ -129,7 +130,7 @@ namespace ModelServices.EntitiesServices
 
         }
 
-        public List<PRODUTO_ESTOQUE_FILIAL> ExecuteFilterEstoque(Int32? filial, String nome, String marca, String codigo, Int32? idAss)
+        public List<PRODUTO_ESTOQUE_FILIAL> ExecuteFilterEstoque(Int32? filial, String nome, String marca, String codigo, Int32 idAss)
         {
             return _baseRepository.ExecuteFilterEstoque(filial, nome, marca, codigo, idAss);
 
@@ -143,6 +144,7 @@ namespace ModelServices.EntitiesServices
                 {
                     _logRepository.Add(log);
                     _baseRepository.Add(item);
+                    //_movRepository.Add(movto);
                     transaction.Commit();
                     return 0;
                 }
@@ -277,9 +279,9 @@ namespace ModelServices.EntitiesServices
             {
                 try
                 {
-                    PRODUTO_TABELA_PRECO obj = _preRepository.GetById(item.PRTP_CD_ID);
-                    _preRepository.Detach(obj);
-                    _preRepository.Update(item);
+                    PRODUTO_TABELA_PRECO obj = _tpRepository.GetById(item.PRTP_CD_ID);
+                    _tpRepository.Detach(obj);
+                    _tpRepository.Update(item);
                     transaction.Commit();
                     return 0;
                 }
@@ -290,5 +292,12 @@ namespace ModelServices.EntitiesServices
                 }
             }
         }
+
+        public PRODUTO_TABELA_PRECO CheckExist(PRODUTO_TABELA_PRECO item, Int32 idAss)
+        {
+            PRODUTO_TABELA_PRECO obj = _tpRepository.CheckExist(item, idAss);
+            return obj;
+        }
+
     }
 }

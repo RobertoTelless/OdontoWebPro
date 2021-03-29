@@ -77,9 +77,9 @@ namespace ApplicationServices.Services
             return item;
         }
 
-        public PRODUTO_TABELA_PRECO CheckExist(PRODUTO_TABELA_PRECO prod, Int32 idAss)
+        public PRODUTO CheckExist(String barcode, String codigo, Int32 idAss)
         {
-            PRODUTO_TABELA_PRECO item = _baseService.CheckExist(prod, idAss);
+            PRODUTO item = _baseService.CheckExist(barcode, codigo, idAss);
             return item;
         }
 
@@ -174,6 +174,8 @@ namespace ApplicationServices.Services
                 // Completa objeto
                 item.PROD_IN_ATIVO = 1;
                 item.ASSI_CD_ID = usuario.ASSI_CD_ID;
+                item.PROD_DT_ULTIMA_MOVIMENTACAO = DateTime.Today;
+
                 MOVIMENTO_ESTOQUE_PRODUTO movto = new MOVIMENTO_ESTOQUE_PRODUTO();
 
                 // Monta Log
@@ -228,6 +230,7 @@ namespace ApplicationServices.Services
                 // Completa objeto
                 item.PROD_IN_ATIVO = 1;
                 item.ASSI_CD_ID = usuario.ASSI_CD_ID;
+                item.PROD_DT_ULTIMA_MOVIMENTACAO = DateTime.Today;
                 MOVIMENTO_ESTOQUE_PRODUTO movto = new MOVIMENTO_ESTOQUE_PRODUTO();
 
                 // Monta Log
@@ -361,7 +364,6 @@ namespace ApplicationServices.Services
         //    }
         //}
 
-
         public Int32 ValidateDelete(PRODUTO item, USUARIO usuario)
         {
             try
@@ -371,7 +373,7 @@ namespace ApplicationServices.Services
                 {
                     return 1;
                 }
-                if (item.PRODUTO_TABELA_PRECO.Count > 0)
+                if (item.PRODUTO_ESTOQUE_FILIAL.Count > 0)
                 {
                     return 1;
                 }
@@ -468,10 +470,10 @@ namespace ApplicationServices.Services
                 rl.PRTP_DT_DATA_REAJUSTE = DateTime.Today.Date;
                 rl.PRTP_IN_ATIVO = 1;
                 //rl.PRTP_VL_DESCONTO_MAXIMO = item.PRTP_VL_DESCONTO_MAXIMO;
-                rl.PRTP_VL_PRECO = 0;
-                rl.PRTP_VL_PRECO_PROMOCAO = 0;
-                rl.PRTP_NR_MARKUP = 0;
-                rl.PRTP_VL_CUSTO = 0;
+                rl.PRTP_VL_PRECO = item.PRTP_VL_PRECO;
+                rl.PRTP_VL_PRECO_PROMOCAO = item.PRTP_VL_PRECO_PROMOCAO;
+                rl.PRTP_NR_MARKUP = (Int32)item.PRO_VL_MARKUP_PADRAO;
+                rl.PRTP_VL_CUSTO = (decimal)item.PROD_VL_CUSTO;
 
                 // Verifica existencia
                 if (_tbService.CheckExist(rl, usuario.ASSI_CD_ID) != null)

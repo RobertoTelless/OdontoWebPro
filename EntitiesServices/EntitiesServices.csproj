@@ -190,6 +190,7 @@
     <Compile Include="EntitiesServices\NoticiaService.cs" />
     <Compile Include="EntitiesServices\PacienteService.cs" />
     <Compile Include="EntitiesServices\ProdutoEstoqueFilialService.cs" />
+    <Compile Include="EntitiesServices\ProdutoMovimentoEstoqueService.cs" />
     <Compile Include="EntitiesServices\ProdutoTabelaPrecoService.cs" />
     <Compile Include="EntitiesServices\TipoImagemService.cs" />
     <Compile Include="EntitiesServices\TipoProcedimentoService.cs" />
@@ -227,6 +228,7 @@
     <Compile Include="Interfaces\EntitiesServices\IMovimentoEstoqueProdutoService.cs" />
     <Compile Include="Interfaces\EntitiesServices\IPacienteService.cs" />
     <Compile Include="Interfaces\EntitiesServices\IProdutoestoquefilialService.cs" />
+    <Compile Include="Interfaces\EntitiesServices\IProdutoMovimentoEstoqueService.cs" />
     <Compile Include="Interfaces\EntitiesServices\IProdutoTabelaPrecoService.cs" />
     <Compile Include="Interfaces\EntitiesServices\ITipoImagemService.cs" />
     <Compile Include="Interfaces\EntitiesServices\ITipoProcedimentoService.cs" />

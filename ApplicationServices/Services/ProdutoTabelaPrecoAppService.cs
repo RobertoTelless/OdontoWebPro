@@ -27,9 +27,9 @@ namespace ApplicationServices.Services
             return item;
         }
 
-        public PRODUTO_TABELA_PRECO CheckExist(PRODUTO_TABELA_PRECO item)
+        public PRODUTO_TABELA_PRECO CheckExist(PRODUTO_TABELA_PRECO item, Int32 idAss)
         {
-            PRODUTO_TABELA_PRECO obj = _baseService.CheckExist(item);
+            PRODUTO_TABELA_PRECO obj = _baseService.CheckExist(item, idAss);
             return obj;
         }
 

@@ -63,6 +63,7 @@ namespace EntitiesServices.Model
         public Nullable<decimal> PRO_VL_MARKUP_PADRAO { get; set; }
         public Nullable<decimal> PRTP_VL_PRECO_PROMOCAO { get; set; }
         public Nullable<decimal> PROD_VL_CUSTO { get; set; }
+        public Nullable<System.DateTime> PROD_DT_ULTIMA_MOVIMENTACAO { get; set; }
     
         public virtual ASSINANTE ASSINANTE { get; set; }
         public virtual CATEGORIA_PRODUTO CATEGORIA_PRODUTO { get; set; }

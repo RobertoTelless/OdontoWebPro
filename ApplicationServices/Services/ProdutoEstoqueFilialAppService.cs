@@ -21,9 +21,9 @@ namespace ApplicationServices.Services
             _baseService = baseService;
         }
 
-        public PRODUTO_ESTOQUE_FILIAL CheckExist(PRODUTO_ESTOQUE_FILIAL conta)
+        public PRODUTO_ESTOQUE_FILIAL CheckExist(PRODUTO_ESTOQUE_FILIAL conta, Int32 idAss)
         {
-            PRODUTO_ESTOQUE_FILIAL item = _baseService.CheckExist(conta);
+            PRODUTO_ESTOQUE_FILIAL item = _baseService.CheckExist(conta, idAss);
             return item;
         }
 
@@ -50,7 +50,7 @@ namespace ApplicationServices.Services
             try
             {
                 // Verifica existencia prévia
-                if (_baseService.CheckExist(item) != null)
+                if (_baseService.CheckExist(item, usuario.ASSI_CD_ID) != null)
                 {
                     return 1;
                 }
