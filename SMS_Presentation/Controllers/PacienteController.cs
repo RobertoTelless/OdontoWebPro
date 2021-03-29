@@ -2047,5 +2047,291 @@ namespace Odonto.Controllers
                 return View(vm);
             }
         }
+
+        [HttpGet]
+        public ActionResult EditarPergunta(Int32 id)
+        {
+            // Verifica se tem usuario logado
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            USUARIO usuario = new USUARIO();
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
+
+                // Verfifica permissão
+                if (usuario.PERFIL.PERF_SG_SIGLA == "USU")
+                {
+                    Session["MensPaciente"] = 2;
+                    return RedirectToAction("VoltarAnexoPaciente", "Paciente");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+
+            // Prepara view
+            PACIENTE_ANAMNESE_PERGUNTA item = baseApp.GetPerguntaById(id);
+            PacientePerguntaViewModel vm = Mapper.Map<PACIENTE_ANAMNESE_PERGUNTA, PacientePerguntaViewModel>(item);
+            return View(vm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditarPergunta(PacientePerguntaViewModel vm)
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    // Executa a operação
+                    USUARIO usuario = (USUARIO)Session["UserCredentials"];
+                    PACIENTE_ANAMNESE_PERGUNTA item = Mapper.Map<PacientePerguntaViewModel, PACIENTE_ANAMNESE_PERGUNTA>(vm);
+                    Int32 volta = baseApp.EditPergunta(item);
+
+                    // Verifica retorno
+                    return RedirectToAction("VoltarAnexoPaciente");
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = ex.Message;
+                    return View(vm);
+                }
+            }
+            else
+            {
+                return View(vm);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult ExcluirPergunta(Int32 id)
+        {
+            // Verifica se tem usuario logado
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            USUARIO usuario = new USUARIO();
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
+
+                // Verfifica permissão
+                if (usuario.PERFIL.PERF_SG_SIGLA == "USU")
+                {
+                    Session["MensPaciente"] = 2;
+                    return RedirectToAction("VoltarAnexoPaciente", "Paciente");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            PACIENTE_ANAMNESE_PERGUNTA item = baseApp.GetPerguntaById(id);
+            item.PCAN_IN_ATIVO = 0;
+            Int32 volta = baseApp.EditPergunta(item);
+            return RedirectToAction("VoltarAnexoPaciente");
+        }
+
+        [HttpGet]
+        public ActionResult ReativarPergunta(Int32 id)
+        {
+            // Verifica se tem usuario logado
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            USUARIO usuario = new USUARIO();
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
+
+                // Verfifica permissão
+                if (usuario.PERFIL.PERF_SG_SIGLA == "USU")
+                {
+                    Session["MensPaciente"] = 2;
+                    return RedirectToAction("VoltarAnexoPaciente", "Paciente");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            PACIENTE_ANAMNESE_PERGUNTA item = baseApp.GetPerguntaById(id);
+            item.PCAN_IN_ATIVO = 1;
+            Int32 volta = baseApp.EditPergunta(item);
+            return RedirectToAction("VoltarAnexoPaciente");
+        }
+
+        [HttpGet]
+        public ActionResult IncluirPergunta()
+        {
+            // Verifica se tem usuario logado
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            USUARIO usuario = new USUARIO();
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
+
+                // Verfifica permissão
+                if (usuario.PERFIL.PERF_SG_SIGLA == "USU")
+                {
+                    Session["MensPaciente"] = 2;
+                    return RedirectToAction("VoltarAnexoPaciente", "Paciente");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+
+            // Prepara view
+            PACIENTE pac = baseApp.GetItemById((Int32)Session["IdVolta"]);
+            PACIENTE_ANAMNESE_PERGUNTA item = new PACIENTE_ANAMNESE_PERGUNTA();
+            PacientePerguntaViewModel vm = Mapper.Map<PACIENTE_ANAMNESE_PERGUNTA, PacientePerguntaViewModel>(item);
+            vm.PACI_CD_ID = (Int32)Session["IdVolta"]; ;
+            vm.PCAN_IN_ATIVO = 1;
+            return View(vm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult IncluirPergunta(PacientePerguntaViewModel vm)
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    // Executa a operação
+                    USUARIO usuario = (USUARIO)Session["UserCredentials"];
+                    PACIENTE_ANAMNESE_PERGUNTA item = Mapper.Map<PacientePerguntaViewModel, PACIENTE_ANAMNESE_PERGUNTA>(vm);
+                    Int32 volta = baseApp.CreatePergunta(item);
+
+                    // Verifica retorno
+                    return RedirectToAction("VoltarAnexoPaciente");
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = ex.Message;
+                    return View(vm);
+                }
+            }
+            else
+            {
+                return View(vm);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UploadFileAnamnese(HttpPostedFileBase file)
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            if (file == null)
+            {
+                Session["MensPaciente"] = 4;
+                ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0049", CultureInfo.CurrentCulture));
+                return RedirectToAction("VoltarAnexoPaciente");
+            }
+
+            PACIENTE item = baseApp.GetById((Int32)Session["idVolta"]);
+            USUARIO usu = (USUARIO)Session["UserCredentials"];
+            var fileName = Path.GetFileName(file.FileName);
+            if (fileName.Length > 100)
+            {
+                Session["MensPaciente"] = 5;
+                ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0050", CultureInfo.CurrentCulture));
+                return RedirectToAction("VoltarAnexoPaciente");
+            }
+            String caminho = "/Imagens/" + item.ASSI_CD_ID.ToString() + "/Pacientes/" + item.PACI_CD_ID.ToString() + "/Anamnese/";
+            String path = Path.Combine(Server.MapPath(caminho), fileName);
+            file.SaveAs(path);
+
+            //Recupera tipo de arquivo
+            extensao = Path.GetExtension(fileName);
+            String a = extensao;
+
+            // Gravar registro
+            PACIENTE_ANAMESE_IMAGEM foto = new PACIENTE_ANAMESE_IMAGEM();
+            foto.PCAI_AQ_ARQUIVO = "~" + caminho + fileName;
+            foto.PCAI_DT_DATA = DateTime.Today;
+            foto.PCAI_IN_ATIVO = 1;
+            Int32 tipo = 3;
+            if (extensao.ToUpper() == ".JPG" || extensao.ToUpper() == ".GIF" || extensao.ToUpper() == ".PNG" || extensao.ToUpper() == ".JPEG")
+            {
+                tipo = 1;
+            }
+            if (extensao.ToUpper() == ".MP4" || extensao.ToUpper() == ".AVI" || extensao.ToUpper() == ".MPEG")
+            {
+                tipo = 2;
+            }
+            if (extensao.ToUpper() == ".PDF")
+            {
+                tipo = 3;
+            }
+            foto.PCAI_IN_TIPO = tipo;
+            foto.PCAI_NM_NOME = fileName;
+            foto.PACI_CD_ID = item.PACI_CD_ID;
+
+            item.PACIENTE_ANAMESE_IMAGEM.Add(foto);
+            objetoAntes = item;
+            Int32 volta = baseApp.ValidateEdit(item, objetoAntes);
+            return RedirectToAction("VoltarAnexoPaciente");
+        }
+
+        [HttpGet]
+        public ActionResult VerAnexoAnamnese(Int32 id)
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            // Prepara view
+            PACIENTE_ANAMESE_IMAGEM item = baseApp.GetAnamneseImagemById(id);
+            return View(item);
+        }
+
+        public FileResult DownloadAnamnese(Int32 id)
+        {
+            PACIENTE_ANAMESE_IMAGEM item = baseApp.GetAnamneseImagemById(id);
+            String arquivo = item.PCAI_AQ_ARQUIVO;
+            Int32 pos = arquivo.LastIndexOf("/") + 1;
+            String nomeDownload = arquivo.Substring(pos);
+            String contentType = string.Empty;
+            if (arquivo.Contains(".pdf"))
+            {
+                contentType = "application/pdf";
+            }
+            else if (arquivo.Contains(".jpg"))
+            {
+                contentType = "image/jpg";
+            }
+            else if (arquivo.Contains(".png"))
+            {
+                contentType = "image/png";
+            }
+            return File(arquivo, contentType, nomeDownload);
+        }
     }
 }

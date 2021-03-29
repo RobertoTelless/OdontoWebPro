@@ -17,7 +17,7 @@ namespace DataServices.Repositories
             return query.FirstOrDefault();
         }
 
-        public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItens(Int32 idAss)
+        public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItens()
         {
             IQueryable<MOVIMENTO_ESTOQUE_PRODUTO> query = Db.MOVIMENTO_ESTOQUE_PRODUTO;
             return query.ToList();

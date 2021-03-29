@@ -29,7 +29,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalDesc">Texto da Prescrição ou Recomendação</h5>
+                        <h5 class="modal-title" id="modalDesc">Texto</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -494,34 +494,97 @@
                             <div id="tab-7" class="tab-pane">
                                 <div class="panel-body">
 
-                                    @using (Html.BeginForm("EditarAnamnese", "Paciente", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", @id = "pwd-container1" }))
+                                    @using (Html.BeginForm("EditarPaciente", "Paciente", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", @id = "pwd-container1" }))
                                     {
                                         <div class="row">
                                             <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
-
-
-
-
-
-                                                <div class="col-lg-3 col-md-3 col-xs-12">
-                                                    E-Mail*
-                                                    @Html.TextBoxFor(m => m.PACI_NM_EMAIL, new { @class = "form-control", autofocus = true, id = "email" })
-                                                    @Html.ValidationMessageFor(m => m.PACI_NM_EMAIL, "", new { @style = "color:red" })
-                                                </div>
                                                 <div class="col-lg-2 col-md-2 col-xs-12">
-                                                    Telefone
-                                                    @Html.TextBoxFor(m => m.PACI_NR_TELEFONE, new { @class = "form-control", autofocus = true, id = "tel" })
-                                                    @Html.ValidationMessageFor(m => m.PACI_NR_TELEFONE, "", new { @style = "color:red" })
+                                                    <div class="input-group">
+                                                        Doenças Pré-existentes?
+                                                        <br />
+                                                        @Html.CheckBoxFor(m => m.Doenca, new { @class = "checkbox i-checks", autofocus = true})
+                                                        @Html.ValidationMessageFor(m => m.Doenca, "",new { @style="color:red" })
+                                                    </div>
                                                 </div>
-                                                <div class="col-lg-2 col-md-2 col-xs-12">
-                                                    Celular
-                                                    @Html.TextBoxFor(m => m.PACI_NR_CELULAR, new { @class = "form-control", autofocus = true, id = "cel" })
-                                                    @Html.ValidationMessageFor(m => m.PACI_NR_CELULAR, "", new { @style = "color:red" })
+                                                <div class="col-lg-10 col-md-10 col-xs-12">
+                                                    Quais?
+                                                    @Html.TextAreaFor(m => m.PACI_DS_ALGUMA_DOENCA, new { @class = "form-control", style = "width: 100%; height: 100px;", autofocus = true })
+                                                    @Html.ValidationMessageFor(m => m.PACI_DS_ALGUMA_DOENCA, "", new { @style = "color:red" })
                                                 </div>
+                                            </div>
+                                            <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
                                                 <div class="col-lg-2 col-md-2 col-xs-12">
-                                                    WhatsApp
-                                                    @Html.TextBoxFor(m => m.PACI_NR_WHATSAPP, new { @class = "form-control", autofocus = true, id = "wh" })
-                                                    @Html.ValidationMessageFor(m => m.PACI_NR_WHATSAPP, "", new { @style = "color:red" })
+                                                    <div class="input-group">
+                                                        Alergias medicamentosas?
+                                                        <br />
+                                                        @Html.CheckBoxFor(m => m.Alergia, new { @class = "checkbox i-checks", autofocus = true})
+                                                        @Html.ValidationMessageFor(m => m.Alergia, "",new { @style="color:red" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-10 col-md-10 col-xs-12">
+                                                    Quais?
+                                                    @Html.TextAreaFor(m => m.PACI_DS_ALERGICO_MEDICAMENTO, new { @class = "form-control", style = "width: 100%; height: 100px;", autofocus = true })
+                                                    @Html.ValidationMessageFor(m => m.PACI_DS_ALERGICO_MEDICAMENTO, "", new { @style = "color:red" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+                                                <div class="col-lg-2 col-md-2 col-xs-12">
+                                                    <div class="input-group">
+                                                        Usa Medicamentos?
+                                                        <br />
+                                                        @Html.CheckBoxFor(m => m.Medicamento, new { @class = "checkbox i-checks", autofocus = true})
+                                                        @Html.ValidationMessageFor(m => m.Medicamento, "",new { @style="color:red" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-10 col-md-10 col-xs-12">
+                                                    Quais?
+                                                    @Html.TextAreaFor(m => m.PACI_DS_USO_MEDICAMENTO, new { @class = "form-control", style = "width: 100%; height: 100px;", autofocus = true })
+                                                    @Html.ValidationMessageFor(m => m.PACI_DS_USO_MEDICAMENTO, "", new { @style = "color:red" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+                                                <div class="col-lg-2 col-md-2 col-xs-12">
+                                                    <div class="input-group">
+                                                        Hospitalizações?
+                                                        <br />
+                                                        @Html.CheckBoxFor(m => m.Hospital, new { @class = "checkbox i-checks", autofocus = true})
+                                                        @Html.ValidationMessageFor(m => m.Hospital, "",new { @style="color:red" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-10 col-md-10 col-xs-12">
+                                                    Descreva
+                                                    @Html.TextAreaFor(m => m.PACI_DS_HOSPITALIZADO, new { @class = "form-control", style = "width: 100%; height: 100px;", autofocus = true })
+                                                    @Html.ValidationMessageFor(m => m.PACI_DS_HOSPITALIZADO, "", new { @style = "color:red" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+                                                <div class="col-lg-2 col-md-2 col-xs-12">
+                                                    <div class="input-group">
+                                                        Fumante?
+                                                        <br />
+                                                        @Html.CheckBoxFor(m => m.Fuma, new { @class = "checkbox i-checks", autofocus = true})
+                                                        @Html.ValidationMessageFor(m => m.Fuma, "",new { @style="color:red" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-10 col-md-10 col-xs-12">
+                                                    Quantidade diária
+                                                    @Html.TextAreaFor(m => m.PACI_DS_FUMA, new { @class = "form-control", style = "width: 100%; height: 100px;", autofocus = true })
+                                                    @Html.ValidationMessageFor(m => m.PACI_DS_FUMA, "", new { @style = "color:red" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+                                                <div class="col-lg-2 col-md-2 col-xs-12">
+                                                    <div class="input-group">
+                                                        Consumo Alcool?
+                                                        <br />
+                                                        @Html.CheckBoxFor(m => m.Bebe, new { @class = "checkbox i-checks", autofocus = true})
+                                                        @Html.ValidationMessageFor(m => m.Bebe, "",new { @style="color:red" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-10 col-md-10 col-xs-12">
+                                                    Quantidade diária?
+                                                    @Html.TextAreaFor(m => m.PACI_DS_BEBE, new { @class = "form-control", style = "width: 100%; height: 100px;", autofocus = true })
+                                                    @Html.ValidationMessageFor(m => m.PACI_DS_BEBE, "", new { @style = "color:red" })
                                                 </div>
                                             </div>
                                         </div>
@@ -531,19 +594,114 @@
                                     }
                                     <hr />
                                     <div class="row">
-                                        <div class="form-group">
-
-
-
-
-
-
-
-
-
+                                        <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+                                            <div class="col-lg-12 col-md-12 col-xs-12">
+                                                <h4>Outras Perguntas</h4>
+                                                <br />
+                                                @if (Model.PACIENTE_ANAMNESE_PERGUNTA.Count > 0)
+                                                {
+                                                    <table class="table table-striped table-bordered table-hover dataTables-example">
+                                                        <thead style="background-color:lightsteelblue">
+                                                            <tr>
+                                                                <th>Pergunta</th>
+                                                                <th>Resposta</th>
+                                                                <th class="td-one-action">Ações</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach (var cond in (Model.PACIENTE_ANAMNESE_PERGUNTA))
+                                                            {
+                                                                <tr>
+                                                                    <td>@cond.PCAN_NM_PERGUNTA</td>
+                                                                    <td>@cond.PCAN_NM_RESPOSTA</td>
+                                                                    <td class="td-one-action">
+                                                                        <span style="color: #337ab7; cursor: pointer;" class="tbl-link fa-lg fa fa-info-circle" onclick="mostrarPergunta('@cond.PCAN_NM_RESPOSTA')"></span>
+                                                                        @Html.TableLinkDetails(cond.PCAN_CD_ID, "EditarPergunta", "fa-edit", "Editar Pergunta/Resposta")
+                                                                        @if (cond.PCAN_IN_ATIVO == 1)
+	                                                                    {
+                                                                            <span style="color: #337ab7; cursor:pointer;" alt="Desativar" class="tbl-link fa-lg fa fa-trash-o" onclick="ShowModalExcluir('/Paciente/ExcluirPergunta/@cond.PCAN_CD_ID)" title="Excluir"></span>
+                                                                        }
+                                                                        else
+                                                                        {   
+                                                                            <span style="color: #337ab7; cursor:pointer;" alt="Desativar" class="tbl-link fa-lg fa fa-refresh" onclick="ShowModalReativar('/Paciente/ReativarPergunta/@cond.PCAN_CD_ID)" title="Reativar"></span>
+                                                                        }
+                                                                    </td>
+                                                                </tr>
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                }
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            @Html.ButtonActionSubmit(text: "Confirma Edição de Paciente", htmlAttributes: new { id = "basictoast" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.ButtonLinkIndex(text: "Incluir Nova Pergunta", action: "IncluirPergunta", controller: "Paciente")
+                                    </div>
+                                    <hr />
+                                    <div class="row">
+                                        <hr />
+                                        <div class="col-lg-12 col-md-12 col-xs-12">
+                                            <h4>Imagens da Anamnese</h4>
+                                            <br />
+                                            <div class="form-group">
+                                                @using (Html.BeginForm("UploadFileAnamnese", "Paciente", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { enctype = "multipart/form-data", @id = "pwd-container2" }))
+                                                {
+                                                    <div class="ibox-content">
+                                                        @if (Model.PACIENTE_ANAMESE_IMAGEM.Count > 0)
+                                                        {
+                                                            <table class="table table-striped table-bordered table-hover dataTables-example">
+                                                                <thead style="background-color:lightsteelblue">
+                                                                    <tr>
+                                                                        <th>Nome da Imagem</th>
+                                                                        <th>Data</th>
+                                                                        @*<th>Tipo</th>*@
+                                                                        <th>Formato</th>
+                                                                        <th class="td-one-action">Ações</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach (var cond in (Model.PACIENTE_ANAMESE_IMAGEM))
+                                                                    {
+                                                                        <tr>
+                                                                            <td>@cond.PCAI_NM_NOME</td>
+                                                                            <td>@cond.PCAI_DT_DATA.ToShortDateString()</td>
+                                                                            @*<td>@cond.TIPO_IMAGEM.TPIM_NM_NOME</td>*@
+                                                                            @if (cond.PCAI_IN_TIPO == 1)
+                                                                            {
+                                                                                <td>Imagem</td>
+                                                                            }
+                                                                            else if (cond.PCAI_IN_TIPO == 2)
+                                                                            {
+                                                                                <td>Vídeo</td>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <td>PDF</td>
+                                                                            }                                                                        
+                                                                            <td class="td-one-action">
+                                                                                @if (cond.PCAI_IN_TIPO == 1 || cond.PCAI_IN_TIPO == 2)
+                                                                                {
+                                                                                    @Html.TableLinkDetails(cond.PCAI_CD_ID, "VerAnexoAnamnese", "fa-camera", "Visualizar")
+                                                                                }
+                                                                                @if (cond.PCAI_CD_ID == 3)
+                                                                                {
+                                                                                    <a title="Visualizar" class="fa fa-camera fa-lg" href="~/PdfViewer/web/viewer.html?file=@(cond.PCAI_AQ_ARQUIVO.Replace("~", ""))&ReturnUrl=@Request.Url.AbsolutePath"></a>
+                                                                                }
+                                                                                @Html.TableLinkDetails(cond.PCAI_CD_ID, "DownloadAnamnese", "fa-download", "Download")
+                                                                            </td>
+                                                                        </tr>
+                                                                    }
+                                                                </tbody>
+                                                            </table>
+                                                        }
+                                                        <input type="file" name="file" id="file" class="btn btn-sm btn-warning" />
+                                                        <br />
+                                                        <div class="form-group">
+                                                            <input type="submit" value="Incluir Imagem da Anamnese" class="btn btn-sm btn-success" />
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -726,6 +884,14 @@
             $('#modalDesc').modal('show');
         }
     </script>
+
+    <script>
+        function mostrarPergunta(desc) {
+            $('#modalDescBody').html(desc);
+            $('#modalDesc').modal('show');
+        }
+    </script>
+
 
     <script>
         $(function () {

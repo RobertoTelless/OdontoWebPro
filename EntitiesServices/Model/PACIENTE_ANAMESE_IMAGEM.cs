@@ -23,6 +23,7 @@ namespace EntitiesServices.Model
         public string PCAI_AQ_ARQUIVO { get; set; }
         public int PCAI_IN_ATIVO { get; set; }
         public int PCAI_IN_ASSINATURA { get; set; }
+        public int PCAI_IN_TIPO { get; set; }
     
         public virtual PACIENTE PACIENTE { get; set; }
         public virtual TIPO_IMAGEM TIPO_IMAGEM { get; set; }

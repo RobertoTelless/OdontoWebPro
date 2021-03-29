@@ -211,7 +211,7 @@ namespace Odonto.Controllers
                 Int32 idAss = (Int32)Session["IdAssinante"];
                 List<MOVIMENTO_ESTOQUE_PRODUTO> listaObj = new List<MOVIMENTO_ESTOQUE_PRODUTO>();
                 Session["FiltroConsumo"] = item;
-                Int32 volta = movApp.ExecuteFilter(null, item.PRODUTO.PROD_NM_NOME, null, null, item.MOEP_DT_MOVIMENTO, idAss, out listaObj);
+                Int32 volta = movApp.ExecuteFilter(null, null, item.PRODUTO.PROD_NM_NOME, null, null, item.MOEP_DT_MOVIMENTO, idAss, out listaObj);
 
                 // Verifica retorno
                 if (volta == 1)
@@ -303,7 +303,6 @@ namespace Odonto.Controllers
             ViewBag.Title = "Produtos";
             ViewBag.Tipos = new SelectList(prodApp.GetAllTipos(idAss), "CAPR_CD_ID", "CAPR_NM_NOME");
             ViewBag.Subs = new SelectList(prodApp.GetAllSubs(idAss), "SUPR_CD_ID", "SUPR_NM_NOME");
-            ViewBag.Filiais = new SelectList(filApp.GetAllItens(idAss), "FILI_CD_ID", "FILI_NM_NOME");
             ViewBag.Unidades = new SelectList(unApp.GetAllItens(idAss), "UNID_CD_ID", "UNID_NM_NOME");
             ViewBag.PerfilUsu = usuario.PERF_CD_ID;
             ViewBag.Produtos = listaMaster.Count;
@@ -316,7 +315,7 @@ namespace Odonto.Controllers
             {
                 idFilial = usuario.FILI_CD_ID;
             }
-            List<PRODUTO_ESTOQUE_FILIAL> listaBase = prodApp.RecuperarQuantidadesFiliais(idFilial);
+            List<PRODUTO_ESTOQUE_FILIAL> listaBase = prodApp.RecuperarQuantidadesFiliais(idFilial, idAss);
             List<PRODUTO_ESTOQUE_FILIAL> pontoPedido = listaBase.Where(x => x.PREF_QN_ESTOQUE < x.PRODUTO.PROD_QN_QUANTIDADE_MINIMA).ToList();
             List<PRODUTO_ESTOQUE_FILIAL> estoqueZerado = listaBase.Where(x => x.PREF_QN_ESTOQUE == 0).ToList();
             List<PRODUTO_ESTOQUE_FILIAL> estoqueNegativo = listaBase.Where(x => x.PREF_QN_ESTOQUE < 0).ToList();
@@ -591,9 +590,8 @@ namespace Odonto.Controllers
             // Prepara listas
             ViewBag.Tipos = new SelectList(prodApp.GetAllItens(idAss), "CAPR_CD_ID", "CAPR_NM_NOME");
             ViewBag.Subs = new SelectList(prodApp.GetAllSubs(idAss), "SUPR_CD_ID", "SUPR_NM_NOME");
-            ViewBag.Filiais = new SelectList(filApp.GetAllItens(idAss), "FILI_CD_ID", "FILI_NM_NOME");
             ViewBag.Unidades = new SelectList(unApp.GetAllItens(idAss), "UNID_CD_ID", "UNID_NM_NOME");
-            ViewBag.Origens = new SelectList(prodApp.GetAllOrigens(), "PROR_CD_ID", "PROR_NM_NOME");
+            ViewBag.Origens = new SelectList(prodApp.GetAllOrigens(idAss), "PROR_CD_ID", "PROR_NM_NOME");
             List<SelectListItem> tipoEmbalagem = new List<SelectListItem>();
             tipoEmbalagem.Add(new SelectListItem() { Text = "Envelope", Value = "1" });
             tipoEmbalagem.Add(new SelectListItem() { Text = "Caixa", Value = "2" });
@@ -621,9 +619,8 @@ namespace Odonto.Controllers
             Int32 idAss = (Int32)Session["IdAssinante"];
             ViewBag.Tipos = new SelectList(prodApp.GetAllItens(idAss), "CAPR_CD_ID", "CAPR_NM_NOME");
             ViewBag.Subs = new SelectList(prodApp.GetAllSubs(idAss), "SUPR_CD_ID", "SUPR_NM_NOME");
-            ViewBag.Filiais = new SelectList(filApp.GetAllItens(idAss), "FILI_CD_ID", "FILI_NM_NOME");
             ViewBag.Unidades = new SelectList(unApp.GetAllItens(idAss), "UNID_CD_ID", "UNID_NM_NOME");
-            ViewBag.Origens = new SelectList(prodApp.GetAllOrigens(), "PROR_CD_ID", "PROR_NM_NOME");
+            ViewBag.Origens = new SelectList(prodApp.GetAllOrigens(idAss), "PROR_CD_ID", "PROR_NM_NOME");
             List<SelectListItem> tipoEmbalagem = new List<SelectListItem>();
             tipoEmbalagem.Add(new SelectListItem() { Text = "Envelope", Value = "1" });
             tipoEmbalagem.Add(new SelectListItem() { Text = "Caixa", Value = "2" });
@@ -719,9 +716,8 @@ namespace Odonto.Controllers
             PRODUTO item = prodApp.GetItemById(id);
             ViewBag.Tipos = new SelectList(prodApp.GetAllItens(idAss), "CAPR_CD_ID", "CAPR_NM_NOME");
             ViewBag.Subs = new SelectList(prodApp.GetAllSubs(idAss), "SUPR_CD_ID", "SUPR_NM_NOME");
-            ViewBag.Filiais = new SelectList(filApp.GetAllItens(idAss), "FILI_CD_ID", "FILI_NM_NOME");
             ViewBag.Unidades = new SelectList(unApp.GetAllItens(idAss), "UNID_CD_ID", "UNID_NM_NOME");
-            ViewBag.Origens = new SelectList(prodApp.GetAllOrigens(), "PROR_CD_ID", "PROR_NM_NOME");
+            ViewBag.Origens = new SelectList(prodApp.GetAllOrigens(idAss), "PROR_CD_ID", "PROR_NM_NOME");
             List<SelectListItem> tipoEmbalagem = new List<SelectListItem>();
             tipoEmbalagem.Add(new SelectListItem() { Text = "Envelope", Value = "1" });
             tipoEmbalagem.Add(new SelectListItem() { Text = "Caixa", Value = "2" });
@@ -790,9 +786,8 @@ namespace Odonto.Controllers
             Int32 idAss = (Int32)Session["IdAssinante"];
             ViewBag.Tipos = new SelectList(prodApp.GetAllItens(idAss), "CAPR_CD_ID", "CAPR_NM_NOME");
             ViewBag.Subs = new SelectList(prodApp.GetAllSubs(idAss), "SUPR_CD_ID", "SUPR_NM_NOME");
-            ViewBag.Filiais = new SelectList(filApp.GetAllItens(idAss), "FILI_CD_ID", "FILI_NM_NOME");
             ViewBag.Unidades = new SelectList(unApp.GetAllItens(idAss), "UNID_CD_ID", "UNID_NM_NOME");
-            ViewBag.Origens = new SelectList(prodApp.GetAllOrigens(), "PROR_CD_ID", "PROR_NM_NOME");
+            ViewBag.Origens = new SelectList(prodApp.GetAllOrigens(idAss), "PROR_CD_ID", "PROR_NM_NOME");
             List<SelectListItem> tipoEmbalagem = new List<SelectListItem>();
             tipoEmbalagem.Add(new SelectListItem() { Text = "Envelope", Value = "1" });
             tipoEmbalagem.Add(new SelectListItem() { Text = "Caixa", Value = "2" });
@@ -848,9 +843,8 @@ namespace Odonto.Controllers
             PRODUTO item = prodApp.GetItemById(id);
             ViewBag.Tipos = new SelectList(prodApp.GetAllItens(idAss), "CAPR_CD_ID", "CAPR_NM_NOME");
             ViewBag.Subs = new SelectList(prodApp.GetAllSubs(idAss), "SUPR_CD_ID", "SUPR_NM_NOME");
-            ViewBag.Filiais = new SelectList(filApp.GetAllItens(idAss), "FILI_CD_ID", "FILI_NM_NOME");
             ViewBag.Unidades = new SelectList(unApp.GetAllItens(idAss), "UNID_CD_ID", "UNID_NM_NOME");
-            ViewBag.Origens = new SelectList(prodApp.GetAllOrigens(), "PROR_CD_ID", "PROR_NM_NOME");
+            ViewBag.Origens = new SelectList(prodApp.GetAllOrigens(idAss), "PROR_CD_ID", "PROR_NM_NOME");
             List<SelectListItem> tipoEmbalagem = new List<SelectListItem>();
             tipoEmbalagem.Add(new SelectListItem() { Text = "Envelope", Value = "1" });
             tipoEmbalagem.Add(new SelectListItem() { Text = "Caixa", Value = "2" });

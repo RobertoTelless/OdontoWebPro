@@ -373,6 +373,7 @@
     <Compile Include="ViewModels\ContaBancariaLancamentoViewModel.cs" />
     <Compile Include="ViewModels\ContaBancariaViewModel.cs" />
     <Compile Include="ViewModels\FornecedorContatoViewModel.cs" />
+    <Compile Include="ViewModels\PacientePerguntaViewModel.cs" />
     <Compile Include="ViewModels\PacienteRecomendacaoViewModel.cs" />
     <Compile Include="ViewModels\PacientePrescricaoViewModel.cs" />
     <Compile Include="ViewModels\PacienteAcompanhamentoViewModel.cs" />
@@ -3118,6 +3119,9 @@
     <Content Include="Views\Produto\VerProdutosEstoqueZerado.cshtml" />
     <Content Include="Views\Produto\EditarProdutoFornecedor.cshtml" />
     <Content Include="Views\Produto\IncluirProdutoFornecedor.cshtml" />
+    <Content Include="Views\Paciente\EditarPergunta.cshtml" />
+    <Content Include="Views\Paciente\IncluirPergunta.cshtml" />
+    <Content Include="Views\Paciente\VerAnexoAnamnese.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3132,6 +3136,7 @@
     <Folder Include="Imagens\1\Notificacao\1\Anexos\" />
     <Folder Include="Imagens\1\Notificacao\4\Anexos\" />
     <Folder Include="Imagens\1\Notificacao\5\Anexos\" />
+    <Folder Include="Imagens\1\Pacientes\1\Anamnese\" />
     <Folder Include="Imagens\1\Pacientes\1\Anexos\" />
     <Folder Include="Imagens\1\Pacientes\1\Imagens\" />
     <Folder Include="Imagens\1\Produto\1\Anexos\" />

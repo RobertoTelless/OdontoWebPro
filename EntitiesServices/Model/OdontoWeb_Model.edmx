@@ -671,6 +671,7 @@
           <Property Name="PCAI_AQ_ARQUIVO" Type="varchar" MaxLength="250" />
           <Property Name="PCAI_IN_ATIVO" Type="int" Nullable="false" />
           <Property Name="PCAI_IN_ASSINATURA" Type="int" Nullable="false" />
+          <Property Name="PCAI_IN_TIPO" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PACIENTE_ANAMNESE_PERGUNTA">
           <Key>
@@ -7730,6 +7731,7 @@
           <Property Name="PCAI_IN_ASSINATURA" Type="Int32" Nullable="false" />
           <NavigationProperty Name="PACIENTE" Relationship="Odonto_DBModel.FK_PACIENTE_ANAMESE_IMAGEM_PACIENTE" FromRole="PACIENTE_ANAMESE_IMAGEM" ToRole="PACIENTE" />
           <NavigationProperty Name="TIPO_IMAGEM" Relationship="Odonto_DBModel.FK_PACIENTE_ANAMESE_IMAGEM_TIPO_IMAGEM" FromRole="PACIENTE_ANAMESE_IMAGEM" ToRole="TIPO_IMAGEM" />
+          <Property Name="PCAI_IN_TIPO" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="PACIENTE_ANAMNESE_PERGUNTA">
           <Key>
@@ -9118,6 +9120,7 @@
           <EntitySetMapping Name="PACIENTE_ANAMESE_IMAGEM">
             <EntityTypeMapping TypeName="Odonto_DBModel.PACIENTE_ANAMESE_IMAGEM">
               <MappingFragment StoreEntitySet="PACIENTE_ANAMESE_IMAGEM">
+                <ScalarProperty Name="PCAI_IN_TIPO" ColumnName="PCAI_IN_TIPO" />
                 <ScalarProperty Name="PCAI_IN_ASSINATURA" ColumnName="PCAI_IN_ASSINATURA" />
                 <ScalarProperty Name="PCAI_IN_ATIVO" ColumnName="PCAI_IN_ATIVO" />
                 <ScalarProperty Name="PCAI_AQ_ARQUIVO" ColumnName="PCAI_AQ_ARQUIVO" />

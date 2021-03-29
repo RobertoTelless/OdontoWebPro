@@ -57,6 +57,120 @@ namespace OdontoWeb.ViewModels
         [DataType(DataType.Date, ErrorMessage = "DATA DE NASCIMENTO Deve ser uma data válida")]
         public Nullable<System.DateTime> PACI_DT_NASCIMENTO { get; set; }
         public string PACI_TX_OBSERVACOES { get; set; }
+        public Nullable<int> PACI_IN_ALGUMA_DOENCA { get; set; }
+        [StringLength(500, ErrorMessage = "DOENÇAS PRÉ-EXISTENTES deve ter no máximo 500 caracteres.")]
+        public string PACI_DS_ALGUMA_DOENCA { get; set; }
+        public Nullable<int> PACI_IN_ALERGICO_MEDICAMENTO { get; set; }
+        [StringLength(500, ErrorMessage = "ALERGIAS MEDICAMENTOSAS deve ter no máximo 500 caracteres.")]
+        public string PACI_DS_ALERGICO_MEDICAMENTO { get; set; }
+        public Nullable<int> PACI_IN_USO_MEDICAMENTO { get; set; }
+        [StringLength(500, ErrorMessage = "MEDICAMENTOS EM USO deve ter no máximo 500 caracteres.")]
+        public string PACI_DS_USO_MEDICAMENTO { get; set; }
+        public Nullable<int> PACI_IN_HOSPITALIZADO { get; set; }
+        [StringLength(500, ErrorMessage = "HOSPITALIZAÇÕES deve ter no máximo 500 caracteres.")]
+        public string PACI_DS_HOSPITALIZADO { get; set; }
+        public Nullable<int> PACI_IN_FUMA { get; set; }
+        [StringLength(500, ErrorMessage = "FUMANTE deve ter no máximo 500 caracteres.")]
+        public string PACI_DS_FUMA { get; set; }
+        public Nullable<int> PACI_IN_BEBE { get; set; }
+        [StringLength(500, ErrorMessage = "CONSUMO ALCOÓLICO deve ter no máximo 500 caracteres.")]
+        public string PACI_DS_BEBE { get; set; }
+
+        public bool Doenca
+        {
+            get
+            {
+                if (PACI_IN_ALGUMA_DOENCA == 1)
+                {
+                    return true;
+                }
+                return false;
+            }
+            set
+            {
+                PACI_IN_ALGUMA_DOENCA = (value == true) ? 1 : 0;
+            }
+        }
+
+        public bool Alergia
+        {
+            get
+            {
+                if (PACI_IN_ALERGICO_MEDICAMENTO == 1)
+                {
+                    return true;
+                }
+                return false;
+            }
+            set
+            {
+                PACI_IN_ALERGICO_MEDICAMENTO = (value == true) ? 1 : 0;
+            }
+        }
+
+        public bool Medicamento
+        {
+            get
+            {
+                if (PACI_IN_USO_MEDICAMENTO == 1)
+                {
+                    return true;
+                }
+                return false;
+            }
+            set
+            {
+                PACI_IN_USO_MEDICAMENTO = (value == true) ? 1 : 0;
+            }
+        }
+
+        public bool Hospital
+        {
+            get
+            {
+                if (PACI_IN_HOSPITALIZADO == 1)
+                {
+                    return true;
+                }
+                return false;
+            }
+            set
+            {
+                PACI_IN_HOSPITALIZADO = (value == true) ? 1 : 0;
+            }
+        }
+
+        public bool Fuma
+        {
+            get
+            {
+                if (PACI_IN_FUMA == 1)
+                {
+                    return true;
+                }
+                return false;
+            }
+            set
+            {
+                PACI_IN_FUMA = (value == true) ? 1 : 0;
+            }
+        }
+
+        public bool Bebe
+        {
+            get
+            {
+                if (PACI_IN_BEBE == 1)
+                {
+                    return true;
+                }
+                return false;
+            }
+            set
+            {
+                PACI_IN_BEBE = (value == true) ? 1 : 0;
+            }
+        }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ANAMNESE> ANAMNESE { get; set; }
@@ -74,6 +188,10 @@ namespace OdontoWeb.ViewModels
         public virtual ICollection<PACIENTE_PRESCRICAO> PACIENTE_PRESCRICAO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PACIENTE_RECOMENDACAO> PACIENTE_RECOMENDACAO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PACIENTE_ANAMESE_IMAGEM> PACIENTE_ANAMESE_IMAGEM { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PACIENTE_ANAMNESE_PERGUNTA> PACIENTE_ANAMNESE_PERGUNTA { get; set; }
 
     }
 }

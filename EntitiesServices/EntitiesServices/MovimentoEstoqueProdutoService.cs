@@ -133,5 +133,18 @@ namespace ModelServices.EntitiesServices
                 }
             }
         }
+
+        public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItensUserDataMes(Int32 idUsu, DateTime data, Int32? idAss)
+        {
+            List<MOVIMENTO_ESTOQUE_PRODUTO> lista = _baseRepository.GetAllItensUserDataMes(idUsu, data, idAss);
+            return lista;
+        }
+
+        public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItensUserDataDia(Int32 idUsu, DateTime data, Int32? idAss)
+        {
+            List<MOVIMENTO_ESTOQUE_PRODUTO> lista = _baseRepository.GetAllItensUserDataDia(idUsu, data, idAss);
+            return lista;
+        }
+
     }
 }

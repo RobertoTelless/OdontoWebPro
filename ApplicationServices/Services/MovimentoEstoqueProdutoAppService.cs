@@ -271,5 +271,18 @@ namespace ApplicationServices.Services
                 throw;
             }
         }
+
+        public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItensUserDataMes(Int32 idUsu, DateTime data, Int32? idAss)
+        {
+            List<MOVIMENTO_ESTOQUE_PRODUTO> lista = _baseService.GetAllItensUserDataMes(idUsu, data, idAss);
+            return lista;
+        }
+
+        public List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItensUserDataDia(Int32 idUsu, DateTime data, Int32? idAss)
+        {
+            List<MOVIMENTO_ESTOQUE_PRODUTO> lista = _baseService.GetAllItensUserDataDia(idUsu, data, idAss);
+            return lista;
+        }
+
     }
 }

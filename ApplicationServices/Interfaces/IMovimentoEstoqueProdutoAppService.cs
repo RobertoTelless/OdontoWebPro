@@ -22,6 +22,8 @@ namespace ApplicationServices.Interfaces
         List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItensSaida(Int32 idAss);
         Int32 ExecuteFilter(Int32? catId, Int32? subCatId, String nome, String barcode, Int32? filiId, DateTime? dtMov, Int32 idAss, out List<MOVIMENTO_ESTOQUE_PRODUTO> objeto);
         Int32 ExecuteFilterAvulso(Int32? operacao, Int32? tipoMovimento, DateTime? dtInicial, DateTime? dtFinal, Int32? filial, Int32? prod, Int32 idAss, out List<MOVIMENTO_ESTOQUE_PRODUTO> objeto);
+        List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItensUserDataMes(Int32 idusu, DateTime data, Int32? idAss);
+        List<MOVIMENTO_ESTOQUE_PRODUTO> GetAllItensUserDataDia(Int32 idusu, DateTime data, Int32? idAss);
 
     }
 }
