@@ -212,6 +212,8 @@ namespace Presentation.Start
             kernel.Bind<IProdutoOrigemRepository>().To<ProdutoOrigemRepository>();
             kernel.Bind<IProdutoTabelaPrecoRepository>().To<ProdutoTabelaPrecoRepository>();
             kernel.Bind<ITipoImagemRepository>().To<TipoImagemRepository>();
+            kernel.Bind<IPacientePerguntaRepository>().To<PacientePerguntaRepository>();
+            kernel.Bind<IPacienteAnamneseImagemRepository>().To<PacienteAnamneseImagemRepository>();
 
         }
     }

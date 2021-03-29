@@ -298,7 +298,7 @@ namespace Odonto.Controllers
             List<SelectListItem> sexo = new List<SelectListItem>();
             sexo.Add(new SelectListItem() { Text = "Masculino", Value = "1" });
             sexo.Add(new SelectListItem() { Text = "Feminino", Value = "2" });
-            ViewBag.Sexos = new SelectList(sexo, "Value", "Text");
+            ViewBag.Sexo = new SelectList(sexo, "Value", "Text");
             if (ModelState.IsValid)
             {
                 try
@@ -329,12 +329,14 @@ namespace Odonto.Controllers
                     Directory.CreateDirectory(Server.MapPath(caminho));
                     caminho = "/Imagens/" + idAss.ToString() + "/Pacientes/" + item.PACI_CD_ID.ToString() + "/Imagens/";
                     Directory.CreateDirectory(Server.MapPath(caminho));
+                    caminho = "/Imagens/" + idAss.ToString() + "/Pacientes/" + item.PACI_CD_ID.ToString() + "/Anamnese/";
+                    Directory.CreateDirectory(Server.MapPath(caminho));
 
                     // Sucesso
                     listaMaster = new List<PACIENTE>();
                     Session["ListaPaciente"] = null;
-                    Session["Pacientes"] = baseApp.GetAllItens(idAss);
-                    return RedirectToAction("MontarTelaPaciente");
+                    //Session["Pacientes"] = baseApp.GetAllItens(idAss);
+                    return RedirectToAction("EditarPaciente");
                 }
                 catch (Exception ex)
                 {
@@ -449,7 +451,7 @@ namespace Odonto.Controllers
             List<SelectListItem> sexo = new List<SelectListItem>();
             sexo.Add(new SelectListItem() { Text = "Masculino", Value = "1" });
             sexo.Add(new SelectListItem() { Text = "Feminino", Value = "2" });
-            ViewBag.Sexos = new SelectList(sexo, "Value", "Text");
+            ViewBag.Sexo = new SelectList(sexo, "Value", "Text");
             if (ModelState.IsValid)
             {
                 try
@@ -2292,6 +2294,7 @@ namespace Odonto.Controllers
             }
             foto.PCAI_IN_TIPO = tipo;
             foto.PCAI_NM_NOME = fileName;
+            foto.TPIM_CD_ID = 1;
             foto.PACI_CD_ID = item.PACI_CD_ID;
 
             item.PACIENTE_ANAMESE_IMAGEM.Add(foto);

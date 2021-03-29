@@ -139,6 +139,18 @@
                                                     @Html.HiddenFor(m => m.PACI_TX_OBSERVACOES)
                                                     @Html.HiddenFor(m => m.UF_CD_ID)
                                                     @Html.HiddenFor(m => m.PACI_VL_SALDO_FINANCEIRO)
+                                                    @Html.HiddenFor(m => m.PACI_IN_ALERGICO_MEDICAMENTO)
+                                                    @Html.HiddenFor(m => m.PACI_IN_ALGUMA_DOENCA)
+                                                    @Html.HiddenFor(m => m.PACI_IN_BEBE)
+                                                    @Html.HiddenFor(m => m.PACI_IN_FUMA)
+                                                    @Html.HiddenFor(m => m.PACI_IN_HOSPITALIZADO)
+                                                    @Html.HiddenFor(m => m.PACI_IN_USO_MEDICAMENTO)
+                                                    @Html.HiddenFor(m => m.PACI_DS_ALERGICO_MEDICAMENTO)
+                                                    @Html.HiddenFor(m => m.PACI_DS_ALGUMA_DOENCA)
+                                                    @Html.HiddenFor(m => m.PACI_DS_BEBE)
+                                                    @Html.HiddenFor(m => m.PACI_DS_FUMA)
+                                                    @Html.HiddenFor(m => m.PACI_DS_HOSPITALIZADO)
+                                                    @Html.HiddenFor(m => m.PACI_DS_USO_MEDICAMENTO)
                                                     @if (!String.IsNullOrEmpty(Model.PACI_AQ_FOTO))
                                                     {
                                                         <img src="@Url.Content(Model.PACI_AQ_FOTO)" style="width: auto; height: auto; max-height: 110px; max-width: 90px;">
@@ -289,7 +301,7 @@
                                                                                 }
                                                                                 @if (cond.PAAN_IN_TIPO == 3)
                                                                                 {
-                                                                                    <a title="Visualizar" class="fa fa-camera fa-lg" href="~/PdfViewer/web/viewer.html?file=@(cond.PAAN_AQ_ARQUIVO.Replace("~", ""))&ReturnUrl=@Request.Url.AbsolutePath"></a>
+                                                                                    <a title="Visualizar" class="fa fa-camera fa-lg" href="~/PdfViewer/web/viewer.html?file=@(cond.PAAN_AQ_ARQUIVO.Replace("~", ""))&ReturnUrl=@Request.Url.AbsolutePath" target="_blank" ></a>
                                                                                 }
                                                                                 @Html.TableLinkDetails(cond.PAAN_CD_ID, "DownloadPaciente", "fa-download", "Download")
                                                                             </td>
@@ -341,6 +353,18 @@
                                                     @Html.HiddenFor(m => m.FILI_CD_ID)
                                                     @Html.TextBoxFor(m => m.PACI_NR_CEP, new { @class = "form-control", autofocus = true, @id = "cep" })
                                                     @Html.ValidationMessageFor(m => m.PACI_NR_CEP, "", new { @style = "color:red" })
+                                                    @Html.HiddenFor(m => m.PACI_IN_ALERGICO_MEDICAMENTO)
+                                                    @Html.HiddenFor(m => m.PACI_IN_ALGUMA_DOENCA)
+                                                    @Html.HiddenFor(m => m.PACI_IN_BEBE)
+                                                    @Html.HiddenFor(m => m.PACI_IN_FUMA)
+                                                    @Html.HiddenFor(m => m.PACI_IN_HOSPITALIZADO)
+                                                    @Html.HiddenFor(m => m.PACI_IN_USO_MEDICAMENTO)
+                                                    @Html.HiddenFor(m => m.PACI_DS_ALERGICO_MEDICAMENTO)
+                                                    @Html.HiddenFor(m => m.PACI_DS_ALGUMA_DOENCA)
+                                                    @Html.HiddenFor(m => m.PACI_DS_BEBE)
+                                                    @Html.HiddenFor(m => m.PACI_DS_FUMA)
+                                                    @Html.HiddenFor(m => m.PACI_DS_HOSPITALIZADO)
+                                                    @Html.HiddenFor(m => m.PACI_DS_USO_MEDICAMENTO)
                                                 </div>
                                                 <div class="col-lg-2 col-md-2 col-xs-12">
                                                     <span class="btn btn-warning btn-sm" style="margin-bottom: -45px;" id="btnBuscaCep" onclick="PesquisaCep($('#cep').val(), $(this), 1)">Buscar CEP</span>
@@ -406,6 +430,18 @@
                                                     @Html.HiddenFor(m => m.CAPA_CD_ID)
                                                     @Html.HiddenFor(m => m.FILI_CD_ID)
                                                     @Html.HiddenFor(m => m.UF_CD_ID)
+                                                    @Html.HiddenFor(m => m.PACI_IN_ALERGICO_MEDICAMENTO)
+                                                    @Html.HiddenFor(m => m.PACI_IN_ALGUMA_DOENCA)
+                                                    @Html.HiddenFor(m => m.PACI_IN_BEBE)
+                                                    @Html.HiddenFor(m => m.PACI_IN_FUMA)
+                                                    @Html.HiddenFor(m => m.PACI_IN_HOSPITALIZADO)
+                                                    @Html.HiddenFor(m => m.PACI_IN_USO_MEDICAMENTO)
+                                                    @Html.HiddenFor(m => m.PACI_DS_ALERGICO_MEDICAMENTO)
+                                                    @Html.HiddenFor(m => m.PACI_DS_ALGUMA_DOENCA)
+                                                    @Html.HiddenFor(m => m.PACI_DS_BEBE)
+                                                    @Html.HiddenFor(m => m.PACI_DS_FUMA)
+                                                    @Html.HiddenFor(m => m.PACI_DS_HOSPITALIZADO)
+                                                    @Html.HiddenFor(m => m.PACI_DS_USO_MEDICAMENTO)
                                                     E-Mail*
                                                     @Html.TextBoxFor(m => m.PACI_NM_EMAIL, new { @class = "form-control", autofocus = true, id = "email" })
                                                     @Html.ValidationMessageFor(m => m.PACI_NM_EMAIL, "", new { @style = "color:red" })
@@ -465,6 +501,18 @@
                                                     @Html.HiddenFor(m => m.PACI_NR_WHATSAPP)
                                                     @Html.HiddenFor(m => m.PACI_VL_SALDO_FINANCEIRO)
                                                     @Html.HiddenFor(m => m.UF_CD_ID)
+                                                    @Html.HiddenFor(m => m.PACI_IN_ALERGICO_MEDICAMENTO)
+                                                    @Html.HiddenFor(m => m.PACI_IN_ALGUMA_DOENCA)
+                                                    @Html.HiddenFor(m => m.PACI_IN_BEBE)
+                                                    @Html.HiddenFor(m => m.PACI_IN_FUMA)
+                                                    @Html.HiddenFor(m => m.PACI_IN_HOSPITALIZADO)
+                                                    @Html.HiddenFor(m => m.PACI_IN_USO_MEDICAMENTO)
+                                                    @Html.HiddenFor(m => m.PACI_DS_ALERGICO_MEDICAMENTO)
+                                                    @Html.HiddenFor(m => m.PACI_DS_ALGUMA_DOENCA)
+                                                    @Html.HiddenFor(m => m.PACI_DS_BEBE)
+                                                    @Html.HiddenFor(m => m.PACI_DS_FUMA)
+                                                    @Html.HiddenFor(m => m.PACI_DS_HOSPITALIZADO)
+                                                    @Html.HiddenFor(m => m.PACI_DS_USO_MEDICAMENTO)
                                                     Observações
                                                     @Html.TextAreaFor(m => m.PACI_TX_OBSERVACOES, new { @class = "form-control", style = "width: 100%; height: 400px;", autofocus = true })
                                                     @Html.ValidationMessageFor(m => m.PACI_TX_OBSERVACOES, "", new { @style = "color:red" })
@@ -499,6 +547,30 @@
                                         <div class="row">
                                             <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
                                                 <div class="col-lg-2 col-md-2 col-xs-12">
+                                                    @Html.HiddenFor(m => m.ASSI_CD_ID)
+                                                    @Html.HiddenFor(m => m.CAPA_CD_ID)
+                                                    @Html.HiddenFor(m => m.FILI_CD_ID)
+                                                    @Html.HiddenFor(m => m.PACI_AQ_FOTO)
+                                                    @Html.HiddenFor(m => m.PACI_CD_ID)
+                                                    @Html.HiddenFor(m => m.PACI_DT_CADASTRO)
+                                                    @Html.HiddenFor(m => m.PACI_DT_NASCIMENTO)
+                                                    @Html.HiddenFor(m => m.PACI_IN_ATIVO)
+                                                    @Html.HiddenFor(m => m.PACI_IN_SEXO)
+                                                    @Html.HiddenFor(m => m.PACI_NM_BAIRRO)
+                                                    @Html.HiddenFor(m => m.PACI_NM_CIDADE)
+                                                    @Html.HiddenFor(m => m.PACI_NM_EMAIL)
+                                                    @Html.HiddenFor(m => m.PACI_NM_ENDERECO)
+                                                    @Html.HiddenFor(m => m.PACI_NM_NOME)
+                                                    @Html.HiddenFor(m => m.PACI_NR_CELULAR)
+                                                    @Html.HiddenFor(m => m.PACI_NR_CEP)
+                                                    @Html.HiddenFor(m => m.PACI_NR_CPF)
+                                                    @Html.HiddenFor(m => m.PACI_NR_PRONTUARIO)
+                                                    @Html.HiddenFor(m => m.PACI_NR_RG)
+                                                    @Html.HiddenFor(m => m.PACI_NR_TELEFONE)
+                                                    @Html.HiddenFor(m => m.PACI_NR_WHATSAPP)
+                                                    @Html.HiddenFor(m => m.PACI_VL_SALDO_FINANCEIRO)
+                                                    @Html.HiddenFor(m => m.UF_CD_ID)
+                                                    @Html.HiddenFor(m => m.PACI_TX_OBSERVACOES)
                                                     <div class="input-group">
                                                         Doenças Pré-existentes?
                                                         <br />
@@ -683,9 +755,9 @@
                                                                                 {
                                                                                     @Html.TableLinkDetails(cond.PCAI_CD_ID, "VerAnexoAnamnese", "fa-camera", "Visualizar")
                                                                                 }
-                                                                                @if (cond.PCAI_CD_ID == 3)
+                                                                                @if (cond.PCAI_IN_TIPO == 3)
                                                                                 {
-                                                                                    <a title="Visualizar" class="fa fa-camera fa-lg" href="~/PdfViewer/web/viewer.html?file=@(cond.PCAI_AQ_ARQUIVO.Replace("~", ""))&ReturnUrl=@Request.Url.AbsolutePath"></a>
+                                                                                    <a title="Visualizar" class="fa fa-camera fa-lg" href="~/PdfViewer/web/viewer.html?file=@(cond.PCAI_AQ_ARQUIVO.Replace("~", ""))&ReturnUrl=@Request.Url.AbsolutePath" target="_blank" ></a>
                                                                                 }
                                                                                 @Html.TableLinkDetails(cond.PCAI_CD_ID, "DownloadAnamnese", "fa-download", "Download")
                                                                             </td>

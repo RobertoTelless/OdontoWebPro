@@ -746,6 +746,8 @@
     <Content Include="Imagens\1\Noticias\6\Fotos\WhatsApp Image 2020-09-01 at 17.03.47.jpeg" />
     <Content Include="Imagens\1\Noticias\7\Fotos\elcizf5w0auqxmx.jpeg" />
     <Content Include="Imagens\1\Pacientes\1\Fotos\Avo_Evaristo.jpg" />
+    <Content Include="Imagens\1\Pacientes\2\Anexos\WhatsApp Image 2021-02-12 at 09.53.18.jpeg" />
+    <Content Include="Imagens\1\Pacientes\2\Fotos\mulher-louca-2df.jpg" />
     <Content Include="Imagens\1\Procedimentos\1\Anexos\proc3 canal.jpeg" />
     <Content Include="Imagens\1\Procedimentos\2\Anexos\proc2.jpeg" />
     <Content Include="Imagens\1\Produto\1\Foto\PapelA4.jpg" />
@@ -3139,6 +3141,12 @@
     <Folder Include="Imagens\1\Pacientes\1\Anamnese\" />
     <Folder Include="Imagens\1\Pacientes\1\Anexos\" />
     <Folder Include="Imagens\1\Pacientes\1\Imagens\" />
+    <Folder Include="Imagens\1\Pacientes\2\Anamnese\" />
+    <Folder Include="Imagens\1\Pacientes\2\Imagens\" />
+    <Folder Include="Imagens\1\Pacientes\3\Anamnese\" />
+    <Folder Include="Imagens\1\Pacientes\3\Anexos\" />
+    <Folder Include="Imagens\1\Pacientes\3\Fotos\" />
+    <Folder Include="Imagens\1\Pacientes\3\Imagens\" />
     <Folder Include="Imagens\1\Produto\1\Anexos\" />
     <Folder Include="Imagens\1\Produto\1\QR\" />
     <Folder Include="Imagens\1\Produto\3\Anexos\" />
