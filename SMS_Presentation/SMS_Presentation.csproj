@@ -748,6 +748,9 @@
     <Content Include="Imagens\1\Pacientes\1\Fotos\Avo_Evaristo.jpg" />
     <Content Include="Imagens\1\Pacientes\2\Anexos\WhatsApp Image 2021-02-12 at 09.53.18.jpeg" />
     <Content Include="Imagens\1\Pacientes\2\Fotos\mulher-louca-2df.jpg" />
+    <Content Include="Imagens\1\Pacientes\4\Fotos\capitao.jpeg" />
+    <Content Include="Imagens\1\Pacientes\5\Fotos\blutbad.jpg" />
+    <Content Include="Imagens\1\Pacientes\6\Fotos\cachorro doidão.jpg" />
     <Content Include="Imagens\1\Procedimentos\1\Anexos\proc3 canal.jpeg" />
     <Content Include="Imagens\1\Procedimentos\2\Anexos\proc2.jpeg" />
     <Content Include="Imagens\1\Produto\1\Foto\PapelA4.jpg" />
@@ -2137,6 +2140,7 @@
     <Content Include="PdfViewer\web\locale\zh-CN\viewer.properties" />
     <Content Include="PdfViewer\web\locale\zh-TW\viewer.properties" />
     <Content Include="PdfViewer\web\viewer.js.map" />
+    <Content Include="Imagens\1\Pacientes\4\Anexos\Fornecedor7_24032021.pdf" />
     <None Include="Properties\PublishProfiles\EnviaSMS - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\EnviaSMSWeb - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\OdontoWeb - Web Deploy.pubxml" />
@@ -3147,6 +3151,14 @@
     <Folder Include="Imagens\1\Pacientes\3\Anexos\" />
     <Folder Include="Imagens\1\Pacientes\3\Fotos\" />
     <Folder Include="Imagens\1\Pacientes\3\Imagens\" />
+    <Folder Include="Imagens\1\Pacientes\4\Anamnese\" />
+    <Folder Include="Imagens\1\Pacientes\4\Imagens\" />
+    <Folder Include="Imagens\1\Pacientes\5\Anamnese\" />
+    <Folder Include="Imagens\1\Pacientes\5\Anexos\" />
+    <Folder Include="Imagens\1\Pacientes\5\Imagens\" />
+    <Folder Include="Imagens\1\Pacientes\6\Anamnese\" />
+    <Folder Include="Imagens\1\Pacientes\6\Anexos\" />
+    <Folder Include="Imagens\1\Pacientes\6\Imagens\" />
     <Folder Include="Imagens\1\Produto\1\Anexos\" />
     <Folder Include="Imagens\1\Produto\1\QR\" />
     <Folder Include="Imagens\1\Produto\3\Anexos\" />
