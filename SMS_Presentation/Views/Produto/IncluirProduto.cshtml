@@ -704,7 +704,7 @@
 
                     // Loop para adicionar Itens específicos à categoria
                     r.forEach(function (e) {
-                        objSubCatProduto.append('<option value="' + e.SCPR_CD_ID + '">' + e.SCPR_NM_NOME + '</option>');
+                        objSubCatProduto.append('<option value="' + e.SUPR_CD_ID + '">' + e.SUPR_NM_NOME + '</option>');
                     });
 
                     //console.log(r);
@@ -712,9 +712,9 @@
             });
         }
 
-        function FiltrarCategoriaProduto(SCPR_CD_ID) {
+        function FiltrarCategoriaProduto(SUPR_CD_ID) {
             var data = {
-                id: SCPR_CD_ID
+                id: SUPR_CD_ID
             }
 
             var objCatProduto = $('select#catProd');

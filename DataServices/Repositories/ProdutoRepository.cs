@@ -90,7 +90,7 @@ namespace DataServices.Repositories
         {
             List<PRODUTO> lista = new List<PRODUTO>();
             IQueryable<PRODUTO> query = Db.PRODUTO;
-            if (catId != null)
+            if (catId != 0)
             {
                 query = query.Where(p => p.CAPR_CD_ID == catId);
             }

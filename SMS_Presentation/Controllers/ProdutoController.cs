@@ -305,7 +305,7 @@ namespace Odonto.Controllers
             ViewBag.Subs = new SelectList(prodApp.GetAllSubs(idAss), "SUPR_CD_ID", "SUPR_NM_NOME");
             ViewBag.Unidades = new SelectList(unApp.GetAllItens(idAss), "UNID_CD_ID", "UNID_NM_NOME");
             ViewBag.PerfilUsu = usuario.PERF_CD_ID;
-            ViewBag.Produtos = listaMaster.Count;
+            ViewBag.Produtos = ((List<PRODUTO>)Session["ListaProduto"]).Count;
             ViewBag.Perfil = usuario.PERFIL.PERF_SG_SIGLA;
             Session["FiltroProduto"] = null;
 
@@ -373,6 +373,7 @@ namespace Odonto.Controllers
                 return RedirectToAction("Login", "ControleAcesso");
             }
             Session["ListaProduto"] = null;
+            Session["MensProduto"] = 0;
             Session["FiltroProduto"] = null;
             if ((Int32)Session["FlagVoltaProd"] == 1)
             {
@@ -397,6 +398,7 @@ namespace Odonto.Controllers
             Int32 idAss = (Int32)Session["IdAssinante"];
             listaMaster = prodApp.GetAllItensAdm(idAss);
             Session["FiltroProduto"] = null;
+            Session["MensProduto"] = 0;
             Session["ListaProduto"] = listaMaster;
             if ((Int32)Session["VoltaProduto"] == 2)
             {
@@ -416,6 +418,7 @@ namespace Odonto.Controllers
             try
             {
                 // Executa a operação
+                Session["MensProduto"] = 0;
                 List<PRODUTO> listaObj = new List<PRODUTO>();
                 Session["FiltroProduto"] = item;
                 USUARIO usuario = (USUARIO)Session["UserCredentials"];
@@ -588,7 +591,7 @@ namespace Odonto.Controllers
             Int32 idAss = (Int32)Session["IdAssinante"];
 
             // Prepara listas
-            ViewBag.Tipos = new SelectList(prodApp.GetAllItens(idAss), "CAPR_CD_ID", "CAPR_NM_NOME");
+            ViewBag.Tipos = new SelectList(prodApp.GetAllTipos(idAss), "CAPR_CD_ID", "CAPR_NM_NOME");
             ViewBag.Subs = new SelectList(prodApp.GetAllSubs(idAss), "SUPR_CD_ID", "SUPR_NM_NOME");
             ViewBag.Unidades = new SelectList(unApp.GetAllItens(idAss), "UNID_CD_ID", "UNID_NM_NOME");
             ViewBag.Origens = new SelectList(prodApp.GetAllOrigens(idAss), "PROR_CD_ID", "PROR_NM_NOME");
@@ -618,7 +621,7 @@ namespace Odonto.Controllers
                 return RedirectToAction("Login", "ControleAcesso");
             }
             Int32 idAss = (Int32)Session["IdAssinante"];
-            ViewBag.Tipos = new SelectList(prodApp.GetAllItens(idAss), "CAPR_CD_ID", "CAPR_NM_NOME");
+            ViewBag.Tipos = new SelectList(prodApp.GetAllTipos(idAss), "CAPR_CD_ID", "CAPR_NM_NOME");
             ViewBag.Subs = new SelectList(prodApp.GetAllSubs(idAss), "SUPR_CD_ID", "SUPR_NM_NOME");
             ViewBag.Unidades = new SelectList(unApp.GetAllItens(idAss), "UNID_CD_ID", "UNID_NM_NOME");
             ViewBag.Origens = new SelectList(prodApp.GetAllOrigens(idAss), "PROR_CD_ID", "PROR_NM_NOME");
@@ -674,7 +677,8 @@ namespace Odonto.Controllers
                     IncluirTabelaProduto(vm, tabelaProduto);
                     Session["IdVolta"] = item.PROD_CD_ID;
                     result.Add("id", item.PROD_CD_ID);
-                    return Json(result);
+                    return RedirectToAction("MontarTelaProduto", "Produto");
+                    //return Json(result);
                 }
                 catch (Exception ex)
                 {
@@ -716,7 +720,7 @@ namespace Odonto.Controllers
 
             // Prepara view
             PRODUTO item = prodApp.GetItemById(id);
-            ViewBag.Tipos = new SelectList(prodApp.GetAllItens(idAss), "CAPR_CD_ID", "CAPR_NM_NOME");
+            ViewBag.Tipos = new SelectList(prodApp.GetAllTipos(idAss), "CAPR_CD_ID", "CAPR_NM_NOME");
             ViewBag.Subs = new SelectList(prodApp.GetAllSubs(idAss), "SUPR_CD_ID", "SUPR_NM_NOME");
             ViewBag.Unidades = new SelectList(unApp.GetAllItens(idAss), "UNID_CD_ID", "UNID_NM_NOME");
             ViewBag.Origens = new SelectList(prodApp.GetAllOrigens(idAss), "PROR_CD_ID", "PROR_NM_NOME");
@@ -787,7 +791,7 @@ namespace Odonto.Controllers
                 return RedirectToAction("Login", "ControleAcesso");
             }
             Int32 idAss = (Int32)Session["IdAssinante"];
-            ViewBag.Tipos = new SelectList(prodApp.GetAllItens(idAss), "CAPR_CD_ID", "CAPR_NM_NOME");
+            ViewBag.Tipos = new SelectList(prodApp.GetAllTipos(idAss), "CAPR_CD_ID", "CAPR_NM_NOME");
             ViewBag.Subs = new SelectList(prodApp.GetAllSubs(idAss), "SUPR_CD_ID", "SUPR_NM_NOME");
             ViewBag.Unidades = new SelectList(unApp.GetAllItens(idAss), "UNID_CD_ID", "UNID_NM_NOME");
             ViewBag.Origens = new SelectList(prodApp.GetAllOrigens(idAss), "PROR_CD_ID", "PROR_NM_NOME");
@@ -1614,7 +1618,7 @@ namespace Odonto.Controllers
 
             PdfPCell cell = new PdfPCell();
             cell.Border = 0;
-            Image image = Image.GetInstance(Server.MapPath("~/Images/5.png"));
+            Image image = Image.GetInstance(Server.MapPath("~/Images/Dente_Logo.jpg"));
             image.ScaleAbsolute(50, 50);
             cell.AddElement(image);
             table.AddCell(cell);
@@ -1933,7 +1937,7 @@ namespace Odonto.Controllers
 
             PdfPCell cell = new PdfPCell();
             cell.Border = 0;
-            Image image = Image.GetInstance(Server.MapPath("~/Images/5.png"));
+            Image image = Image.GetInstance(Server.MapPath("~/Images/Dente_Logo.jpg"));
             image.ScaleAbsolute(50, 50);
             cell.AddElement(image);
             table.AddCell(cell);
@@ -2250,7 +2254,7 @@ namespace Odonto.Controllers
 
             PdfPCell cell = new PdfPCell();
             cell.Border = 0;
-            Image image = Image.GetInstance(Server.MapPath("~/Images/5.png"));
+            Image image = Image.GetInstance(Server.MapPath("~/Images/Dente_Logo.jpg"));
             image.ScaleAbsolute(50, 50);
             cell.AddElement(image);
             table.AddCell(cell);
