@@ -3128,6 +3128,7 @@
     <Content Include="Views\Paciente\EditarPergunta.cshtml" />
     <Content Include="Views\Paciente\IncluirPergunta.cshtml" />
     <Content Include="Views\Paciente\VerAnexoAnamnese.cshtml" />
+    <Content Include="Views\Produto\VerProdutosEstoqueNegativo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

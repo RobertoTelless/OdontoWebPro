@@ -28,6 +28,7 @@ namespace EntitiesServices.Model
             this.USUARIO = new HashSet<USUARIO>();
             this.PRODUTO_TABELA_PRECO = new HashSet<PRODUTO_TABELA_PRECO>();
             this.PEDIDO_COMPRA = new HashSet<PEDIDO_COMPRA>();
+            this.PRODUTO = new HashSet<PRODUTO>();
         }
     
         public int FILI_CD_ID { get; set; }
@@ -85,5 +86,7 @@ namespace EntitiesServices.Model
         public virtual ICollection<PRODUTO_TABELA_PRECO> PRODUTO_TABELA_PRECO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PEDIDO_COMPRA> PEDIDO_COMPRA { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PRODUTO> PRODUTO { get; set; }
     }
 }

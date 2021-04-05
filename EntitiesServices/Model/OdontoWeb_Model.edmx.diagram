@@ -242,6 +242,8 @@
         <AssociationConnector Association="Odonto_DBModel.FK_PACIENTE_ANAMESE_IMAGEM_PACIENTE" />
         <AssociationConnector Association="Odonto_DBModel.FK_PACIENTE_ANAMNESE_PERGUNTA_PACIENTE" />
         <AssociationConnector Association="Odonto_DBModel.FK_PACIENTE_ANAMESE_IMAGEM_TIPO_IMAGEM" />
+        <AssociationConnector Association="Odonto_DBModel.FK_PRODUTO_PRODUTO_ORIGEM" />
+        <AssociationConnector Association="Odonto_DBModel.FK_PRODUTO_FILIAL" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

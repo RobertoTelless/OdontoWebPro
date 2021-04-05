@@ -17,6 +17,7 @@ namespace OdontoWeb.ViewModels
         public int CAPR_CD_ID { get; set; }
         [Required(ErrorMessage = "Campo UNIDADE obrigatorio")]
         public Nullable<int> UNID_CD_ID { get; set; }
+        public Nullable<int> PROR_CD_ID { get; set; }
         [Required(ErrorMessage = "Campo CÓDIGO obrigatorio")]
         [StringLength(15, MinimumLength = 1, ErrorMessage = "O CÓDIGO deve conter no minimo 1 e no máximo 15 caracteres.")]
         public string PROD_CD_CODIGO { get; set; }
@@ -82,6 +83,10 @@ namespace OdontoWeb.ViewModels
         public Nullable<decimal> PRTP_VL_PRECO_PROMOCAO { get; set; }
         [RegularExpression(@"^[0-9]+([,.][0-9]+)?$", ErrorMessage = "Deve ser um valor numérico positivo")]
         public Nullable<decimal> PROD_VL_CUSTO { get; set; }
+        public Nullable<System.DateTime> PROD_DT_ULTIMA_MOVIMENTACAO { get; set; }
+        [RegularExpression(@"^[0-9]+([,.][0-9]+)?$", ErrorMessage = "Deve ser um valor numérico positivo")]
+        public Nullable<int> PROD_QN_QUANTIDADE_INICIAL { get; set; }
+        public Nullable<int> FILI_CD_ID { get; set; }
 
         public bool AvisaMinima
         {
@@ -128,6 +133,7 @@ namespace OdontoWeb.ViewModels
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ITEM_PEDIDO_COMPRA> ITEM_PEDIDO_COMPRA { get; set; }
         public virtual SUBCATEGORIA_PRODUTO SUBCATEGORIA_PRODUTO { get; set; }
-
+        public virtual PRODUTO_ORIGEM PRODUTO_ORIGEM { get; set; }
+        public virtual FILIAL FILIAL { get; set; }
     }
 }

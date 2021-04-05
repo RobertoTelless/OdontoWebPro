@@ -64,6 +64,9 @@ namespace EntitiesServices.Model
         public Nullable<decimal> PRTP_VL_PRECO_PROMOCAO { get; set; }
         public Nullable<decimal> PROD_VL_CUSTO { get; set; }
         public Nullable<System.DateTime> PROD_DT_ULTIMA_MOVIMENTACAO { get; set; }
+        public Nullable<int> PROR_CD_ID { get; set; }
+        public Nullable<int> PROD_QN_QUANTIDADE_INICIAL { get; set; }
+        public Nullable<int> FILI_CD_ID { get; set; }
     
         public virtual ASSINANTE ASSINANTE { get; set; }
         public virtual CATEGORIA_PRODUTO CATEGORIA_PRODUTO { get; set; }
@@ -81,5 +84,7 @@ namespace EntitiesServices.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ITEM_PEDIDO_COMPRA> ITEM_PEDIDO_COMPRA { get; set; }
         public virtual SUBCATEGORIA_PRODUTO SUBCATEGORIA_PRODUTO { get; set; }
+        public virtual PRODUTO_ORIGEM PRODUTO_ORIGEM { get; set; }
+        public virtual FILIAL FILIAL { get; set; }
     }
 }

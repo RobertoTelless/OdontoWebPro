@@ -592,6 +592,7 @@ namespace Odonto.Controllers
             ViewBag.Subs = new SelectList(prodApp.GetAllSubs(idAss), "SUPR_CD_ID", "SUPR_NM_NOME");
             ViewBag.Unidades = new SelectList(unApp.GetAllItens(idAss), "UNID_CD_ID", "UNID_NM_NOME");
             ViewBag.Origens = new SelectList(prodApp.GetAllOrigens(idAss), "PROR_CD_ID", "PROR_NM_NOME");
+            ViewBag.Filiais = new SelectList(filApp.GetAllItens(idAss), "FILI_CD_ID", "FILI_NM_NOME");
             List<SelectListItem> tipoEmbalagem = new List<SelectListItem>();
             tipoEmbalagem.Add(new SelectListItem() { Text = "Envelope", Value = "1" });
             tipoEmbalagem.Add(new SelectListItem() { Text = "Caixa", Value = "2" });
@@ -621,6 +622,7 @@ namespace Odonto.Controllers
             ViewBag.Subs = new SelectList(prodApp.GetAllSubs(idAss), "SUPR_CD_ID", "SUPR_NM_NOME");
             ViewBag.Unidades = new SelectList(unApp.GetAllItens(idAss), "UNID_CD_ID", "UNID_NM_NOME");
             ViewBag.Origens = new SelectList(prodApp.GetAllOrigens(idAss), "PROR_CD_ID", "PROR_NM_NOME");
+            ViewBag.Filiais = new SelectList(filApp.GetAllItens(idAss), "FILI_CD_ID", "FILI_NM_NOME");
             List<SelectListItem> tipoEmbalagem = new List<SelectListItem>();
             tipoEmbalagem.Add(new SelectListItem() { Text = "Envelope", Value = "1" });
             tipoEmbalagem.Add(new SelectListItem() { Text = "Caixa", Value = "2" });
@@ -718,6 +720,7 @@ namespace Odonto.Controllers
             ViewBag.Subs = new SelectList(prodApp.GetAllSubs(idAss), "SUPR_CD_ID", "SUPR_NM_NOME");
             ViewBag.Unidades = new SelectList(unApp.GetAllItens(idAss), "UNID_CD_ID", "UNID_NM_NOME");
             ViewBag.Origens = new SelectList(prodApp.GetAllOrigens(idAss), "PROR_CD_ID", "PROR_NM_NOME");
+            ViewBag.Filiais = new SelectList(filApp.GetAllItens(idAss), "FILI_CD_ID", "FILI_NM_NOME");
             List<SelectListItem> tipoEmbalagem = new List<SelectListItem>();
             tipoEmbalagem.Add(new SelectListItem() { Text = "Envelope", Value = "1" });
             tipoEmbalagem.Add(new SelectListItem() { Text = "Caixa", Value = "2" });
@@ -788,6 +791,7 @@ namespace Odonto.Controllers
             ViewBag.Subs = new SelectList(prodApp.GetAllSubs(idAss), "SUPR_CD_ID", "SUPR_NM_NOME");
             ViewBag.Unidades = new SelectList(unApp.GetAllItens(idAss), "UNID_CD_ID", "UNID_NM_NOME");
             ViewBag.Origens = new SelectList(prodApp.GetAllOrigens(idAss), "PROR_CD_ID", "PROR_NM_NOME");
+            ViewBag.Filiais = new SelectList(filApp.GetAllItens(idAss), "FILI_CD_ID", "FILI_NM_NOME");
             List<SelectListItem> tipoEmbalagem = new List<SelectListItem>();
             tipoEmbalagem.Add(new SelectListItem() { Text = "Envelope", Value = "1" });
             tipoEmbalagem.Add(new SelectListItem() { Text = "Caixa", Value = "2" });

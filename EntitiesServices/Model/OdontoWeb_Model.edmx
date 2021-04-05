@@ -808,6 +808,8 @@
           <Property Name="CAPR_CD_ID" Type="int" Nullable="false" />
           <Property Name="SUPR_CD_ID" Type="int" />
           <Property Name="UNID_CD_ID" Type="int" />
+          <Property Name="PROR_CD_ID" Type="int" />
+          <Property Name="FILI_CD_ID" Type="int" />
           <Property Name="PROD_CD_CODIGO" Type="varchar" MaxLength="50" />
           <Property Name="PROD_NR_BARCODE" Type="varchar" MaxLength="50" />
           <Property Name="PROD_AQ_FOTO" Type="varchar" MaxLength="250" />
@@ -842,6 +844,7 @@
           <Property Name="PRTP_VL_PRECO_PROMOCAO" Type="decimal" Precision="18" Scale="2" />
           <Property Name="PROD_VL_CUSTO" Type="decimal" Precision="18" Scale="2" />
           <Property Name="PROD_DT_ULTIMA_MOVIMENTACAO" Type="date" />
+          <Property Name="PROD_QN_QUANTIDADE_INICIAL" Type="int" />
         </EntityType>
         <EntityType Name="PRODUTO_ANEXO">
           <Key>
@@ -2487,6 +2490,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PRODUTO_FILIAL">
+          <End Role="FILIAL" Type="Self.FILIAL" Multiplicity="0..1" />
+          <End Role="PRODUTO" Type="Self.PRODUTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FILIAL">
+              <PropertyRef Name="FILI_CD_ID" />
+            </Principal>
+            <Dependent Role="PRODUTO">
+              <PropertyRef Name="FILI_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PRODUTO_FORNECEDOR_FORNECEDOR">
           <End Role="FORNECEDOR" Type="Self.FORNECEDOR" Multiplicity="1" />
           <End Role="PRODUTO_FORNECEDOR" Type="Self.PRODUTO_FORNECEDOR" Multiplicity="*" />
@@ -2508,6 +2523,18 @@
             </Principal>
             <Dependent Role="PRODUTO_FORNECEDOR">
               <PropertyRef Name="PROD_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUTO_PRODUTO_ORIGEM">
+          <End Role="PRODUTO_ORIGEM" Type="Self.PRODUTO_ORIGEM" Multiplicity="0..1" />
+          <End Role="PRODUTO" Type="Self.PRODUTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUTO_ORIGEM">
+              <PropertyRef Name="PROR_CD_ID" />
+            </Principal>
+            <Dependent Role="PRODUTO">
+              <PropertyRef Name="PROR_CD_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3559,6 +3586,10 @@
             <End Role="PRODUTO" EntitySet="PRODUTO" />
             <End Role="PRODUTO_ESTOQUE_FILIAL" EntitySet="PRODUTO_ESTOQUE_FILIAL" />
           </AssociationSet>
+          <AssociationSet Name="FK_PRODUTO_FILIAL" Association="Self.FK_PRODUTO_FILIAL">
+            <End Role="FILIAL" EntitySet="FILIAL" />
+            <End Role="PRODUTO" EntitySet="PRODUTO" />
+          </AssociationSet>
           <AssociationSet Name="FK_PRODUTO_FORNECEDOR_FORNECEDOR" Association="Self.FK_PRODUTO_FORNECEDOR_FORNECEDOR">
             <End Role="FORNECEDOR" EntitySet="FORNECEDOR" />
             <End Role="PRODUTO_FORNECEDOR" EntitySet="PRODUTO_FORNECEDOR" />
@@ -3566,6 +3597,10 @@
           <AssociationSet Name="FK_PRODUTO_FORNECEDOR_PRODUTO" Association="Self.FK_PRODUTO_FORNECEDOR_PRODUTO">
             <End Role="PRODUTO" EntitySet="PRODUTO" />
             <End Role="PRODUTO_FORNECEDOR" EntitySet="PRODUTO_FORNECEDOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUTO_PRODUTO_ORIGEM" Association="Self.FK_PRODUTO_PRODUTO_ORIGEM">
+            <End Role="PRODUTO_ORIGEM" EntitySet="PRODUTO_ORIGEM" />
+            <End Role="PRODUTO" EntitySet="PRODUTO" />
           </AssociationSet>
           <AssociationSet Name="FK_PRODUTO_SUBCATEGORIA_PRODUTO" Association="Self.FK_PRODUTO_SUBCATEGORIA_PRODUTO">
             <End Role="SUBCATEGORIA_PRODUTO" EntitySet="SUBCATEGORIA_PRODUTO" />
@@ -4161,6 +4196,7 @@
           <NavigationProperty Name="USUARIO" Relationship="Self.FK_USUARIO_FILIAL" FromRole="FILIAL" ToRole="USUARIO" />
           <NavigationProperty Name="PRODUTO_TABELA_PRECO" Relationship="Odonto_DBModel.FK_PRODUTO_TABELA_PRECO_FILIAL" FromRole="FILIAL" ToRole="PRODUTO_TABELA_PRECO" />
           <NavigationProperty Name="PEDIDO_COMPRA" Relationship="Odonto_DBModel.FK_PEDIDO_COMPRA_FILIAL" FromRole="FILIAL" ToRole="PEDIDO_COMPRA" />
+          <NavigationProperty Name="PRODUTO" Relationship="Odonto_DBModel.FK_PRODUTO_FILIAL" FromRole="FILIAL" ToRole="PRODUTO" />
         </EntityType>
         <EntityType Name="FORNECEDOR">
           <Key>
@@ -4626,6 +4662,11 @@
           <Property Name="PRTP_VL_PRECO_PROMOCAO" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="PROD_VL_CUSTO" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="PROD_DT_ULTIMA_MOVIMENTACAO" Type="DateTime" Precision="0" />
+          <Property Name="PROR_CD_ID" Type="Int32" />
+          <NavigationProperty Name="PRODUTO_ORIGEM" Relationship="Odonto_DBModel.FK_PRODUTO_PRODUTO_ORIGEM" FromRole="PRODUTO" ToRole="PRODUTO_ORIGEM" />
+          <Property Name="PROD_QN_QUANTIDADE_INICIAL" Type="Int32" />
+          <Property Name="FILI_CD_ID" Type="Int32" />
+          <NavigationProperty Name="FILIAL" Relationship="Odonto_DBModel.FK_PRODUTO_FILIAL" FromRole="PRODUTO" ToRole="FILIAL" />
         </EntityType>
         <EntityType Name="PRODUTO_ANEXO">
           <Key>
@@ -7253,6 +7294,14 @@
             <End Role="TIPO_IMAGEM" EntitySet="TIPO_IMAGEM" />
             <End Role="PACIENTE_ANAMESE_IMAGEM" EntitySet="PACIENTE_ANAMESE_IMAGEM" />
           </AssociationSet>
+          <AssociationSet Name="FK_PRODUTO_PRODUTO_ORIGEM" Association="Odonto_DBModel.FK_PRODUTO_PRODUTO_ORIGEM">
+            <End Role="PRODUTO_ORIGEM" EntitySet="PRODUTO_ORIGEM" />
+            <End Role="PRODUTO" EntitySet="PRODUTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUTO_FILIAL" Association="Odonto_DBModel.FK_PRODUTO_FILIAL">
+            <End Role="FILIAL" EntitySet="FILIAL" />
+            <End Role="PRODUTO" EntitySet="PRODUTO" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="FORNECEDOR_ANEXO">
           <Key>
@@ -7315,6 +7364,7 @@
           <Property Name="PROR_CD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PROR_NM_NOME" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="PROR_IN_ATIVO" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PRODUTO" Relationship="Odonto_DBModel.FK_PRODUTO_PRODUTO_ORIGEM" FromRole="PRODUTO_ORIGEM" ToRole="PRODUTO" />
         </EntityType>
         <EntityType Name="PRODUTO_TABELA_PRECO">
           <Key>
@@ -7800,6 +7850,30 @@
             </Principal>
             <Dependent Role="PACIENTE_ANAMESE_IMAGEM">
               <PropertyRef Name="TPIM_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUTO_PRODUTO_ORIGEM">
+          <End Type="Odonto_DBModel.PRODUTO_ORIGEM" Role="PRODUTO_ORIGEM" Multiplicity="0..1" />
+          <End Type="Odonto_DBModel.PRODUTO" Role="PRODUTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUTO_ORIGEM">
+              <PropertyRef Name="PROR_CD_ID" />
+            </Principal>
+            <Dependent Role="PRODUTO">
+              <PropertyRef Name="PROR_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUTO_FILIAL">
+          <End Type="Odonto_DBModel.FILIAL" Role="FILIAL" Multiplicity="0..1" />
+          <End Type="Odonto_DBModel.PRODUTO" Role="PRODUTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FILIAL">
+              <PropertyRef Name="FILI_CD_ID" />
+            </Principal>
+            <Dependent Role="PRODUTO">
+              <PropertyRef Name="FILI_CD_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -8497,6 +8571,9 @@
           <EntitySetMapping Name="PRODUTO">
             <EntityTypeMapping TypeName="Odonto_DBModel.PRODUTO">
               <MappingFragment StoreEntitySet="PRODUTO">
+                <ScalarProperty Name="FILI_CD_ID" ColumnName="FILI_CD_ID" />
+                <ScalarProperty Name="PROD_QN_QUANTIDADE_INICIAL" ColumnName="PROD_QN_QUANTIDADE_INICIAL" />
+                <ScalarProperty Name="PROR_CD_ID" ColumnName="PROR_CD_ID" />
                 <ScalarProperty Name="PROD_DT_ULTIMA_MOVIMENTACAO" ColumnName="PROD_DT_ULTIMA_MOVIMENTACAO" />
                 <ScalarProperty Name="PROD_VL_CUSTO" ColumnName="PROD_VL_CUSTO" />
                 <ScalarProperty Name="PRTP_VL_PRECO_PROMOCAO" ColumnName="PRTP_VL_PRECO_PROMOCAO" />
