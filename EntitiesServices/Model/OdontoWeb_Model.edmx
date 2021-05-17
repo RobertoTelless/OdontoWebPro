@@ -582,6 +582,7 @@
           <Property Name="ORCA_VL_FINAL" Type="decimal" Precision="18" Scale="2" />
           <Property Name="ORCA_IN_ATIVO" Type="int" />
           <Property Name="ORCA_DS_OBSERVACOES" Type="text" />
+          <Property Name="ORCA_DT_PAGAMENTO" Type="date" />
         </EntityType>
         <EntityType Name="ORCAMENTO_ACOMPANHAMENTO">
           <Key>
@@ -614,6 +615,7 @@
           <Property Name="ORCA_CD_ID" Type="int" />
           <Property Name="REDE_CD_ID" Type="int" />
           <Property Name="TIPR_CD_ID" Type="int" />
+          <Property Name="SUPR_CD_ID" Type="int" />
           <Property Name="ORIT_VL_OVERRIDE" Type="decimal" Precision="18" Scale="2" />
           <Property Name="ORIT_IN_ATIVO" Type="int" />
         </EntityType>
@@ -705,6 +707,17 @@
           <Property Name="PAAN_IN_TIPO" Type="int" />
           <Property Name="PAAN_AQ_ARQUIVO" Type="varchar" MaxLength="250" />
           <Property Name="PAAN_IN_ATIVO" Type="int" />
+        </EntityType>
+        <EntityType Name="PACIENTE_BALANCO_FINANCEIRO">
+          <Key>
+            <PropertyRef Name="PABF_CD_ID" />
+          </Key>
+          <Property Name="PABF_CD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PACI_CD_ID" Type="int" />
+          <Property Name="PABF_DT_MOVIMENTO" Type="date" />
+          <Property Name="PABF_IN_TIPO" Type="int" />
+          <Property Name="PABF_VL_VALOR" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PABF_IN_ATIVO" Type="int" />
         </EntityType>
         <EntityType Name="PACIENTE_PRESCRICAO">
           <Key>
@@ -2191,6 +2204,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ORCAMENTO_ITEM_SUB_PROCEDIMENTO">
+          <End Role="SUB_PROCEDIMENTO" Type="Self.SUB_PROCEDIMENTO" Multiplicity="0..1" />
+          <End Role="ORCAMENTO_ITEM" Type="Self.ORCAMENTO_ITEM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUB_PROCEDIMENTO">
+              <PropertyRef Name="SUPR_CD_ID" />
+            </Principal>
+            <Dependent Role="ORCAMENTO_ITEM">
+              <PropertyRef Name="SUPR_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ORCAMENTO_ITEM_TIPO_PROCEDIMENTO">
           <End Role="TIPO_PROCEDIMENTO" Type="Self.TIPO_PROCEDIMENTO" Multiplicity="0..1" />
           <End Role="ORCAMENTO_ITEM" Type="Self.ORCAMENTO_ITEM" Multiplicity="*" />
@@ -2296,6 +2321,18 @@
             </Principal>
             <Dependent Role="PACIENTE">
               <PropertyRef Name="ASSI_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PACIENTE_BALANCO_FINANCEIRO_PACIENTE">
+          <End Role="PACIENTE" Type="Self.PACIENTE" Multiplicity="0..1" />
+          <End Role="PACIENTE_BALANCO_FINANCEIRO" Type="Self.PACIENTE_BALANCO_FINANCEIRO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PACIENTE">
+              <PropertyRef Name="PACI_CD_ID" />
+            </Principal>
+            <Dependent Role="PACIENTE_BALANCO_FINANCEIRO">
+              <PropertyRef Name="PACI_CD_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3223,6 +3260,7 @@
           <EntitySet Name="PACIENTE_ANAMESE_IMAGEM" EntityType="Self.PACIENTE_ANAMESE_IMAGEM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PACIENTE_ANAMNESE_PERGUNTA" EntityType="Self.PACIENTE_ANAMNESE_PERGUNTA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PACIENTE_ANEXO" EntityType="Self.PACIENTE_ANEXO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PACIENTE_BALANCO_FINANCEIRO" EntityType="Self.PACIENTE_BALANCO_FINANCEIRO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PACIENTE_PRESCRICAO" EntityType="Self.PACIENTE_PRESCRICAO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PACIENTE_RECOMENDACAO" EntityType="Self.PACIENTE_RECOMENDACAO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PAIS" EntityType="Self.PAIS" Schema="dbo" store:Type="Tables" />
@@ -3562,6 +3600,10 @@
             <End Role="REGIAO_DENTE" EntitySet="REGIAO_DENTE" />
             <End Role="ORCAMENTO_ITEM" EntitySet="ORCAMENTO_ITEM" />
           </AssociationSet>
+          <AssociationSet Name="FK_ORCAMENTO_ITEM_SUB_PROCEDIMENTO" Association="Self.FK_ORCAMENTO_ITEM_SUB_PROCEDIMENTO">
+            <End Role="SUB_PROCEDIMENTO" EntitySet="SUB_PROCEDIMENTO" />
+            <End Role="ORCAMENTO_ITEM" EntitySet="ORCAMENTO_ITEM" />
+          </AssociationSet>
           <AssociationSet Name="FK_ORCAMENTO_ITEM_TIPO_PROCEDIMENTO" Association="Self.FK_ORCAMENTO_ITEM_TIPO_PROCEDIMENTO">
             <End Role="TIPO_PROCEDIMENTO" EntitySet="TIPO_PROCEDIMENTO" />
             <End Role="ORCAMENTO_ITEM" EntitySet="ORCAMENTO_ITEM" />
@@ -3597,6 +3639,10 @@
           <AssociationSet Name="FK_PACIENTE_ASSINANTE" Association="Self.FK_PACIENTE_ASSINANTE">
             <End Role="ASSINANTE" EntitySet="ASSINANTE" />
             <End Role="PACIENTE" EntitySet="PACIENTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PACIENTE_BALANCO_FINANCEIRO_PACIENTE" Association="Self.FK_PACIENTE_BALANCO_FINANCEIRO_PACIENTE">
+            <End Role="PACIENTE" EntitySet="PACIENTE" />
+            <End Role="PACIENTE_BALANCO_FINANCEIRO" EntitySet="PACIENTE_BALANCO_FINANCEIRO" />
           </AssociationSet>
           <AssociationSet Name="FK_PACIENTE_CATEGORIA_PACIENTE" Association="Self.FK_PACIENTE_CATEGORIA_PACIENTE">
             <End Role="CATEGORIA_PACIENTE" EntitySet="CATEGORIA_PACIENTE" />
@@ -4535,6 +4581,7 @@
           <NavigationProperty Name="ORCAMENTO_ITEM" Relationship="Self.FK_ORCAMENTO_ITEM_ORCAMENTO" FromRole="ORCAMENTO" ToRole="ORCAMENTO_ITEM" />
           <NavigationProperty Name="PACIENTE" Relationship="Self.FK_ORCAMENTO_PACIENTE" FromRole="ORCAMENTO" ToRole="PACIENTE" />
           <NavigationProperty Name="ORCAMENTO_ACOMPANHAMENTO" Relationship="Odonto_DBModel.FK_ORCAMENTO_ACOMPANHAMENTO_ORCAMENTO" FromRole="ORCAMENTO" ToRole="ORCAMENTO_ACOMPANHAMENTO" />
+          <Property Name="ORCA_DT_PAGAMENTO" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="ORCAMENTO_ANEXO">
           <Key>
@@ -4562,6 +4609,8 @@
           <NavigationProperty Name="ORCAMENTO" Relationship="Self.FK_ORCAMENTO_ITEM_ORCAMENTO" FromRole="ORCAMENTO_ITEM" ToRole="ORCAMENTO" />
           <NavigationProperty Name="REGIAO_DENTE" Relationship="Self.FK_ORCAMENTO_ITEM_REGIAO_DENTE" FromRole="ORCAMENTO_ITEM" ToRole="REGIAO_DENTE" />
           <NavigationProperty Name="TIPO_PROCEDIMENTO" Relationship="Self.FK_ORCAMENTO_ITEM_TIPO_PROCEDIMENTO" FromRole="ORCAMENTO_ITEM" ToRole="TIPO_PROCEDIMENTO" />
+          <Property Name="SUPR_CD_ID" Type="Int32" />
+          <NavigationProperty Name="SUB_PROCEDIMENTO" Relationship="Odonto_DBModel.FK_ORCAMENTO_ITEM_SUB_PROCEDIMENTO" FromRole="ORCAMENTO_ITEM" ToRole="SUB_PROCEDIMENTO" />
         </EntityType>
         <EntityType Name="PACIENTE">
           <Key>
@@ -4615,6 +4664,7 @@
           <Property Name="PACI_DS_BEBE" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="PACIENTE_ANAMESE_IMAGEM" Relationship="Odonto_DBModel.FK_PACIENTE_ANAMESE_IMAGEM_PACIENTE" FromRole="PACIENTE" ToRole="PACIENTE_ANAMESE_IMAGEM" />
           <NavigationProperty Name="PACIENTE_ANAMNESE_PERGUNTA" Relationship="Odonto_DBModel.FK_PACIENTE_ANAMNESE_PERGUNTA_PACIENTE" FromRole="PACIENTE" ToRole="PACIENTE_ANAMNESE_PERGUNTA" />
+          <NavigationProperty Name="PACIENTE_BALANCO_FINANCEIRO" Relationship="Odonto_DBModel.FK_PACIENTE_BALANCO_FINANCEIRO_PACIENTE" FromRole="PACIENTE" ToRole="PACIENTE_BALANCO_FINANCEIRO" />
         </EntityType>
         <EntityType Name="PACIENTE_ACOMPANHAMENTO">
           <Key>
@@ -7429,6 +7479,15 @@
             <End Role="TIPO_PROCEDIMENTO" EntitySet="TIPO_PROCEDIMENTO" />
             <End Role="SUB_PROCEDIMENTO" EntitySet="SUB_PROCEDIMENTO" />
           </AssociationSet>
+          <EntitySet Name="PACIENTE_BALANCO_FINANCEIRO" EntityType="Odonto_DBModel.PACIENTE_BALANCO_FINANCEIRO" />
+          <AssociationSet Name="FK_ORCAMENTO_ITEM_SUB_PROCEDIMENTO" Association="Odonto_DBModel.FK_ORCAMENTO_ITEM_SUB_PROCEDIMENTO">
+            <End Role="SUB_PROCEDIMENTO" EntitySet="SUB_PROCEDIMENTO" />
+            <End Role="ORCAMENTO_ITEM" EntitySet="ORCAMENTO_ITEM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PACIENTE_BALANCO_FINANCEIRO_PACIENTE" Association="Odonto_DBModel.FK_PACIENTE_BALANCO_FINANCEIRO_PACIENTE">
+            <End Role="PACIENTE" EntitySet="PACIENTE" />
+            <End Role="PACIENTE_BALANCO_FINANCEIRO" EntitySet="PACIENTE_BALANCO_FINANCEIRO" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="FORNECEDOR_ANEXO">
           <Key>
@@ -8031,6 +8090,7 @@
           <Property Name="SUPR_IN_ATIVO" Type="Int32" />
           <NavigationProperty Name="SUB_PROCEDIMENTO_ANEXO" Relationship="Odonto_DBModel.FK_SUB_PROCEDIMENTO_ANEXO_SUB_PROCEDIMENTO" FromRole="SUB_PROCEDIMENTO" ToRole="SUB_PROCEDIMENTO_ANEXO" />
           <NavigationProperty Name="TIPO_PROCEDIMENTO" Relationship="Odonto_DBModel.FK_SUB_PROCEDIMENTO_TIPO_PROCEDIMENTO" FromRole="SUB_PROCEDIMENTO" ToRole="TIPO_PROCEDIMENTO" />
+          <NavigationProperty Name="ORCAMENTO_ITEM" Relationship="Odonto_DBModel.FK_ORCAMENTO_ITEM_SUB_PROCEDIMENTO" FromRole="SUB_PROCEDIMENTO" ToRole="ORCAMENTO_ITEM" />
         </EntityType>
         <EntityType Name="SUB_PROCEDIMENTO_ANEXO">
           <Key>
@@ -8090,6 +8150,42 @@
             </Principal>
             <Dependent Role="SUB_PROCEDIMENTO">
               <PropertyRef Name="TIPR_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PACIENTE_BALANCO_FINANCEIRO">
+          <Key>
+            <PropertyRef Name="PABF_CD_ID" />
+          </Key>
+          <Property Name="PABF_CD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PACI_CD_ID" Type="Int32" />
+          <Property Name="PABF_DT_MOVIMENTO" Type="DateTime" Precision="0" />
+          <Property Name="PABF_IN_TIPO" Type="Int32" />
+          <Property Name="PABF_VL_VALOR" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PABF_IN_ATIVO" Type="Int32" />
+          <NavigationProperty Name="PACIENTE" Relationship="Odonto_DBModel.FK_PACIENTE_BALANCO_FINANCEIRO_PACIENTE" FromRole="PACIENTE_BALANCO_FINANCEIRO" ToRole="PACIENTE" />
+        </EntityType>
+        <Association Name="FK_ORCAMENTO_ITEM_SUB_PROCEDIMENTO">
+          <End Type="Odonto_DBModel.SUB_PROCEDIMENTO" Role="SUB_PROCEDIMENTO" Multiplicity="0..1" />
+          <End Type="Odonto_DBModel.ORCAMENTO_ITEM" Role="ORCAMENTO_ITEM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUB_PROCEDIMENTO">
+              <PropertyRef Name="SUPR_CD_ID" />
+            </Principal>
+            <Dependent Role="ORCAMENTO_ITEM">
+              <PropertyRef Name="SUPR_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PACIENTE_BALANCO_FINANCEIRO_PACIENTE">
+          <End Type="Odonto_DBModel.PACIENTE" Role="PACIENTE" Multiplicity="0..1" />
+          <End Type="Odonto_DBModel.PACIENTE_BALANCO_FINANCEIRO" Role="PACIENTE_BALANCO_FINANCEIRO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PACIENTE">
+              <PropertyRef Name="PACI_CD_ID" />
+            </Principal>
+            <Dependent Role="PACIENTE_BALANCO_FINANCEIRO">
+              <PropertyRef Name="PACI_CD_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -8610,6 +8706,7 @@
           <EntitySetMapping Name="ORCAMENTO">
             <EntityTypeMapping TypeName="Odonto_DBModel.ORCAMENTO">
               <MappingFragment StoreEntitySet="ORCAMENTO">
+                <ScalarProperty Name="ORCA_DT_PAGAMENTO" ColumnName="ORCA_DT_PAGAMENTO" />
                 <ScalarProperty Name="ORCA_CD_ID" ColumnName="ORCA_CD_ID" />
                 <ScalarProperty Name="PACI_CD_ID" ColumnName="PACI_CD_ID" />
                 <ScalarProperty Name="ORCA_DT_DATA" ColumnName="ORCA_DT_DATA" />
@@ -8638,6 +8735,7 @@
           <EntitySetMapping Name="ORCAMENTO_ITEM">
             <EntityTypeMapping TypeName="Odonto_DBModel.ORCAMENTO_ITEM">
               <MappingFragment StoreEntitySet="ORCAMENTO_ITEM">
+                <ScalarProperty Name="SUPR_CD_ID" ColumnName="SUPR_CD_ID" />
                 <ScalarProperty Name="ORIT_CD_ID" ColumnName="ORIT_CD_ID" />
                 <ScalarProperty Name="ORCA_CD_ID" ColumnName="ORCA_CD_ID" />
                 <ScalarProperty Name="REDE_CD_ID" ColumnName="REDE_CD_ID" />
@@ -9484,6 +9582,18 @@
                 <ScalarProperty Name="SPAN_NM_TITULO" ColumnName="SPAN_NM_TITULO" />
                 <ScalarProperty Name="SUPR_CD_ID" ColumnName="SUPR_CD_ID" />
                 <ScalarProperty Name="SPAN_CD_ID" ColumnName="SPAN_CD_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PACIENTE_BALANCO_FINANCEIRO">
+            <EntityTypeMapping TypeName="Odonto_DBModel.PACIENTE_BALANCO_FINANCEIRO">
+              <MappingFragment StoreEntitySet="PACIENTE_BALANCO_FINANCEIRO">
+                <ScalarProperty Name="PABF_IN_ATIVO" ColumnName="PABF_IN_ATIVO" />
+                <ScalarProperty Name="PABF_VL_VALOR" ColumnName="PABF_VL_VALOR" />
+                <ScalarProperty Name="PABF_IN_TIPO" ColumnName="PABF_IN_TIPO" />
+                <ScalarProperty Name="PABF_DT_MOVIMENTO" ColumnName="PABF_DT_MOVIMENTO" />
+                <ScalarProperty Name="PACI_CD_ID" ColumnName="PACI_CD_ID" />
+                <ScalarProperty Name="PABF_CD_ID" ColumnName="PABF_CD_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

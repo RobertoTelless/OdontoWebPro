@@ -31,6 +31,7 @@ namespace EntitiesServices.Model
         public Nullable<decimal> ORCA_VL_FINAL { get; set; }
         public Nullable<int> ORCA_IN_ATIVO { get; set; }
         public string ORCA_DS_OBSERVACOES { get; set; }
+        public Nullable<System.DateTime> ORCA_DT_PAGAMENTO { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ORCAMENTO_ANEXO> ORCAMENTO_ANEXO { get; set; }

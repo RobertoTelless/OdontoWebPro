@@ -484,6 +484,9 @@
     <Compile Include="Model\PACIENTE_ANEXO.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\PACIENTE_BALANCO_FINANCEIRO.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\PACIENTE_PRESCRICAO.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>

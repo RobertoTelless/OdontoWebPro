@@ -18,6 +18,7 @@ namespace EntitiesServices.Model
         public SUB_PROCEDIMENTO()
         {
             this.SUB_PROCEDIMENTO_ANEXO = new HashSet<SUB_PROCEDIMENTO_ANEXO>();
+            this.ORCAMENTO_ITEM = new HashSet<ORCAMENTO_ITEM>();
         }
     
         public int SUPR_CD_ID { get; set; }
@@ -32,5 +33,7 @@ namespace EntitiesServices.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SUB_PROCEDIMENTO_ANEXO> SUB_PROCEDIMENTO_ANEXO { get; set; }
         public virtual TIPO_PROCEDIMENTO TIPO_PROCEDIMENTO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ORCAMENTO_ITEM> ORCAMENTO_ITEM { get; set; }
     }
 }

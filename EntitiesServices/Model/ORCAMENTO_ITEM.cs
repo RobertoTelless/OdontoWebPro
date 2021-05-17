@@ -20,9 +20,11 @@ namespace EntitiesServices.Model
         public Nullable<int> TIPR_CD_ID { get; set; }
         public Nullable<decimal> ORIT_VL_OVERRIDE { get; set; }
         public Nullable<int> ORIT_IN_ATIVO { get; set; }
+        public Nullable<int> SUPR_CD_ID { get; set; }
     
         public virtual ORCAMENTO ORCAMENTO { get; set; }
         public virtual REGIAO_DENTE REGIAO_DENTE { get; set; }
         public virtual TIPO_PROCEDIMENTO TIPO_PROCEDIMENTO { get; set; }
+        public virtual SUB_PROCEDIMENTO SUB_PROCEDIMENTO { get; set; }
     }
 }
