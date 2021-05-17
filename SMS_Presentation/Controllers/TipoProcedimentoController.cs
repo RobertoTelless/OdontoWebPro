@@ -763,9 +763,135 @@ namespace Odonto.Controllers
             return View(vm);
         }
 
+        public ActionResult VoltarBaseSubProcedimento()
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            Int32 idProc = (Int32)Session["IdProc"];
+            if ((Int32)Session["VoltaSub"] == 1)
+            {
+                return RedirectToAction("EditarTipoProcedimento", new { id = idProc });
+            }
+            return RedirectToAction("VerTipoProcedimento", new { id = idProc });
+        }
 
+        [HttpGet]
+        public ActionResult VerAnexoSubProcedimento(Int32 id)
+        {
+            // Prepara view
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            SUB_PROCEDIMENTO_ANEXO item = subApp.GetAnexoById(id);
+            return View(item);
+        }
 
+        public FileResult DownloadSubProcedimento(Int32 id)
+        {
+            SUB_PROCEDIMENTO_ANEXO item = subApp.GetAnexoById(id);
+            String arquivo = item.SPAN_AQ_ARQUIVO;
+            Int32 pos = arquivo.LastIndexOf("/") + 1;
+            String nomeDownload = arquivo.Substring(pos);
+            String contentType = string.Empty;
+            if (arquivo.Contains(".pdf"))
+            {
+                contentType = "application/pdf";
+            }
+            else if (arquivo.Contains(".jpg"))
+            {
+                contentType = "image/jpg";
+            }
+            else if (arquivo.Contains(".jpeg"))
+            {
+                contentType = "image/jpg";
+            }
+            else if (arquivo.Contains(".png"))
+            {
+                contentType = "image/png";
+            }
+            else
+            {
+                contentType = "image/jpg";
+            }
+            return File(arquivo, contentType, nomeDownload);
+        }
 
+        [HttpPost]
+        public ActionResult UploadFileSubProcedimento(HttpPostedFileBase file)
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            if (file == null)
+            {
+                ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0019", CultureInfo.CurrentCulture));
+                return RedirectToAction("VoltarAnexoSubProcedimento");
+            }
+
+            Int32 idSub = (Int32)Session["IdSub"];
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            SUB_PROCEDIMENTO item = subApp.GetById(idSub);
+            USUARIO usu = (USUARIO)Session["UserCredentials"];
+            var fileName = Path.GetFileName(file.FileName);
+
+            if (fileName.Length > 100)
+            {
+                ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0024", CultureInfo.CurrentCulture));
+                return RedirectToAction("VoltarAnexoSubProcedimento");
+            }
+
+            String caminho = "/Imagens/" + idAss.ToString() + "/SubProcedimentos/" + item.SUPR_CD_ID.ToString() + "/Anexos/";
+            String path = Path.Combine(Server.MapPath(caminho), fileName);
+            file.SaveAs(path);
+
+            //Recupera tipo de arquivo
+            extensao = Path.GetExtension(fileName);
+            String a = extensao;
+
+            // Gravar registro
+            SUB_PROCEDIMENTO_ANEXO foto = new SUB_PROCEDIMENTO_ANEXO();
+            foto.SPAN_AQ_ARQUIVO = "~" + caminho + fileName;
+            foto.SPAN_DT_ANEXO = DateTime.Today;
+            foto.SPAN_IN_ATIVO = 1;
+            Int32 tipo = 3;
+            if (extensao.ToUpper() == ".JPG" || extensao.ToUpper() == ".GIF" || extensao.ToUpper() == ".PNG" || extensao.ToUpper() == ".JPEG")
+            {
+                tipo = 1;
+            }
+            if (extensao.ToUpper() == ".MP4" || extensao.ToUpper() == ".AVI" || extensao.ToUpper() == ".MPEG")
+            {
+                tipo = 2;
+            }
+            foto.SPAN_IN_TIPO = tipo;
+            foto.SPAN_NM_TITULO = fileName;
+            foto.SUPR_CD_ID = item.SUPR_CD_ID;
+
+            item.SUB_PROCEDIMENTO_ANEXO.Add(foto);
+            objetoSubAntes = item;
+            Int32 volta = subApp.ValidateEdit(item, objetoSubAntes);
+            return RedirectToAction("VoltarAnexoSubProcedimento");
+        }
+
+        public ActionResult VoltarAnexoSubProcedimento()
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            Int32 idSub = (Int32)Session["IdSub"];
+            if ((Int32)Session["VoltaProc"] == 1)
+            {
+                return RedirectToAction("EditarSubProcedimento", new { id = idSub });
+            }
+            return RedirectToAction("VerSubProcedimento", new { id = idSub });
+        }
 
 
 

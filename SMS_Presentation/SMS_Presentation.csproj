@@ -3135,6 +3135,7 @@
     <Content Include="Views\TipoProcedimento\IncluirSubProcedimento.cshtml" />
     <Content Include="Views\TipoProcedimento\EditarSubProcedimento.cshtml" />
     <Content Include="Views\TipoProcedimento\VerSubProcedimento.cshtml" />
+    <Content Include="Views\TipoProcedimento\VerAnexoSubProcedimento.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
