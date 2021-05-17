@@ -138,6 +138,7 @@ namespace Odonto.Controllers
             Session["MensConsumo"] = 0;
             Session["VoltaConsumo"] = 1;
             objetoMov = new MOVIMENTO_ESTOQUE_PRODUTO();
+            objetoMov.USUARIO = usuario;
             return View(objetoMov);
         }
 

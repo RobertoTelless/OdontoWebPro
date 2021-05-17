@@ -66,6 +66,7 @@ namespace DataServices.Repositories
             query = query.Where(p => p.MOEP_IN_ATIVO == 1);
             query = query.Where(p => p.USUA_CD_ID == idUsu);
             query = query.Where(p => DbFunctions.TruncateTime(p.MOEP_DT_MOVIMENTO).Value.Month == DbFunctions.TruncateTime(data).Value.Month);
+            query = query.Include(p => p.USUARIO);
             return query.ToList();
         }
 

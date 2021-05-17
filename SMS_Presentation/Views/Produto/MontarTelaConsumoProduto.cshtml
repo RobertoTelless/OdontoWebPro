@@ -18,46 +18,16 @@
         </ol>
         <br />
     </div>
-
-    <div class="row">
-        <div class="col-lg-3">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <span class="label label-primary pull-right">Hoje</span>
-                    <h5>Consumo de Material</h5>
-                </div>
-                <div class="ibox-content">
-                    <h1 class="no-margins">@ViewBag.Cont</h1>
-                    <div class="stat-percent font-bold text-navy">32% <i class="fa fa-level-up"></i></div>
-                    <small>Movimentações deste Usuário</small>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="widget style1 blue-bg">
-                <div class="row vertical-align">
-                    <div class="col-xs-3">
-                        <i class="fa fa-user-o  fa-3x"></i>
-                    </div>
-                    <div class="col-xs-9 text-right">
-                        <h3 class="font-normal">@ViewBag.Nome</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="widget style1 navy-bg">
-                <div class="row vertical-align">
-                    <div class="col-xs-3">
-                        <i class="fa fa-building-o  fa-3x"></i>
-                    </div>
-                    <div class="col-xs-9 text-right">
-                        <h3 class="font-normal">@ViewBag.Filial</h3>
-                    </div>
-                </div>
+    <div class="form-group">
+        <br />
+        <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+            <div class="col-lg-6 col-md-6 col-xs-12" style="font-size:20px; color: darkgreen; font-weight: bold">
+                @Html.TextBoxFor(m => m.USUARIO.USUA_NM_NOME, new { @class = "form-control", autofocus = true, @readonly = "readonly" })
             </div>
         </div>
     </div>
+    <br />
+    <br />
     <div class="row">
         <div class="col-lg-12 col-md-12 col-xs-12">
             <div class="col-lg-12 col-md-12 col-xs-12 ibox float-e-margins">

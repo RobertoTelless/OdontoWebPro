@@ -233,7 +233,7 @@ namespace Odonto.Controllers
 
             // Prepara listas
             Int32 idMatriz = ((MATRIZ)Session["Matriz"]).MATR_CD_ID;
-            ViewBag.Filiais = new SelectList(filApp.GetAllItens(idMatriz), "FILI_CD_ID", "FILI_NM_NOME");
+            ViewBag.Filiais = new SelectList(filApp.GetAllItens(idAss), "FILI_CD_ID", "FILI_NM_NOME");
             ViewBag.Perfil = usuario.PERFIL.PERF_SG_SIGLA;
 
             // Prepara view
@@ -257,7 +257,7 @@ namespace Odonto.Controllers
             }
             Int32 idAss = (Int32)Session["IdAssinante"];
             Int32 idMatriz = (Int32)Session["IdMatriz"];
-            ViewBag.Filiais = new SelectList(filApp.GetAllItens(idMatriz), "FILI_CD_ID", "FILI_NM_NOME");
+            ViewBag.Filiais = new SelectList(filApp.GetAllItens(idAss), "FILI_CD_ID", "FILI_NM_NOME");
             if (ModelState.IsValid)
             {
                 try
@@ -326,7 +326,8 @@ namespace Odonto.Controllers
 
             // Prepara view
             Int32 idMatriz = ((MATRIZ)Session["Matriz"]).MATR_CD_ID;
-            ViewBag.Filiais = new SelectList(filApp.GetAllItens(idMatriz), "FILI_CD_ID", "FILI_NM_NOME");
+            ViewBag.Filiais = new SelectList(filApp.GetAllItens(idAss), "FILI_CD_ID", "FILI_NM_NOME");
+            ViewBag.Perfil = usuario.PERFIL.PERF_SG_SIGLA;
 
             TIPO_PROCEDIMENTO item = baseApp.GetItemById(id);
             objetoAntes = item;
@@ -346,7 +347,7 @@ namespace Odonto.Controllers
             }
             Int32 idAss = (Int32)Session["IdAssinante"];
             Int32 idMatriz = ((MATRIZ)Session["Matriz"]).MATR_CD_ID;
-            ViewBag.Filiais = new SelectList(filApp.GetAllItens(idMatriz), "FILI_CD_ID", "FILI_NM_NOME");
+            ViewBag.Filiais = new SelectList(filApp.GetAllItens(idAss), "FILI_CD_ID", "FILI_NM_NOME");
             if (ModelState.IsValid)
             {
                 try
@@ -695,6 +696,7 @@ namespace Odonto.Controllers
             }
 
             // Prepara view
+            ViewBag.Perfil = usuario.PERFIL.PERF_SG_SIGLA;
             SUB_PROCEDIMENTO item = subApp.GetItemById(id);
             objetoSubAntes = item;
             Session["SubProcedimento"] = item;
