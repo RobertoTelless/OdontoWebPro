@@ -556,6 +556,15 @@ namespace SMS_Presentation.App_Start {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Sub-Procedimento já cadastrado.
+        /// </summary>
+        internal static string M0059 {
+            get {
+                return ResourceManager.GetString("M0059", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a A Senha não pode ficar em branco.
         /// </summary>
         internal static string M0073 {

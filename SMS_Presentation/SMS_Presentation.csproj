@@ -348,6 +348,7 @@
     <Compile Include="Controllers\PacienteController.cs" />
     <Compile Include="Controllers\ProdutoController.cs" />
     <Compile Include="Controllers\RemuneracaoController.cs" />
+    <Compile Include="Controllers\SubProcedimentoController.cs" />
     <Compile Include="Controllers\TabelasAuxiliaresController.cs" />
     <Compile Include="Controllers\TarefaController.cs" />
     <Compile Include="Controllers\TelefoneController.cs" />
@@ -389,6 +390,7 @@
     <Compile Include="ViewModels\ProdutoViewModel.cs" />
     <Compile Include="ViewModels\TipoProcedimentoAnexoViewModel.cs" />
     <Compile Include="ViewModels\NotificacaoAnexoViewModel.cs" />
+    <Compile Include="ViewModels\SubProcedimentoViewModel.cs" />
     <Compile Include="ViewModels\TipoProcedimentoViewModel.cs" />
     <Compile Include="ViewModels\SubgrupoViewModel.cs" />
     <Compile Include="ViewModels\TelefoneViewModel.cs" />
@@ -3130,6 +3132,9 @@
     <Content Include="Views\Paciente\IncluirPergunta.cshtml" />
     <Content Include="Views\Paciente\VerAnexoAnamnese.cshtml" />
     <Content Include="Views\Produto\VerProdutosEstoqueNegativo.cshtml" />
+    <Content Include="Views\TipoProcedimento\IncluirSubProcedimento.cshtml" />
+    <Content Include="Views\TipoProcedimento\EditarSubProcedimento.cshtml" />
+    <Content Include="Views\TipoProcedimento\VerSubProcedimento.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3173,6 +3178,7 @@
     <Folder Include="Imagens\Base\Dentes\1\Dentes\" />
     <Folder Include="Imagens\Base\Dentes\2\Dentes\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\SubProcedimento\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

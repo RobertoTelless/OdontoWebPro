@@ -51,6 +51,7 @@ namespace MvcMapping.Mappers
             CreateMap<PRODUTO, ProdutoViewModel>();
             CreateMap<PRODUTO_FORNECEDOR, ProdutoFornecedorViewModel>();
             CreateMap<PACIENTE_ANAMNESE_PERGUNTA, PacientePerguntaViewModel>();
+            CreateMap<SUB_PROCEDIMENTO, SubProcedimentoViewModel>();
 
         }
     }

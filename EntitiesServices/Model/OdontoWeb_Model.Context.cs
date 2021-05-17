@@ -112,5 +112,8 @@ namespace EntitiesServices.Model
         public virtual DbSet<PACIENTE_ANAMESE_IMAGEM> PACIENTE_ANAMESE_IMAGEM { get; set; }
         public virtual DbSet<PACIENTE_ANAMNESE_PERGUNTA> PACIENTE_ANAMNESE_PERGUNTA { get; set; }
         public virtual DbSet<TIPO_IMAGEM> TIPO_IMAGEM { get; set; }
+        public virtual DbSet<ORCAMENTO_ACOMPANHAMENTO> ORCAMENTO_ACOMPANHAMENTO { get; set; }
+        public virtual DbSet<SUB_PROCEDIMENTO> SUB_PROCEDIMENTO { get; set; }
+        public virtual DbSet<SUB_PROCEDIMENTO_ANEXO> SUB_PROCEDIMENTO_ANEXO { get; set; }
     }
 }

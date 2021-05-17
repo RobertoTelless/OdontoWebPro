@@ -208,6 +208,8 @@
     <Compile Include="Repositories\ProdutoOrigemRepository.cs" />
     <Compile Include="Repositories\ProdutoTabelaPrecoRepository.cs" />
     <Compile Include="Repositories\TipoImagemRepository.cs" />
+    <Compile Include="Repositories\SubProcedimentoRepository.cs" />
+    <Compile Include="Repositories\SubProcedimentoAnexoRepository.cs" />
     <Compile Include="Repositories\TipoProcedimentoRepository.cs" />
     <Compile Include="Repositories\TipoProcedimentoAnexoRepository.cs" />
     <Compile Include="Repositories\NotificacaoAnexoRepository.cs" />

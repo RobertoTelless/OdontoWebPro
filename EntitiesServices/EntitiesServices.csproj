@@ -193,6 +193,7 @@
     <Compile Include="EntitiesServices\ProdutoMovimentoEstoqueService.cs" />
     <Compile Include="EntitiesServices\ProdutoTabelaPrecoService.cs" />
     <Compile Include="EntitiesServices\TipoImagemService.cs" />
+    <Compile Include="EntitiesServices\SubProcedimentoService.cs" />
     <Compile Include="EntitiesServices\TipoProcedimentoService.cs" />
     <Compile Include="EntitiesServices\ProdutoService.cs" />
     <Compile Include="EntitiesServices\MovimentoEstoqueProdutoService.cs" />
@@ -231,6 +232,7 @@
     <Compile Include="Interfaces\EntitiesServices\IProdutoMovimentoEstoqueService.cs" />
     <Compile Include="Interfaces\EntitiesServices\IProdutoTabelaPrecoService.cs" />
     <Compile Include="Interfaces\EntitiesServices\ITipoImagemService.cs" />
+    <Compile Include="Interfaces\EntitiesServices\ISubProcedimentoService.cs" />
     <Compile Include="Interfaces\EntitiesServices\ITipoProcedimentoService.cs" />
     <Compile Include="Interfaces\EntitiesServices\IProdutoService.cs" />
     <Compile Include="Interfaces\EntitiesServices\IMatrizService.cs" />
@@ -294,6 +296,7 @@
     <Compile Include="Interfaces\Repositories\IProdutoOrigemRepository.cs" />
     <Compile Include="Interfaces\Repositories\IProdutoTabelaPrecoRepository.cs" />
     <Compile Include="Interfaces\Repositories\ITipoImagemRepository.cs" />
+    <Compile Include="Interfaces\Repositories\ISubProcedimentoAnexoRepository.cs" />
     <Compile Include="Interfaces\Repositories\ITipoProcedimentoAnexoRepository.cs" />
     <Compile Include="Interfaces\Repositories\INotificacaoAnexoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IMovimentoEstoqueProdutoRepository.cs" />
@@ -313,6 +316,7 @@
     <Compile Include="Interfaces\Repositories\ITarefaRepository.cs" />
     <Compile Include="Interfaces\Repositories\ITemplateRepository.cs" />
     <Compile Include="Interfaces\Repositories\ITipoContaRepository.cs" />
+    <Compile Include="Interfaces\Repositories\ISubProcedimentoRepository.cs" />
     <Compile Include="Interfaces\Repositories\ITipoProcedimentoRepository.cs" />
     <Compile Include="Interfaces\Repositories\ITipoContribuinteRepository.cs" />
     <Compile Include="Interfaces\Repositories\ITipoPessoaRepository.cs" />
@@ -456,6 +460,9 @@
     <Compile Include="Model\ORCAMENTO.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\ORCAMENTO_ACOMPANHAMENTO.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\ORCAMENTO_ANEXO.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
@@ -535,6 +542,12 @@
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\SUBGRUPO.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\SUB_PROCEDIMENTO.cs">
+      <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\SUB_PROCEDIMENTO_ANEXO.cs">
       <DependentUpon>OdontoWeb_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\TAREFA.cs">

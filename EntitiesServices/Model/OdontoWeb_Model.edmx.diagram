@@ -244,6 +244,13 @@
         <AssociationConnector Association="Odonto_DBModel.FK_PACIENTE_ANAMESE_IMAGEM_TIPO_IMAGEM" />
         <AssociationConnector Association="Odonto_DBModel.FK_PRODUTO_PRODUTO_ORIGEM" />
         <AssociationConnector Association="Odonto_DBModel.FK_PRODUTO_FILIAL" />
+        <EntityTypeShape EntityType="Odonto_DBModel.ORCAMENTO_ACOMPANHAMENTO" Width="1.5" PointX="23.75" PointY="90.375" />
+        <EntityTypeShape EntityType="Odonto_DBModel.SUB_PROCEDIMENTO" Width="1.5" PointX="21.75" PointY="109.875" />
+        <EntityTypeShape EntityType="Odonto_DBModel.SUB_PROCEDIMENTO_ANEXO" Width="1.5" PointX="24" PointY="110.125" />
+        <AssociationConnector Association="Odonto_DBModel.FK_ORCAMENTO_ACOMPANHAMENTO_ORCAMENTO" />
+        <AssociationConnector Association="Odonto_DBModel.FK_ORCAMENTO_ACOMPANHAMENTO_USUARIO" />
+        <AssociationConnector Association="Odonto_DBModel.FK_SUB_PROCEDIMENTO_ANEXO_SUB_PROCEDIMENTO" />
+        <AssociationConnector Association="Odonto_DBModel.FK_SUB_PROCEDIMENTO_TIPO_PROCEDIMENTO" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

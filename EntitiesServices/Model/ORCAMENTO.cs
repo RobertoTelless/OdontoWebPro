@@ -19,6 +19,7 @@ namespace EntitiesServices.Model
         {
             this.ORCAMENTO_ANEXO = new HashSet<ORCAMENTO_ANEXO>();
             this.ORCAMENTO_ITEM = new HashSet<ORCAMENTO_ITEM>();
+            this.ORCAMENTO_ACOMPANHAMENTO = new HashSet<ORCAMENTO_ACOMPANHAMENTO>();
         }
     
         public int ORCA_CD_ID { get; set; }
@@ -36,5 +37,7 @@ namespace EntitiesServices.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ORCAMENTO_ITEM> ORCAMENTO_ITEM { get; set; }
         public virtual PACIENTE PACIENTE { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ORCAMENTO_ACOMPANHAMENTO> ORCAMENTO_ACOMPANHAMENTO { get; set; }
     }
 }

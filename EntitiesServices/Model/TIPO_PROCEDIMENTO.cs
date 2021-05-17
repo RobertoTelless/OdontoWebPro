@@ -19,6 +19,7 @@ namespace EntitiesServices.Model
         {
             this.ORCAMENTO_ITEM = new HashSet<ORCAMENTO_ITEM>();
             this.TIPO_PROCEDIMENTO_ANEXO = new HashSet<TIPO_PROCEDIMENTO_ANEXO>();
+            this.SUB_PROCEDIMENTO = new HashSet<SUB_PROCEDIMENTO>();
         }
     
         public int TIPR_CD_ID { get; set; }
@@ -29,6 +30,7 @@ namespace EntitiesServices.Model
         public string TIPR_DS_DESCRICAO { get; set; }
         public int TIPR_IN_ATIVO { get; set; }
         public Nullable<decimal> TIPR_VL_VALOR { get; set; }
+        public Nullable<int> TIPR_VL_PRAZO { get; set; }
     
         public virtual ASSINANTE ASSINANTE { get; set; }
         public virtual FILIAL FILIAL { get; set; }
@@ -36,5 +38,7 @@ namespace EntitiesServices.Model
         public virtual ICollection<ORCAMENTO_ITEM> ORCAMENTO_ITEM { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TIPO_PROCEDIMENTO_ANEXO> TIPO_PROCEDIMENTO_ANEXO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SUB_PROCEDIMENTO> SUB_PROCEDIMENTO { get; set; }
     }
 }

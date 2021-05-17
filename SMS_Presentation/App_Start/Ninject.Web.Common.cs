@@ -104,6 +104,7 @@ namespace Presentation.Start
             kernel.Bind<IMovimentoEstoqueProdutoAppService>().To<MovimentoEstoqueProdutoAppService>();
             kernel.Bind<IProdutotabelaPrecoAppService>().To<ProdutoTabelaPrecoAppService>();
             kernel.Bind<ITipoImagemAppService>().To<TipoImagemAppService>();
+            kernel.Bind<ISubProcedimentoAppService>().To<SubProcedimentoAppService>();
 
             kernel.Bind(typeof(IServiceBase<>)).To(typeof(ServiceBase<>));
             kernel.Bind<IUsuarioService>().To<UsuarioService>();
@@ -142,6 +143,7 @@ namespace Presentation.Start
             kernel.Bind<IProdutoEstoqueFilialService>().To<ProdutoEstoqueFilialService>();
             kernel.Bind<IProdutoTabelaPrecoService>().To<ProdutoTabelaPrecoService>();
             kernel.Bind<ITipoImagemService>().To<TipoImagemService>();
+            kernel.Bind<ISubProcedimentoService>().To<SubProcedimentoService>();
 
             kernel.Bind(typeof(IRepositoryBase<>)).To(typeof(RepositoryBase<>));
             kernel.Bind<IConfiguracaoRepository>().To<ConfiguracaoRepository>();
@@ -214,6 +216,8 @@ namespace Presentation.Start
             kernel.Bind<ITipoImagemRepository>().To<TipoImagemRepository>();
             kernel.Bind<IPacientePerguntaRepository>().To<PacientePerguntaRepository>();
             kernel.Bind<IPacienteAnamneseImagemRepository>().To<PacienteAnamneseImagemRepository>();
+            kernel.Bind<ISubProcedimentoRepository>().To<SubProcedimentoRepository>();
+            kernel.Bind<ISubProcedimentoAnexoRepository>().To<SubProcedimentoAnexoRepository>();
 
         }
     }

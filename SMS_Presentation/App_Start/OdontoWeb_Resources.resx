@@ -282,6 +282,9 @@
   <data name="M0058" xml:space="preserve">
     <value>Preço já cadastrado</value>
   </data>
+  <data name="M0059" xml:space="preserve">
+    <value>Sub-Procedimento já cadastrado</value>
+  </data>
   <data name="M0073" xml:space="preserve">
     <value>A Senha não pode ficar em branco</value>
   </data>

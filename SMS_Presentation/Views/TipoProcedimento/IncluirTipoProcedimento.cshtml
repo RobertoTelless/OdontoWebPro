@@ -58,7 +58,7 @@
                         }
                         <div class="row">
                             <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">                
-                                <div class="col-lg-4 col-md-4 col-xs-12">
+                                <div class="col-lg-3 col-md-3 col-xs-12">
                                     @Html.HiddenFor(m => m.TIPR_IN_ATIVO)
                                     @Html.HiddenFor(m => m.ASSI_CD_ID)
                                     @if (ViewBag.Perfil != "ADM")
@@ -69,6 +69,11 @@
                                     @Html.TextBoxFor(m => m.TIPR_NM_NOME, new { @class = "form-control", autofocus = true })
                                     @Html.ValidationMessageFor(m => m.TIPR_NM_NOME, "",new { @style="color:red" })
                                 </div> 
+                                <div class="col-lg-2 col-md-2 col-xs-12">
+                                    Sigla*
+                                    @Html.TextBoxFor(m => m.TIPR_SG_SIGLA, new { @class = "form-control", autofocus = true })
+                                    @Html.ValidationMessageFor(m => m.TIPR_SG_SIGLA, "",new { @style="color:red" })
+                                </div>
                                 @if (ViewBag.Perfil == "ADM")
                                 {
                                     <div class="col-lg-3 col-md-3 col-xs-12">
@@ -79,6 +84,11 @@
                                 }
                                 <div class="col-lg-2 col-md-2 col-xs-12">
                                     Valor (R$)
+                                    @Html.TextBoxFor(m => m.TIPR_VL_VALOR, new { @class = "form-control", autofocus = true })
+                                    @Html.ValidationMessageFor(m => m.TIPR_VL_VALOR, "",new { @style="color:red" })
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-xs-12">
+                                    Duração (Horas)
                                     @Html.TextBoxFor(m => m.TIPR_VL_VALOR, new { @class = "form-control", autofocus = true })
                                     @Html.ValidationMessageFor(m => m.TIPR_VL_VALOR, "",new { @style="color:red" })
                                 </div>

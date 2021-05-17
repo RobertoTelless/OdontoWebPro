@@ -20,22 +20,27 @@ namespace Odonto.Controllers
         private readonly ITipoProcedimentoAppService baseApp;
         private readonly ILogAppService logApp;
         private readonly IFilialAppService filApp;
+        private readonly ISubProcedimentoAppService subApp;
 
         private String msg;
         private Exception exception;
         TIPO_PROCEDIMENTO objeto = new TIPO_PROCEDIMENTO();
         TIPO_PROCEDIMENTO objetoAntes = new TIPO_PROCEDIMENTO();
         List<TIPO_PROCEDIMENTO> listaMaster = new List<TIPO_PROCEDIMENTO>();
+        SUB_PROCEDIMENTO objetoSub = new SUB_PROCEDIMENTO();
+        SUB_PROCEDIMENTO objetoSubAntes = new SUB_PROCEDIMENTO();
+        List<SUB_PROCEDIMENTO> listaMasterSub = new List<SUB_PROCEDIMENTO>();
         LOG objLog = new LOG();
         LOG objLogAntes = new LOG();
         List<LOG> listaMasterLog = new List<LOG>();
         String extensao;
 
-        public TipoProcedimentoController(ITipoProcedimentoAppService baseApps, ILogAppService logApps, IFilialAppService filApps)
+        public TipoProcedimentoController(ITipoProcedimentoAppService baseApps, ILogAppService logApps, IFilialAppService filApps, ISubProcedimentoAppService subApps)
         {
             baseApp = baseApps;
             logApp = logApps;
             filApp = filApps;
+            subApp = subApps;
         }
 
         [HttpGet]
@@ -578,6 +583,186 @@ namespace Odonto.Controllers
             Int32 volta = baseApp.ValidateEdit(item, objetoAntes);
             return RedirectToAction("VoltarAnexoTipoProcedimento");
         }
+
+        [HttpGet]
+        public ActionResult IncluirSubProcedimento()
+        {
+            // Verifica se tem usuario logado
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            USUARIO usuario = new USUARIO();
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
+                // Verfifica permissão
+                if (usuario.PERFIL.PERF_SG_SIGLA != "ADM")
+                {
+                    Session["MensProc"] = 2;
+                    return RedirectToAction("MontarTelaTipoProcedimento", "TipoProcedimento");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+
+            // Prepara listas
+            ViewBag.Perfil = usuario.PERFIL.PERF_SG_SIGLA;
+
+            // Prepara view
+            SUB_PROCEDIMENTO item = new SUB_PROCEDIMENTO();
+            SubProcedimentoViewModel vm = Mapper.Map<SUB_PROCEDIMENTO, SubProcedimentoViewModel>(item);
+            vm.SUPR_IN_ATIVO = 1;
+            vm.TIPR_CD_ID = (Int32)Session["IdProc"];
+            return View(vm);
+        }
+
+        [HttpPost]
+        public ActionResult IncluirSubProcedimento(SubProcedimentoViewModel vm)
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    // Executa a operação
+                    SUB_PROCEDIMENTO item = Mapper.Map<SubProcedimentoViewModel, SUB_PROCEDIMENTO>(vm);
+                    USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
+                    Int32 volta = subApp.ValidateCreate(item, usuarioLogado);
+
+                    // Verifica retorno
+                    if (volta == 1)
+                    {
+                        ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0059", CultureInfo.CurrentCulture));
+                        return View(vm);
+                    }
+
+                    // Cria pastas
+                    String caminho = "/Imagens/" + idAss.ToString() + "/SubProcedimentos/" + item.SUPR_CD_ID.ToString() + "/Anexos/";
+                    Directory.CreateDirectory(Server.MapPath(caminho));
+
+                    // Sucesso
+                    listaMaster = new List<TIPO_PROCEDIMENTO>();
+                    Session["ListaSub"] = null;
+                    Session["VoltaSub"] = 1;
+                    Session["IdSubVolta"] = item.SUPR_CD_ID;
+                    Session["SubProcedimento"] = item;
+                    Session["MensProc"] = 0;
+                    return RedirectToAction("EditarTipoProcedimento", new { id = item.TIPR_CD_ID });
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = ex.Message;
+                    return View(vm);
+                }
+            }
+            else
+            {
+                return View(vm);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult EditarSubProcedimento(Int32 id)
+        {
+            // Verifica se tem usuario logado
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            USUARIO usuario = new USUARIO();
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
+                // Verfifica permissão
+                if (usuario.PERFIL.PERF_SG_SIGLA != "ADM")
+                {
+                    Session["MensProc"] = 2;
+                    return RedirectToAction("MontarTelaTipoProcedimento", "TipoProcedimento");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+
+            // Prepara view
+            SUB_PROCEDIMENTO item = subApp.GetItemById(id);
+            objetoSubAntes = item;
+            Session["SubProcedimento"] = item;
+            Session["IdSub"] = id;
+            Session["VoltaSub"] = 1;
+            SubProcedimentoViewModel vm = Mapper.Map<SUB_PROCEDIMENTO, SubProcedimentoViewModel>(item);
+            return View(vm);
+        }
+
+        [HttpPost]
+        public ActionResult EditarSubProcedimento(SubProcedimentoViewModel vm)
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    // Executa a operação
+                    USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
+                    SUB_PROCEDIMENTO item = Mapper.Map<SubProcedimentoViewModel, SUB_PROCEDIMENTO>(vm);
+                    Int32 volta = subApp.ValidateEdit(item, objetoSubAntes, usuarioLogado);
+
+                    // Verifica retorno
+                    if (volta == 1)
+                    {
+                        ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0059", CultureInfo.CurrentCulture));
+                        return View(vm);
+                    }
+
+                    // Sucesso
+                    listaMasterSub = new List<SUB_PROCEDIMENTO>();
+                    Session["ListaSub"] = null;
+                    Session["MensProc"] = 0;
+                    return RedirectToAction("EditarTipoProcedimento", new { id = item.TIPR_CD_ID });
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = ex.Message;
+                    return View(vm);
+                }
+            }
+            else
+            {
+                return View(vm);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult VerSubProcedimento(Int32 id)
+        {
+            // Prepara view
+            // Executa a operação
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            SUB_PROCEDIMENTO item = subApp.GetItemById(id);
+            objetoSubAntes = item;
+            SubProcedimentoViewModel vm = Mapper.Map<SUB_PROCEDIMENTO, SubProcedimentoViewModel>(item);
+            Session["VoltaSub"] = 2;
+            return View(vm);
+        }
+
 
 
 

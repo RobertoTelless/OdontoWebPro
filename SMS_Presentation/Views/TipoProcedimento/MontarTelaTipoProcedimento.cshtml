@@ -161,8 +161,11 @@
                                 <thead>
                                     <tr>
                                         <th>Nome</th>
+                                        <th>Sigla</th>
                                         <th>Unidade</th>
                                         <th>Valor</th>
+                                        <th>Duração (Horas)</th>
+                                        <th>Sub-Procedimentos</th>
                                         <th class="td-one-action">Ações</th>
                                     </tr>
                                 </thead>
@@ -171,15 +174,33 @@
                                     {
                                         <tr>
                                             <td>@cond.TIPR_NM_NOME</td>
+                                            <td>@cond.TIPR_SG_SIGLA</td>
                                             <td>@cond.FILIAL.FILI_NM_NOME</td>
-                                            @if (cond.TIPR_VL_VALOR != null)
+                                            @if (cond.SUB_PROCEDIMENTO.Count == 0)
                                             {
-                                                <td>@CrossCutting.Formatters.DecimalFormatter(cond.TIPR_VL_VALOR.Value)</td>
+                                                if (cond.TIPR_VL_VALOR != null)
+                                                {
+                                                    <td>@CrossCutting.Formatters.DecimalFormatter(cond.TIPR_VL_VALOR.Value)</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>0,00</td>
+                                                }
+                                                if (cond.TIPR_VL_PRAZO != null)
+                                                {
+                                                    <td>@cond.TIPR_VL_PRAZO</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>0</td>
+                                                }
                                             }
                                             else
                                             {
-                                                <td>0,00</td>
+                                                <td>-</td>
+                                                <td>-</td>
                                             }
+                                            <td>@cond.SUB_PROCEDIMENTO.Count</td>
                                             <td class="td-one-action">
                                                 @if (ViewBag.Perfil == "ADM")
                                                 {
