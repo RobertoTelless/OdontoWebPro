@@ -58,6 +58,7 @@ namespace EntitiesServices.Model
             this.SUBCATEGORIA_PRODUTO = new HashSet<SUBCATEGORIA_PRODUTO>();
             this.MOVIMENTO_ESTOQUE_PRODUTO = new HashSet<MOVIMENTO_ESTOQUE_PRODUTO>();
             this.TIPO_IMAGEM = new HashSet<TIPO_IMAGEM>();
+            this.ORCAMENTO = new HashSet<ORCAMENTO>();
         }
     
         public int ASSI_CD_ID { get; set; }
@@ -150,5 +151,7 @@ namespace EntitiesServices.Model
         public virtual ICollection<MOVIMENTO_ESTOQUE_PRODUTO> MOVIMENTO_ESTOQUE_PRODUTO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TIPO_IMAGEM> TIPO_IMAGEM { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ORCAMENTO> ORCAMENTO { get; set; }
     }
 }

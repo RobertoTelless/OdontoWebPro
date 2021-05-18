@@ -174,8 +174,12 @@
     <Compile Include="Repositories\CargoRepository.cs" />
     <Compile Include="Repositories\CategoriaFornecedorRepository.cs" />
     <Compile Include="Repositories\CategoriaPacienteRepository.cs" />
+    <Compile Include="Repositories\OrcamentoItemRepository.cs" />
+    <Compile Include="Repositories\OrcamentoAcompanhamentoRepository.cs" />
+    <Compile Include="Repositories\OrcamentoAnexoRepository.cs" />
     <Compile Include="Repositories\PacientePerguntaRepository.cs" />
     <Compile Include="Repositories\PacienteAnamneseImagemRepository.cs" />
+    <Compile Include="Repositories\OrcamentoRepository.cs" />
     <Compile Include="Repositories\SubcategoriaProdutoRepository.cs" />
     <Compile Include="Repositories\CategoriaUsuarioRepository.cs" />
     <Compile Include="Repositories\CategoriaTelefoneRepository.cs" />

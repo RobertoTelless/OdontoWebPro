@@ -345,6 +345,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NoticiaController.cs" />
     <Compile Include="Controllers\NotificacaoController.cs" />
+    <Compile Include="Controllers\OrcamentoController.cs" />
     <Compile Include="Controllers\PacienteController.cs" />
     <Compile Include="Controllers\ProdutoController.cs" />
     <Compile Include="Controllers\RemuneracaoController.cs" />
@@ -374,11 +375,14 @@
     <Compile Include="ViewModels\ContaBancariaLancamentoViewModel.cs" />
     <Compile Include="ViewModels\ContaBancariaViewModel.cs" />
     <Compile Include="ViewModels\FornecedorContatoViewModel.cs" />
+    <Compile Include="ViewModels\OrcamentoAcompanhamentoViewModel.cs" />
     <Compile Include="ViewModels\PacientePerguntaViewModel.cs" />
+    <Compile Include="ViewModels\OrcamentoItemViewModel.cs" />
     <Compile Include="ViewModels\PacienteRecomendacaoViewModel.cs" />
     <Compile Include="ViewModels\PacientePrescricaoViewModel.cs" />
     <Compile Include="ViewModels\PacienteAcompanhamentoViewModel.cs" />
     <Compile Include="ViewModels\FornecedorViewModel.cs" />
+    <Compile Include="ViewModels\OrcamentoViewModel.cs" />
     <Compile Include="ViewModels\PacienteViewModel.cs" />
     <Compile Include="ViewModels\FilialViewModel.cs" />
     <Compile Include="ViewModels\GrupoViewModel.cs" />
@@ -3195,6 +3199,7 @@
     <Folder Include="Imagens\Base\Dentes\1\Dentes\" />
     <Folder Include="Imagens\Base\Dentes\2\Dentes\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Orcamento\" />
     <Folder Include="Views\SubProcedimento\" />
   </ItemGroup>
   <ItemGroup>

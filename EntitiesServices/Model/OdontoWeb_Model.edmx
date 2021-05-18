@@ -574,15 +574,18 @@
             <PropertyRef Name="ORCA_CD_ID" />
           </Key>
           <Property Name="ORCA_CD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ASSI_CD_ID" Type="int" />
           <Property Name="PACI_CD_ID" Type="int" />
+          <Property Name="ORCA_NM_NOME" Type="varchar" MaxLength="250" />
           <Property Name="ORCA_DT_DATA" Type="date" />
           <Property Name="ORCA_IN_STATUS" Type="int" />
           <Property Name="ORCA_VL_VALOR" Type="decimal" Precision="18" Scale="2" />
           <Property Name="ORCA_VL_DESCONTO" Type="decimal" Precision="18" Scale="2" />
           <Property Name="ORCA_VL_FINAL" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ORCA_VL_VALOR_PAGO" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ORCA_DT_PAGAMENTO" Type="date" />
           <Property Name="ORCA_IN_ATIVO" Type="int" />
           <Property Name="ORCA_DS_OBSERVACOES" Type="text" />
-          <Property Name="ORCA_DT_PAGAMENTO" Type="date" />
         </EntityType>
         <EntityType Name="ORCAMENTO_ACOMPANHAMENTO">
           <Key>
@@ -2180,6 +2183,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ORCAMENTO_ASSINANTE">
+          <End Role="ASSINANTE" Type="Self.ASSINANTE" Multiplicity="0..1" />
+          <End Role="ORCAMENTO" Type="Self.ORCAMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ASSINANTE">
+              <PropertyRef Name="ASSI_CD_ID" />
+            </Principal>
+            <Dependent Role="ORCAMENTO">
+              <PropertyRef Name="ASSI_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ORCAMENTO_ITEM_ORCAMENTO">
           <End Role="ORCAMENTO" Type="Self.ORCAMENTO" Multiplicity="0..1" />
           <End Role="ORCAMENTO_ITEM" Type="Self.ORCAMENTO_ITEM" Multiplicity="*" />
@@ -3592,6 +3607,10 @@
             <End Role="ORCAMENTO" EntitySet="ORCAMENTO" />
             <End Role="ORCAMENTO_ANEXO" EntitySet="ORCAMENTO_ANEXO" />
           </AssociationSet>
+          <AssociationSet Name="FK_ORCAMENTO_ASSINANTE" Association="Self.FK_ORCAMENTO_ASSINANTE">
+            <End Role="ASSINANTE" EntitySet="ASSINANTE" />
+            <End Role="ORCAMENTO" EntitySet="ORCAMENTO" />
+          </AssociationSet>
           <AssociationSet Name="FK_ORCAMENTO_ITEM_ORCAMENTO" Association="Self.FK_ORCAMENTO_ITEM_ORCAMENTO">
             <End Role="ORCAMENTO" EntitySet="ORCAMENTO" />
             <End Role="ORCAMENTO_ITEM" EntitySet="ORCAMENTO_ITEM" />
@@ -4076,6 +4095,7 @@
           <NavigationProperty Name="SUBCATEGORIA_PRODUTO" Relationship="Odonto_DBModel.FK_SUBCATEGORIA_PRODUTO_ASSINANTE" FromRole="ASSINANTE" ToRole="SUBCATEGORIA_PRODUTO" />
           <NavigationProperty Name="MOVIMENTO_ESTOQUE_PRODUTO" Relationship="Odonto_DBModel.FK_MOVIMENTO_ESTOQUE_PRODUTO_ASSINANTE" FromRole="ASSINANTE" ToRole="MOVIMENTO_ESTOQUE_PRODUTO" />
           <NavigationProperty Name="TIPO_IMAGEM" Relationship="Odonto_DBModel.FK_TIPO_IMAGEM_ASSINANTE" FromRole="ASSINANTE" ToRole="TIPO_IMAGEM" />
+          <NavigationProperty Name="ORCAMENTO" Relationship="Odonto_DBModel.FK_ORCAMENTO_ASSINANTE" FromRole="ASSINANTE" ToRole="ORCAMENTO" />
         </EntityType>
         <EntityType Name="BANCO">
           <Key>
@@ -4582,6 +4602,10 @@
           <NavigationProperty Name="PACIENTE" Relationship="Self.FK_ORCAMENTO_PACIENTE" FromRole="ORCAMENTO" ToRole="PACIENTE" />
           <NavigationProperty Name="ORCAMENTO_ACOMPANHAMENTO" Relationship="Odonto_DBModel.FK_ORCAMENTO_ACOMPANHAMENTO_ORCAMENTO" FromRole="ORCAMENTO" ToRole="ORCAMENTO_ACOMPANHAMENTO" />
           <Property Name="ORCA_DT_PAGAMENTO" Type="DateTime" Precision="0" />
+          <Property Name="ORCA_VL_VALOR_PAGO" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ASSI_CD_ID" Type="Int32" />
+          <NavigationProperty Name="ASSINANTE" Relationship="Odonto_DBModel.FK_ORCAMENTO_ASSINANTE" FromRole="ORCAMENTO" ToRole="ASSINANTE" />
+          <Property Name="ORCA_NM_NOME" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ORCAMENTO_ANEXO">
           <Key>
@@ -7488,6 +7512,10 @@
             <End Role="PACIENTE" EntitySet="PACIENTE" />
             <End Role="PACIENTE_BALANCO_FINANCEIRO" EntitySet="PACIENTE_BALANCO_FINANCEIRO" />
           </AssociationSet>
+          <AssociationSet Name="FK_ORCAMENTO_ASSINANTE" Association="Odonto_DBModel.FK_ORCAMENTO_ASSINANTE">
+            <End Role="ASSINANTE" EntitySet="ASSINANTE" />
+            <End Role="ORCAMENTO" EntitySet="ORCAMENTO" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="FORNECEDOR_ANEXO">
           <Key>
@@ -8189,6 +8217,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ORCAMENTO_ASSINANTE">
+          <End Type="Odonto_DBModel.ASSINANTE" Role="ASSINANTE" Multiplicity="0..1" />
+          <End Type="Odonto_DBModel.ORCAMENTO" Role="ORCAMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ASSINANTE">
+              <PropertyRef Name="ASSI_CD_ID" />
+            </Principal>
+            <Dependent Role="ORCAMENTO">
+              <PropertyRef Name="ASSI_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -8706,6 +8746,9 @@
           <EntitySetMapping Name="ORCAMENTO">
             <EntityTypeMapping TypeName="Odonto_DBModel.ORCAMENTO">
               <MappingFragment StoreEntitySet="ORCAMENTO">
+                <ScalarProperty Name="ORCA_NM_NOME" ColumnName="ORCA_NM_NOME" />
+                <ScalarProperty Name="ASSI_CD_ID" ColumnName="ASSI_CD_ID" />
+                <ScalarProperty Name="ORCA_VL_VALOR_PAGO" ColumnName="ORCA_VL_VALOR_PAGO" />
                 <ScalarProperty Name="ORCA_DT_PAGAMENTO" ColumnName="ORCA_DT_PAGAMENTO" />
                 <ScalarProperty Name="ORCA_CD_ID" ColumnName="ORCA_CD_ID" />
                 <ScalarProperty Name="PACI_CD_ID" ColumnName="PACI_CD_ID" />

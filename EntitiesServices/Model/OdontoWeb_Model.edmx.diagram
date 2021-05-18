@@ -254,6 +254,7 @@
         <EntityTypeShape EntityType="Odonto_DBModel.PACIENTE_BALANCO_FINANCEIRO" Width="1.5" PointX="13.5" PointY="72.5" />
         <AssociationConnector Association="Odonto_DBModel.FK_ORCAMENTO_ITEM_SUB_PROCEDIMENTO" />
         <AssociationConnector Association="Odonto_DBModel.FK_PACIENTE_BALANCO_FINANCEIRO_PACIENTE" />
+        <AssociationConnector Association="Odonto_DBModel.FK_ORCAMENTO_ASSINANTE" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

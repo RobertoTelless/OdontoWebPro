@@ -188,6 +188,7 @@
     <Compile Include="EntitiesServices\LogService.cs" />
     <Compile Include="EntitiesServices\MatrizService.cs" />
     <Compile Include="EntitiesServices\NoticiaService.cs" />
+    <Compile Include="EntitiesServices\OrcamentoService.cs" />
     <Compile Include="EntitiesServices\PacienteService.cs" />
     <Compile Include="EntitiesServices\ProdutoEstoqueFilialService.cs" />
     <Compile Include="EntitiesServices\ProdutoMovimentoEstoqueService.cs" />
@@ -227,6 +228,7 @@
     <Compile Include="Interfaces\EntitiesServices\IGrupoService.cs" />
     <Compile Include="Interfaces\EntitiesServices\ILogService.cs" />
     <Compile Include="Interfaces\EntitiesServices\IMovimentoEstoqueProdutoService.cs" />
+    <Compile Include="Interfaces\EntitiesServices\IOrcamentoService.cs" />
     <Compile Include="Interfaces\EntitiesServices\IPacienteService.cs" />
     <Compile Include="Interfaces\EntitiesServices\IProdutoestoquefilialService.cs" />
     <Compile Include="Interfaces\EntitiesServices\IProdutoMovimentoEstoqueService.cs" />
@@ -261,8 +263,12 @@
     <Compile Include="Interfaces\Repositories\ICargoRepository.cs" />
     <Compile Include="Interfaces\Repositories\ICategoriaFornecedorRepository.cs" />
     <Compile Include="Interfaces\Repositories\ICategoriaPacienteRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IOrcamentoItemRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IOrcamentoAcompanhamentoRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IOrcamentoAnexoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IPacientePerguntaRepository.cs" />
     <Compile Include="Interfaces\Repositories\IPacienteAnamneseImagemRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IOrcamentoRepository.cs" />
     <Compile Include="Interfaces\Repositories\ISubcategoriaProdutoRepository.cs" />
     <Compile Include="Interfaces\Repositories\ICategoriaUsuarioRepository.cs" />
     <Compile Include="Interfaces\Repositories\ICategoriaTelefoneRepository.cs" />
