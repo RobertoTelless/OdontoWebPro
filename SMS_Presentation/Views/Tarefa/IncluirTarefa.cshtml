@@ -1,8 +1,6 @@
 @using Presentation.Extensions
 @model OdontoWeb.ViewModels.TarefaViewModel
-@{
-    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
-}
+@{ Layout = "~/Views/Shared/_Layout_Admin.cshtml"; }
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="page-title">
         <h3 class="title">Tarefas</h3>
@@ -57,125 +55,123 @@
                     <div class="tabs-container">
                         @using (Html.BeginForm("IncluirTarefa", "Tarefa", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", @id = "pwd-container1" }))
                         {
+                            <div class="form-group">
+                                <br />
+                                <button style="margin-left: 15px;" class="btnSubmit btn btn-sm btn-success" id="basictoast" type="button">Confirma inclusão de Tarefa</button>
+                                @Html.ButtonLinkIndex(text: "Cancelar", action: "VoltarBaseTarefa", controller: "Tarefa")
+                            </div>
 
                             <ul class="nav nav-tabs">
                                 <li class="active"><a data-toggle="tab" href="#tab-1">Dados Gerais</a></li>
                                 <li class=""><a data-toggle="tab" href="#tab-2">Anexos</a></li>
-                                <li class=""><a data-toggle="tab" href="#tab-3">Compartilhamento</a></li>
                             </ul>
 
-                            <div class="tab-content">
-                                @*Dados Gerais*@
-                                <div id="tab-1" class="tab-pane active">
-                                    <div class="panel-body">
-                                        <div class="row">
-                                            <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
-                                                <div class="col-lg-3 col-md-3 col-xs-12">
-                                                    @Html.HiddenFor(m => m.USUA_CD_ID)
-                                                    @Html.HiddenFor(m => m.TARE_IN_ATIVO)
-                                                    Tipo de Tarefa*
-                                                    @Html.DropDownListFor(m => m.TITR_CD_ID, (SelectList)ViewBag.Tipos, "Selecionar", new { @class = "form-control", autofocus = true })
-                                                    @Html.ValidationMessageFor(m => m.TITR_CD_ID, "", new { @style = "color:red" })
-                                                </div>
-                                                <div class="col-lg-2 col-md-2 col-xs-12">
-                                                    Data de Início*
-                                                    @Html.TextBoxFor(m => m.TARE_DT_CADASTRO, "{0:dd/MM/yyyy}", new { @class = "form-control date-picker", autofocus = true })
-                                                    @Html.ValidationMessageFor(m => m.TARE_DT_CADASTRO, "", new { @style = "color:red" })
-                                                </div>
-                                                <div class="col-lg-2 col-md-2 col-xs-12">
-                                                    Data Prevista*
-                                                    @Html.TextBoxFor(m => m.TARE_DT_ESTIMADA, "{0:dd/MM/yyyy}", new { @class = "form-control date-picker", autofocus = true })
-                                                    @Html.ValidationMessageFor(m => m.TARE_DT_ESTIMADA, "", new { @style = "color:red" })
-                                                </div>
-                                                <div class="col-lg-2 col-md-2 col-xs-12">
-                                                    Prioridade*
-                                                    @Html.DropDownListFor(m => m.TARE_IN_PRIORIDADE, (SelectList)ViewBag.Prioridade, "Selecionar", new { @class = "form-control", autofocus = true })
-                                                    @Html.ValidationMessageFor(m => m.TARE_IN_PRIORIDADE, "", new { @style = "color:red" })
-                                                </div>
-                                            </div>
-                                            <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
-                                                <div class="col-lg-6 col-md-6 col-xs-12">
-                                                    Título*
-                                                    @Html.TextBoxFor(m => m.TARE_NM_TITULO, new { @class = "form-control", autofocus = true })
-                                                    @Html.ValidationMessageFor(m => m.TARE_NM_TITULO, "", new { @style = "color:red" })
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-xs-12">
-                                                    Local
-                                                    @Html.TextBoxFor(m => m.TARE_NM_LOCAL, new { @class = "form-control", autofocus = true })
-                                                    @Html.ValidationMessageFor(m => m.TARE_NM_LOCAL, "", new { @style = "color:red" })
-                                                </div>
-                                            </div>
-                                            <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
-                                                <div class="col-lg-12 col-md-12 col-xs-12">
-                                                    Descrição
-                                                    @Html.TextAreaFor(m => m.TARE_DS_DESCRICAO, new { @class = "form-control", style = "width: 1040px; height: 400px;", autofocus = true })
-                                                    @Html.ValidationMessageFor(m => m.TARE_DS_DESCRICAO, "", new { @style = "color:red" })
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                @*Imagens - Foto e Anexos*@
-                                <div id="tab-2" class="tab-pane">
-                                    <div class="panel-body">
-                                        <div class="row">
-                                            <hr />
-                                            <div class="col-lg-12 col-md-12 col-xs-12">
-                                                <h4>Anexos da Tarefa</h4><input class="btn btn-sm btn-warning" id="inputFile" type="file" multiple />
-                                                <br />
-                                                <div class="form-group">
-                                                    <div class="ibox-content">
-                                                        <br />
-                                                        <table style="width: 100%;" class="table table-striped table-bordered table-hover dataTables-example" id="myFiles">
-                                                            <thead style="background-color:lightsteelblue">
-                                                                <tr>
-                                                                    <td>Nome</td>
-                                                                    <td>Tipo</td>
-                                                                    <td>Ações</td>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody></tbody>
-                                                        </table>
+                                            <div class="tab-content">
+                                                @*Dados Gerais*@
+                                                <div id="tab-1" class="tab-pane active">
+                                                    <div class="panel-body">
+                                                        <div class="row">
+                                                            <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+                                                                <div class="col-lg-3 col-md-3 col-xs-12">
+                                                                    @Html.HiddenFor(m => m.USUA_CD_ID)
+                                                                    @Html.HiddenFor(m => m.TARE_IN_ATIVO)
+                                                                    Tipo de Tarefa*
+                                                                    @Html.DropDownListFor(m => m.TITR_CD_ID, (SelectList)ViewBag.Tipos, "Selecionar", new { @class = "form-control", autofocus = true })
+                                                                    @Html.ValidationMessageFor(m => m.TITR_CD_ID, "", new { @style = "color:red" })
+                                                                </div>
+                                                                <div class="col-lg-2 col-md-2 col-xs-12">
+                                                                    Data de Início*
+                                                                    @Html.TextBoxFor(m => m.TARE_DT_CADASTRO, "{0:dd/MM/yyyy}", new { @class = "form-control date-picker", autofocus = true })
+                                                                    @Html.ValidationMessageFor(m => m.TARE_DT_CADASTRO, "", new { @style = "color:red" })
+                                                                </div>
+                                                                <div class="col-lg-2 col-md-2 col-xs-12">
+                                                                    Data Prevista*
+                                                                    @Html.TextBoxFor(m => m.TARE_DT_ESTIMADA, "{0:dd/MM/yyyy}", new { @class = "form-control date-picker", autofocus = true })
+                                                                    @Html.ValidationMessageFor(m => m.TARE_DT_ESTIMADA, "", new { @style = "color:red" })
+                                                                </div>
+                                                                <div class="col-lg-2 col-md-2 col-xs-12">
+                                                                    Prioridade*
+                                                                    @Html.DropDownListFor(m => m.TARE_IN_PRIORIDADE, (SelectList)ViewBag.Prioridade, "Selecionar", new { @class = "form-control", autofocus = true })
+                                                                    @Html.ValidationMessageFor(m => m.TARE_IN_PRIORIDADE, "", new { @style = "color:red" })
+                                                                </div>
+                                                                @if (ViewBag.Perfil == 1)
+                                                                {
+                                                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                                                        Atribuído a
+                                                                        @Html.DropDownListFor(m => m.USUA_CD_ID, (SelectList)ViewBag.Usuarios, new { @class = "form-control", autofocus = true })
+                                                                        @Html.ValidationMessageFor(m => m.USUA_CD_ID, "", new { @style = "color:red" })
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                            <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+                                                                <div class="col-lg-4 col-md-4 col-xs-12">
+                                                                    Título*
+                                                                    @Html.TextBoxFor(m => m.TARE_NM_TITULO, new { @class = "form-control", autofocus = true })
+                                                                    @Html.ValidationMessageFor(m => m.TARE_NM_TITULO, "", new { @style = "color:red" })
+                                                                </div>
+                                                                <div class="col-lg-3 col-md-3 col-xs-12">
+                                                                    Local
+                                                                    @Html.TextBoxFor(m => m.TARE_NM_LOCAL, new { @class = "form-control", autofocus = true })
+                                                                    @Html.ValidationMessageFor(m => m.TARE_NM_LOCAL, "", new { @style = "color:red" })
+                                                                </div>
+                                                                <div class="col-lg-3 col-md-3 col-xs-12">
+                                                                    Periodicidade
+                                                                    @Html.DropDownListFor(m => m.PETA_CD_ID, (SelectList)ViewBag.Periodicidade, "Selecionar", new { @class = "form-control", autofocus = true })
+                                                                    @Html.ValidationMessageFor(m => m.PETA_CD_ID, "", new { @style = "color:red" })
+                                                                </div>
+                                                                <div class="col-lg-2 col-md-2 col-xs-12">
+                                                                    Repetições
+                                                                    @Html.TextBoxFor(m => m.TARE_NR_PERIODICIDADE_QUANTIDADE, new { @class = "form-control touchspin2", autofocus = true })
+                                                                    @Html.ValidationMessageFor(m => m.TARE_NR_PERIODICIDADE_QUANTIDADE, "", new { @style = "color:red" })
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+                                                                <div class="col-lg-12 col-md-12 col-xs-12">
+                                                                    Descrição
+                                                                    @Html.TextAreaFor(m => m.TARE_DS_DESCRICAO, new { @class = "form-control", style = "width: 1040px; height: 400px;", autofocus = true })
+                                                                    @Html.ValidationMessageFor(m => m.TARE_DS_DESCRICAO, "", new { @style = "color:red" })
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                @*Compartilhamento*@
-                                <div id="tab-3" class="tab-pane">
-                                    <div class="panel-body">
-                                        <div class="row">
-                                            <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
-                                                <div class="col-lg-4 col-md-4 col-xs-12">
-                                                    Usuário
-                                                    @Html.DropDownListFor(m => m.TARE_CD_USUA_1, (SelectList)ViewBag.Usuarios, "Selecionar", new { @class = "form-control", autofocus = true })
-                                                    @Html.ValidationMessageFor(m => m.TARE_CD_USUA_1, "", new { @style = "color:red" })
+                                                @*Imagens - Foto e Anexos*@
+                                                <div id="tab-2" class="tab-pane">
+                                                    <div class="panel-body">
+                                                        <div class="row">
+                                                            <hr />
+                                                            <div class="col-lg-12 col-md-12 col-xs-12">
+                                                                <h4>Anexos da Tarefa</h4><input class="btn btn-sm btn-warning" id="inputFile" type="file" multiple />
+                                                                <br />
+                                                                <div class="form-group">
+                                                                    <div class="ibox-content">
+                                                                        <br />
+                                                                        <table style="width: 100%;" class="table table-striped table-bordered table-hover dataTables-example" id="myFiles">
+                                                                            <thead style="background-color:lightsteelblue">
+                                                                                <tr>
+                                                                                    <td>Nome</td>
+                                                                                    <td>Tipo</td>
+                                                                                    <td>Ações</td>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody></tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="col-lg-4 col-md-4 col-xs-12">
-                                                    Usuário
-                                                    @Html.DropDownListFor(m => m.TARE_CD_USUA_2, (SelectList)ViewBag.Usuarios, "Selecionar", new { @class = "form-control", autofocus = true })
-                                                    @Html.ValidationMessageFor(m => m.TARE_CD_USUA_2, "", new { @style = "color:red" })
-                                                </div>
-                                                <div class="col-lg-4 col-md-4 col-xs-12">
-                                                    Usuário
-                                                    @Html.DropDownListFor(m => m.TARE_CD_USUA_3, (SelectList)ViewBag.Usuarios, "Selecionar", new { @class = "form-control", autofocus = true })
-                                                    @Html.ValidationMessageFor(m => m.TARE_CD_USUA_3, "", new { @style = "color:red" })
+
+                                                <div class="form-group">
+                                                    <br />
+                                                    @Html.ButtonActionSubmit(text: "BtnSubmit", htmlAttributes: new { id = "submit", style = "display: none;" })
+                                                    <button style="margin-left: 15px;" class="btnSubmit btn btn-sm btn-success" id="basictoast" type="button">Confirma inclusão de Tarefa</button>
+                                                    @Html.ButtonLinkIndex(text: "Cancelar", action: "VoltarBaseTarefa", controller: "Tarefa")
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <br />
-                                    @Html.ButtonActionSubmit(text: "Confirma Inclusão de Tarefa", htmlAttributes: new { id = "basictoast" })
-                                    @Html.ButtonLinkIndex(text: "Cancelar", action: "VoltarBaseTarefa", controller: "Tarefa")
-                                </div>
-                            </div>
-                        }
+                                        }
                     </div>
                 </div>
             </div>
@@ -194,7 +190,6 @@
     @Styles.Render("~/plugins/toastrStyles")
 }
 @section Scripts {
-    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
     <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
     @Scripts.Render("~/plugins/toastr")
     @Scripts.Render("~/plugins/dataTables")
@@ -214,12 +209,13 @@
             $("#cpf").mask("999.999.999-99");
             $("#cnpj").mask("99.999.999/9999-99");
             $("#cep").mask("99999-999");
+            $('.date-picker').mask('99/99/9999');
         });
     </script>
     <script type="text/javascript">
         $(".touchspin2").TouchSpin({
-            min: 1,
-            max: 5,
+            min: 0,
+            max: 1000000000,
             step: 1,
             buttondown_class: 'btn btn-white',
             buttonup_class: 'btn btn-white'
@@ -378,15 +374,14 @@
     </script>
 
     <script>
-        SendFiles(null, 'Tarefa', 'IncluirTarefa', 'UploadFileTarefa_Inclusao', 'MontarTelaTarefa');
+        SendFilesV2(null, 'Tarefa', 'UploadFileToSession');
     </script>
 
     @if (ViewBag.Message != null)
     {
-        <script type="text/javascript">
+<script type="text/javascript">
             window.onload = function () {
                   alert("@ViewBag.Message");
             };
-        </script>
-    }
+</script>}
 }

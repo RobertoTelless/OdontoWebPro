@@ -34,6 +34,11 @@ namespace ModelServices.EntitiesServices
             _lancRepository = lancRepository;
         }
 
+        public List<CONTA_BANCO_LANCAMENTO> ExecuteFilterLanc(Int32 conta, DateTime? data, Int32? tipo, String desc)
+        {
+            return _lancRepository.ExecuteFilter(conta, data, tipo, desc);
+        }
+        
         public CONTA_BANCO CheckExist(CONTA_BANCO conta, Int32? idAss)
         {
             CONTA_BANCO item = _baseRepository.CheckExist(conta, idAss);

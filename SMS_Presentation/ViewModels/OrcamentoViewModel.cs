@@ -33,6 +33,7 @@ namespace OdontoWeb.ViewModels
         [Required(ErrorMessage = "Campo NOME obrigatorio")]
         [StringLength(250, MinimumLength = 1, ErrorMessage = "O NOME deve ter no minimo 1 caractere e no máximo 250 caracteres.")]
         public string ORCA_NM_NOME { get; set; }
+        public Nullable<int> USUA_CD_ID { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ORCAMENTO_ANEXO> ORCAMENTO_ANEXO { get; set; }
@@ -42,5 +43,6 @@ namespace OdontoWeb.ViewModels
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ORCAMENTO_ACOMPANHAMENTO> ORCAMENTO_ACOMPANHAMENTO { get; set; }
         public virtual ASSINANTE ASSINANTE { get; set; }
+        public virtual USUARIO USUARIO { get; set; }
     }
 }

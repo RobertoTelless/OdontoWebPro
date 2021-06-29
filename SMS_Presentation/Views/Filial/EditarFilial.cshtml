@@ -87,8 +87,7 @@
                                             <div class="form-group" style=" margin-left: -15px; margin-right: -15px;" id="PJ">
                                                 <div class="col-lg-3 col-md-3 col-xs-12">
                                                     CNPJ
-                                                    @Html.TextBoxFor(m => m.FILI_NR_CNPJ, new { @class = "form-control", autofocus = true, @id = "cnpj" })
-                                                    @Html.ValidationMessageFor(m => m.FILI_NR_CNPJ, "", new { @style = "color:red" })
+                                                    @Html.TextBoxFor(m => m.FILI_NR_CNPJ, new { @class = "form-control", autofocus = true, @id = "cnpj", , @readonly="readonly" })
                                                 </div>
                                                 <div class="col-lg-3 col-md-3 col-xs-12">
                                                     Inscrição Municipal
@@ -110,8 +109,7 @@
                                             <div class="form-group" style=" margin-left: -15px; margin-right: -15px;" id="PF">
                                                 <div class="col-lg-3 col-md-3 col-xs-12">
                                                     CPF
-                                                    @Html.TextBoxFor(m => m.FILI_NR_CPF, new { @class = "form-control", autofocus = true, @id = "cpf" })
-                                                    @Html.ValidationMessageFor(m => m.FILI_NR_CPF, "", new { @style = "color:red" })
+                                                    @Html.TextBoxFor(m => m.FILI_NR_CPF, new { @class = "form-control", autofocus = true, @id = "cpf", , @readonly="readonly" })
                                                 </div>
                                                 <div class="col-lg-3 col-md-3 col-xs-12">
                                                     RG

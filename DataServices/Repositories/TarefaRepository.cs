@@ -31,21 +31,21 @@ namespace DataServices.Repositories
         public List<TAREFA> GetByUser(Int32 user)
         {
             IQueryable<TAREFA> query = Db.TAREFA.Where(p => p.TARE_IN_ATIVO == 1);
-            query = query.Where(p => p.USUA_CD_ID == user || p.TARE_CD_USUA_1 == user || p.TARE_CD_USUA_2 == user || p.TARE_CD_USUA_3 == user);
+            query = query.Where(p => p.USUA_CD_ID == user);
             return query.ToList();
         }
 
         public List<TAREFA> GetTarefaStatus(Int32 user, Int32 tipo)
         {
             IQueryable<TAREFA> query = Db.TAREFA.Where(p => p.TARE_IN_ATIVO == 1);
-            query = query.Where(p => p.USUA_CD_ID == user || p.TARE_CD_USUA_1 == user || p.TARE_CD_USUA_2 == user || p.TARE_CD_USUA_3 == user);
+            query = query.Where(p => p.USUA_CD_ID == user);
             if (tipo == 1)
             {
                 query = query.Where(p => p.TARE_IN_STATUS == 1);
             }
             if (tipo == 2)
             {
-                query = query.Where(p => p.TARE_IN_STATUS == 4);
+                query = query.Where(p => p.TARE_IN_STATUS == 5);
             }
             return query.ToList();
         }
@@ -73,7 +73,13 @@ namespace DataServices.Repositories
             return query.ToList();
         }
 
-        public List<TAREFA> ExecuteFilter(Int32? tipoId, String titulo, DateTime? data, Int32 encerrado, Int32 prioridade, Int32 idUsu)
+        public List<PERIODICIDADE_TAREFA> GetAllPeriodicidade()
+        {
+            IQueryable<PERIODICIDADE_TAREFA> query = Db.PERIODICIDADE_TAREFA;
+            return query.ToList<PERIODICIDADE_TAREFA>();
+        }
+
+        public List<TAREFA> ExecuteFilter(Int32? tipoId, String titulo, DateTime? data, Int32 encerrado, Int32 prioridade, Int32? usuario, Int32 idUsu)
         {
             List<TAREFA> lista = new List<TAREFA>();
             IQueryable<TAREFA> query = Db.TAREFA;
@@ -85,10 +91,6 @@ namespace DataServices.Repositories
             {
                 query = query.Where(p => p.TARE_NM_TITULO.Contains(titulo));
             }
-            if (data != null)
-            {
-                query = query.Where(p => DbFunctions.TruncateTime(p.TARE_DT_CADASTRO) == DbFunctions.TruncateTime(data));
-            }
             if (encerrado != 0)
             {
                 query = query.Where(p => p.TARE_IN_STATUS == encerrado);
@@ -97,11 +99,26 @@ namespace DataServices.Repositories
             {
                 query = query.Where(p => p.TARE_IN_PRIORIDADE == prioridade);
             }
-            if (query != null)
+            if (usuario != null)
+            {
+                if (usuario != 0)
+                {
+                    query = query.Where(p => p.USUA_CD_ID == usuario);
+                }
+            }
+            else
             {
                 query = query.Where(p => p.USUA_CD_ID == idUsu);
+            }
+            if (query != null)
+            {
                 query = query.OrderBy(a => a.TARE_DT_CADASTRO);
                 lista = query.ToList<TAREFA>();
+
+                if (data != DateTime.MinValue)
+                {
+                    lista = lista.Where(p => p.TARE_DT_CADASTRO == data).ToList();
+                }
             }
             return lista;
         }

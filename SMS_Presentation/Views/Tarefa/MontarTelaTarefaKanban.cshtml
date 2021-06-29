@@ -1,9 +1,8 @@
 ﻿@using Presentation.Extensions
 @using CrossCutting;
+@using EntitiesServices.Work_Classes;
 @model EntitiesServices.Model.TAREFA
-@{
-    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
-}
+@{ Layout = "~/Views/Shared/_Layout_Admin.cshtml"; }
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="page-title">
         <h3 class="title">Tarefas</h3>
@@ -18,53 +17,12 @@
         </ol>
         <br />
     </div>
-    <div class="row">
-        <div class="col-lg-3">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <span class="label label-primary pull-right">Hoje</span>
-                    <h5>Tarefas</h5>
-                </div>
-                <div class="ibox-content">
-                    <h1 class="no-margins">@ViewBag.Tarefas</h1>
-                    <div class="stat-percent font-bold text-navy">32% <i class="fa fa-level-up"></i></div>
-                    <small>Tarefas Cadastrados</small>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <span class="label label-primary pull-right">Hoje</span>
-                    <h5>Tarefas</h5>
-                </div>
-                <div class="ibox-content">
-                    <h1 class="no-margins">@ViewBag.TarefasPendentes</h1>
-                    <div class="stat-percent font-bold text-navy">32% <i class="fa fa-level-up"></i></div>
-                    <small>Tarefas Pendentes</small>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <span class="label label-primary pull-right">Hoje</span>
-                    <h5>Tarefas</h5>
-                </div>
-                <div class="ibox-content">
-                    <h1 class="no-margins">@ViewBag.TarefasEncerradas</h1>
-                    <div class="stat-percent font-bold text-navy">32% <i class="fa fa-level-up"></i></div>
-                    <small>Tarefas Encerradas</small>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="row">
         <div class="col-lg-12 col-md-12 col-xs-12">
             <div class="col-lg-12 col-md-12 col-xs-12 ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Filtros</h5>
+                    <h5>Ações</h5>
                     <div class="ibox-tools">
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
@@ -86,40 +44,14 @@
                     </div>
                 </div>
 
-                @using (Html.BeginForm("FiltrarTarefa", "Tarefa", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal" }))
-                {
-                    <div class="ibox-content">
-                        <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
-                            <div class="col-lg-3 col-md-3 col-xs-12">
-                                Tipo de Tarefa
-                                @Html.DropDownListFor(m => m.TITR_CD_ID, (SelectList)ViewBag.Tipos, "Selecionar", new { @class = "form-control" })
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-xs-12">
-                                Título
-                                @Html.TextBoxFor(m => m.TARE_NM_TITULO, new { @class = "form-control", autofocus = true })
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-xs-12">
-                                Data de Início
-                                @Html.TextBoxFor(m => m.TARE_DT_CADASTRO, "{0:dd/MM/yyyy}", new { @class = "form-control date-picker", autofocus = true })
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-xs-12">
-                                Status
-                                @Html.DropDownListFor(m => m.TARE_IN_STATUS, (SelectList)ViewBag.Status, "Selecionar", new { @class = "form-control" })
-                            </div>
-                        </div>
-                        <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
-                            <div class="col-lg-12 col-md-12 col-xs-12">
-                                @Html.ButtonActionSubmit(text: "Filtrar")
-                                @Html.ButtonLinkIndex(text: "Retirar Filtro", controller: "Tarefa", action: "RetirarFiltroTarefa")
-                                @Html.ButtonLinkIndex(text: "Exibir Todos", controller: "Tarefa", action: "MostrarTudoTarefa")
-                                @Html.ButtonLinkIndex(text: "Nova Tarefa", controller: "Tarefa", action: "IncluirTarefa")
-                                @Html.ButtonLinkIndex(text: "Visualização Lista", controller: "Tarefa", action: "MontarTelaTarefa")
-                                @Html.ButtonLinkIndex(text: "Gerar Relatório", controller: "Tarefa", action: "GerarRelatorioLista")
-                                @Html.ButtonLinkIndex(text: "Voltar", controller: "Tarefa", action: "Voltar")
-                            </div>
+                <div class="ibox-content">
+                    <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+                        <div class="col-lg-12 col-md-12 col-xs-12">
+                            @Html.ButtonLinkIndex(text: "Nova Tarefa", controller: "Tarefa", action: "IncluirTarefa")
+                            @Html.ButtonLinkIndex(text: "Voltar", controller: "Tarefa", action: "MontarTelaTarefa")
                         </div>
                     </div>
-                }
+                </div>
             </div>
         </div>
     </div>
@@ -149,25 +81,30 @@
                 </div>
             </div>
             <div class="ibox-content">
-                <div class="row">
-                    <div class="col-lg-3">
+                <div id="kanbanContainer" class="row">
+                    <div class="col-lg-5ths col-md-5ths col-xs-5ths">
                         <h3>Pendente</h3>
                         <ul class="sortable-list connectList agile-list ui-sortable" data-classe="warning-element" data-status="1" id="pendente">
                         </ul>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-5ths col-md-5ths col-xs-5ths">
+                        <h3>Em Andamento</h3>
+                        <ul class="sortable-list connectList agile-list ui-sortable" data-classe="warning-element" data-status="2" id="andamento">
+                        </ul>
+                    </div>
+                    <div class="col-lg-5ths col-md-5ths col-xs-5ths">
                         <h3>Suspensa</h3>
-                        <ul class="sortable-list connectList agile-list ui-sortable" data-classe="warning-element" data-status="2" id="suspensa">
+                        <ul class="sortable-list connectList agile-list ui-sortable" data-classe="warning-element" data-status="3" id="suspensa">
                         </ul>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-5ths col-md-5ths col-xs-5ths">
                         <h3>Cancelada</h3>
-                        <ul class="sortable-list connectList agile-list ui-sortable" data-classe="danger-element" data-status="3" id="cancelada">
+                        <ul class="sortable-list connectList agile-list ui-sortable" data-classe="danger-element" data-status="4" id="cancelada">
                         </ul>
                     </div>
-                    <div class="col-lg-3">
-                        <h3>Realizada</h3>
-                        <ul class="sortable-list connectList agile-list ui-sortable" data-classe="success-element" data-status="4" id="realizada">
+                    <div class="col-lg-5ths col-md-5ths col-xs-5ths">
+                        <h3>Encerrada</h3>
+                        <ul class="sortable-list connectList agile-list ui-sortable" data-classe="success-element" data-status="5" id="realizada">
                         </ul>
                     </div>
                 </div>
@@ -202,16 +139,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.js"></script>
 
     <script>
+    </script>
+
+    <script>
         $.ajax({
             url: '../Tarefa/GetTarefas'
             , type: 'POST'
             , success: function (r) {
                 r.forEach(function (e) {
                     var element = $('<li class="ui-sortable-handle" data-id="' + e.TARE_CD_ID + '">'
-                        + e.TARE_NM_TITULO
+                        + '<h5 onclick="redirectEditar(' + e.TARE_CD_ID + ')">' + e.TARE_NM_TITULO + '</h5>'
                         + '<div class="agile-detail">'
                         + '<i class="fa fa-clock-o"></i>'
-                        + e.TARE_DT_ESTIMADA
+                        + ' Início: ' + e.TARE_DT_CADASTRO
+                        + '<br />'
+                        + '<i class="fa fa-clock-o"></i>'
+                        + ' Previsão: ' + e.TARE_DT_ESTIMADA
                         + '</div>'
                         + '</li>');
 
@@ -219,15 +162,19 @@
                         element.addClass('warning-element');
                         $('#pendente').append(element);
                     }
-                    if (e.TARE_IN_STATUS == 2) { // suspensa
+                    if (e.TARE_IN_STATUS == 2) { // em andamento
+                        element.addClass('warning-element');
+                        $('#andamento').append(element);
+                    }
+                    if (e.TARE_IN_STATUS == 3) { // suspensa
                         element.addClass('warning-element');
                         $('#suspensa').append(element);
                     }
-                    if (e.TARE_IN_STATUS == 3) { // cancelada
+                    if (e.TARE_IN_STATUS == 4) { // cancelada
                         element.addClass('danger-element');
                         $('#cancelada').append(element);
                     }
-                    if (e.TARE_IN_STATUS == 4) { // finalizada
+                    if (e.TARE_IN_STATUS == 5) { // finalizada
                         element.addClass('success-element');
                         $('#realizada').append(element);
                     }
@@ -242,24 +189,82 @@
                     ui.item.removeClass(ui.item.parent().attr('data-classe'));
                 }
                 , stop: function (event, ui) {
-                    ui.item.addClass(ui.item.parent().attr('data-classe'));
+                    //append modal
 
-                    var data = {
-                        id: ui.item.attr('data-id')
-                        , status: ui.item.parent().attr('data-status')
+                    if (ui.item.parent().attr('data-status') == "5") {
+                        $('#dtEnc' + ui.item.attr('data-id')).remove();
+
+                        ui.item.append('<div id="dtEnc' + ui.item.attr('data-id') + '">'
+                            + '<hr />'
+                            + '<div class="card" style="width: 18rem;">'
+                            + '<div class="card-body">'
+                            + '<h5 class="card-title">Data de Encerramento</h5>'
+                            + '<p class="card-text"><input id="dtEncTarefa' + ui.item.attr('data-id') + '" type="text" class="form-control dtEnc" value="' + GetCurrentDate() + '" /></p >'
+                            + '<span id="dtEncEnviar' + ui.item.attr('data-id')+'" class="btn btn-sm btn-success" onclick="EditarStatusDt(' + ui.item.attr('data-id') + ', ' + ui.item.parent().attr('data-status') + ')">Enviar</span>'
+                            + '</div>'
+                            + '</div>'
+                            + '</div>'
+                        );
+
+                        InstanceDatePickerEnc();
+                    }
+                    else {
+                        $('#dtEnc' + ui.item.attr('data-id')).remove();
                     }
 
-                    $.ajax({
-                        url: '../Tarefa/EditarStatusTarefa'
-                        , type: 'POST'
-                        , data: data
-                        , success: function (e) {
-                            console.log(e);
-                        }
-                    });
+                    ui.item.addClass(ui.item.parent().attr('data-classe'));
+
+                    EditarStatus(ui.item.attr('data-id'), ui.item.parent().attr('data-status'))                    
                 }
             });
         });
+
+        function redirectEditar(id) {
+            window.open("/Tarefa/EditarTarefa/" + id, '_self');
+        }
+
+        function EditarStatus(id, status) {
+            var data = {
+                id: id
+                , status: status
+            }
+
+            $.ajax({
+                url: '../Tarefa/EditarStatusTarefa'
+                , type: 'POST'
+                , data: data
+                , success: function (e) {
+                    console.log(e);
+                }
+            });
+        }
+
+        function EditarStatusDt(id, status) {
+            var data = {
+                id: id
+                , status: status
+                , dtEnc: $('#dtEncTarefa' + id).val() == undefined ? null : $('#dtEncTarefa' + id).val()
+            }
+
+            $.ajax({
+                url: '../Tarefa/EditarStatusTarefa'
+                , type: 'POST'
+                , data: data
+                , success: function (e) {
+                    if (e == 'SUCCESS') {
+                        var p = $('#dtEncTarefa' + id).parent();
+
+                        $('#dtEncTarefa' + id).remove();
+                        $('#dtEncEnviar' + id).remove();
+
+                        p.html(data.dtEnc);
+                    }
+                    else {
+                        $('#dtEncTarefa' + id).parent().append('<span class="field-validation-error" data-valmsg-replace="true" style="color:red">' + e + '</span>');
+                    }
+                }
+            });
+        }
     </script>
 
     <script type="text/javascript">
@@ -281,8 +286,8 @@
                             $(win.document.body).css('font-size', '10px');
 
                             $(win.document.body).find('table')
-                                    .addClass('compact')
-                                    .css('font-size', 'inherit');
+                                .addClass('compact')
+                                .css('font-size', 'inherit');
                         }
                     }
                 ]
@@ -315,23 +320,57 @@
                     showOn: "focus"
                 }
             )
-            .css("display", "normal")
-            .next("button").button({
-                icons: { primary: "ui-icon-calendar" },
-                label: "Selecione uma data",
-                text: false
-            });
+                .css("display", "normal")
+                .next("button").button({
+                    icons: { primary: "ui-icon-calendar" },
+                    label: "Selecione uma data",
+                    text: false
+                });
         });
     </script>
 
+    <script>
+        function InstanceDatePickerEnc() {
+            $('.dtEnc').datepicker(
+                {
+                    dateFormat: 'dd/mm/yy',
+                    dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+                    dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+                    dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+                    monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                    monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                    nextText: 'Proximo',
+                    prevText: 'Anterior',
+                    showOn: "focus"
+                }
+            )
+                .css("display", "normal")
+                .next("button").button({
+                    icons: { primary: "ui-icon-calendar" },
+                    label: "Selecione uma data",
+                    text: false
+                });
+        }
+    </script>
+
+    <script>
+        function GetCurrentDate() {
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+
+            today = dd + '/' + mm + '/' + yyyy;
+            return today;
+        }
+    </script>
 }
 
 @if (ViewBag.Message != null)
 {
-    <script type="text/javascript">
+<script type="text/javascript">
             window.onload = function () {
                 alert("@ViewBag.Message");
             };
-    </script>
-}
+</script>}
 

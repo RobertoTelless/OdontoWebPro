@@ -136,21 +136,22 @@
                                                     <td><img src="~/Images/a8.jpg" style = "width: auto; height: auto; max-height: 55px; max-width: 45px;"></td>
                                                 }                                              
                                                 <td class="td-one-action">
-                                                    @Html.TableLinkDetails(cond.FILI_CD_ID, "VerFilial","fa-search", "Consultar")
                                                     @if (ViewBag.Perfil == "ADM")
 	                                                {
                                                         @Html.TableLinkDetails(cond.FILI_CD_ID, "EditarFilial","fa-edit", "Editar")
                                                         if (cond.FILI_IN_ATIVO == 1)
 	                                                    {
                                                             <span style="color: #337ab7; cursor:pointer;" alt="Desativar" class="tbl-link fa-lg fa fa-trash-o" onclick="ShowModalExcluir('/Filial/DesativarFilial/@cond.FILI_CD_ID')" title="Desativar"></span>
-                                                            @*@Html.TableLinkDetails(cond.FILI_CD_ID, "DesativarFilial","fa-trash-o", "Desativar")*@
                                                         }
                                                         else
                                                         {   
                                                             <span style="color: #337ab7; cursor:pointer;" alt="Reativar" class="tbl-link fa-lg fa fa-refresh" onclick="ShowModalReativar('/Filial/ReativarFilial/@cond.FILI_CD_ID')" title="Reativar"></span>
-                                                            @*@Html.TableLinkDetails(cond.FILI_CD_ID, "ReativarFilial","fa-refresh", "Reativar")*@
                                                         }
-                                                    }                                            
+                                                    }
+                                                    else
+                                                    {
+                                                        @Html.TableLinkDetails(cond.FILI_CD_ID, "VerFilial","fa-search", "Consultar")
+                                                    }
                                                 </td>
                                             </tr>
                                         }

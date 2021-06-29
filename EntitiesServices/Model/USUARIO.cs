@@ -37,6 +37,7 @@ namespace EntitiesServices.Model
             this.USUARIO_REMUNERACAO = new HashSet<USUARIO_REMUNERACAO>();
             this.PEDIDO_COMPRA = new HashSet<PEDIDO_COMPRA>();
             this.ORCAMENTO_ACOMPANHAMENTO = new HashSet<ORCAMENTO_ACOMPANHAMENTO>();
+            this.ORCAMENTO = new HashSet<ORCAMENTO>();
         }
     
         public int USUA_CD_ID { get; set; }
@@ -145,5 +146,7 @@ namespace EntitiesServices.Model
         public virtual ICollection<PEDIDO_COMPRA> PEDIDO_COMPRA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ORCAMENTO_ACOMPANHAMENTO> ORCAMENTO_ACOMPANHAMENTO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ORCAMENTO> ORCAMENTO { get; set; }
     }
 }

@@ -70,10 +70,15 @@
                             </div>
 
                             <div class="form-group" style=" margin-left: -15px; margin-right: -15px;" id="PJ">
-                                <div class="col-lg-3 col-md-3 col-xs-12">
+                                <div class="col-lg-4 col-md-4 col-xs-12">
                                     CNPJ
-                                    @Html.TextBoxFor(m => m.FILI_NR_CNPJ, new { @class = "form-control", autofocus = true, @id = "cnpj" })
-                                    @Html.ValidationMessageFor(m => m.FILI_NR_CNPJ, "", new { @style = "color:red" })
+                                    <div class="input-group">
+                                        @Html.TextBoxFor(m => m.FILI_NR_CNPJ, new { @class = "form-control", autofocus = true, @id = "cnpj" })
+                                        @Html.ValidationMessageFor(m => m.FILI_NR_CNPJ, "", new { @style = "color:red" })
+                                        <span class="input-group-btn">
+                                            <span id="btnPesquisaCnpj" class="btn btn-success" onclick="PesquisaCNPJ($('#cnpj').val())">Buscar CNPJ</span>
+                                        </span>
+                                    </div>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-xs-12">
                                     Inscrição Municipal
@@ -218,16 +223,13 @@
     </script>
     <script type="text/javascript">
         function ValidaDiv(valPessoa) {
-            console.error("aaaaaaaaaaaaaa");
             if (valPessoa == '2') {
                 $("#PF").hide();
                 $("#PJ").show();
-                $("#RS").show();
                 LimpaPF();
             } else if (valPessoa == '1') { //Se o tipo for igual a 2 mostra a divCpf
                 $("#PJ").hide();
                 $("#PF").show();
-                $("#RS").hide();
                 LimpaPJ();
             } else if (valPessoa == '4') {
                 $("#PF").show();
@@ -380,6 +382,78 @@
                     $('#btnBuscaCep').removeAttr("disabled");
                 }
             });
+        }
+    </script>
+
+    <script>
+        function PesquisaCNPJ(cnpj) {
+            var spinner = '<i style="margin-right: 5px;" class="fa fa-spinner fa-spin"></i>';
+            $('#btnPesquisaCnpj').prepend(spinner);
+            $('#btnPesquisaCnpj').attr('disabled', true);
+
+            var data = {
+                cnpj: cnpj
+            }
+
+            if (cnpj != "") {
+                $.ajax({
+                    url: '../Filial/PesquisaCNPJ'
+                    , type: 'POST'
+                    , data: data
+                    , async: false
+                    , success: function (r) {
+                        if (r.status != "ERROR") {
+                            //if (r[0].CLQS_IN_ATIVO != 0) {
+                            //    $('#tblQs > tbody').html('');
+                            //    r.forEach(function (e) {
+                            //        $('#tblQs > tbody').append(
+                            //            '<tr><td>' + e.CLQS_NM_QUALIFICACAO + '</td>'
+                            //            + '<td>' + e.CLQS_NM_NOME + '</td></tr>'
+                            //        );
+                            //    });
+                            //}
+                            $('#ie').val(r.INSCRICAO_ESTADUAL);
+                            $('#razao').val(r.RAZAO);
+                            $('#nome').val(r.NOME);
+                            $('#cep').val(r.CEP);
+                            $("#cep").mask("99999-999");
+                            $('#endereco').val(r.ENDERECO);
+                            //$('#nmr').val(r[0].CLIENTE.CLIE_NR_NUMERO);
+                            $('#bairro').val(r.BAIRRO);
+                            $('#cidade').val(r.CIDADE);
+                            $('#uf option[value="' + r.UF + '"]').attr('selected', 'selected');
+                            $('#email').val(r.EMAIL);
+                            $('#tel').val(r.TELEFONE);
+                        //$('#alt_tel').val(r[0].CLIENTE.CLIE_NR_TELEFONE_ADICIONAL);
+                        //$('#situacao').val(r[0].CLIENTE.CLIE_NM_SITUACAO);
+
+                            $('#btnPesquisaCnpj').html('Buscar CNPJ');
+                            $('#btnPesquisaCnpj').attr('disabled', false);
+                        } else {
+                            if (r.public == 1) {
+                                var alert = '<div class="alert alert-danger">'
+                                    + '<button type="button" class="close" data-dismiss="alert">Fechar</button>'
+                                    + r.message
+                                    + '</div>';
+                                $('#alertContainer').html(alert);
+                                $('.alert').show();
+
+                                $('#btnPesquisaCnpj').html('Buscar CNPJ');
+                                $('#btnPesquisaCnpj').attr('disabled', false);
+                            } else {
+                                console.log(r);
+
+                                $('#btnPesquisaCnpj').html('Buscar CNPJ');
+                                $('#btnPesquisaCnpj').attr('disabled', false);
+                            }
+                        }
+                    }
+                    , error: function () {
+                        $('#btnPesquisaCnpj').html('Buscar CNPJ');
+                        $('#btnPesquisaCnpj').attr('disabled', false);
+                    }
+                });
+            }
         }
     </script>
 

@@ -35,6 +35,7 @@ namespace EntitiesServices.Model
         public Nullable<decimal> ORCA_VL_VALOR_PAGO { get; set; }
         public Nullable<int> ASSI_CD_ID { get; set; }
         public string ORCA_NM_NOME { get; set; }
+        public Nullable<int> USUA_CD_ID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ORCAMENTO_ANEXO> ORCAMENTO_ANEXO { get; set; }
@@ -44,5 +45,6 @@ namespace EntitiesServices.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ORCAMENTO_ACOMPANHAMENTO> ORCAMENTO_ACOMPANHAMENTO { get; set; }
         public virtual ASSINANTE ASSINANTE { get; set; }
+        public virtual USUARIO USUARIO { get; set; }
     }
 }

@@ -65,9 +65,9 @@ namespace ApplicationServices.Services
             return item;
         }
 
-        public TAREFA CheckExist(TAREFA tarefa, Int32 idUsu)
+        public TAREFA CheckExist(TAREFA tarefa, Int32 idAss)
         {
-            TAREFA item = _baseService.CheckExist(tarefa, idUsu);
+            TAREFA item = _baseService.CheckExist(tarefa, idAss);
             return item;
         }
 
@@ -83,7 +83,12 @@ namespace ApplicationServices.Services
             return lista;
         }
 
-        public Int32 ExecuteFilter(Int32? tipoId, String titulo, DateTime? data, Int32 encerradas, Int32 prioridade, Int32 idAss, out List<TAREFA> objeto)
+        public List<PERIODICIDADE_TAREFA> GetAllPeriodicidade()
+        {
+            return _baseService.GetAllPeriodicidade();
+        }
+
+        public Int32 ExecuteFilter(Int32? tipoId, String titulo, DateTime? data, Int32 encerradas, Int32 prioridade, Int32? usuario, Int32 idAss, out List<TAREFA> objeto)
         {
             try
             {
@@ -91,7 +96,7 @@ namespace ApplicationServices.Services
                 Int32 volta = 0;
 
                 // Processa filtro
-                objeto = _baseService.ExecuteFilter(tipoId, titulo, data, encerradas, prioridade, idAss);
+                objeto = _baseService.ExecuteFilter(tipoId, titulo, data, encerradas, prioridade, usuario, idAss);
                 if (objeto.Count == 0)
                 {
                     volta = 1;
@@ -108,16 +113,28 @@ namespace ApplicationServices.Services
         {
             try
             {
-                // Verifica existencia prévia
-                if (_baseService.CheckExist(item, usuario.USUA_CD_ID) != null)
+                //Verifica Campos
+                if (item.TIPO_TAREFA != null)
                 {
-                    return 1;
+                    item.TIPO_TAREFA = null;
+                }
+                if (item.USUARIO != null)
+                {
+                    item.USUARIO = null;
+                }
+                if (item.ASSINANTE != null)
+                {
+                    item.ASSINANTE = null;
+                }
+                if (item.PERIODICIDADE_TAREFA != null)
+                {
+                    item.PERIODICIDADE_TAREFA = null;
                 }
 
-                // Verifica compartilhamento
-                if (item.TARE_CD_USUA_1 == item.USUA_CD_ID || item.TARE_CD_USUA_2 == item.USUA_CD_ID || item.TARE_CD_USUA_3 == item.USUA_CD_ID )
+                // Verifica existencia prévia
+                if (_baseService.CheckExist(item, usuario.ASSI_CD_ID) != null)
                 {
-                    return 2;
+                    return 1;
                 }
 
                 // Completa objeto
@@ -141,69 +158,6 @@ namespace ApplicationServices.Services
                 Int32 volta = _baseService.Create(item, log);
 
                 // Gera Notificações e tarefas compartilhadas
-                if (item.TARE_CD_USUA_1 != null || item.TARE_CD_USUA_1 > 0)
-                {
-
-                    NOTIFICACAO noti = new NOTIFICACAO();
-                    noti.CANO_CD_ID = 1;
-                    noti.ASSI_CD_ID = usuario.ASSI_CD_ID;
-                    noti.NOTI_DT_DATA = DateTime.Today;
-                    noti.NOTI_DT_EMISSAO = DateTime.Today;
-                    noti.NOTI_IN_ATIVO = 1;
-                    noti.NOTI_IN_ENVIADA = 1;
-                    noti.NOTI_IN_STATUS = 1;
-                    noti.USUA_CD_ID = item.TARE_CD_USUA_1.Value;
-                    noti.NOTI_DT_VALIDADE = DateTime.Today.AddDays(30);
-                    noti.NOTI_IN_NIVEL = 1;
-                    noti.NOTI_IN_VISTA = 0;
-                    noti.NOTI_NM_TITULO = "Aviso de Tarefa";
-                    noti.NOTI_TX_TEXTO = "A tarefa " + item.TARE_NM_TITULO + " foi compartilhada com você";
-
-                    // Persiste notificação 
-                    Int32 volta1 = _notiService.Create(noti);
-                }
-                if (item.TARE_CD_USUA_2 != null || item.TARE_CD_USUA_2 > 0)
-                {
-
-                    NOTIFICACAO noti = new NOTIFICACAO();
-                    noti.CANO_CD_ID = 1;
-                    noti.ASSI_CD_ID = usuario.ASSI_CD_ID;
-                    noti.NOTI_DT_DATA = DateTime.Today;
-                    noti.NOTI_DT_EMISSAO = DateTime.Today;
-                    noti.NOTI_IN_ATIVO = 1;
-                    noti.NOTI_IN_ENVIADA = 1;
-                    noti.NOTI_IN_STATUS = 1;
-                    noti.USUA_CD_ID = item.TARE_CD_USUA_2.Value;
-                    noti.NOTI_DT_VALIDADE = DateTime.Today.AddDays(30);
-                    noti.NOTI_IN_NIVEL = 1;
-                    noti.NOTI_IN_VISTA = 0;
-                    noti.NOTI_NM_TITULO = "Aviso de Tarefa";
-                    noti.NOTI_TX_TEXTO = "A tarefa " + item.TARE_NM_TITULO + " foi compartilhada com você";
-
-                    // Persiste notificação 
-                    Int32 volta1 = _notiService.Create(noti);
-                }
-                if (item.TARE_CD_USUA_3 != null || item.TARE_CD_USUA_3 > 0)
-                {
-
-                    NOTIFICACAO noti = new NOTIFICACAO();
-                    noti.CANO_CD_ID = 1;
-                    noti.ASSI_CD_ID = usuario.ASSI_CD_ID;
-                    noti.NOTI_DT_DATA = DateTime.Today;
-                    noti.NOTI_DT_EMISSAO = DateTime.Today;
-                    noti.NOTI_IN_ATIVO = 1;
-                    noti.NOTI_IN_ENVIADA = 1;
-                    noti.NOTI_IN_STATUS = 1;
-                    noti.USUA_CD_ID = item.TARE_CD_USUA_3.Value;
-                    noti.NOTI_DT_VALIDADE = DateTime.Today.AddDays(30);
-                    noti.NOTI_IN_NIVEL = 1;
-                    noti.NOTI_IN_VISTA = 0;
-                    noti.NOTI_NM_TITULO = "Aviso de Tarefa";
-                    noti.NOTI_TX_TEXTO = "A tarefa " + item.TARE_NM_TITULO + " foi compartilhada com você";
-
-                    // Persiste notificação 
-                    Int32 volta1 = _notiService.Create(noti);
-                }
 
                 return volta;
             }
@@ -212,6 +166,7 @@ namespace ApplicationServices.Services
                 throw;
             }
         }
+
 
         public Int32 ValidateEdit(TAREFA item, TAREFA itemAntes, USUARIO usuario)
         {
@@ -241,72 +196,6 @@ namespace ApplicationServices.Services
 
                 // Persiste
                 Int32 volta = _baseService.Edit(item, log);
-
-                // Gera Notificações e tarefas compartilhadas
-                if (item.TARE_CD_USUA_1 != null || item.TARE_CD_USUA_1 > 0)
-                {
-
-                    NOTIFICACAO noti = new NOTIFICACAO();
-                    noti.CANO_CD_ID = 1;
-                    noti.ASSI_CD_ID = usuario.ASSI_CD_ID;
-                    noti.NOTI_DT_DATA = DateTime.Today;
-                    noti.NOTI_DT_EMISSAO = DateTime.Today;
-                    noti.NOTI_IN_ATIVO = 1;
-                    noti.NOTI_IN_ENVIADA = 1;
-                    noti.NOTI_IN_STATUS = 1;
-                    noti.USUA_CD_ID = item.TARE_CD_USUA_1.Value;
-                    noti.NOTI_DT_VALIDADE = DateTime.Today.AddDays(30);
-                    noti.NOTI_IN_NIVEL = 1;
-                    noti.NOTI_IN_VISTA = 0;
-                    noti.NOTI_NM_TITULO = "Aviso de Tarefa";
-                    noti.NOTI_TX_TEXTO = "A tarefa " + item.TARE_NM_TITULO + " foi compartilhada com você e foi alterada";
-
-                    // Persiste notificação 
-                    Int32 volta1 = _notiService.Create(noti);
-                }
-                if (item.TARE_CD_USUA_2 != null || item.TARE_CD_USUA_2 > 0)
-                {
-
-                    NOTIFICACAO noti = new NOTIFICACAO();
-                    noti.CANO_CD_ID = 1;
-                    noti.ASSI_CD_ID = usuario.ASSI_CD_ID;
-                    noti.NOTI_DT_DATA = DateTime.Today;
-                    noti.NOTI_DT_EMISSAO = DateTime.Today;
-                    noti.NOTI_IN_ATIVO = 1;
-                    noti.NOTI_IN_ENVIADA = 1;
-                    noti.NOTI_IN_STATUS = 1;
-                    noti.USUA_CD_ID = item.TARE_CD_USUA_2.Value;
-                    noti.NOTI_DT_VALIDADE = DateTime.Today.AddDays(30);
-                    noti.NOTI_IN_NIVEL = 1;
-                    noti.NOTI_IN_VISTA = 0;
-                    noti.NOTI_NM_TITULO = "Aviso de Tarefa";
-                    noti.NOTI_TX_TEXTO = "A tarefa " + item.TARE_NM_TITULO + " foi compartilhada com você e foi alterada";
-
-                    // Persiste notificação 
-                    Int32 volta1 = _notiService.Create(noti);
-                }
-                if (item.TARE_CD_USUA_3 != null || item.TARE_CD_USUA_3 > 0)
-                {
-
-                    NOTIFICACAO noti = new NOTIFICACAO();
-                    noti.CANO_CD_ID = 1;
-                    noti.ASSI_CD_ID = usuario.ASSI_CD_ID;
-                    noti.NOTI_DT_DATA = DateTime.Today;
-                    noti.NOTI_DT_EMISSAO = DateTime.Today;
-                    noti.NOTI_IN_ATIVO = 1;
-                    noti.NOTI_IN_ENVIADA = 1;
-                    noti.NOTI_IN_STATUS = 1;
-                    noti.USUA_CD_ID = item.TARE_CD_USUA_3.Value;
-                    noti.NOTI_DT_VALIDADE = DateTime.Today.AddDays(30);
-                    noti.NOTI_IN_NIVEL = 1;
-                    noti.NOTI_IN_VISTA = 0;
-                    noti.NOTI_NM_TITULO = "Aviso de Tarefa";
-                    noti.NOTI_TX_TEXTO = "A tarefa " + item.TARE_NM_TITULO + " foi compartilhada com você e foi alterada";
-
-                    // Persiste notificação 
-                    Int32 volta1 = _notiService.Create(noti);
-                }
-
                 return volta;
             }
             catch (Exception ex)
@@ -332,70 +221,6 @@ namespace ApplicationServices.Services
                 // Persiste
                 Int32 volta = _baseService.Edit(item);
 
-                // Gera Notificações e tarefas compartilhadas
-                if (item.TARE_CD_USUA_1 != null || item.TARE_CD_USUA_1 > 0)
-                {
-
-                    NOTIFICACAO noti = new NOTIFICACAO();
-                    noti.CANO_CD_ID = 1;
-                    noti.ASSI_CD_ID = item.USUARIO.ASSI_CD_ID;
-                    noti.NOTI_DT_DATA = DateTime.Today;
-                    noti.NOTI_DT_EMISSAO = DateTime.Today;
-                    noti.NOTI_IN_ATIVO = 1;
-                    noti.NOTI_IN_ENVIADA = 1;
-                    noti.NOTI_IN_STATUS = 1;
-                    noti.USUA_CD_ID = item.TARE_CD_USUA_1.Value;
-                    noti.NOTI_DT_VALIDADE = DateTime.Today.AddDays(30);
-                    noti.NOTI_IN_NIVEL = 1;
-                    noti.NOTI_IN_VISTA = 0;
-                    noti.NOTI_NM_TITULO = "Aviso de Tarefa";
-                    noti.NOTI_TX_TEXTO = "A tarefa " + item.TARE_NM_TITULO + " foi compartilhada com você e foi alterada";
-
-                    // Persiste notificação 
-                    Int32 volta1 = _notiService.Create(noti);
-                }
-                if (item.TARE_CD_USUA_2 != null || item.TARE_CD_USUA_2 > 0)
-                {
-
-                    NOTIFICACAO noti = new NOTIFICACAO();
-                    noti.CANO_CD_ID = 1;
-                    noti.ASSI_CD_ID = item.USUARIO.ASSI_CD_ID;
-                    noti.NOTI_DT_DATA = DateTime.Today;
-                    noti.NOTI_DT_EMISSAO = DateTime.Today;
-                    noti.NOTI_IN_ATIVO = 1;
-                    noti.NOTI_IN_ENVIADA = 1;
-                    noti.NOTI_IN_STATUS = 1;
-                    noti.USUA_CD_ID = item.TARE_CD_USUA_2.Value;
-                    noti.NOTI_DT_VALIDADE = DateTime.Today.AddDays(30);
-                    noti.NOTI_IN_NIVEL = 1;
-                    noti.NOTI_IN_VISTA = 0;
-                    noti.NOTI_NM_TITULO = "Aviso de Tarefa";
-                    noti.NOTI_TX_TEXTO = "A tarefa " + item.TARE_NM_TITULO + " foi compartilhada com você e foi alterada";
-
-                    // Persiste notificação 
-                    Int32 volta1 = _notiService.Create(noti);
-                }
-                if (item.TARE_CD_USUA_3 != null || item.TARE_CD_USUA_3 > 0)
-                {
-
-                    NOTIFICACAO noti = new NOTIFICACAO();
-                    noti.CANO_CD_ID = 1;
-                    noti.ASSI_CD_ID = item.USUARIO.ASSI_CD_ID;
-                    noti.NOTI_DT_DATA = DateTime.Today;
-                    noti.NOTI_DT_EMISSAO = DateTime.Today;
-                    noti.NOTI_IN_ATIVO = 1;
-                    noti.NOTI_IN_ENVIADA = 1;
-                    noti.NOTI_IN_STATUS = 1;
-                    noti.USUA_CD_ID = item.TARE_CD_USUA_3.Value;
-                    noti.NOTI_DT_VALIDADE = DateTime.Today.AddDays(30);
-                    noti.NOTI_IN_NIVEL = 1;
-                    noti.NOTI_IN_VISTA = 0;
-                    noti.NOTI_NM_TITULO = "Aviso de Tarefa";
-                    noti.NOTI_TX_TEXTO = "A tarefa " + item.TARE_NM_TITULO + " foi compartilhada com você e foi alterada";
-
-                    // Persiste notificação 
-                    Int32 volta1 = _notiService.Create(noti);
-                }
                 return volta;
             }
             catch (Exception ex)
@@ -412,6 +237,28 @@ namespace ApplicationServices.Services
                 // Acerta campos
                 item.TARE_IN_ATIVO = 0;
 
+                //Evita erros de serialização
+                if (item.TAREFA_ACOMPANHAMENTO != null)
+                {
+                    item.TAREFA_ACOMPANHAMENTO = null;
+                }
+                if (item.TAREFA_ANEXO != null)
+                {
+                    item.TAREFA_ANEXO = null;
+                }
+                if (item.TAREFA_NOTIFICACAO != null)
+                {
+                    item.TAREFA_NOTIFICACAO = null;
+                }
+                if (item.TIPO_TAREFA != null)
+                {
+                    item.TIPO_TAREFA = null;
+                }
+                if (item.USUARIO != null)
+                {
+                    item.USUARIO = null;
+                }
+
                 // Monta Log
                 LOG log = new LOG
                 {
@@ -425,71 +272,6 @@ namespace ApplicationServices.Services
 
                 // Persiste
                 Int32 volta =  _baseService.Edit(item, log);
-
-                // Gera Notificações e tarefas compartilhadas
-                if (item.TARE_CD_USUA_1 != null || item.TARE_CD_USUA_1 > 0)
-                {
-
-                    NOTIFICACAO noti = new NOTIFICACAO();
-                    noti.CANO_CD_ID = 1;
-                    noti.ASSI_CD_ID = usuario.ASSI_CD_ID;
-                    noti.NOTI_DT_DATA = DateTime.Today;
-                    noti.NOTI_DT_EMISSAO = DateTime.Today;
-                    noti.NOTI_IN_ATIVO = 1;
-                    noti.NOTI_IN_ENVIADA = 1;
-                    noti.NOTI_IN_STATUS = 1;
-                    noti.USUA_CD_ID = item.TARE_CD_USUA_1.Value;
-                    noti.NOTI_DT_VALIDADE = DateTime.Today.AddDays(30);
-                    noti.NOTI_IN_NIVEL = 1;
-                    noti.NOTI_IN_VISTA = 0;
-                    noti.NOTI_NM_TITULO = "Aviso de Tarefa";
-                    noti.NOTI_TX_TEXTO = "A tarefa " + item.TARE_NM_TITULO + ", compartilhada com você,  foi excluída";
-
-                    // Persiste notificação 
-                    Int32 volta1 = _notiService.Create(noti);
-                }
-                if (item.TARE_CD_USUA_2 != null || item.TARE_CD_USUA_2 > 0)
-                {
-
-                    NOTIFICACAO noti = new NOTIFICACAO();
-                    noti.CANO_CD_ID = 1;
-                    noti.ASSI_CD_ID = usuario.ASSI_CD_ID;
-                    noti.NOTI_DT_DATA = DateTime.Today;
-                    noti.NOTI_DT_EMISSAO = DateTime.Today;
-                    noti.NOTI_IN_ATIVO = 1;
-                    noti.NOTI_IN_ENVIADA = 1;
-                    noti.NOTI_IN_STATUS = 1;
-                    noti.USUA_CD_ID = item.TARE_CD_USUA_2.Value;
-                    noti.NOTI_DT_VALIDADE = DateTime.Today.AddDays(30);
-                    noti.NOTI_IN_NIVEL = 1;
-                    noti.NOTI_IN_VISTA = 0;
-                    noti.NOTI_NM_TITULO = "Aviso de Tarefa";
-                    noti.NOTI_TX_TEXTO = "A tarefa " + item.TARE_NM_TITULO + ", compartilhada com você,  foi excluída";
-
-                    // Persiste notificação 
-                    Int32 volta1 = _notiService.Create(noti);
-                }
-                if (item.TARE_CD_USUA_3 != null || item.TARE_CD_USUA_3 > 0)
-                {
-
-                    NOTIFICACAO noti = new NOTIFICACAO();
-                    noti.CANO_CD_ID = 1;
-                    noti.ASSI_CD_ID = usuario.ASSI_CD_ID;
-                    noti.NOTI_DT_DATA = DateTime.Today;
-                    noti.NOTI_DT_EMISSAO = DateTime.Today;
-                    noti.NOTI_IN_ATIVO = 1;
-                    noti.NOTI_IN_ENVIADA = 1;
-                    noti.NOTI_IN_STATUS = 1;
-                    noti.USUA_CD_ID = item.TARE_CD_USUA_3.Value;
-                    noti.NOTI_DT_VALIDADE = DateTime.Today.AddDays(30);
-                    noti.NOTI_IN_NIVEL = 1;
-                    noti.NOTI_IN_VISTA = 0;
-                    noti.NOTI_NM_TITULO = "Aviso de Tarefa";
-                    noti.NOTI_TX_TEXTO = "A tarefa " + item.TARE_NM_TITULO + ", compartilhada com você,  foi excluída";
-
-                    // Persiste notificação 
-                    Int32 volta1 = _notiService.Create(noti);
-                }
                 return volta;
             }
             catch (Exception ex)
@@ -507,6 +289,30 @@ namespace ApplicationServices.Services
                 // Acerta campos
                 item.TARE_IN_ATIVO = 1;
 
+                //Evita erros de serialização
+                if (item.TAREFA_ACOMPANHAMENTO != null)
+                {
+                    item.TAREFA_ACOMPANHAMENTO = null;
+                }
+
+                if (item.TAREFA_ANEXO != null)
+                {
+                    item.TAREFA_ANEXO = null;
+                }
+                if (item.TAREFA_NOTIFICACAO != null)
+                {
+                    item.TAREFA_NOTIFICACAO = null;
+                }
+
+                if (item.TIPO_TAREFA != null)
+                {
+                    item.TIPO_TAREFA = null;
+                }
+                if (item.USUARIO != null)
+                {
+                    item.USUARIO = null;
+                }
+
                 // Monta Log
                 LOG log = new LOG
                 {
@@ -515,77 +321,11 @@ namespace ApplicationServices.Services
                     ASSI_CD_ID = usuario.ASSI_CD_ID,
                     LOG_IN_ATIVO = 1,
                     LOG_NM_OPERACAO = "ReatTARE",
-                    LOG_TX_REGISTRO = Serialization.SerializeJSON<TAREFA>(item)
+                    //LOG_TX_REGISTRO = Serialization.SerializeJSON<TAREFA>(item)
                 };
 
                 // Persiste
                 Int32 volta =  _baseService.Edit(item, log);
-
-                // Gera Notificações e tarefas compartilhadas
-                if (item.TARE_CD_USUA_1 != null || item.TARE_CD_USUA_1 > 0)
-                {
-
-                    NOTIFICACAO noti = new NOTIFICACAO();
-                    noti.CANO_CD_ID = 1;
-                    noti.ASSI_CD_ID = usuario.ASSI_CD_ID;
-                    noti.NOTI_DT_DATA = DateTime.Today;
-                    noti.NOTI_DT_EMISSAO = DateTime.Today;
-                    noti.NOTI_IN_ATIVO = 1;
-                    noti.NOTI_IN_ENVIADA = 1;
-                    noti.NOTI_IN_STATUS = 1;
-                    noti.USUA_CD_ID = item.TARE_CD_USUA_1.Value;
-                    noti.NOTI_DT_VALIDADE = DateTime.Today.AddDays(30);
-                    noti.NOTI_IN_NIVEL = 1;
-                    noti.NOTI_IN_VISTA = 0;
-                    noti.NOTI_NM_TITULO = "Aviso de Tarefa";
-                    noti.NOTI_TX_TEXTO = "A tarefa " + item.TARE_NM_TITULO + ", compartilhada com você,  foi reativada";
-
-                    // Persiste notificação 
-                    Int32 volta1 = _notiService.Create(noti);
-                }
-                if (item.TARE_CD_USUA_2 != null || item.TARE_CD_USUA_2 > 0)
-                {
-
-                    NOTIFICACAO noti = new NOTIFICACAO();
-                    noti.CANO_CD_ID = 1;
-                    noti.ASSI_CD_ID = usuario.ASSI_CD_ID;
-                    noti.NOTI_DT_DATA = DateTime.Today;
-                    noti.NOTI_DT_EMISSAO = DateTime.Today;
-                    noti.NOTI_IN_ATIVO = 1;
-                    noti.NOTI_IN_ENVIADA = 1;
-                    noti.NOTI_IN_STATUS = 1;
-                    noti.USUA_CD_ID = item.TARE_CD_USUA_2.Value;
-                    noti.NOTI_DT_VALIDADE = DateTime.Today.AddDays(30);
-                    noti.NOTI_IN_NIVEL = 1;
-                    noti.NOTI_IN_VISTA = 0;
-                    noti.NOTI_NM_TITULO = "Aviso de Tarefa";
-                    noti.NOTI_TX_TEXTO = "A tarefa " + item.TARE_NM_TITULO + ", compartilhada com você,  foi reativada";
-
-                    // Persiste notificação 
-                    Int32 volta1 = _notiService.Create(noti);
-                }
-                if (item.TARE_CD_USUA_3 != null || item.TARE_CD_USUA_3 > 0)
-                {
-
-                    NOTIFICACAO noti = new NOTIFICACAO();
-                    noti.CANO_CD_ID = 1;
-                    noti.ASSI_CD_ID = usuario.ASSI_CD_ID;
-                    noti.NOTI_DT_DATA = DateTime.Today;
-                    noti.NOTI_DT_EMISSAO = DateTime.Today;
-                    noti.NOTI_IN_ATIVO = 1;
-                    noti.NOTI_IN_ENVIADA = 1;
-                    noti.NOTI_IN_STATUS = 1;
-                    noti.USUA_CD_ID = item.TARE_CD_USUA_3.Value;
-                    noti.NOTI_DT_VALIDADE = DateTime.Today.AddDays(30);
-                    noti.NOTI_IN_NIVEL = 1;
-                    noti.NOTI_IN_VISTA = 0;
-                    noti.NOTI_NM_TITULO = "Aviso de Tarefa";
-                    noti.NOTI_TX_TEXTO = "A tarefa " + item.TARE_NM_TITULO + ", compartilhada com você,  foi reativada";
-
-                    // Persiste notificação 
-                    Int32 volta1 = _notiService.Create(noti);
-                }
-
                 return volta;
             }
             catch (Exception ex)

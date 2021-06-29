@@ -116,5 +116,7 @@ namespace EntitiesServices.Model
         public virtual DbSet<SUB_PROCEDIMENTO> SUB_PROCEDIMENTO { get; set; }
         public virtual DbSet<SUB_PROCEDIMENTO_ANEXO> SUB_PROCEDIMENTO_ANEXO { get; set; }
         public virtual DbSet<PACIENTE_BALANCO_FINANCEIRO> PACIENTE_BALANCO_FINANCEIRO { get; set; }
+        public virtual DbSet<PROCEDIMENTO> PROCEDIMENTO { get; set; }
+        public virtual DbSet<PERIODICIDADE_TAREFA> PERIODICIDADE_TAREFA { get; set; }
     }
 }

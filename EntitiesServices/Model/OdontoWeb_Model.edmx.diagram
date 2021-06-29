@@ -255,6 +255,11 @@
         <AssociationConnector Association="Odonto_DBModel.FK_ORCAMENTO_ITEM_SUB_PROCEDIMENTO" />
         <AssociationConnector Association="Odonto_DBModel.FK_PACIENTE_BALANCO_FINANCEIRO_PACIENTE" />
         <AssociationConnector Association="Odonto_DBModel.FK_ORCAMENTO_ASSINANTE" />
+        <EntityTypeShape EntityType="Odonto_DBModel.PROCEDIMENTO" Width="1.5" PointX="5.375" PointY="0.75" />
+        <AssociationConnector Association="Odonto_DBModel.FK_ORCAMENTO_USUARIO" />
+        <EntityTypeShape EntityType="Odonto_DBModel.PERIODICIDADE_TAREFA" Width="1.5" PointX="3" PointY="68.25" />
+        <AssociationConnector Association="Odonto_DBModel.FK_PERIODICIDADE_TAREFA_ASSINANTE" />
+        <AssociationConnector Association="Odonto_DBModel.FK_TAREFA_PERIODICIDADE_TAREFA" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

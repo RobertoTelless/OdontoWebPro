@@ -21,6 +21,26 @@ namespace ApplicationServices.Services
             _baseService = baseService;
         }
 
+        public Int32 ExecuteFilterLanc(Int32 conta, DateTime? data, Int32? tipo, String desc, out List<CONTA_BANCO_LANCAMENTO> objeto)
+        {
+            try
+            {
+                objeto = new List<CONTA_BANCO_LANCAMENTO>();
+                Int32 volta = 0;
+
+                objeto = _baseService.ExecuteFilterLanc(conta, data, tipo, desc);
+                if (objeto.Count == 0)
+                {
+                    volta = 1;
+                }
+                return volta;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public List<CONTA_BANCO> GetAllItens(Int32? idAss)
         {
             List<CONTA_BANCO> lista = _baseService.GetAllItens(idAss);

@@ -63,7 +63,7 @@ namespace ApplicationServices.Services
             return lista;
         }
 
-        public Int32 ExecuteFilter(DateTime? data, Int32 ? cat, String titulo, String descricao, Int32 idAss, out List<AGENDA> objeto)
+        public Int32 ExecuteFilter(DateTime? data, Int32 ? cat, String titulo, String descricao, Int32 idAss, Int32 idUser, out List<AGENDA> objeto)
         {
             try
             {
@@ -71,7 +71,7 @@ namespace ApplicationServices.Services
                 Int32 volta = 0;
 
                 // Processa filtro
-                objeto = _baseService.ExecuteFilter(data, cat, titulo, descricao, idAss);
+                objeto = _baseService.ExecuteFilter(data, cat, titulo, descricao, idAss, idUser);
                 if (objeto.Count == 0)
                 {
                     volta = 1;
@@ -118,16 +118,16 @@ namespace ApplicationServices.Services
             try
             {
                 // Monta Log
-                LOG log = new LOG
-                {
-                    LOG_DT_DATA = DateTime.Now,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
-                    USUA_CD_ID = usuario.USUA_CD_ID,
-                    LOG_NM_OPERACAO = "EditAGEN",
-                    LOG_IN_ATIVO = 1,
-                    LOG_TX_REGISTRO = item.AGEN_CD_ID.ToString() + "|" + item.CATEGORIA_AGENDA.CAAG_NM_NOME + "|" + item.AGEN_DS_DESCRICAO + "|" + item.AGEN_DT_DATA.ToShortDateString() + "|" + item.AGEN_HR_HORA.ToString() + "|" + item.AGEN_NM_TITULO + "|" + item.USUARIO.USUA_NM_NOME + "|" + item.AGEN_TX_OBSERVACOES,
-                    LOG_TX_REGISTRO_ANTES = itemAntes.AGEN_CD_ID.ToString() + "|" + itemAntes.CATEGORIA_AGENDA.CAAG_NM_NOME + "|" + itemAntes.AGEN_DS_DESCRICAO + "|" + itemAntes.AGEN_DT_DATA.ToShortDateString() + "|" + itemAntes.AGEN_HR_HORA.ToString() + "|" + itemAntes.AGEN_NM_TITULO + "|" + itemAntes.USUARIO.USUA_NM_NOME + "|" + itemAntes.AGEN_TX_OBSERVACOES
-                };
+                //LOG log = new LOG
+                //{
+                //    LOG_DT_DATA = DateTime.Now,
+                //    ASSI_CD_ID = SessionMocks.IdAssinante,
+                //    USUA_CD_ID = usuario.USUA_CD_ID,
+                //    LOG_NM_OPERACAO = "EditAGEN",
+                //    LOG_IN_ATIVO = 1,
+                //    LOG_TX_REGISTRO = Serialization.SerializeJSON<AGENDA>(item),
+                //    LOG_TX_REGISTRO_ANTES = Serialization.SerializeJSON<AGENDA>(itemAntes)
+                //};
 
                 // Persiste
                 return _baseService.Edit(item);

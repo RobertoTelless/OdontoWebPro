@@ -34,9 +34,9 @@ namespace ModelServices.EntitiesServices
             _usuRepository = usuRepository;
         }
 
-        public TAREFA CheckExist(TAREFA tarefa, Int32 idUsu)
+        public TAREFA CheckExist(TAREFA tarefa, Int32 idAss)
         {
-            TAREFA item = _baseRepository.CheckExist(tarefa, idUsu);
+            TAREFA item = _baseRepository.CheckExist(tarefa, idAss);
             return item;
         }
 
@@ -46,9 +46,9 @@ namespace ModelServices.EntitiesServices
             return item;
         }
 
-        public List<TAREFA> GetByDate(DateTime data, Int32 idUsu)
+        public List<TAREFA> GetByDate(DateTime data, Int32 idAss)
         {
-            return _baseRepository.GetByDate(data, idUsu);
+            return _baseRepository.GetByDate(data, idAss);
         }
 
         public USUARIO GetUserById(Int32 id)
@@ -67,14 +67,14 @@ namespace ModelServices.EntitiesServices
             return _baseRepository.GetTarefaStatus(user, tipo);
         }
 
-        public List<TAREFA> GetAllItens(Int32 idUsu)
+        public List<TAREFA> GetAllItens(Int32 idAss)
         {
-            return _baseRepository.GetAllItens(idUsu);
+            return _baseRepository.GetAllItens(idAss);
         }
 
-        public List<TAREFA> GetAllItensAdm(Int32 idUsu)
+        public List<TAREFA> GetAllItensAdm(Int32 idAss)
         {
-            return _baseRepository.GetAllItensAdm(idUsu);
+            return _baseRepository.GetAllItensAdm(idAss);
         }
 
         public List<TIPO_TAREFA> GetAllTipos(Int32 idAss)
@@ -92,10 +92,15 @@ namespace ModelServices.EntitiesServices
             return _anexoRepository.GetItemById(id);
         }
 
-       
-        public List<TAREFA> ExecuteFilter(Int32? tipoId, String titulo, DateTime? data, Int32 encerrada, Int32 prioridade, Int32 idUsu)
+        public List<PERIODICIDADE_TAREFA> GetAllPeriodicidade()
         {
-            return _baseRepository.ExecuteFilter(tipoId, titulo, data, encerrada, prioridade, idUsu);
+            return _baseRepository.GetAllPeriodicidade();
+        }
+
+
+        public List<TAREFA> ExecuteFilter(Int32? tipoId, String titulo, DateTime? data, Int32 encerrada, Int32 prioridade, Int32? usuario, Int32 idAss)
+        {
+            return _baseRepository.ExecuteFilter(tipoId, titulo, data, encerrada, prioridade, usuario, idAss);
 
         }
 

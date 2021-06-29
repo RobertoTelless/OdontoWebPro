@@ -69,6 +69,8 @@
                                     @Html.HiddenFor(m => m.CBLA_IN_ATIVO)
                                     @Html.HiddenFor(m => m.CBLA_IN_ORIGEM)
                                     @Html.HiddenFor(m => m.COBA_CD_ID)
+                                    @Html.HiddenFor(m => m.CBLA_IN_TIPO)
+                                    @Html.HiddenFor(m => m.CBLA_VL_VALOR)
                                     Data*
                                     @Html.TextBoxFor(m => m.CBLA_DT_LANCAMENTO, "{0:dd/MM/yyyy}", new { @class = "form-control date-picker", autofocus = true })
                                     @Html.ValidationMessageFor(m => m.CBLA_DT_LANCAMENTO, "",new { @style="color:red" })
@@ -82,23 +84,16 @@
                                     Tipo
                                     @if (Model.CBLA_IN_TIPO == 1)
                                     {
-                                        <h4>Crédito</h4>
+                                        @Html.TextBox("TIPO", "Crédito", new { @class = "form-control", autofocus = true, @readonly = "readonly" })
                                     }
                                     else
                                     {
-                                        <h4>Débito</h4>
+                                        @Html.TextBox("TIPO", "Débito", new { @class = "form-control", autofocus = true, @readonly = "readonly" })
                                     }
                                 </div>
                                 <div class="col-lg-2 col-md-2 col-xs-12">
                                     Valor
-                                    @if (Model.CBLA_IN_TIPO == 1)
-                                    {
-                                        @Html.TextBoxFor(m => m.CBLA_VL_VALOR, "{0:n2}", new { @class = "form-control", autofocus = true, @readonly = "readonly", @style="color:green; font-weight:bold" })
-                                    }
-                                    else
-                                    {
-                                        @Html.TextBoxFor(m => m.CBLA_VL_VALOR, "{0:n2}", new { @class = "form-control", autofocus = true, @readonly = "readonly", @style="color:darkred; font-weight:bold" })
-                                    }
+                                    @Html.TextBox("VALOR", Model.CBLA_VL_VALOR, "{0:n2}", new { @class = "form-control", autofocus = true, @readonly = "readonly" })
                                 </div>
                             </div>
                             <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">               

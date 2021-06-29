@@ -52,10 +52,10 @@ namespace DataServices.Repositories
             return query.ToList();
         }
 
-        public List<AGENDA> ExecuteFilter(DateTime? data, Int32? cat, String titulo, String descricao, Int32 idAss)
+        public List<AGENDA> ExecuteFilter(DateTime? data, Int32? cat, String titulo, String descricao, Int32 idAss, Int32 idUser)
         {
             List<AGENDA> lista = new List<AGENDA>();
-            IQueryable<AGENDA> query = Db.AGENDA;
+            IQueryable<AGENDA> query = Db.AGENDA.Where(x => x.USUA_CD_ID == idUser);
             if (!String.IsNullOrEmpty(titulo))
             {
                 query = query.Where(p => p.AGEN_NM_TITULO.Contains(titulo));
@@ -63,10 +63,6 @@ namespace DataServices.Repositories
             if (!String.IsNullOrEmpty(descricao))
             {
                 query = query.Where(p => p.AGEN_DS_DESCRICAO.Contains(descricao));
-            }
-            if (data != DateTime.MinValue)
-            {
-                query = query.Where(p => p.AGEN_DT_DATA == data);
             }
             if (cat > 0 & cat != null)
             {
@@ -77,7 +73,12 @@ namespace DataServices.Repositories
             {
                 query = query.Where(p => p.ASSI_CD_ID == idAss);
                 query = query.OrderByDescending(a => a.AGEN_DT_DATA).ThenByDescending(b => b.AGEN_HR_HORA);
-                lista = query.ToList<AGENDA>();            }
+                lista = query.ToList<AGENDA>();
+                if (data != DateTime.MinValue)
+                {
+                    lista = lista.Where(p => p.AGEN_DT_DATA == data).ToList<AGENDA>();
+                }
+            }
             return lista;
         }
     }

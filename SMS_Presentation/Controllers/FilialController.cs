@@ -15,6 +15,12 @@ using iTextSharp.text.pdf;
 using Canducci.Zip;
 using System.Collections;
 using ApplicationServices.Services;
+using EntitiesServices.Work_Classes;
+using System.Text.RegularExpressions;
+using System.Net;
+using System.Text;
+using Newtonsoft.Json.Linq;
+using EntitiesServices.WorkClasses;
 
 namespace Odonto.Controllers
 {
@@ -60,6 +66,68 @@ namespace Odonto.Controllers
                 return RedirectToAction("Login", "ControleAcesso");
             }
             return RedirectToAction("MontarTelaFilial");
+        }
+
+        [HttpPost]
+        public JsonResult PesquisaCNPJ(string cnpj)
+        {
+            var url = "https://api.cnpja.com.br/companies/" + Regex.Replace(cnpj, "[^0-9]", "");
+            String json = String.Empty;
+
+            WebRequest request = WebRequest.Create(url);
+            request.Headers["Authorization"] = "df3c411d-bb44-41eb-9304-871c45d72978-cd751b62-ff3d-4421-a9d2-b97e01ca6d2b";
+
+            try
+            {
+                WebResponse response = request.GetResponse();
+
+                using (var reader = new System.IO.StreamReader(response.GetResponseStream(), ASCIIEncoding.UTF8))
+                {
+                    json = reader.ReadToEnd();
+                }
+
+                var jObject = JObject.Parse(json);
+
+                CNPJ pesquisaCNPJ = new CNPJ();
+                pesquisaCNPJ.RAZAO = jObject["name"] == null ? String.Empty : jObject["name"].ToString();
+                pesquisaCNPJ.NOME = jObject["alias"] == null ? jObject["name"].ToString() : jObject["alias"].ToString();
+                pesquisaCNPJ.CEP = jObject["address"]["zip"].ToString();
+                pesquisaCNPJ.ENDERECO = jObject["address"]["street"].ToString();
+                //matriz.numero = jObject["address"]["number"].ToString();
+                pesquisaCNPJ.BAIRRO = jObject["address"]["neighborhood"].ToString();
+                pesquisaCNPJ.CIDADE = jObject["address"]["city"].ToString();
+                pesquisaCNPJ.UF = ((List<UF>)Session["UFs"]).Where(x => x.UF_SG_SIGLA == jObject["address"]["state"].ToString()).Select(x => x.UF_CD_ID).FirstOrDefault();
+                pesquisaCNPJ.INSCRICAO_ESTADUAL = jObject["sintegra"]["home_state_registration"].ToString();
+                pesquisaCNPJ.TELEFONE = jObject["phone"].ToString();
+                //matriz.CLIE_NR_TELEFONE_ADICIONAL = jObject["phone_alt"].ToString();
+                pesquisaCNPJ.EMAIL = jObject["email"].ToString();
+
+                return Json(pesquisaCNPJ);
+            }
+            catch (WebException ex)
+            {
+                var hash = new Hashtable();
+                hash.Add("status", "ERROR");
+
+                if ((ex.Response as HttpWebResponse)?.StatusCode.ToString() == "BadRequest")
+                {
+                    hash.Add("public", 1);
+                    hash.Add("message", "CNPJ inválido");
+                    return Json(hash);
+                }
+                if ((ex.Response as HttpWebResponse)?.StatusCode.ToString() == "NotFound")
+                {
+                    hash.Add("public", 1);
+                    hash.Add("message", "O CNPJ consultado não está registrado na Receita Federal");
+                    return Json(hash);
+                }
+                else
+                {
+                    hash.Add("public", 1);
+                    hash.Add("message", ex.Message);
+                    return Json(hash);
+                }
+            }
         }
 
         [HttpGet]
@@ -613,7 +681,37 @@ namespace Odonto.Controllers
             return Json(hash);
         }
 
+        [HttpPost]
+        public ActionResult UploadFotoQueueFilial(FileQueue file)
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            if (file == null)
+            {
+                ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0019", CultureInfo.CurrentCulture));
+                return RedirectToAction("VoltarAnexoEquipe");
+            }
 
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            Int32 idVolta = (Int32)Session["IdVolta"];
+            FILIAL item = baseApp.GetById(idVolta);
+            USUARIO usu = (USUARIO)Session["UserCredentials"];
+            var fileName = file.Name;
+            String caminho = "/Imagens/" + ((Int32)Session["IdAssinante"]).ToString() + "/Filial/" + item.FILI_CD_ID.ToString() + "/Logos/";
+            String path = Path.Combine(Server.MapPath(caminho), fileName);
+            System.IO.File.WriteAllBytes(path, file.Contents);
 
+            //Recupera tipo de arquivo
+            extensao = Path.GetExtension(fileName);
+            String a = extensao;
+
+            // Gravar registro
+            item.FILI_AQ_LOGOTIPO = "~" + caminho + fileName;
+            objetoAntes = item;
+            Int32 volta = baseApp.ValidateEdit(item, objetoAntes, usu);
+            return RedirectToAction("EditarFilial", new { id = idVolta });
+        }
     }
 }

@@ -592,6 +592,11 @@ namespace Odonto.Controllers
             // Prepara listas
             ViewBag.Tipos = new SelectList(tcApp.GetAllItens(), "TICO_CD_ID", "TICO_NM_NOME");
             ViewBag.Filiais = new SelectList(filApp.GetAllItens(idAss), "FILI_CD_ID", "FILI_NM_NOME");
+            List<CONTA_BANCO_LANCAMENTO> tipo = new List<CONTA_BANCO_LANCAMENTO>();
+            tipo.Add(new CONTA_BANCO_LANCAMENTO() { CBLA_DS_DESCRICAO = "Crédito", CBLA_IN_TIPO = 1 });
+            tipo.Add(new CONTA_BANCO_LANCAMENTO() { CBLA_DS_DESCRICAO = "Débito", CBLA_IN_TIPO = 2 });
+            ViewBag.TipoLanc = new SelectList(tipo.Select(x => new { x.CBLA_IN_TIPO, x.CBLA_DS_DESCRICAO }).ToList(), "CBLA_IN_TIPO", "CBLA_DS_DESCRICAO");
+            ViewBag.TabDadosGer = "active";
 
             // Prepara view
             CONTA_BANCO item = contaApp.GetItemById(id);
@@ -601,10 +606,32 @@ namespace Odonto.Controllers
             ViewBag.Banco = item.BANCO.BANC_NM_NOME;
 
             objContaAntes = item;
+            if (Session["FiltroLancamento"] != null)
+            {
+                ViewBag.TabDadosGer = "";
+                ViewBag.TabLanc = "active";
+
+                CONTA_BANCO_LANCAMENTO cbl = (CONTA_BANCO_LANCAMENTO)Session["FiltroLancamento"];
+                Session["FiltroLancamento"] = null;
+                List<CONTA_BANCO_LANCAMENTO> lstLanc = new List<CONTA_BANCO_LANCAMENTO>();
+                Int32 volta = contaApp.ExecuteFilterLanc(cbl.COBA_CD_ID, cbl.CBLA_DT_LANCAMENTO, cbl.CBLA_IN_TIPO, cbl.CBLA_DS_DESCRICAO, out lstLanc);
+
+                if (volta == 0)
+                {
+                    item.CONTA_BANCO_LANCAMENTO = new List<CONTA_BANCO_LANCAMENTO>();
+                    item.CONTA_BANCO_LANCAMENTO = lstLanc;
+                }
+                else
+                {
+                    ModelState.AddModelError("", OdontoWeb_Resources.ResourceManager.GetString("M0016", CultureInfo.CurrentCulture));
+                }
+            }
+
             Session["IdVolta"] = id;
             Session["ContaPadrao"] = item;
             ContaBancariaViewModel vm = Mapper.Map<CONTA_BANCO, ContaBancariaViewModel>(item);
-            return View(vm); 
+            Session["FiltroLancamento"] = null;
+            return View(vm);
         }
 
         [HttpPost]
@@ -614,6 +641,10 @@ namespace Odonto.Controllers
             Int32 idAss = (Int32)Session["IdAssinante"];
             ViewBag.Tipos = new SelectList(tcApp.GetAllItens(), "TICO_CD_ID", "TICO_NM_NOME");
             ViewBag.Filiais = new SelectList(filApp.GetAllItens(idAss), "FILI_CD_ID", "FILI_NM_NOME");
+            List<CONTA_BANCO_LANCAMENTO> tipo = new List<CONTA_BANCO_LANCAMENTO>();
+            tipo.Add(new CONTA_BANCO_LANCAMENTO() { CBLA_DS_DESCRICAO = "Crédito", CBLA_IN_TIPO = 1 });
+            tipo.Add(new CONTA_BANCO_LANCAMENTO() { CBLA_DS_DESCRICAO = "Débito", CBLA_IN_TIPO = 2 });
+            ViewBag.TipoLanc = new SelectList(tipo, "CBLA_IN_TIPO", "CBLA_DS_DESCRICAO");
             if (ModelState.IsValid)
             {
                 try
@@ -674,6 +705,12 @@ namespace Odonto.Controllers
             Session["ContaPadrao"] = item;
             ContaBancariaViewModel vm = Mapper.Map<CONTA_BANCO, ContaBancariaViewModel>(item);
             return View(vm);
+        }
+
+        public ActionResult FiltrarLancamento(CONTA_BANCO_LANCAMENTO item)
+        {
+            Session["FiltroLancamento"] = item;
+            return RedirectToAction("EditarConta", new { id = (Int32)Session["IdVolta"] });
         }
 
         [HttpPost]
@@ -786,6 +823,10 @@ namespace Odonto.Controllers
 
         public ActionResult VoltarBaseConta()
         {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
             listaMasterConta = new List<CONTA_BANCO>();
             Session["ListaContaBancaria"] = null;
             return RedirectToAction("EditarBanco", new { id = (Int32)Session["IdBanco"] });
@@ -794,6 +835,10 @@ namespace Odonto.Controllers
         [HttpGet]
         public ActionResult EditarContato(Int32 id)
         {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
             // Prepara view
             CONTA_BANCO_CONTATO item = contaApp.GetContatoById(id);
             ContaBancariaContatoViewModel vm = Mapper.Map<CONTA_BANCO_CONTATO, ContaBancariaContatoViewModel>(item);
@@ -971,6 +1016,10 @@ namespace Odonto.Controllers
         [HttpGet]
         public ActionResult IncluirLancamento()
         {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
             // Prepara view
             List<SelectListItem> tipoLancamento = new List<SelectListItem>();
             tipoLancamento.Add(new SelectListItem() { Text = "Crédito", Value = "1" });
@@ -991,6 +1040,10 @@ namespace Odonto.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult IncluirLancamento(ContaBancariaLancamentoViewModel vm)
         {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
             List<SelectListItem> tipoLancamento = new List<SelectListItem>();
             tipoLancamento.Add(new SelectListItem() { Text = "Crédito", Value = "1" });
             tipoLancamento.Add(new SelectListItem() { Text = "Débito", Value = "2" });
@@ -1023,6 +1076,10 @@ namespace Odonto.Controllers
         [HttpGet]
         public ActionResult EditarLancamento(Int32 id)
         {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
             // Prepara view
             List<SelectListItem> tipoLancamento = new List<SelectListItem>();
             tipoLancamento.Add(new SelectListItem() { Text = "Crédito", Value = "1" });
@@ -1037,6 +1094,10 @@ namespace Odonto.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditarLancamento(ContaBancariaLancamentoViewModel vm)
         {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
             List<SelectListItem> tipoLancamento = new List<SelectListItem>();
             tipoLancamento.Add(new SelectListItem() { Text = "Crédito", Value = "1" });
             tipoLancamento.Add(new SelectListItem() { Text = "Débito", Value = "2" });
@@ -1068,6 +1129,10 @@ namespace Odonto.Controllers
         [HttpGet]
         public ActionResult VerLancamento(Int32 id)
         {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
             // Prepara view
             CONTA_BANCO_LANCAMENTO item = contaApp.GetLancamentoById(id);
             ContaBancariaLancamentoViewModel vm = Mapper.Map<CONTA_BANCO_LANCAMENTO, ContaBancariaLancamentoViewModel>(item);
@@ -1183,21 +1248,37 @@ namespace Odonto.Controllers
 
         public ActionResult VoltarAnexoConta()
         {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
             return RedirectToAction("EditarConta", new { id = (Int32)Session["IdVolta"] });
         }
 
         public ActionResult VoltarAnexoContaVer()
         {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
             return RedirectToAction("VerConta", new { id = (Int32)Session["IdVolta"] });
         }
 
         public ActionResult VoltarAnexoBanco()
         {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
             return RedirectToAction("EditarBanco", new { id = (Int32)Session["IdBanco"] });
         }
 
         public ActionResult VoltarAnexoBancoVer()
         {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
             return RedirectToAction("VerBanco", new { id = (Int32)Session["IdBanco"] });
         }
 

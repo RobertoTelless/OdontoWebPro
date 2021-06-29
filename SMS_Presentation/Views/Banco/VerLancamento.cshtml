@@ -80,11 +80,11 @@
                                     Tipo
                                     @if (Model.CBLA_IN_TIPO == 1)
                                     {
-                                        <h4>Crédito</h4>
+                                        @Html.TextBox("TIPO", "Crédito", new { @class = "form-control", autofocus = true, @readonly = "readonly" })
                                     }
                                     else
                                     {
-                                        <h4>Débito</h4>
+                                        @Html.TextBox("TIPO", "Débito", new { @class = "form-control", autofocus = true, @readonly = "readonly" })
                                     }
                                 </div>
                                 <div class="col-lg-2 col-md-2 col-xs-12">
