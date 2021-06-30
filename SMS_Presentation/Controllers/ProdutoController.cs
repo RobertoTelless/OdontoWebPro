@@ -169,6 +169,21 @@ namespace Odonto.Controllers
             return RedirectToAction("MontarTelaConsumoProduto");
         }
 
+        public ActionResult MostrarConsumoTodos()
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            USUARIO usuario = (USUARIO)Session["UserCredentials"];
+            listaMov = movApp.GetAllItensUserDataMes(usuario.USUA_CD_ID, DateTime.MinValue, idAss);
+            listaMov = listaMov.Where(p => p.MOEP_IN_TIPO_MOVIMENTO == 2).ToList();
+            Session["ListaConsumo"] = listaMov;
+            Session["FiltroConsumo"] = null;
+            return RedirectToAction("MontarTelaConsumoProduto");
+        }
+
         public ActionResult VerProdutoConsumo(Int32 id)
         {
             if ((String)Session["Ativa"] == null)

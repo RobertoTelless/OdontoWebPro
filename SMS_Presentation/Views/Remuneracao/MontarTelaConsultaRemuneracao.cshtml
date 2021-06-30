@@ -152,7 +152,8 @@
                                                 <td>@cond.USCC_IN_DOWNLOADS</td>
                                                 <td>@cond.USCC_IN_VISUALIZACOES</td>
                                                 <td class="td-one-action">
-                                                    @Html.TableLinkDetails(cond.USCC_CD_ID, "VerContracheque","fa-search", "Visualizar")
+                                                    <a title="Visualizar" class="fa fa-camera fa-lg" href="~/PdfViewer/web/viewer.html?file=@(cond.USCC_AQ_ARQUIVO.Replace("~", ""))&ReturnUrl=@Request.Url.AbsolutePath" target="_blank" ></a>
+                                                    @*@Html.TableLinkDetails(cond.USCC_CD_ID, "VerContracheque","fa-search", "Visualizar")*@
                                                     @Html.TableLinkDetails(cond.USCC_CD_ID, "DownloadContracheque","fa-download", "Download")
                                                 </td>
                                             </tr>

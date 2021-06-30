@@ -1,4 +1,5 @@
 @using Inspinia_MVC5;
+@using EntitiesServices.Model;
 <nav class="navbar-default navbar-static-side" role="navigation">
     <div class="sidebar-collapse">
         <ul class="nav" id="side-menu">
@@ -33,22 +34,28 @@
                 </div>
             </li>
 
-            <li class="@Html.IsSelected(controller: "BaseAdmin")">
-                <a href="@Url.Action("CarregarBase", "BaseAdmin")"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Operação</span> <span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "BaseAdmin", cssClass: "in")">
-                    <li class="@Html.IsSelected(action: "MontarTelaPaciente")"><a href="@Url.Action("MontarTelaPaciente", "Paciente")">Pacientes</a></li>
-                </ul>
-            </li>
+            @if (((PERFIL)Session["Perfil"]).PERF_SG_SIGLA  == "ADM" || ((PERFIL)Session["Perfil"]).PERF_SG_SIGLA  == "ADM")
+            {
+                <li class="@Html.IsSelected(controller: "BaseAdmin")">
+                    <a href="@Url.Action("CarregarBase", "BaseAdmin")"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Operação</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "BaseAdmin", cssClass: "in")">
+                        <li class="@Html.IsSelected(action: "MontarTelaPaciente")"><a href="@Url.Action("MontarTelaPaciente", "Paciente")">Pacientes</a></li>
+                    </ul>
+                </li>
+            }
 
-            <li class="@Html.IsSelected(controller: "BaseAdmin")">
-                <a href="@Url.Action("CarregarBase", "BaseAdmin")"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Consultas</span> <span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "BaseAdmin", cssClass: "in")">
-                    <li class="@Html.IsSelected(action: "MontarTelaEquipeCards")"><a href="@Url.Action("MontarTelaEquipeCards", "Equipe")">Equipe</a></li>
-                    <li class="@Html.IsSelected(action: "MontarTelaConsultaRemuneracao")"><a href="@Url.Action("MontarTelaConsultaRemuneracao", "Remuneracao")">Remuneração</a></li>
-                    <li class="@Html.IsSelected(action: "MontarTelaConsumoProduto")"><a href="@Url.Action("MontarTelaConsumoProduto", "Produto")">Consumo de Material</a></li>
-                    <li class="@Html.IsSelected(action: "MontarTelaTelefone")"><a href="@Url.Action("MontarTelaTelefone", "Telefone")">Telefones</a></li>
-                </ul>
-            </li>
+            @if (((PERFIL)Session["Perfil"]).PERF_SG_SIGLA  == "ADM" || ((PERFIL)Session["Perfil"]).PERF_SG_SIGLA  == "ADM")
+            {
+                <li class="@Html.IsSelected(controller: "BaseAdmin")">
+                    <a href="@Url.Action("CarregarBase", "BaseAdmin")"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Consultas</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "BaseAdmin", cssClass: "in")">
+                        <li class="@Html.IsSelected(action: "MontarTelaEquipeCards")"><a href="@Url.Action("MontarTelaEquipeCards", "Equipe")">Equipe</a></li>
+                        <li class="@Html.IsSelected(action: "MontarTelaConsultaRemuneracao")"><a href="@Url.Action("MontarTelaConsultaRemuneracao", "Remuneracao")">Remuneração</a></li>
+                        <li class="@Html.IsSelected(action: "MontarTelaConsumoProduto")"><a href="@Url.Action("MontarTelaConsumoProduto", "Produto")">Consumo de Material</a></li>
+                        <li class="@Html.IsSelected(action: "MontarTelaTelefone")"><a href="@Url.Action("MontarTelaTelefone", "Telefone")">Telefones</a></li>
+                    </ul>
+                </li>
+            }
 
             <li class="@Html.IsSelected(controller: "BaseAdmin")">
                 <a href="@Url.Action("CarregarBase", "BaseAdmin")"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Utilitários</span> <span class="fa arrow"></span></a>
@@ -58,7 +65,7 @@
                 </ul>
             </li>
 
-            @if (((EntitiesServices.Model.PERFIL)Session["Perfil"]).PERF_SG_SIGLA  == "ADM")
+            @if (((PERFIL)Session["Perfil"]).PERF_SG_SIGLA  == "ADM")
             {
                 <li class="@Html.IsSelected(controller: "BaseAdmin")">
                     <a href="@Url.Action("CarregarBase", "BaseAdmin")"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Cadastros</span> <span class="fa arrow"></span></a>
